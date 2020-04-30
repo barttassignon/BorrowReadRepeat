@@ -145,6 +145,15 @@ public abstract class Boek {
     public static void setAantalBoekenInBib(int aantalBoekenInBib) {
         AantalBoekenInBib = aantalBoekenInBib;
     }
+
+    @Override
+    public String toString() {
+        return "Boek{" +
+                "ISBN=" + ISBN +
+                ", titel='" + titel + '\'' +
+                ", auteur='" + auteur + '\'' +
+                '}';
+    }
 }
 
 
