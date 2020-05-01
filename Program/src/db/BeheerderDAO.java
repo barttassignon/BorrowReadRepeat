@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class BeheerderDAO extends BaseDAO {
 
-    public void saveBeheerder(Beheerder beheerder)
+    public void toevoegenBeheerder(Beheerder beheerder)
     {
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("insert into Beheerders values (NULL, ?, ?)");
@@ -31,7 +31,7 @@ public class BeheerderDAO extends BaseDAO {
         } ;
     };
 
-    public ArrayList<Beheerder> readBeheerders ()
+    public ArrayList<Beheerder> ophalenBeheerders()
     {
         ArrayList<Beheerder> lijst = new ArrayList<>();
         try (Connection c = getConn()) {
@@ -49,7 +49,7 @@ public class BeheerderDAO extends BaseDAO {
         return lijst;
     };
 
-    public Beheerder searchBeheerderByName(String gebruikersnaam)
+    public Beheerder opzoekenBeheerder(String gebruikersnaam)
     {
         Beheerder b = null;
         try (Connection c = getConn()) {

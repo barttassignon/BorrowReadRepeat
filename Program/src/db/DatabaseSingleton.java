@@ -49,4 +49,16 @@ public class DatabaseSingleton {
     protected Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException();
     }
+
+    public static void main(String[] args) {
+
+        String url = "jdbc:mysql://dt5.ehb.be/1920mobappgr1";
+        String user = "1920mobappgr1";
+        String password = "XNnhDjw";
+        try {
+            Connection con = DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
