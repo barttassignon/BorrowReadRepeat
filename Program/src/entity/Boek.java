@@ -29,7 +29,7 @@ public class Boek {
         AantalBoekenInBib += 1;
     }
 
-    public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib, boolean gereserveerd, int aantalKeerUitgeleend) {
+    public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
         this.ISBN = ISBN;
         this.titel = titel;
         this.auteur = auteur;
@@ -39,8 +39,8 @@ public class Boek {
         this.aankoopdatum = aankoopdatum;
         this.prijs = prijs;
         this.plaatsInBib = plaatsInBib;
-        this.gereserveerd = gereserveerd;
-        this.aantalKeerUitgeleend = aantalKeerUitgeleend;
+        this.gereserveerd = false;
+        this.aantalKeerUitgeleend = 0;
     }
 
     public Boek(int artikelnummer, long ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {

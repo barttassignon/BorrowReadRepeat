@@ -70,5 +70,15 @@ public class BeheerderDAO extends BaseDAO {
         } ;
         return b;
     }
+
+    public static void main(String[] args) {
+        BeheerderDAO bda = new BeheerderDAO();
+        Beheerder b1 = new Beheerder("Katrien", "paswoord15");
+        Beheerder b2 = new Beheerder("Bart", "123456");
+        bda.toevoegenBeheerder(b1);
+        bda.toevoegenBeheerder(b2);
+
+        // Werkt maar geeft geen foutmelding als gebruikersnaam en wachtwoord reeds in databank zitten.
+    }
 }
 
