@@ -4,7 +4,7 @@
 
 package entity;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.Objects;
 
 public abstract class Boek {
@@ -15,7 +15,7 @@ public abstract class Boek {
     private String uitgeverij;
     private String taal;
     private int paginas;
-    private LocalDate aankoopdatum;
+    private Date aankoopdatum;
     private double prijs;
     private String plaatsInBib;
     private boolean gereserveerd;
@@ -29,7 +29,7 @@ public abstract class Boek {
         AantalBoekenInBib += 1;
     }
 
-    public Boek(int artikelnummer, int ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
+    public Boek(int artikelnummer, int ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, Date aankoopdatum, double prijs, String plaatsInBib) {
         this.artikelnummer = artikelnummer;
         this.ISBN = ISBN;
         this.titel = titel;
@@ -99,11 +99,11 @@ public abstract class Boek {
         this.paginas = paginas;
     }
 
-    public LocalDate getAankoopdatum() {
+    public Date getAankoopdatum() {
         return aankoopdatum;
     }
 
-    public void setAankoopdatum(LocalDate aankoopdatum) {
+    public void setAankoopdatum(Date aankoopdatum) {
         this.aankoopdatum = aankoopdatum;
     }
 

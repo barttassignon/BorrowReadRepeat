@@ -36,7 +36,7 @@ public class DatabaseSingleton {
                 String user = "1920mobappgr1";
                 String password = "XNnhDjw";
 
-                // Nog aan te passen! In werkelijkheid niet hardcoded: meesturen als argument vanuit config file
+                // Nog aan te passen! In werkelijkheid niet hardcoded: meesturen als argument in logic vanuit config file
                 connection = DriverManager.getConnection(url, user, password);
             }
         } catch (SQLException e) {
