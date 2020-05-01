@@ -6,7 +6,7 @@ package entity;
 
 import java.util.Date;
 
-public class Beheerder {
+public class Beheerder extends Persoon{
 
     private int id;
     private String gebruikersnaam;
