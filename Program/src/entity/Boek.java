@@ -4,6 +4,7 @@
 
 package entity;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public abstract class Boek {
@@ -11,10 +12,10 @@ public abstract class Boek {
     private int ISBN;
     private String titel;
     private String auteur;
-    private String Uitgeverij;
+    private String uitgeverij;
     private String taal;
     private int paginas;
-    private String aankoopdatum;
+    private LocalDate aankoopdatum;
     private double prijs;
     private String plaatsInBib;
     private boolean gereserveerd;
@@ -28,12 +29,12 @@ public abstract class Boek {
         AantalBoekenInBib += 1;
     }
 
-    public Boek(int artikelnummer, int ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, String aankoopdatum, double prijs, String plaatsInBib) {
+    public Boek(int artikelnummer, int ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
         this.artikelnummer = artikelnummer;
         this.ISBN = ISBN;
         this.titel = titel;
         this.auteur = auteur;
-        Uitgeverij = uitgeverij;
+        this.uitgeverij = uitgeverij;
         this.taal = taal;
         this.paginas = paginas;
         this.aankoopdatum = aankoopdatum;
@@ -75,11 +76,11 @@ public abstract class Boek {
     }
 
     public String getUitgeverij() {
-        return Uitgeverij;
+        return uitgeverij;
     }
 
     public void setUitgeverij(String uitgeverij) {
-        Uitgeverij = uitgeverij;
+        uitgeverij = uitgeverij;
     }
 
     public String getTaal() {
@@ -98,11 +99,11 @@ public abstract class Boek {
         this.paginas = paginas;
     }
 
-    public String getAankoopdatum() {
+    public LocalDate getAankoopdatum() {
         return aankoopdatum;
     }
 
-    public void setAankoopdatum(String aankoopdatum) {
+    public void setAankoopdatum(LocalDate aankoopdatum) {
         this.aankoopdatum = aankoopdatum;
     }
 
