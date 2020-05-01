@@ -25,6 +25,9 @@ public class BeheerderDAO extends BaseDAO {
             if (result > 0)
                 System.out.println("GELUKT");
             else System.out.println("MISLUKT!");
+
+            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: beheerder bestaat reeds)
+
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");

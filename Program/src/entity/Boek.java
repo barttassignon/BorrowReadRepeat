@@ -4,18 +4,18 @@
 
 package entity;
 
-import java.sql.Date;
-import java.util.Objects;
+import java.time.LocalDate;
 
-public abstract class Boek {
+public class Boek {
     private int artikelnummer;
-    private int ISBN;
+    private long ISBN;
+    // ISBN telt 13 cijfers en dat is te groot voor een int
     private String titel;
     private String auteur;
     private String uitgeverij;
     private String taal;
     private int paginas;
-    private Date aankoopdatum;
+    private LocalDate aankoopdatum;
     private double prijs;
     private String plaatsInBib;
     private boolean gereserveerd;
@@ -29,7 +29,21 @@ public abstract class Boek {
         AantalBoekenInBib += 1;
     }
 
-    public Boek(int artikelnummer, int ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, Date aankoopdatum, double prijs, String plaatsInBib) {
+    public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib, boolean gereserveerd, int aantalKeerUitgeleend) {
+        this.ISBN = ISBN;
+        this.titel = titel;
+        this.auteur = auteur;
+        this.uitgeverij = uitgeverij;
+        this.taal = taal;
+        this.paginas = paginas;
+        this.aankoopdatum = aankoopdatum;
+        this.prijs = prijs;
+        this.plaatsInBib = plaatsInBib;
+        this.gereserveerd = gereserveerd;
+        this.aantalKeerUitgeleend = aantalKeerUitgeleend;
+    }
+
+    public Boek(int artikelnummer, long ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
         this.artikelnummer = artikelnummer;
         this.ISBN = ISBN;
         this.titel = titel;
@@ -51,11 +65,11 @@ public abstract class Boek {
         this.artikelnummer = artikelnummer;
     }
 
-    public int getISBN() {
+    public long getISBN() {
         return ISBN;
     }
 
-    public void setISBN(int ISBN) {
+    public void setISBN(long ISBN) {
         this.ISBN = ISBN;
     }
 
@@ -99,11 +113,11 @@ public abstract class Boek {
         this.paginas = paginas;
     }
 
-    public Date getAankoopdatum() {
+    public LocalDate getAankoopdatum() {
         return aankoopdatum;
     }
 
-    public void setAankoopdatum(Date aankoopdatum) {
+    public void setAankoopdatum(LocalDate aankoopdatum) {
         this.aankoopdatum = aankoopdatum;
     }
 
