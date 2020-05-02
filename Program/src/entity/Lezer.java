@@ -17,11 +17,15 @@ public class Lezer extends Persoon{
     private int telefoon;
     private String gebruikersnaam;
     private String wachtwoord;
+    private Uitlening uitlening;
+    private Reservatie reservatie;
+    private Schuld schuld;
 
     public int berekenLeeftijd()
     {
         int leeftijd = Period.between(geboortedatum, LocalDate.now()).getYears();
         return leeftijd;
     }
+
 }
 

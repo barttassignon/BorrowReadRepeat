@@ -1,59 +1,34 @@
 package entity;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public class Uitlening extends Transactie{
 
-    private int lezerId;
-    private String datumUitleen;
-    private String datumEind;
-    private String datumInlever;
+    private LocalDate datumUitleen;
+    private LocalDate datumEind;
+    private LocalDate datumInlever;
     private boolean uitleningVerlengd;
 
-    public int getLezerId() {
-        return lezerId;
-    }
-
-    public void setLezerId(int lezerID) {
-        this.lezerId = lezerId;
-    }
-
-    public String getDatumUitleen() {
+    public LocalDate getDatumUitleen() {
         return datumUitleen;
     }
 
-    public void setDatumUitleen(String datumUitleen) {
-        this.datumUitleen = datumUitleen;
-    }
-
-    public String getDatumEind() {
+    public LocalDate getDatumEind() {
         return datumEind;
     }
 
-    public void setDatumEind(String datumEind) {
-        this.datumEind = datumEind;
-    }
-
-    public String getInlever() {
+    public LocalDate getInlever() {
         return datumInlever;
-    }
-
-    public void setDatumInlever(String datumInlever) {
-        this.datumInlever = datumInlever;
     }
 
     public boolean getUitleveringVerlengd() {
         return uitleningVerlengd;
     }
 
-    public void setUitleveringVerlengd(boolean uitleveringVerlengd) {
-        this.uitleningVerlengd = uitleningVerlengd;
-    }
-
     @Override
     public String toString() {
         return "Uitlening{" +
-                "lezerId=" + lezerId +
                 ", datum uitlening='" + datumUitleen + '\'' +
                 ", datum in te leveren='" + datumEind + '\'' +
                 ", datum ingeleverd='" + datumInlever + '\'' +

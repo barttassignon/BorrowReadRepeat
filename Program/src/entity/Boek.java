@@ -152,9 +152,7 @@ public class Boek {
         return AantalBoekenInBib;
     }
 
-    public static void setAantalBoekenInBib(int aantalBoekenInBib) {
-        AantalBoekenInBib = aantalBoekenInBib;
-    }
+    public static void setAantalBoekenInBib(int aantalBoekenInBib) { AantalBoekenInBib = aantalBoekenInBib; }
 
     @Override
     public String toString() {
