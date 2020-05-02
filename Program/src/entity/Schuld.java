@@ -5,7 +5,7 @@ public class Schuld {
     private double bedrag;
     private String datumAangemaakt;
     private String datumBetaald;
-    
+
 public Schuld(String datumAangemaakt, String datumBetaald, String oorsprong, double bedrag){
     this.datumAangemaakt = datumAangemaakt;
     this.datumBetaald = datumAangemaakt;
