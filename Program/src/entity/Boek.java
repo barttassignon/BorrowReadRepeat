@@ -19,6 +19,7 @@ public class Boek {
     private double prijs;
     private String plaatsInBib;
     private boolean gereserveerd;
+    private boolean uitgeleend;
     private int aantalKeerUitgeleend;
 
     // bijhouden totaal aantal boeken in de Bib
@@ -26,10 +27,12 @@ public class Boek {
 
     // Constructors
     public Boek() {
-        AantalBoekenInBib += 1;
+        AantalBoekenInBib++;
     }
 
     public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
+        this();
+        this.artikelnummer = AantalBoekenInBib;
         this.ISBN = ISBN;
         this.titel = titel;
         this.auteur = auteur;
@@ -40,20 +43,8 @@ public class Boek {
         this.prijs = prijs;
         this.plaatsInBib = plaatsInBib;
         this.gereserveerd = false;
+        this.uitgeleend = false;
         this.aantalKeerUitgeleend = 0;
-    }
-
-    public Boek(int artikelnummer, long ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
-        this.artikelnummer = artikelnummer;
-        this.ISBN = ISBN;
-        this.titel = titel;
-        this.auteur = auteur;
-        this.uitgeverij = uitgeverij;
-        this.taal = taal;
-        this.paginas = paginas;
-        this.aankoopdatum = aankoopdatum;
-        this.prijs = prijs;
-        this.plaatsInBib = plaatsInBib;
     }
 
     //Getters en Setters
@@ -94,7 +85,7 @@ public class Boek {
     }
 
     public void setUitgeverij(String uitgeverij) {
-        uitgeverij = uitgeverij;
+        this.uitgeverij = uitgeverij;
     }
 
     public String getTaal() {
@@ -152,6 +143,10 @@ public class Boek {
     public void setAantalKeerUitgeleend(int aantalKeerUitgeleend) {
         this.aantalKeerUitgeleend = aantalKeerUitgeleend;
     }
+
+    public boolean isUitgeleend() { return uitgeleend; }
+
+    public void setUitgeleend(boolean uitgeleend) { this.uitgeleend = uitgeleend; }
 
     public static int getAantalBoekenInBib() {
         return AantalBoekenInBib;
