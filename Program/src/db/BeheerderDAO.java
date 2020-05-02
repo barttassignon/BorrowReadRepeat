@@ -6,15 +6,16 @@ package db;
 
 import entity.Beheerder;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class BeheerderDAO extends BaseDAO {
+public class BeheerderDAO extends BaseDAO implements Security{
 
     public void toevoegenBeheerder(Beheerder beheerder)
     {
         try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("insert into Beheerders values (NULL, ?, ?)");
+            PreparedStatement s = c.prepareStatement("insert into BeheerdersVeilig values (NULL, ?, ?)");
             s.setString(1, beheerder.getGebruikersnaam());
             s.setString(2, beheerder.getWachtwoord());
 
@@ -56,7 +57,7 @@ public class BeheerderDAO extends BaseDAO {
     {
         Beheerder b = null;
         try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("select * from Beheerders where gebruikersnaam like ?");
+            PreparedStatement s = c.prepareStatement("select * from Beheerders where gebruikersnaam = ?");
             s.setString(1, "%");
             ResultSet rs = s.executeQuery();
             if (rs.next())
