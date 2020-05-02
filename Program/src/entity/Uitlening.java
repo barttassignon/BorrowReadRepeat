@@ -22,7 +22,7 @@ public class Uitlening {
         return datumUitleen;
     }
 
-    public void setDatumUitleen(int datumUitleen) {
+    public void setDatumUitleen(String datumUitleen) {
         this.datumUitleen = datumUitleen;
     }
 
@@ -30,7 +30,7 @@ public class Uitlening {
         return datumEind;
     }
 
-    public void setDatumEind(int datumEind) {
+    public void setDatumEind(String datumEind) {
         this.datumEind = datumEind;
     }
 
@@ -38,7 +38,7 @@ public class Uitlening {
         return datumInlever;
     }
 
-    public void setDatumInlever(int datumInlever) {
+    public void setDatumInlever(String datumInlever) {
         this.datumInlever = datumInlever;
     }
 
@@ -46,12 +46,18 @@ public class Uitlening {
         return uitleningVerlengd;
     }
 
-    public void setUitleveringVerlengd(int uitleveringVerlengd) {
+    public void setUitleveringVerlengd(boolean uitleveringVerlengd) {
         this.uitleningVerlengd = uitleningVerlengd;
     }
 
+    @Override
     public String toString() {
-        return "Uitlener [lezerID=" + lezerID + ", datumUitleen=" + datumUitleen + ", datumEind=" + datumEind
-                + ", datumInlever=" + datumInlever + ", uitleningVerlengd= " + uitleningVerlengd + "]";
+        return "Uitlening{" +
+                "lezerId=" + lezerId +
+                ", datum uitlening='" + datumUitleen + '\'' +
+                ", datum in te leveren='" + datumEind + '\'' +
+                ", datum ingeleverd='" + datumInlever + '\'' +
+                ", verlegend='" + uitleningVerlengd + '\'' +
+                '}';
     }
 }
