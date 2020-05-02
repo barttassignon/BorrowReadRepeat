@@ -2,7 +2,7 @@ package entity;
 
 import java.util.Date;
 
-public class Uitlening {
+public class Uitlening extends Transactie{
 
     private int lezerId;
     private String datumUitleen;
