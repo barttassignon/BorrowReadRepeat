@@ -14,8 +14,7 @@ public class BeheerderDAO extends BaseDAO implements Security {
 
     // Inloggen beheerder:
 
-    public void inloggen(String gebruikersnaam, String paswoord){
-
+    public static boolean inloggen(String gebruikersnaam, String paswoord){
         try (Connection c = getConn()){
             PreparedStatement s1 = c.prepareStatement("select salt from Beheerders where gebruikersnaam = ?");
             s1.setString(1, gebruikersnaam);
@@ -26,16 +25,14 @@ public class BeheerderDAO extends BaseDAO implements Security {
             s2.setString(1, gebruikersnaam);
             s2.setString(2, Security.generateHash(paswoord, rs1.getBytes(1)));
             ResultSet rs2 = s2.executeQuery();
-                if(rs2.next()){
-                    System.out.println("Ingelogd!");}
-                else System.out.println("Verkeerd paswoord!");}
-            else System.out.println("Geen beheerder met deze gebruikersnaam!");
+                if(rs2.next()) return true;
+                else return false;}
 
         }catch (SQLException | NoSuchAlgorithmException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
         }
-
+        return false;
     }
 
     // Aanmaken van een nieuwe beheerder:
@@ -173,7 +170,7 @@ public class BeheerderDAO extends BaseDAO implements Security {
  */
 
         // Inloggen beheerder:
-        bda.inloggen("vortegat", "12345");
+        System.out.println(bda.inloggen("vortegat", "12345"));
 
     }
 }
