@@ -29,7 +29,7 @@ public class Reservatie extends Transactie{
     }
 }
 
-// hashset geeft foutmelding bij ISBN-nr
+// hashset geeft foutmelding bij ISBN-nr (int)
 
 //public class HashSetBoek {
 //    public static void main(String[] args) {
@@ -45,5 +45,5 @@ public class Reservatie extends Transactie{
 //            System.out.println(b.getArtikelnummer()+" "+b.getISBN()+" "+b.getTitel()+" "+b.getAuteur()+" "+b.getUitgeverij()+""+b.getTaal()+" "+b.getPaginas()+" "+b.getAankoopdatum()+" "+b.getPrijs()+" "+b.getPlaatsInBib()+""+b.isGereserveerd()+" "+b.getAantalKeerUitgeleend());
 //        }
 //    }
-    
+
 //}
