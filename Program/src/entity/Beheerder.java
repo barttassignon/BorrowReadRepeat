@@ -10,12 +10,16 @@ public class Beheerder extends Persoon{
     private String gebruikersnaam;
     private String wachtwoord;
 
-    // wachtwoord moet worden gehasht (verschil encryptie-hashing opzoeken) - of salting toepassen
-
     public Beheerder(String voornaam, String naam, String gebruikersnaam, String wachtwoord) {
         super(voornaam, naam);
         this.gebruikersnaam = gebruikersnaam;
         this.wachtwoord = wachtwoord;
+    }
+
+    public Beheerder(int id, String voornaam, String naam, String gebruikersnaam) {
+        super(voornaam, naam);
+        this.gebruikersnaam = gebruikersnaam;
+        this.id = id;
     }
 
     public int getId() {
