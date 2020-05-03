@@ -12,6 +12,32 @@ import java.util.ArrayList;
 
 public class BeheerderDAO extends BaseDAO implements Security {
 
+    // Inloggen beheerder:
+
+    public void inloggen(String gebruikersnaam, String paswoord){
+
+        try (Connection c = getConn()){
+            PreparedStatement s1 = c.prepareStatement("select salt from Beheerders where gebruikersnaam = ?");
+            s1.setString(1, gebruikersnaam);
+            ResultSet rs1 = s1.executeQuery();
+
+            if(rs1.next()){
+            PreparedStatement s2 =c.prepareStatement("select * from Beheerders where gebruikersnaam = ? and hashcode = ?");
+            s2.setString(1, gebruikersnaam);
+            s2.setString(2, Security.generateHash(paswoord, rs1.getBytes(1)));
+            ResultSet rs2 = s2.executeQuery();
+                if(rs2.next()){
+                    System.out.println("Ingelogd!");}
+                else System.out.println("Verkeerd paswoord!");}
+            else System.out.println("Geen beheerder met deze gebruikersnaam!");
+
+        }catch (SQLException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+
+    }
+
     // Aanmaken van een nieuwe beheerder:
 
     public void toevoegenBeheerder(Beheerder beheerder) {
@@ -125,8 +151,8 @@ public class BeheerderDAO extends BaseDAO implements Security {
         // Toevoegen van beheerder:
 
         BeheerderDAO bda = new BeheerderDAO();
-
- /*       Beheerder b1 = new Beheerder("Virginie", "Blabla", "vblabla", "ksjdfalke");
+/*
+       Beheerder b1 = new Beheerder("Virginie", "Ortegat", "vortegat", "12345");
         bda.toevoegenBeheerder(b1);
 
         // Weergeven van de beheerders:
@@ -134,16 +160,20 @@ public class BeheerderDAO extends BaseDAO implements Security {
         for(Beheerder b : bda.ophalenBeheerders()){
             System.out.println(b.getId() + " - " + b.getVoornaam() + " " + b.getNaam() + " - " + b.getGebruikersnaam());
         }
-*/
+
         // Opzoeken van een beheerder:
-/*
+
         for (Beheerder b : bda.opzoekenBeheerder("Virginie", "Blabla")) {
             System.out.println(b.getId() + " - " + b.getVoornaam() + " " + b.getNaam() + " - " + b.getGebruikersnaam());
         }
-*/
 
         // Verwijderen van een beheerder:
-        
+
         bda.verwijderenBeheerder("vblabla");
+ */
+
+        // Inloggen beheerder:
+        bda.inloggen("vortegat", "12345");
+
     }
 }
