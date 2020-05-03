@@ -1,27 +1,29 @@
 package entity;
 
-public class Schuld {
-    private String oorsprong;
-    private double bedrag;
-    private String datumAangemaakt;
-    private String datumBetaald;
+import java.time.LocalDate;
 
-public Schuld(String datumAangemaakt, String datumBetaald, String oorsprong, double bedrag){
+public class Schuld {
+    public enum Oorsprong {OVERTIJD, VERLIES, BESCHADIGING, RESERVATIE}
+    private Oorsprong oorsprong;
+    private double bedrag;
+    private LocalDate datumAangemaakt;
+    private LocalDate datumBetaald;
+
+public Schuld(LocalDate datumAangemaakt, Oorsprong oorsprong, double bedrag){
     this.datumAangemaakt = datumAangemaakt;
-    this.datumBetaald = datumAangemaakt;
     this.oorsprong = oorsprong;
     this.bedrag = bedrag;
 }
 
-public String getOorsprong() {
+public Oorsprong getOorsprong() {
     return oorsprong;
 }
 
-public String getDatumAangemaakt(){
+public LocalDate getDatumAangemaakt(){
     return datumAangemaakt;
 }
 
-public String getDatumBetaald(){
+public LocalDate getDatumBetaald(){
     return datumBetaald;
 }
 

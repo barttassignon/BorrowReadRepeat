@@ -8,11 +8,11 @@ public class Adres {
 
     private String straatnaam;
     private int huisnummer;
-    private int bus;
+    private String bus;
     private int postcode;
     private String woonplaats;
 
-    public Adres(String straatnaam, int huisnummer, int bus, int postcode, String woonplaats) {
+    public Adres(String straatnaam, int huisnummer, String bus, int postcode, String woonplaats) {
         this.straatnaam = straatnaam;
         this.huisnummer = huisnummer;
         this.bus = bus;
@@ -38,11 +38,9 @@ public class Adres {
         this.huisnummer = huisnummer;
     }
 
-    public int getBus() {
-        return bus;
-    }
+    public String getBus() { return bus; }
 
-    public void setBus(int bus) {
+    public void setBus(String bus) {
         this.bus = bus;
     }
 
@@ -70,13 +68,6 @@ public class Adres {
                 ", bus = '" + bus + '\'' +
                 ", postcode = '" + postcode +  '\'' +
                 ", woonplaats = '" + woonplaats + '\'';
-    }
-
-    public static void main(String[] args) {
-        /* Test Output
-        Adres a = new Adres("Floralaan", 14, 1, 1501, "Buizingen");
-        System.out.println(a);
-        */
     }
 }
 
