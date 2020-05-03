@@ -12,17 +12,20 @@ import java.util.ArrayList;
 
 public class BeheerderDAO extends BaseDAO implements Security{
 
+    // Aanmaken van een nieuwe beheerder:
+
     public void toevoegenBeheerder(Beheerder beheerder)
     {
+        byte[] salt = Security.createSalt();
+
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("insert into BeheerdersVeilig values (NULL, ?, ?, ?, ?, ?)");
             s.setString(1, beheerder.getVoornaam());
             s.setString(2, beheerder.getNaam());
             s.setString(3, beheerder.getGebruikersnaam());
-            s.setString(4, Security.generateHash(beheerder.getWachtwoord(), Security.createSalt()));
-            s.setBytes(5, Security.createSalt());
-
-            //
+            s.setBytes(4, salt);
+            s.setString(5, Security.generateHash(beheerder.getWachtwoord(), salt));
+            
             // Aanpassen zodat CSV-bestand kan worden ingelezen en afgelopen met while-loop om gegevens in batch toe te voegen
             // Foutmelding toevoegen indien gegevens reeds in de databank zitten
 
