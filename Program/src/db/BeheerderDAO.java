@@ -31,8 +31,8 @@ public class BeheerderDAO extends BaseDAO implements Security {
 
             int result = s.executeUpdate();
             if (result > 0)
-                System.out.println("GELUKT");
-            else System.out.println("MISLUKT!");
+                System.out.println("De beheerder werd toegevoegd!");
+            else System.out.println("De beheerder kon niet worden toegevoegd!");
 
             // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: beheerder bestaat reeds)
 
@@ -101,6 +101,25 @@ public class BeheerderDAO extends BaseDAO implements Security {
         return lijst;
     }
 
+    // Een beheerder verwijderen:
+
+    public void verwijderenBeheerder(String gebruikersnaam) {
+        try (Connection c = getConn()) {
+            PreparedStatement s = c.prepareStatement("delete from Beheerders where gebruikersnaam = ?");
+            s.setString(1, gebruikersnaam);
+
+            int result = s.executeUpdate();
+            if (result > 0)
+                System.out.println("De beheerder werd verwijderd!");
+            else System.out.println("Er bestaat geen beheerder met deze gebruikersnaam!");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+
+    }
+
     public static void main(String[] args) {
 
         // Toevoegen van beheerder:
@@ -117,10 +136,14 @@ public class BeheerderDAO extends BaseDAO implements Security {
         }
 */
         // Opzoeken van een beheerder:
-
+/*
         for (Beheerder b : bda.opzoekenBeheerder("Virginie", "Blabla")) {
             System.out.println(b.getId() + " - " + b.getVoornaam() + " " + b.getNaam() + " - " + b.getGebruikersnaam());
         }
+*/
 
+        // Verwijderen van een beheerder:
+        
+        bda.verwijderenBeheerder("vblabla");
     }
 }
