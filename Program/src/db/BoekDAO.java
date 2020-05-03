@@ -4,8 +4,10 @@ import entity.Boek;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class BoekDAO extends BaseDAO {
 
@@ -37,11 +39,34 @@ public class BoekDAO extends BaseDAO {
         }
     }
 
-    public static void main(String[] args) throws SQLException {
+    public ArrayList<Boek> opvragenBoeken() {
+        ArrayList<Boek> lijstBoeken = new ArrayList<>();
+        try (Connection c = getConn()) {
+            PreparedStatement s = c.prepareStatement("select * from Boeken");
+            ResultSet rs = s.executeQuery();
 
-        Boek b = new Boek(9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.now(), 25.45, "COE135.2");
+            while (rs.next()) {
+                lijstBoeken.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4)));
+            }
+            System.out.println("GELUKT!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        };
+        return lijstBoeken;
+    };
+
+        public static void main(String[] args) throws SQLException {
+
+        //Boek b = new Boek(9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.now(), 25.45, "COE135.2");
         BoekDAO bda = new BoekDAO();
-        bda.toevoegenBoek(b);
+        bda.opvragenBoeken();
+
+        for(Boek b: bda.opvragenBoeken())
+        {
+            System.out.println(b.toString());
+        }
+        //bda.toevoegenBoek(b);
         // "-L" toevoegen aan ISBN zodat dit wordt aanzien als een long in plaats van een int
         // Werkt nog niet: Hoe datum doorgeven?
     }

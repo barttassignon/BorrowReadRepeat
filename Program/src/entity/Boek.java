@@ -30,6 +30,13 @@ public class Boek {
         AantalBoekenInBib++;
     }
 
+    public Boek(int artikelnummer, long ISBN, String titel, String auteur) {
+        this.artikelnummer = artikelnummer;
+        this.ISBN = ISBN;
+        this.titel = titel;
+        this.auteur = auteur;
+    }
+
     public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
         this();
         this.artikelnummer = AantalBoekenInBib;

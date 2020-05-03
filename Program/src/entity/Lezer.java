@@ -9,8 +9,8 @@ import java.time.Period;
 
 public class Lezer extends Persoon{
 
-    private int id;
-    private LocalDate geboortedatum;
+    private final int id;
+    private final LocalDate geboortedatum;
     // toegevoegd door Bart na aanmaak klasse Adres
     private Adres adres;
     private String email;
@@ -20,6 +20,11 @@ public class Lezer extends Persoon{
     private Uitlening uitlening;
     private Reservatie reservatie;
     private Schuld schuld;
+
+    public Lezer(int id, LocalDate geboortedatum) {
+        this.id = id;
+        this.geboortedatum = geboortedatum;
+    }
 
     public int berekenLeeftijd()
     {
