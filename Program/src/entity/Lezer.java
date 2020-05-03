@@ -21,7 +21,8 @@ public class Lezer extends Persoon{
     private Reservatie reservatie;
     private Schuld schuld;
 
-    public Lezer(int id, LocalDate geboortedatum) {
+    public Lezer(String voornaam, String naam, int id, LocalDate geboortedatum) {
+        super(voornaam, naam);
         this.id = id;
         this.geboortedatum = geboortedatum;
     }

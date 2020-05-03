@@ -15,7 +15,7 @@ public interface Security {
         System.out.println("Salt: " + salt);
     }
 
-    private static String generateHash(String paswoord, byte[] salt) throws NoSuchAlgorithmException {
+    public static String generateHash(String paswoord, byte[] salt) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         // Message digests are secure one-way hash functions that take arbitrary-sized data and output a fixed-length hash value.
         // Ondersteunt volgende algoritmen: MD5, SHA-1, SHA-256
