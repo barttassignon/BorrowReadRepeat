@@ -6,6 +6,8 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BeheerderForm extends JFrame{
 
@@ -39,6 +41,13 @@ public class BeheerderForm extends JFrame{
         beheerderFormFrame.setMinimumSize(new Dimension(600,600));
         beheerderFormFrame.setMaximumSize(new Dimension(600,600));
         beheerderFormFrame.setLocationRelativeTo(null);
+
+        UitloggenButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new LoginScreen();
+                beheerderFormFrame.dispose();
+            }
+        });
     }
 
     public static void main(String[] args) {
