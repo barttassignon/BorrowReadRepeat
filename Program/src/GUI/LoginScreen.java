@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 
 public class LoginScreen {
 
-    private JButton Login;
     private JPanel panelMain;
     private JButton Beheerder;
     private JFrame frame = new JFrame("BorrowReadRepeat");
