@@ -31,6 +31,7 @@ public class BeheerderLoginForm {
                 String paswoord = String.valueOf(passwordField.getPassword());
                 if(BeheerderDAO.inloggen(gebruikersnaam, paswoord)){
                     JOptionPane.showMessageDialog(frame, "Je bent ingelogd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                    new BeheerderForm();
                     frame.dispose();
                 }else{
                     JOptionPane.showMessageDialog(frame, "Verkeerde logingegevens", "Resultaat", JOptionPane.ERROR_MESSAGE);
