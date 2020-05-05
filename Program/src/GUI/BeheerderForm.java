@@ -61,6 +61,12 @@ public class BeheerderForm extends JFrame{
                 }
 
         });
+        toevoegenButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            new BoekToevoegenForm();
+            beheerderFormFrame.dispose();
+            }
+        });
     }
 
     public static void main(String[] args) {
