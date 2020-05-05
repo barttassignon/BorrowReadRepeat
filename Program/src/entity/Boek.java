@@ -14,6 +14,7 @@ public class Boek {
     private String auteur;
     private String uitgeverij;
     private String taal;
+    private String genre;
     private int paginas;
     private LocalDate aankoopdatum;
     private double prijs;

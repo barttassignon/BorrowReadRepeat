@@ -9,13 +9,12 @@ import java.time.Period;
 
 public class Lezer extends Persoon{
 
-    private final int id;
-    private final LocalDate geboortedatum;
+    private int id;
+    private LocalDate geboortedatum;
     // toegevoegd door Bart na aanmaak klasse Adres
     private Adres adres;
     private String email;
     private int telefoon;
-    private String gebruikersnaam;
     private String wachtwoord;
     private Uitlening uitlening;
     private Reservatie reservatie;
