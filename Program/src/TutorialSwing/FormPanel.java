@@ -117,10 +117,7 @@ public class FormPanel extends JPanel {
                 String taxId = taxField.getText();
                 boolean usCitizen = citizenCheck.isSelected();
 
-
-
                 String gender = genderGroup.getSelection().getActionCommand();
-
 
                 System.out.println(empCat);
 

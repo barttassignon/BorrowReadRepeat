@@ -9,9 +9,9 @@ import java.sql.SQLException;
 
 public abstract class BaseDAO {
 
-    private Connection conn = null;
+    private static Connection conn = null;
 
-    public Connection getConn() {
+    public static Connection getConn() {
         try {
             if(conn == null || conn.isClosed())
                 conn = DatabaseSingleton.getInstance().getConnection();
