@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
 
-public class Lezer extends Persoon{
+public class Lezer extends Persoon {
 
     private int id;
     private LocalDate geboortedatum;
@@ -77,12 +77,19 @@ public class Lezer extends Persoon{
         this.schuld = schuld;
     }
 
-    public Lezer(String voornaam, String naam, LocalDate geboortedatum, String email, String telefoon, String wachtwoord) {
+    public Lezer(String voornaam, String naam, LocalDate geboortedatum, String email, String telefoon) {
         super(voornaam, naam);
         this.geboortedatum = geboortedatum;
         this.email = email;
         this.telefoon = telefoon;
-        this.wachtwoord = wachtwoord;
+    }
+
+    public Lezer(String voornaam, String naam, int id, LocalDate geboortedatum, String email, String telefoon) {
+        super(voornaam, naam);
+        this.id = id;
+        this.geboortedatum = geboortedatum;
+        this.email = email;
+        this.telefoon = telefoon;
     }
 
     @Override
@@ -103,11 +110,16 @@ public class Lezer extends Persoon{
         return Objects.hash(id, geboortedatum, adres, email, telefoon, wachtwoord);
     }
 
-    public int berekenLeeftijd()
-    {
+    public int berekenLeeftijd() {
         int leeftijd = Period.between(geboortedatum, LocalDate.now()).getYears();
         return leeftijd;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + ", geboortedatum: " + getGeboortedatum() +
+                ", email: " + getEmail() +
+                ", telefoon: " + getTelefoon();
+    }
 }
 

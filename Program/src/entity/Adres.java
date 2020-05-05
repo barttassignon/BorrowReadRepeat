@@ -70,11 +70,11 @@ public class Adres implements Serializable {
     @Override
     public String toString() {
         return getClass().getSimpleName() + ": " +
-                "straatnaam = '" + straatnaam + '\'' +
-                ", huisnummer = '" + huisnummer +  '\'' +
-                ", bus = '" + bus + '\'' +
-                ", postcode = '" + postcode +  '\'' +
-                ", woonplaats = '" + woonplaats + '\'';
+                "straatnaam: " + straatnaam +
+                ", huisnummer: " + huisnummer +
+                ", bus: " + bus +
+                ", postcode: " + postcode +
+                ", woonplaats: " + woonplaats;
     }
 }
 

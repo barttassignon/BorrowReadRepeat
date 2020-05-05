@@ -158,6 +158,8 @@ public class BeheerderDAO extends BaseDAO implements Security {
             System.out.println(b.getId() + " - " + b.getVoornaam() + " " + b.getNaam() + " - " + b.getGebruikersnaam());
         }
 
+        // Opmerking Katrien: Misschien kan je beter een toString-methode voorzien in Beheerder en deze hier aanroepen?
+
         // Opzoeken van een beheerder:
 
         for (Beheerder b : bda.opzoekenBeheerder("Virginie", "Blabla")) {
