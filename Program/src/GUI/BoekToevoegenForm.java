@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 
 public class BoekToevoegenForm extends JFrame{
 
-
     private JPanel panel1;
     private JTextField textField1;
     private JTextField textField2;
@@ -30,8 +29,6 @@ public class BoekToevoegenForm extends JFrame{
     private JRadioButton engelsRadioButton;
     private ButtonGroup taalGroep;
 
-
-
     private JFrame boekToevoegenFrame = new JFrame("BorrowReadRepeat");
 
     public BoekToevoegenForm() {
@@ -45,7 +42,6 @@ public class BoekToevoegenForm extends JFrame{
         taalGroep.add(fransRadioButton);
         taalGroep.add(engelsRadioButton);
         nederlandsRadioButton.setSelected(true);
-
 
         boekToevoegenFrame.setVisible(true);
         boekToevoegenFrame.setSize(600, 600);
@@ -61,14 +57,12 @@ public class BoekToevoegenForm extends JFrame{
         });
         ToevoegenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
             }
         });
     }
 
     public static void main(String[] args) {
         new BoekToevoegenForm();
-
     }
 }
 

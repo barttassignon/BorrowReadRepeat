@@ -13,22 +13,29 @@ public class LezerToevoegenForm extends JFrame {
 
     private JFrame lezerToevoegenFrame = new JFrame("BorrowReadRepeat");
     private JPanel panel1;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField testTextField;
-    private JTextField textField4;
-    private JTextField textField6;
-    private JTextField textField7;
+    private JTextField VoornaamTextField;
+    private JTextField NaamTextField;
+    private JTextField StraatTextField;
+    private JTextField WoonplaatsTextField;
+    private JTextField EmailtextField;
+    private JTextField GebruikersnaamTextField;
     private JButton ToevoegenButton;
     private JButton TerugButton;
     private JLabel VoornaamLabel;
     private JLabel NaamLabel;
     private JLabel AdresLabel;
     private JLabel StraatLabel;
-    private JTextField NummerLabel;
-    private JTextField textField3;
-    private JPasswordField passwordField1;
-    private JTextField textField5;
+    private JTextField NummerTextField;
+    private JTextField PostcodeTextField;
+    private JPasswordField passwordField;
+    private JTextField GeboortedatumTextField;
+    private JLabel GeboortedatumLabel;
+    private JLabel WoonplaatsLabel;
+    private JLabel NrLabel;
+    private JLabel PostcodeLabel;
+    private JLabel EmailLabel;
+    private JLabel GebruikersnaamLabel;
+    private JLabel PaswoordLabel;
 
     public LezerToevoegenForm() {
         lezerToevoegenFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -40,6 +47,7 @@ public class LezerToevoegenForm extends JFrame {
         lezerToevoegenFrame.setMinimumSize(new Dimension(600, 600));
         lezerToevoegenFrame.setMaximumSize(new Dimension(600, 600));
         lezerToevoegenFrame.setLocationRelativeTo(null);
+
         TerugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
@@ -50,11 +58,6 @@ public class LezerToevoegenForm extends JFrame {
 
     public static void main(String[] args) {
         new LezerToevoegenForm();
-
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }
 
