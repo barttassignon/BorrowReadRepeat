@@ -42,8 +42,14 @@ public class BoekToevoegenForm extends JFrame{
 
     public BoekToevoegenForm() {
 
+        boekToevoegenFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         boekToevoegenFrame.getContentPane().add(panel1);
         boekToevoegenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        boekToevoegenFrame.setVisible(true);
+        boekToevoegenFrame.setSize(600, 600);
+        boekToevoegenFrame.setResizable(false);
+        boekToevoegenFrame.setLocationRelativeTo(null);
 
 
 
@@ -54,10 +60,7 @@ public class BoekToevoegenForm extends JFrame{
         taalGroep.add(engelsRadioButton);
         nederlandsRadioButton.setSelected(true);
 
-        boekToevoegenFrame.setVisible(true);
-        boekToevoegenFrame.setSize(600, 600);
-        boekToevoegenFrame.setResizable(false);
-        boekToevoegenFrame.setLocationRelativeTo(null);
+
 
         TerugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -75,9 +78,7 @@ public class BoekToevoegenForm extends JFrame{
         new BoekToevoegenForm();
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
+
 }
 
 

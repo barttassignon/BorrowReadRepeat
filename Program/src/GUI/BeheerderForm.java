@@ -71,8 +71,8 @@ public class BeheerderForm extends JFrame {
         });
         BoekToevoegenButton.addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent e) {
-                new BoekToevoegenForm();
-                beheerderFormFrame.dispose();
+                  new BoekToevoegenForm();
+                  beheerderFormFrame.dispose();
             }
         });
     }

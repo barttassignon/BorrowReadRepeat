@@ -20,7 +20,7 @@
           <grid row="2" column="0" row-span="9" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="98712" class="javax.swing.JTextField" binding="ISBNtextField" custom-create="true">
+      <component id="98712" class="javax.swing.JTextField" binding="ISBNtextField">
         <constraints>
           <grid row="2" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="20"/>
@@ -66,7 +66,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="65a88" class="javax.swing.JLabel" binding="AuteurLabel" custom-create="true">
+      <component id="65a88" class="javax.swing.JLabel" binding="AuteurLabel">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
