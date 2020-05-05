@@ -1,23 +1,26 @@
 package entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.*;
 
 public class Reservatie extends Transactie{
     private int reservatieId;
-    private String reservatieDatum;
+    private LocalDate reservatieDatum;
 
     public int getReservatieId() {
         return reservatieId;
     }
-    public void setReservatieId(int reservatieId){
+
+    public void setReservatieId(int reservatieId) {
         this.reservatieId = reservatieId;
     }
 
-    public String getReservatieDatum() {
+    public LocalDate getReservatieDatum() {
         return reservatieDatum;
     }
-    public void setReservatieDatum(String reservatieDatum){
+
+    public void setReservatieDatum(LocalDate reservatieDatum) {
         this.reservatieDatum = reservatieDatum;
     }
 

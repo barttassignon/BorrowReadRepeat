@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 
 public class BoekDAO extends BaseDAO {
@@ -58,7 +59,7 @@ public class BoekDAO extends BaseDAO {
 
         public static void main(String[] args) throws SQLException {
 
-        //Boek b = new Boek(9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.now(), 25.45, "COE135.2");
+        //Boek b = new Boek(9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.of(2000, Month.MAY, 15), 25.45, "COE135.2");
         BoekDAO bda = new BoekDAO();
         bda.opvragenBoeken();
 
@@ -68,6 +69,5 @@ public class BoekDAO extends BaseDAO {
         }
         //bda.toevoegenBoek(b);
         // "-L" toevoegen aan ISBN zodat dit wordt aanzien als een long in plaats van een int
-        // Werkt nog niet: Hoe datum doorgeven?
     }
 };

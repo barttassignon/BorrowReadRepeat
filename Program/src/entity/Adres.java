@@ -4,8 +4,11 @@
 
 package entity;
 
-public class Adres {
+import java.io.Serializable;
 
+public class Adres implements Serializable {
+
+    private int id;
     private String straatnaam;
     private int huisnummer;
     private String bus;
@@ -20,6 +23,10 @@ public class Adres {
             this.postcode = postcode;
         } else this.postcode = 1000;
         this.woonplaats = woonplaats;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getStraatnaam() {
