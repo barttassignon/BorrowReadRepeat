@@ -44,8 +44,7 @@ public class LezerToevoegenForm extends JFrame {
 
         lezerToevoegenFrame.setVisible(true);
         lezerToevoegenFrame.setSize(600, 600);
-        lezerToevoegenFrame.setMinimumSize(new Dimension(600, 600));
-        lezerToevoegenFrame.setMaximumSize(new Dimension(600, 600));
+        lezerToevoegenFrame.setResizable(false);
         lezerToevoegenFrame.setLocationRelativeTo(null);
 
         TerugButton.addActionListener(new ActionListener() {

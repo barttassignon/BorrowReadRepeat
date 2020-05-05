@@ -43,8 +43,7 @@ public class BeheerderLoginForm {
 
         frame.setVisible(true);
         frame.setSize(600,600);
-        frame.setMinimumSize(new Dimension(600,600));
-        frame.setMaximumSize(new Dimension(600,600));
+        frame.setResizable(false);
         frame.setLocationRelativeTo(null);
     }
 

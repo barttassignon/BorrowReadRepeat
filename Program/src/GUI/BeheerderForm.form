@@ -36,7 +36,7 @@
           <text value="Wijzigen"/>
         </properties>
       </component>
-      <component id="e9b32" class="javax.swing.JButton" binding="boekToevoegen">
+      <component id="e9b32" class="javax.swing.JButton" binding="BoekToevoegenButton">
         <constraints>
           <grid row="4" column="1" row-span="3" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -98,10 +98,10 @@
           <font name="Consolas" size="16" style="0"/>
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
-          <text value="Placeholder"/>
+          <text value=""/>
         </properties>
       </component>
-      <component id="5fb45" class="javax.swing.JButton" binding="toevoegenButton" default-binding="true">
+      <component id="5fb45" class="javax.swing.JButton" binding="LezertoevoegenButton">
         <constraints>
           <grid row="4" column="3" row-span="3" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -114,7 +114,7 @@
           <text value="Toevoegen"/>
         </properties>
       </component>
-      <component id="a8ce8" class="javax.swing.JButton" binding="verwijderenButton" default-binding="true">
+      <component id="a8ce8" class="javax.swing.JButton" binding="LezerverwijderenButton">
         <constraints>
           <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -176,7 +176,7 @@
           <font name="Consolas" size="16" style="0"/>
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
-          <text value="Placeholder"/>
+          <text value=""/>
         </properties>
       </component>
       <vspacer id="37683">

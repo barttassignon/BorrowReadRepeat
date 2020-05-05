@@ -23,9 +23,8 @@ public class LezerVerwijderenForm extends JFrame{
         lezerVerwijderenFrame.getContentPane().add(panel1);
         lezerVerwijderenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         lezerVerwijderenFrame.setVisible(true);
+        lezerVerwijderenFrame.setResizable(false);
         lezerVerwijderenFrame.setSize(600, 600);
-        lezerVerwijderenFrame.setMinimumSize(new Dimension(600, 600));
-        lezerVerwijderenFrame.setMaximumSize(new Dimension(600, 600));
         lezerVerwijderenFrame.setLocationRelativeTo(null);
 
         TerugButton.addActionListener(new ActionListener() {
