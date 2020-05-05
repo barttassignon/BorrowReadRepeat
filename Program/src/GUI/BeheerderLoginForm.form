@@ -13,7 +13,7 @@
           <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="14" style="0"/>
+          <font name="Consolas" size="18"/>
           <text value="Username:"/>
         </properties>
       </component>
@@ -22,7 +22,7 @@
           <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="14"/>
+          <font name="Consolas" size="18"/>
           <text value="Password:"/>
         </properties>
       </component>
@@ -33,7 +33,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font name="Consolas" size="18"/>
+        </properties>
       </component>
       <component id="c5833" class="javax.swing.JTextField" binding="userNaam">
         <constraints>
@@ -42,7 +44,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font name="Consolas" size="18"/>
+        </properties>
       </component>
       <hspacer id="b7b68">
         <constraints>
@@ -68,6 +72,7 @@
           <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Consolas" size="18"/>
           <text value="Inloggen"/>
         </properties>
       </component>

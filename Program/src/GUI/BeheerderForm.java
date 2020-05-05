@@ -4,6 +4,8 @@
 
 package GUI;
 
+import TutorialSwing.MainFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -44,15 +46,20 @@ public class BeheerderForm extends JFrame{
 
         UitloggenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new LoginScreen();
-                beheerderFormFrame.dispose();
+                int action = JOptionPane.showConfirmDialog(BeheerderForm.this, "Ben je zeker dat je wilt uitloggen?", "Uitloggen", JOptionPane.OK_CANCEL_OPTION);
+                if (action == JOptionPane.OK_OPTION) {
+                    new LoginScreen();
+                    beheerderFormFrame.dispose();
+                }
             }
         });
+
         boekToevoegen.addActionListener(new ActionListener() {
-           public void actionPerformed(ActionEvent e) {
-           new BoekToevoegenForm();
-           beheerderFormFrame.dispose();
-            }
+                public void actionPerformed (ActionEvent e){
+                    new BoekToevoegenForm();
+                    beheerderFormFrame.dispose();
+                }
+
         });
     }
 
