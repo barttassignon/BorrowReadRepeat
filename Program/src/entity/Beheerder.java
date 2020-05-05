@@ -4,18 +4,28 @@ package entity;
  * @author Katrien Persoons
  */
 
+import java.util.Date;
+
 public class Beheerder extends Persoon{
 
     private int id;
     private String gebruikersnaam;
     private String wachtwoord;
+    private static int aantal = 0;
 
     // wachtwoord moet worden gehasht (verschil encryptie-hashing opzoeken) - of salting toepassen
 
-    public Beheerder(String voornaam, String naam, String gebruikersnaam, String wachtwoord) {
-        super(voornaam, naam);
+    public Beheerder(String gebruikersnaam, String wachtwoord) {
         this.gebruikersnaam = gebruikersnaam;
         this.wachtwoord = wachtwoord;
+        aantal++;
+    }
+
+    public Beheerder(int id, String gebruikersnaam, String wachtwoord) {
+        this.id = id;
+        this.gebruikersnaam = gebruikersnaam;
+        this.wachtwoord = wachtwoord;
+        aantal++;
     }
 
     public int getId() {

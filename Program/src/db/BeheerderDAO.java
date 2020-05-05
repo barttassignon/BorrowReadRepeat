@@ -15,14 +15,10 @@ public class BeheerderDAO extends BaseDAO implements Security{
     public void toevoegenBeheerder(Beheerder beheerder)
     {
         try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("insert into BeheerdersVeilig values (NULL, ?, ?, ?, ?, ?)");
-            s.setString(1, beheerder.getVoornaam());
-            s.setString(2, beheerder.getNaam());
-            s.setString(3, beheerder.getGebruikersnaam());
-            s.setString(4, Security.generateHash(beheerder.getWachtwoord(), Security.createSalt()));
-            s.setBytes(5, Security.createSalt());
+            PreparedStatement s = c.prepareStatement("insert into Beheerders values (NULL, ?, ?)");
+            s.setString(1, beheerder.getGebruikersnaam());
+            s.setString(2, beheerder.getWachtwoord());
 
-            //
             // Aanpassen zodat CSV-bestand kan worden ingelezen en afgelopen met while-loop om gegevens in batch toe te voegen
             // Foutmelding toevoegen indien gegevens reeds in de databank zitten
 
@@ -33,7 +29,7 @@ public class BeheerderDAO extends BaseDAO implements Security{
 
             // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: beheerder bestaat reeds)
 
-        } catch (SQLException | NoSuchAlgorithmException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
         } ;
@@ -47,7 +43,7 @@ public class BeheerderDAO extends BaseDAO implements Security{
             ResultSet rs = s.executeQuery("select * from Beheerders");
             while (rs.next())
             {
- //               lijst.add(new Beheerder(rs.getInt(1), rs.getString(2), rs.getString(3)));
+                lijst.add(new Beheerder(rs.getInt(1), rs.getString(2), rs.getString(3)));
             }
 
         } catch (SQLException e) {
@@ -61,12 +57,12 @@ public class BeheerderDAO extends BaseDAO implements Security{
     {
         Beheerder b = null;
         try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("select * from Beheerders where gebruikersnaam = ?");
+            PreparedStatement s = c.prepareStatement("select * from Beheerders where Gebruikersnaam LIKE ?");
             s.setString(1, "%");
             ResultSet rs = s.executeQuery();
             if (rs.next())
             {
- //               b = new Beheerder(rs.getInt(1), rs.getString(2), rs.getString(3));
+                b = new Beheerder(rs.getInt(1), rs.getString(2), rs.getString(3));
             }
 
         } catch (SQLException e) {
@@ -78,12 +74,14 @@ public class BeheerderDAO extends BaseDAO implements Security{
 
     public static void main(String[] args) {
         BeheerderDAO bda = new BeheerderDAO();
-        Beheerder b1 = new Beheerder("Virginie", "Ortegat", "vortegat", "12345");
-        Beheerder b2 = new Beheerder("Katrien", "Persoons", "kpersoons", "6789P");
+        Beheerder b1 = new Beheerder("Katrien", "paswoord15");
+        Beheerder b2 = new Beheerder("Virginie", "258369");
         bda.toevoegenBeheerder(b1);
         bda.toevoegenBeheerder(b2);
+        //System.out.println(bda.opzoekenBeheerder("Bart").getGebruikersnaam());
+        //System.out.println(bda.opzoekenBeheerder("Bart").getWachtwoord());
 
-        // geeft geen foutmelding als gebruikersnaam en wachtwoord reeds in databank zitten.
+        // Werkt maar geeft geen foutmelding als gebruikersnaam en wachtwoord reeds in databank zitten.
     }
 }
 
