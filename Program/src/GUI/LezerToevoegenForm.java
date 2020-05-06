@@ -38,8 +38,13 @@ public class LezerToevoegenForm extends JFrame {
     private JTextField BusTextField;
     private JLabel TelefoonLabel;
     private JTextField TelefoonTextField;
+    private JPasswordField bevestigPaswoord;
 
     public LezerToevoegenForm() {
+
+        passwordField.setEchoChar('*');
+        bevestigPaswoord.setEchoChar('*');
+
         lezerToevoegenFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         lezerToevoegenFrame.getContentPane().add(panel1);
         lezerToevoegenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
