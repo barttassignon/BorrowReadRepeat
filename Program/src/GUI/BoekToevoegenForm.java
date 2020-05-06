@@ -38,7 +38,7 @@ public class BoekToevoegenForm extends JFrame {
     private JRadioButton NeeradioButton1;
     private JRadioButton JaRadioButton;
     private JComboBox GenreComboBox1;
-    String[] genreStrings = {"Biografie", "Fantasy", "Geschiedenis", "Gezondheid", "Kinderboek", "Kookboek", "Romans", "Thriller", "Technologie"};
+    String[] genreStrings = {"Biografie", "Fantasy", "Geschiedenis", "Gezondheid", "Prentenboek", "Kookboek", "Romans", "Thriller", "Technologie"};
 
     private JLabel GenreJlabel;
     private ButtonGroup taalGroep;

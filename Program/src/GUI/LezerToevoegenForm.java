@@ -18,7 +18,6 @@ public class LezerToevoegenForm extends JFrame {
     private JTextField StraatTextField;
     private JTextField WoonplaatsTextField;
     private JTextField EmailtextField;
-    private JTextField GebruikersnaamTextField;
     private JButton ToevoegenButton;
     private JButton TerugButton;
     private JLabel VoornaamLabel;
@@ -34,10 +33,11 @@ public class LezerToevoegenForm extends JFrame {
     private JLabel NrLabel;
     private JLabel PostcodeLabel;
     private JLabel EmailLabel;
-    private JLabel GebruikersnaamLabel;
     private JLabel PaswoordLabel;
     private JLabel BusLabel;
     private JTextField BusTextField;
+    private JLabel TelefoonLabel;
+    private JTextField TelefoonTextField;
 
     public LezerToevoegenForm() {
         lezerToevoegenFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

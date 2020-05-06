@@ -10,7 +10,7 @@
       <color color="-4473925"/>
     </border>
     <children>
-      <grid id="75415" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="14" column-count="11" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="75415" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="16" column-count="11" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="20" left="20" bottom="20" right="20"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
@@ -22,7 +22,7 @@
         <children>
           <vspacer id="220a5">
             <constraints>
-              <grid row="2" column="0" row-span="10" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="12" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
           <component id="9bfb9" class="javax.swing.JLabel" binding="VoornaamLabel">
@@ -69,20 +69,9 @@
               <text value="Email:"/>
             </properties>
           </component>
-          <component id="f7304" class="javax.swing.JLabel" binding="GebruikersnaamLabel">
-            <constraints>
-              <grid row="9" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="Consolas" size="14"/>
-              <foreground color="-12508416"/>
-              <horizontalAlignment value="2"/>
-              <text value="Gebruikersnaam:"/>
-            </properties>
-          </component>
           <component id="6ddcd" class="javax.swing.JLabel" binding="PaswoordLabel">
             <constraints>
-              <grid row="10" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="11" column="1" row-span="2" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Consolas" size="14"/>
@@ -110,10 +99,10 @@
           </hspacer>
           <component id="9e75b" class="javax.swing.JButton" binding="TerugButton">
             <constraints>
-              <grid row="13" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="15" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Consolas" size="18"/>
+              <font name="Consolas" size="14"/>
               <foreground color="-12508416"/>
               <horizontalAlignment value="2"/>
               <text value="&lt;-- Terug"/>
@@ -200,18 +189,6 @@
               <font name="Consolas" size="14"/>
             </properties>
           </component>
-          <component id="91f0f" class="javax.swing.JTextField" binding="GebruikersnaamTextField">
-            <constraints>
-              <grid row="9" column="3" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <minimum-size width="-1" height="20"/>
-                <preferred-size width="250" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <enabled value="true"/>
-              <font name="Consolas" size="14"/>
-            </properties>
-          </component>
           <component id="56fc0" class="javax.swing.JTextField" binding="NummerTextField">
             <constraints>
               <grid row="5" column="7" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
@@ -234,7 +211,7 @@
           </component>
           <component id="23882" class="javax.swing.JPasswordField" binding="passwordField">
             <constraints>
-              <grid row="10" column="3" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+              <grid row="11" column="3" row-span="2" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="-1" height="20"/>
                 <preferred-size width="250" height="-1"/>
               </grid>
@@ -280,7 +257,7 @@
           </component>
           <component id="53bcb" class="javax.swing.JButton" binding="ToevoegenButton">
             <constraints>
-              <grid row="12" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="14" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Consolas" size="18"/>
@@ -305,6 +282,29 @@
               </grid>
             </constraints>
             <properties>
+              <font name="Consolas" size="14"/>
+            </properties>
+          </component>
+          <component id="6b862" class="javax.swing.JLabel" binding="TelefoonLabel">
+            <constraints>
+              <grid row="9" column="1" row-span="2" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Consolas" size="14"/>
+              <foreground color="-12508416"/>
+              <horizontalAlignment value="2"/>
+              <text value="Telefoon:"/>
+            </properties>
+          </component>
+          <component id="f3f2a" class="javax.swing.JTextField" binding="TelefoonTextField">
+            <constraints>
+              <grid row="9" column="3" row-span="2" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="20"/>
+                <preferred-size width="250" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <enabled value="true"/>
               <font name="Consolas" size="14"/>
             </properties>
           </component>

@@ -21,6 +21,8 @@ public class BeheerderLoginForm {
 
     public BeheerderLoginForm() {
 
+        passwordField.setEchoChar('*'); // * ipv bolletjes
+
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.getContentPane().add(BeheerderLoginPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

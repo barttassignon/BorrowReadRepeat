@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="11" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="20" left="20" bottom="20" right="20"/>
     <constraints>
-      <xy x="20" y="20" width="613" height="455"/>
+      <xy x="20" y="20" width="818" height="655"/>
     </constraints>
     <properties>
       <background color="-4992257"/>
@@ -168,7 +168,7 @@
       </component>
       <component id="ed28e" class="javax.swing.JButton" binding="beheerderToevoegenButton" default-binding="true">
         <constraints>
-          <grid row="9" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-721409"/>
@@ -177,7 +177,7 @@
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
           <horizontalTextPosition value="0"/>
-          <text value="Beheerder &#10;Toevoegen"/>
+          <text value="Beheerder  Toevoegen"/>
         </properties>
       </component>
       <vspacer id="37683">

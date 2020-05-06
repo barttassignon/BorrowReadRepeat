@@ -75,6 +75,13 @@ public class BeheerderForm extends JFrame {
                   beheerderFormFrame.dispose();
             }
         });
+        beheerderToevoegenButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(BeheerderForm.this, "Ben je zeker?", "Opgepast!", JOptionPane.WARNING_MESSAGE);
+                new BeheerderToevoegenForm();
+                beheerderFormFrame.dispose();
+            }
+        });
     }
 
     public static void main(String[] args) {
