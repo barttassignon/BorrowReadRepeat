@@ -14,7 +14,8 @@ public class Boek {
     private String auteur;
     private String uitgeverij;
     private String taal;
-    private String genre;
+    // Genre varGenre = Genre.BIOGRAFIE (om op te roepen)
+    enum Genre {BIOGRAFIE, FANTASY, GESCHIEDENIS, GEZONDHEID, KINDERBOEK, KOOKBOEK, ROMANS, THRILLER, TECHNOLOGIE };
     private int paginas;
     private LocalDate aankoopdatum;
     private double prijs;

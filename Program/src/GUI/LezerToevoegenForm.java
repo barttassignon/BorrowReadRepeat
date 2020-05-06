@@ -36,6 +36,8 @@ public class LezerToevoegenForm extends JFrame {
     private JLabel EmailLabel;
     private JLabel GebruikersnaamLabel;
     private JLabel PaswoordLabel;
+    private JLabel BusLabel;
+    private JTextField BusTextField;
 
     public LezerToevoegenForm() {
         lezerToevoegenFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

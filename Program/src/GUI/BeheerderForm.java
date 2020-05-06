@@ -22,7 +22,7 @@ public class BeheerderForm extends JFrame {
     private JButton wijzigenButton;
     private JButton BoekOpzoeken;
     private JButton opzoekenButton;
-    private JButton placeholderButton1;
+    private JButton beheerderToevoegenButton;
     private JLabel labelBoek;
     private JButton UitloggenButton;
     private JFrame beheerderFormFrame = new JFrame("BorrowReadRepeat");
