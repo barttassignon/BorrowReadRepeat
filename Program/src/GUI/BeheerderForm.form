@@ -166,7 +166,7 @@
           <text value="Opzoeken"/>
         </properties>
       </component>
-      <component id="ed28e" class="javax.swing.JButton" binding="placeholderButton1" default-binding="true">
+      <component id="ed28e" class="javax.swing.JButton" binding="beheerderToevoegenButton" default-binding="true">
         <constraints>
           <grid row="9" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -176,7 +176,8 @@
           <font name="Consolas" size="16" style="0"/>
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
-          <text value=""/>
+          <horizontalTextPosition value="0"/>
+          <text value="Beheerder &#10;Toevoegen"/>
         </properties>
       </component>
       <vspacer id="37683">
