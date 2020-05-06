@@ -37,6 +37,10 @@ public class BoekToevoegenForm extends JFrame {
     private JLabel PlaatsInBibLabel;
     private JRadioButton NeeradioButton1;
     private JRadioButton JaRadioButton;
+    private JComboBox GenreComboBox1;
+    String[] genreStrings = {"Biografie", "Fantasy", "Geschiedenis", "Gezondheid", "Kinderboek", "Kookboek", "Romans", "Thriller", "Technologie"};
+
+    private JLabel GenreJlabel;
     private ButtonGroup taalGroep;
     private ButtonGroup kinderGroep;
 
@@ -65,6 +69,19 @@ public class BoekToevoegenForm extends JFrame {
         kinderGroep.add(NeeradioButton1);
         kinderGroep.add(JaRadioButton);
         NeeradioButton1.setSelected(true);
+
+        DefaultComboBoxModel GenreModel = new DefaultComboBoxModel(genreStrings);
+        GenreModel.getElementAt(0);
+        GenreModel.getElementAt(1);
+        GenreModel.getElementAt(2);
+        GenreModel.getElementAt(3);
+        GenreModel.getElementAt(4);
+        GenreModel.getElementAt(5);
+        GenreModel.getElementAt(6);
+        GenreModel.getElementAt(7);
+        GenreComboBox1.setModel(GenreModel);
+        GenreComboBox1.setSelectedIndex(0);
+        GenreComboBox1.setEditable(true);
 
         TerugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
