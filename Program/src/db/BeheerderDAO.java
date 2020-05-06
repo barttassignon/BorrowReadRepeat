@@ -41,7 +41,7 @@ public class BeheerderDAO extends BaseDAO implements Security {
         byte[] salt = Security.createSalt();
 
         try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("insert into Beheerders values (NULL, ?, ?, ?, ?, ?)");
+            PreparedStatement s = c.prepareStatement("insert into Beheerders values (?, ?, ?, ?, ?)");
             s.setString(1, beheerder.getVoornaam());
             s.setString(2, beheerder.getNaam());
             s.setString(3, beheerder.getGebruikersnaam());
@@ -73,7 +73,7 @@ public class BeheerderDAO extends BaseDAO implements Security {
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("select * from Beheerders");
             while (rs.next()) {
-                lijst.add(new Beheerder(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                lijst.add(new Beheerder(rs.getString(1), rs.getString(2), rs.getString(3)));
             }
 
         } catch (SQLException e) {
@@ -92,7 +92,7 @@ public class BeheerderDAO extends BaseDAO implements Security {
             s.setString(1, voornaam);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
-                lijst.add(new Beheerder(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                lijst.add(new Beheerder(rs.getString(1), rs.getString(2), rs.getString(3)));
             }
 
         } catch (SQLException e) {
@@ -113,7 +113,7 @@ public class BeheerderDAO extends BaseDAO implements Security {
             s.setString(2, naam);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
-                lijst.add(new Beheerder(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                lijst.add(new Beheerder(rs.getString(1), rs.getString(2), rs.getString(3)));
             }
 
         } catch (SQLException e) {
@@ -155,7 +155,7 @@ public class BeheerderDAO extends BaseDAO implements Security {
         // Weergeven van de beheerders:
 
         for(Beheerder b : bda.ophalenBeheerders()){
-            System.out.println(b.getId() + " - " + b.getVoornaam() + " " + b.getNaam() + " - " + b.getGebruikersnaam());
+            System.out.println(b.getVoornaam() + " " + b.getNaam() + " - " + b.getGebruikersnaam());
         }
 
         // Opmerking Katrien: Misschien kan je beter een toString-methode voorzien in Beheerder en deze hier aanroepen?
@@ -163,7 +163,7 @@ public class BeheerderDAO extends BaseDAO implements Security {
         // Opzoeken van een beheerder:
 
         for (Beheerder b : bda.opzoekenBeheerder("Virginie", "Blabla")) {
-            System.out.println(b.getId() + " - " + b.getVoornaam() + " " + b.getNaam() + " - " + b.getGebruikersnaam());
+            System.out.println(b.getVoornaam() + " " + b.getNaam() + " - " + b.getGebruikersnaam());
         }
 
         // Verwijderen van een beheerder:

@@ -6,7 +6,6 @@ package entity;
 
 public class Beheerder extends Persoon{
 
-    private int id;
     private String gebruikersnaam;
     private String wachtwoord;
 
@@ -16,18 +15,10 @@ public class Beheerder extends Persoon{
         this.wachtwoord = wachtwoord;
     }
 
-    public Beheerder(int id, String voornaam, String naam, String gebruikersnaam) {
+    public Beheerder(String voornaam, String naam, String gebruikersnaam) {
         super(voornaam, naam);
         this.gebruikersnaam = gebruikersnaam;
-        this.id = id;
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getGebruikersnaam() {
