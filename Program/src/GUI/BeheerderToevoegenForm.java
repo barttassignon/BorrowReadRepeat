@@ -22,8 +22,14 @@ public class BeheerderToevoegenForm extends JFrame {
     private JButton ToevoegentButton;
     private JButton TerugButton;
     private JLabel GebruikersnaamTextField;
+    private JLabel bevestigPwLabel;
+    private JPasswordField bevestigPasswordField1;
 
     public BeheerderToevoegenForm() {
+
+        passwordField1.setEchoChar('*');
+        bevestigPasswordField1.setEchoChar('*');
+
 
         beheerderToevoegenForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         beheerderToevoegenForm.getContentPane().add(panel1);
