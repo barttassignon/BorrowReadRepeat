@@ -48,8 +48,8 @@ public class BeheerderDAO extends BaseDAO implements Security {
             s.setBytes(4, salt);
             s.setString(5, Security.generateHash(beheerder.getWachtwoord(), salt));
 
-            // Aanpassen zodat CSV-bestand kan worden ingelezen en afgelopen met while-loop om gegevens in batch toe te voegen
-            // Opmerking Virginie: niet nodig voor het aanmaken van beheerders (aangezien het er niet veel zouden moeten zijn)?
+            // Er wordt geen batch-functie voorzien voor het toevoegen of verwijderen van beheerders omdat dit
+            // een beperkt aantal personen betreft.
             // Foutmelding toevoegen indien gegevens reeds in de databank zitten
 
             int result = s.executeUpdate();
