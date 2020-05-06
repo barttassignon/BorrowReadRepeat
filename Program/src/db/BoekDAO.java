@@ -12,7 +12,9 @@ import java.util.ArrayList;
 
 public class BoekDAO extends BaseDAO {
 
-    public void toevoegenBoek(Boek boek) throws SQLException {
+    // Toevoegen van boek
+
+    public void toevoegenBoek(Boek boek) {
 
         try (Connection c = getConn()) {
 
@@ -28,7 +30,7 @@ public class BoekDAO extends BaseDAO {
             s.setString(9, boek.getPlaatsInBib());
 
             // Aanpassen zodat CSV-bestand kan worden ingelezen en afgelopen met while-loop om gegevens in batch toe te voegen
-            // Foutmelding toevoegen indien gegevens reeds in de databank zitten
+            // Foutmelding toevoegen indien gegevens reeds in de databank zitten ("boek bestaat reeds")
 
             int result = s.executeUpdate();
             if (result > 0)
@@ -40,7 +42,9 @@ public class BoekDAO extends BaseDAO {
         }
     }
 
-    public ArrayList<Boek> opvragenBoeken() {
+    // geef alle boeken weer
+
+    public ArrayList<Boek> ophalenBoeken() {
         ArrayList<Boek> lijstBoeken = new ArrayList<>();
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select * from Boeken");
@@ -53,21 +57,38 @@ public class BoekDAO extends BaseDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
-        };
-        return lijstBoeken;
-    };
-
-        public static void main(String[] args) throws SQLException {
-
-        //Boek b = new Boek(9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.of(2000, Month.MAY, 15), 25.45, "COE135.2");
-        BoekDAO bda = new BoekDAO();
-        bda.opvragenBoeken();
-
-        for(Boek b: bda.opvragenBoeken())
-        {
-            System.out.println(b.toString());
         }
+        return lijstBoeken;
+    }
+
+    // verwijder boek:
+
+    public void verwijderenBoek(int artikelnummer) {
+        try {
+            Connection c = getConn();
+                PreparedStatement s = c.prepareStatement("delete from Boek where artikelnummer = ?");
+                s.setInt(1, artikelnummer);
+                int result = s.executeUpdate();
+                if (result > 0) {
+                    System.out.println("Het boek werd verwijderd");
+                } else {
+                    System.out.println("Er bestaat geen boek met dit artikelnummer");
+                }
+           } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+        //       public static void main(int[] args)  {
+        //Boek b = new Boek(9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.of(2000, Month.MAY, 15), 25.45, "COE135.2");
+//        BoekDAO bda = new BoekDAO();
+//        bda.ophalenBoeken();
+
+//        for(Boek b: bda.ophalenBoeken())
+//        {
+//            System.out.println(b.toString());
+//        }
         //bda.toevoegenBoek(b);
         // "-L" toevoegen aan ISBN zodat dit wordt aanzien als een long in plaats van een int
     }
-};
+
+}
