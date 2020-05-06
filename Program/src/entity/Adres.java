@@ -19,9 +19,8 @@ public class Adres implements Serializable {
         this.straatnaam = straatnaam;
         this.huisnummer = huisnummer;
         this.bus = bus;
-        if (postcode > 999 && postcode < 10000) {
+        if (postcode > 999 && postcode < 10000)
             this.postcode = postcode;
-        } else this.postcode = 1000;
         this.woonplaats = woonplaats;
     }
 

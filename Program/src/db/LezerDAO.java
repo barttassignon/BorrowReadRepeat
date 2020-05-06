@@ -82,18 +82,66 @@ public class LezerDAO extends BaseDAO {
         return lijst;
     }
 
-    // verwijderen lezer
-   // opgelet: kan enkel als er geen schulden meer zijn
+    // Opzoeken lezer
 
-    public static void main(String[] args) {
+//    public ArrayList<Lezer> opzoekenLezer (String voornaam, String naam) {
+//        ArrayList<Lezer> lijst = new ArrayList<>();
+//        try (Connection c = getConn()) {
+//            PreparedStatement s = c.prepareStatement("select * from Lezers where voornaam = ? AND naam = ?");
+//            s.setString(1, voornaam);
+//            s.setString(2, naam);
+//            ResultSet rs = s.executeQuery();
+//            while (rs.next()) {
+//                lijst.add(new Lezer(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getObject(4, LocalDate.class), rs.getString(5)));
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            System.out.println("MISLUKT!");
+//        }
+//
+//        return lijst;
+//    }
+
+    // Verwijderen lezer: werkt nog niet
+   // opgelet: kan enkel als er geen schulden meer zijn
+    //Eerst adres verwijderen en dan pas lezer zelf!
+
+//    public void verwijderenLezer(int id) {
+//        try (Connection c = getConn()) {
+//            //PreparedStatement s = c.prepareStatement("delete Adressen where Lezers.Adres_ID = Adressen.Adres_ID");
+//            PreparedStatement s = c.prepareStatement("delete from Lezers where Lezer_ID = ?");
+//
+//            // Mag wrs ook een gewoon statement zijn ipv een prepared statement
+//            // Eerst adres verwijderen, dan pas lezer
+//
+//            s.setInt(1, id);
+//
+//            int result = s.executeUpdate();
+//            if (result > 0)
+//                System.out.println("De lezer werd verwijderd!");
+//            else System.out.println("Lezer niet gevonden");
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            System.out.println("MISLUKT!");
+//        }
+    //}
+
+        public static void main(String[] args) {
         LezerDAO lda = new LezerDAO();
         //Lezer l1 = new Lezer("Jan", "Modaal", LocalDate.of(2000, Month.MAY, 15), "jan.modaal@hotmail.com", "0485/15.12.24", "hallo");
         //l1.setAdres(new Adres("Schoolstraat", 15, "", 1000, "Brussel"));
         //lda.toevoegenLezer(l1);
-        lda.ophalenLezers();
+        //lda.ophalenLezers();
 
-        for(Lezer l : lda.ophalenLezers()){
-            System.out.println(l.toString());
-        }
+        //for(Lezer l : lda.ophalenLezers()){
+        //    System.out.println(l.toString());
+        //}
+        //lda.verwijderenLezer(6);
+
+           // for (Lezer l: lda.opzoekenLezer("Jan", "Modaal"))
+               // System.out.println(l.toString());
+
     }
 }
