@@ -61,6 +61,25 @@ public class BoekDAO extends BaseDAO {
         return lijstBoeken;
     }
 
+    // zoek boek:
+
+    public ArrayList<Boek> opzoekenBoek (String titel){
+        ArrayList<Boek> lijst = new ArrayList<>();
+        try (Connection c = getConn()){
+            PreparedStatement s = c.prepareStatement("select + from Boek where titel = ?");
+            s.setString(2, titel);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()){
+                lijst.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4)));
+            }
+
+            } catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+        return lijst;
+    }
+
     // verwijder boek:
 
     public void verwijderenBoek(int artikelnummer) {
@@ -78,6 +97,8 @@ public class BoekDAO extends BaseDAO {
             e.printStackTrace();
             System.out.println("MISLUKT!");
         }
+
+
         //       public static void main(int[] args)  {
         //Boek b = new Boek(9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.of(2000, Month.MAY, 15), 25.45, "COE135.2");
 //        BoekDAO bda = new BoekDAO();
