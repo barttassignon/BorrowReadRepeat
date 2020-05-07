@@ -54,10 +54,8 @@ public class BeheerderToevoegenForm extends JFrame{
             }
         });
 
-        // Beheerder toevoegen lukt.
         // Probleem: indien reeds een beheerder met zelfde gebruikersnaam in DB => beheerder wordt niet toegevoegd aan de DB (SQLIntegrityConstraintViolationException),
         // maar men krijgt wel een melding in Java dat het (onterecht) gelukt is => nog op te lossen door catch exception te integreren in code?
-        // Ander probleem: mogelijk om beheerder toe te voegen indien beide paswoordvelden leeg zijn => paswoordvereisten toevoegen. 
 
         ToevoegentButton.addActionListener(new ActionListener() {
             @Override
@@ -68,14 +66,17 @@ public class BeheerderToevoegenForm extends JFrame{
                 String wachtwoord = String.valueOf(passwordField1.getPassword());
                 String bevestigWachtwoord = String.valueOf(bevestigPasswordField1.getPassword());
 
-                if(wachtwoord.equals(bevestigWachtwoord)){
-                        BeheerderDAO.toevoegenBeheerder(new Beheerder(voornaam, naam, gebruikersnaam, wachtwoord));
-                        JOptionPane.showMessageDialog(beheerderToevoegenForm, "Beheerder toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                if(wachtwoord.length() == 0){
+                    JOptionPane.showMessageDialog(beheerderToevoegenForm, "Geen wachtwoord ingevuld!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                } else{
+                if(wachtwoord.equals(bevestigWachtwoord)) {
+                    BeheerderDAO.toevoegenBeheerder(new Beheerder(voornaam, naam, gebruikersnaam, wachtwoord));
+                    JOptionPane.showMessageDialog(beheerderToevoegenForm, "Beheerder toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                 } else{
                     JOptionPane.showMessageDialog(beheerderToevoegenForm, "Uw wachtwoord komt niet overeen", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     passwordField1.setText("");
                     bevestigPasswordField1.setText("");
-                }
+                }}
             }
         });
     }
