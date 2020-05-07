@@ -73,7 +73,7 @@ public class LezerDAO extends BaseDAO {
         }
     }
 
-    // Nog uit te werken: toevoegen lezers
+    // Nog uit te werken: toevoegen lezers: via PrepareStatement
 
     // Een overzicht van alle lezers:
 
@@ -116,40 +116,39 @@ public class LezerDAO extends BaseDAO {
 
     // Verwijderen lezer: werkt nog niet
    // opgelet: kan enkel als er geen schulden meer zijn
-    //Eerst adres verwijderen en dan pas lezer zelf!
+    //Eerst adres (child) verwijderen en dan pas lezer!
 
-//    public void verwijderenLezer(int id) {
-//        try (Connection c = getConn()) {
-//            //PreparedStatement s = c.prepareStatement("delete Adressen where Lezers.Adres_ID = Adressen.Adres_ID");
-//            PreparedStatement s = c.prepareStatement("delete from Lezers where Lezer_ID = ?");
-//
-//            // Mag wrs ook een gewoon statement zijn ipv een prepared statement
-//            // Eerst adres verwijderen, dan pas lezer
-//
-//            s.setInt(1, id);
-//
-//            int result = s.executeUpdate();
-//            if (result > 0)
-//                System.out.println("De lezer werd verwijderd!");
-//            else System.out.println("Lezer niet gevonden");
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            System.out.println("MISLUKT!");
-//        }
-    //}
+        public void verwijderenLezer(int id) {
+        try (Connection c = getConn()) {
+        PreparedStatement s = c.prepareStatement("delete from Adressen where Lezer_ID = ?");
+            s.setInt(1, id);
+        PreparedStatement p = c.prepareStatement("delete from Lezers where Lezer_ID = ?");
+            p.setInt(1, id);
+
+            int result1 = s.executeUpdate();
+            int result2 = p.executeUpdate();
+
+            if (result1 > 0 && result2 > 0)
+                System.out.println("De lezer werd verwijderd!");
+            else System.out.println("Lezer niet gevonden");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
 
         public static void main(String[] args) {
         LezerDAO lda = new LezerDAO();
-        Lezer l1 = new Lezer("Johanna", "De Munck", LocalDate.of(1965, Month.JANUARY, 10), "lieveke15@gmail.com", "0478/20.15.03", "voornaam");
-        l1.setAdres(new Adres("Seringenlaan", 15, "", 8000, "Brugge"));
-        lda.toevoegenLezer(l1);
+        //Lezer l1 = new Lezer("Johanna", "De Munck", LocalDate.of(1965, Month.JANUARY, 10), "lieveke15@gmail.com", "0478/20.15.03", "voornaam");
+        //l1.setAdres(new Adres("Seringenlaan", 15, "", 8000, "Brugge"));
+        //lda.toevoegenLezer(l1);
         //lda.ophalenLezers();
 
         //for(Lezer l : lda.ophalenLezers()){
         //    System.out.println(l.toString());
         //}
-        //lda.verwijderenLezer(6);
+        lda.verwijderenLezer(16);
 
            // for (Lezer l: lda.opzoekenLezer("Jan", "Modaal"))
                // System.out.println(l.toString());
