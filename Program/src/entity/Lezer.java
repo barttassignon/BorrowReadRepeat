@@ -5,6 +5,7 @@ package entity;
  */
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.Period;
 import java.util.Objects;
 
@@ -21,8 +22,12 @@ public class Lezer extends Persoon {
     private Transactie transactie;
     private Schuld schuld;
 
-    public Lezer(String voornaam, String naam, String geboortedatum, String straatnaam, String nummer, String bus, String postcode, String woonplaats, String email, String telefoon, String paswoord, String bevestigWachtwoord) {
-        super();
+    public Lezer(String voornaam, String naam, LocalDate geboortedatum, String email, String telefoon, String wachtwoord) {
+        super(voornaam, naam);
+        this.geboortedatum = geboortedatum;
+        this.email = email;
+        this.telefoon = telefoon;
+        this.wachtwoord = wachtwoord;
     }
 
     public int getId() {
@@ -37,7 +42,8 @@ public class Lezer extends Persoon {
         return geboortedatum;
     }
 
-    public void setGeboortedatum(LocalDate geboortedatum) {
+    public void setGeboortedatum(LocalDate geboortedatum)
+    {
         this.geboortedatum = geboortedatum;
     }
 
@@ -81,12 +87,6 @@ public class Lezer extends Persoon {
         this.schuld = schuld;
     }
 
-    public Lezer(String voornaam, String naam, LocalDate geboortedatum, String email, String telefoon) {
-        super(voornaam, naam);
-        this.geboortedatum = geboortedatum;
-        this.email = email;
-        this.telefoon = telefoon;
-    }
 
     public Lezer(String voornaam, String naam, int id, LocalDate geboortedatum, String email, String telefoon) {
         super(voornaam, naam);

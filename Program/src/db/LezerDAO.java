@@ -18,8 +18,7 @@ public class LezerDAO extends BaseDAO {
 
     // Een lezer toevoegen
 
-    public static void toevoegenLezer(Lezer lezer) {
-
+    public void toevoegenLezer(Lezer lezer) {
 
         if (lezer.berekenLeeftijd() < 12) {
             System.out.println("De lezer kan niet worden toegevoegd. Hij/zij voldoet niet aan de vereiste leeftijdsvoorwaarde (min. 12 jaar).");
@@ -28,18 +27,9 @@ public class LezerDAO extends BaseDAO {
             byte[] salt = Security.createSalt();
             try (Connection c = getConn()) {
 
-                // Eerst tabel Adressen updaten (parent)
+                // Eerst tabel Lezers updaten (parent)
 
-                PreparedStatement s = c.prepareStatement("insert into Adressen values (NULL, ?, ?, ?, ?, ?)");
-                s.setString(1, lezer.getAdres().getStraatnaam());
-                s.setInt(2, lezer.getAdres().getHuisnummer());
-                s.setString(3, lezer.getAdres().getBus());
-                s.setInt(4, lezer.getAdres().getPostcode());
-                s.setString(5, lezer.getAdres().getWoonplaats());
-
-                // Gegenereerde Adres_ID (door middel van auto increment) hergebruiken in tabel Lezers (om te voldoen aan foreign key constraint)
-
-                PreparedStatement p = c.prepareStatement("insert into Lezers values (NULL, ?, ?, ?, LAST_INSERT_ID(), ?, ?, ?, ?)");
+                PreparedStatement p = c.prepareStatement("insert into Lezers values (NULL, ?, ?, ?, ?, ?, ?, ?)");
                 p.setString(1, lezer.getVoornaam());
                 p.setString(2, lezer.getNaam());
                 p.setObject(3, lezer.getGeboortedatum());
@@ -48,10 +38,28 @@ public class LezerDAO extends BaseDAO {
                 p.setBytes(6, salt);
                 p.setString(7, Security.generateHash(lezer.getWachtwoord(), salt));
 
-                // Aanpassen zodat CSV-bestand kan worden ingelezen en afgelopen met while-loop om gegevens in batch toe te voegen
+                int result1 = p.executeUpdate();
 
-                int result1 = s.executeUpdate();
-                int result2 = p.executeUpdate();
+                //Gegenereerde Lezer_ID (door middel van auto increment) hergebruiken in tabel Adressen (om te voldoen aan foreign key constraint)
+
+                int autoIncKeyFromFunc = -1;
+                ResultSet rs = p.executeQuery("SELECT LAST_INSERT_ID()");
+
+                if (rs.next())
+                    autoIncKeyFromFunc = rs.getInt(1);
+                else
+                    System.out.println("Lezer_ID niet gevonden");
+
+                PreparedStatement s = c.prepareStatement("insert into Adressen values (NULL, ?, ?, ?, ?, ?, ?)");
+                s.setInt(1, autoIncKeyFromFunc);
+                s.setString(2, lezer.getAdres().getStraatnaam());
+                s.setInt(3, lezer.getAdres().getHuisnummer());
+                s.setString(4, lezer.getAdres().getBus());
+                s.setInt(5, lezer.getAdres().getPostcode());
+                s.setString(6, lezer.getAdres().getWoonplaats());
+
+                int result2 = s.executeUpdate();
+
                 if (result1 > 0 && result2 > 0)
                     System.out.println("De lezer werd toegevoegd!");
                 else System.out.println("De lezer kon niet worden toegevoegd!");
@@ -65,6 +73,8 @@ public class LezerDAO extends BaseDAO {
         }
     }
 
+    // Nog uit te werken: toevoegen lezers
+
     // Een overzicht van alle lezers:
 
      public ArrayList<Lezer> ophalenLezers() {
@@ -73,7 +83,7 @@ public class LezerDAO extends BaseDAO {
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("select * from Lezers");
             while (rs.next()) {
-                lijst.add(new Lezer(rs.getString(2), rs.getString(3), rs.getObject(4, LocalDate.class), rs.getString(6), rs.getString(7)));
+                //lijst.add(new Lezer(rs.getString(2), rs.getString(3), rs.getObject(4, LocalDate.class), rs.getString(6), rs.getString(7)));
             }
 
         } catch (SQLException e) {
@@ -131,10 +141,9 @@ public class LezerDAO extends BaseDAO {
 
         public static void main(String[] args) {
         LezerDAO lda = new LezerDAO();
-
-        //Lezer l1 = new Lezer("Jan", "Modaal", LocalDate.of(2000, Month.MAY, 15), "jan.modaal@hotmail.com", "0485/15.12.24", "hallo");
-        //l1.setAdres(new Adres("Schoolstraat", 15, "", 1000, "Brussel"));
-        //lda.toevoegenLezer(l1);
+        Lezer l1 = new Lezer("Johanna", "De Munck", LocalDate.of(1965, Month.JANUARY, 10), "lieveke15@gmail.com", "0478/20.15.03", "voornaam");
+        l1.setAdres(new Adres("Seringenlaan", 15, "", 8000, "Brugge"));
+        lda.toevoegenLezer(l1);
         //lda.ophalenLezers();
 
         //for(Lezer l : lda.ophalenLezers()){
