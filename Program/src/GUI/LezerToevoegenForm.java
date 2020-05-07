@@ -43,6 +43,12 @@ public class LezerToevoegenForm extends JFrame {
     private JLabel TelefoonLabel;
     private JTextField telefoonTextField;
     private JPasswordField bevestigPaswoord;
+    private JLabel dagLabel;
+    private JTextField dagTextField;
+    private JLabel maandLabel;
+    private JTextField maandTextfield;
+    private JLabel jaarLabel;
+    private JTextField jaarTextfield;
 
 
     public LezerToevoegenForm() {
