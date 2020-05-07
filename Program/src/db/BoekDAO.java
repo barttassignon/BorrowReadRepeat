@@ -85,31 +85,34 @@ public class BoekDAO extends BaseDAO {
     public void verwijderenBoek(int artikelnummer) {
         try {
             Connection c = getConn();
-                PreparedStatement s = c.prepareStatement("delete from Boek where artikelnummer = ?");
-                s.setInt(1, artikelnummer);
-                int result = s.executeUpdate();
-                if (result > 0) {
-                    System.out.println("Het boek werd verwijderd");
-                } else {
-                    System.out.println("Er bestaat geen boek met dit artikelnummer");
-                }
-           } catch (SQLException e) {
+            PreparedStatement s = c.prepareStatement("delete from Boek where artikelnummer = ?");
+            s.setInt(1, artikelnummer);
+            int result = s.executeUpdate();
+            if (result > 0) {
+                System.out.println("Het boek werd verwijderd");
+            } else {
+                System.out.println("Er bestaat geen boek met dit artikelnummer");
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
         }
+    }
 
-
-        // public static void main(int[] args)  {
+ //       public static void main(String[] args)  {
         // Boek b = new Boek(9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.of(2000, Month.MAY, 15), 25.45, "COE135.2");
-//        BoekDAO bda = new BoekDAO();
-//        bda.ophalenBoeken();
+ //       BoekDAO bda = new BoekDAO();
+ //       Boek b1 = new Boek (9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.of(2000, Month.MAY, 15), 25.45, "COE135.2"));
+ //       bda.toevoegenBoek(b1);
+ //       bda.ophalenBoeken();
 
 //        for(Boek b: bda.ophalenBoeken())
 //        {
 //            System.out.println(b.toString());
 //        }
-        //bda.toevoegenBoek(b);
+//        bda.toevoegenBoek(b1);
         // "-L" aan ISBN toevoegen -  aanzien als een long in plaats van een int
-    }
+//            if(bda.opzoekenBoek("De Bourgondiërs", ))
+//    }
 
 }
