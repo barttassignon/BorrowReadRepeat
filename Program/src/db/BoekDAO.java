@@ -61,7 +61,7 @@ public class BoekDAO extends BaseDAO {
         return lijstBoeken;
     }
 
-    // zoek boek:
+    // zoek boek  :
 
     public ArrayList<Boek> opzoekenBoek (String titel){
         ArrayList<Boek> lijst = new ArrayList<>();
@@ -80,7 +80,7 @@ public class BoekDAO extends BaseDAO {
         return lijst;
     }
 
-    // verwijder boek:
+    // verwijder boek :
 
     public void verwijderenBoek(int artikelnummer) {
         try {
@@ -99,8 +99,8 @@ public class BoekDAO extends BaseDAO {
         }
 
 
-        //       public static void main(int[] args)  {
-        //Boek b = new Boek(9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.of(2000, Month.MAY, 15), 25.45, "COE135.2");
+        // public static void main(int[] args)  {
+        // Boek b = new Boek(9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.of(2000, Month.MAY, 15), 25.45, "COE135.2");
 //        BoekDAO bda = new BoekDAO();
 //        bda.ophalenBoeken();
 
@@ -109,7 +109,7 @@ public class BoekDAO extends BaseDAO {
 //            System.out.println(b.toString());
 //        }
         //bda.toevoegenBoek(b);
-        // "-L" toevoegen aan ISBN zodat dit wordt aanzien als een long in plaats van een int
+        // "-L" aan ISBN toevoegen -  aanzien als een long in plaats van een int
     }
 
 }
