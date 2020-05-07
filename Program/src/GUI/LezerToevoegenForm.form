@@ -3,14 +3,14 @@
   <grid id="27dc6" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="true" same-size-vertically="true" hgap="-1" vgap="-1">
     <margin top="5" left="5" bottom="5" right="5"/>
     <constraints>
-      <xy x="20" y="20" width="1524" height="700"/>
+      <xy x="20" y="20" width="1524" height="928"/>
     </constraints>
     <properties/>
     <border type="line">
       <color color="-4473925"/>
     </border>
     <children>
-      <grid id="75415" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="19" column-count="12" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="75415" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="16" column-count="10" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="10" left="10" bottom="10" right="10"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
@@ -23,7 +23,7 @@
         <children>
           <vspacer id="220a5">
             <constraints>
-              <grid row="2" column="0" row-span="15" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="12" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
           <component id="9bfb9" class="javax.swing.JLabel" binding="VoornaamLabel">
@@ -61,7 +61,7 @@
           </component>
           <component id="86fea" class="javax.swing.JLabel" binding="EmailLabel">
             <constraints>
-              <grid row="8" column="1" row-span="2" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="9" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Consolas" size="18"/>
@@ -72,7 +72,7 @@
           </component>
           <component id="6ddcd" class="javax.swing.JLabel" binding="PaswoordLabel">
             <constraints>
-              <grid row="12" column="1" row-span="2" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="11" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Consolas" size="18"/>
@@ -83,7 +83,7 @@
           </component>
           <component id="67d93" class="javax.swing.JLabel">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="11" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="1" col-span="9" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Consolas" size="36" style="1"/>
@@ -95,12 +95,12 @@
           </component>
           <hspacer id="51051">
             <constraints>
-              <grid row="1" column="11" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
           <component id="9e75b" class="javax.swing.JButton" binding="TerugButton">
             <constraints>
-              <grid row="18" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="15" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Consolas" size="14"/>
@@ -120,7 +120,7 @@
           </component>
           <component id="a68e1" class="javax.swing.JLabel" binding="WoonplaatsLabel">
             <constraints>
-              <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Consolas" size="14"/>
@@ -129,7 +129,7 @@
           </component>
           <component id="d35d0" class="javax.swing.JTextField" binding="voornaamTextField">
             <constraints>
-              <grid row="2" column="3" row-span="1" col-span="9" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+              <grid row="2" column="3" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="-1" height="20"/>
                 <preferred-size width="250" height="-1"/>
               </grid>
@@ -141,7 +141,7 @@
           </component>
           <component id="f3bc2" class="javax.swing.JTextField" binding="naamTextField">
             <constraints>
-              <grid row="3" column="3" row-span="1" col-span="9" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+              <grid row="3" column="3" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="-1" height="20"/>
                 <preferred-size width="250" height="-1"/>
               </grid>
@@ -153,9 +153,9 @@
           </component>
           <component id="3b429" class="javax.swing.JTextField" binding="straatTextField">
             <constraints>
-              <grid row="5" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+              <grid row="5" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="-1" height="20"/>
-                <preferred-size width="150" height="-1"/>
+                <preferred-size width="250" height="-1"/>
               </grid>
             </constraints>
             <properties>
@@ -167,7 +167,7 @@
           </component>
           <component id="bc71a" class="javax.swing.JTextField" binding="woonplaatsTextField">
             <constraints>
-              <grid row="7" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+              <grid row="8" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="-1" height="20"/>
                 <preferred-size width="150" height="-1"/>
               </grid>
@@ -180,7 +180,7 @@
           </component>
           <component id="991dc" class="javax.swing.JTextField" binding="emailtextField">
             <constraints>
-              <grid row="8" column="3" row-span="2" col-span="9" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+              <grid row="9" column="3" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="-1" height="20"/>
                 <preferred-size width="250" height="-1"/>
               </grid>
@@ -192,17 +192,9 @@
           </component>
           <component id="23882" class="javax.swing.JPasswordField" binding="passwordField">
             <constraints>
-              <grid row="12" column="3" row-span="2" col-span="8" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+              <grid row="11" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="-1" height="20"/>
                 <preferred-size width="250" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
-          <component id="299cb" class="javax.swing.JTextField" binding="geboortedatumTextField">
-            <constraints>
-              <grid row="4" column="3" row-span="1" col-span="9" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="100" height="-1"/>
               </grid>
             </constraints>
             <properties/>
@@ -220,7 +212,7 @@
           </component>
           <component id="53bcb" class="javax.swing.JButton" binding="ToevoegenButton">
             <constraints>
-              <grid row="17" column="3" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="14" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Consolas" size="18"/>
@@ -231,7 +223,7 @@
           </component>
           <component id="6b862" class="javax.swing.JLabel" binding="TelefoonLabel">
             <constraints>
-              <grid row="10" column="1" row-span="2" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="10" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Consolas" size="18"/>
@@ -242,7 +234,7 @@
           </component>
           <component id="f3f2a" class="javax.swing.JTextField" binding="telefoonTextField">
             <constraints>
-              <grid row="10" column="3" row-span="2" col-span="9" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+              <grid row="10" column="3" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="-1" height="20"/>
                 <preferred-size width="250" height="-1"/>
               </grid>
@@ -254,7 +246,7 @@
           </component>
           <component id="27b75" class="javax.swing.JLabel" binding="PostcodeLabel">
             <constraints>
-              <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Consolas" size="14"/>
@@ -263,46 +255,8 @@
           </component>
           <component id="e19af" class="javax.swing.JTextField" binding="postcodeTextField">
             <constraints>
-              <grid row="6" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+              <grid row="7" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="100" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font name="Consolas" size="14"/>
-            </properties>
-          </component>
-          <component id="7e9e6" class="javax.swing.JLabel" binding="NrLabel">
-            <constraints>
-              <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="Consolas" size="14"/>
-              <text value="Nr:"/>
-            </properties>
-          </component>
-          <component id="56fc0" class="javax.swing.JTextField" binding="nummerTextField">
-            <constraints>
-              <grid row="5" column="7" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="50" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font name="Consolas" size="14"/>
-            </properties>
-          </component>
-          <component id="23f82" class="javax.swing.JLabel" binding="BusLabel">
-            <constraints>
-              <grid row="5" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="Consolas" size="14"/>
-              <text value="Bus:"/>
-            </properties>
-          </component>
-          <component id="81cf9" class="javax.swing.JTextField" binding="busTextField">
-            <constraints>
-              <grid row="5" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="50" height="-1"/>
               </grid>
             </constraints>
             <properties>
@@ -311,7 +265,7 @@
           </component>
           <component id="7c36c" class="javax.swing.JLabel">
             <constraints>
-              <grid row="14" column="1" row-span="2" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="12" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Consolas" size="18"/>
@@ -322,12 +276,107 @@
           </component>
           <component id="d3900" class="javax.swing.JPasswordField" binding="bevestigPaswoord">
             <constraints>
-              <grid row="14" column="3" row-span="2" col-span="8" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+              <grid row="12" column="3" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="-1" height="20"/>
                 <preferred-size width="250" height="-1"/>
               </grid>
             </constraints>
             <properties/>
+          </component>
+          <component id="b2dcb" class="javax.swing.JLabel" binding="dagLabel">
+            <constraints>
+              <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Consolas" size="14"/>
+              <text value="Dag:"/>
+            </properties>
+          </component>
+          <component id="ba451" class="javax.swing.JTextField" binding="dagTextField">
+            <constraints>
+              <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="50" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Consolas" size="14"/>
+            </properties>
+          </component>
+          <component id="8f62e" class="javax.swing.JLabel" binding="maandLabel">
+            <constraints>
+              <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Consolas" size="14"/>
+              <text value="Maand:"/>
+            </properties>
+          </component>
+          <component id="df265" class="javax.swing.JTextField" binding="maandTextfield">
+            <constraints>
+              <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="50" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Consolas" size="14"/>
+            </properties>
+          </component>
+          <component id="c7db8" class="javax.swing.JLabel" binding="jaarLabel">
+            <constraints>
+              <grid row="4" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Consolas" size="14"/>
+              <text value="Jaar:"/>
+            </properties>
+          </component>
+          <component id="e1ec0" class="javax.swing.JTextField" binding="jaarTextfield">
+            <constraints>
+              <grid row="4" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="50" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Consolas" size="14"/>
+            </properties>
+          </component>
+          <component id="7e9e6" class="javax.swing.JLabel" binding="NrLabel">
+            <constraints>
+              <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Consolas" size="14"/>
+              <text value="Nr:"/>
+            </properties>
+          </component>
+          <component id="56fc0" class="javax.swing.JTextField" binding="nummerTextField">
+            <constraints>
+              <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="50" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Consolas" size="14"/>
+            </properties>
+          </component>
+          <component id="23f82" class="javax.swing.JLabel" binding="BusLabel">
+            <constraints>
+              <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Consolas" size="14"/>
+              <text value="Bus:"/>
+            </properties>
+          </component>
+          <component id="81cf9" class="javax.swing.JTextField" binding="busTextField">
+            <constraints>
+              <grid row="6" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="50" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Consolas" size="14"/>
+            </properties>
           </component>
         </children>
       </grid>
