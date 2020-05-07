@@ -21,6 +21,8 @@ public class Adres implements Serializable {
         this.bus = bus;
         if (postcode > 999 && postcode < 10000)
             this.postcode = postcode;
+        else
+            System.out.println("Ongeldige postcode");
         this.woonplaats = woonplaats;
     }
 
@@ -55,7 +57,10 @@ public class Adres implements Serializable {
     }
 
     public void setPostcode(int postcode) {
-        this.postcode = postcode;
+        if (postcode > 999 && postcode < 10000)
+            this.postcode = postcode;
+        else
+            System.out.println("Ongeldige postcode");
     }
 
     public String getWoonplaats() {
