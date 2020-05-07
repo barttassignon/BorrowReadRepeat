@@ -13,29 +13,30 @@ import java.awt.event.ActionListener;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 public class BeheerderToevoegenForm extends JFrame{
-    private JFrame beheerderToevoegenForm = new JFrame("BorrowReadRepeat");
 
+    private JFrame beheerderToevoegenForm = new JFrame("BorrowReadRepeat");
+    private JPanel panel1;
 
     private JLabel BoekToevoegenLabel;
     private JLabel voornaam;
-    private JTextField voornaamField;
-    private JPanel panel1;
-    private JPasswordField passwordField1;
-    private JButton ToevoegentButton;
-    private JButton TerugButton;
+    private JLabel naam;
     private JLabel gebruikersnaamTextField;
+    private JLabel paswoord;
     private JLabel bevestigPwLabel;
-    private JPasswordField bevestigPasswordField1;
+
+    private JTextField voornaamField;
     private JTextField naamField;
     private JTextField gebruikersnaamField;
-    private JLabel naam;
-    private JLabel paswoord;
+    private JPasswordField passwordField1;
+    private JPasswordField bevestigPasswordField1;
+
+    private JButton ToevoegentButton;
+    private JButton TerugButton;
 
     public BeheerderToevoegenForm() {
 
         passwordField1.setEchoChar('*');
         bevestigPasswordField1.setEchoChar('*');
-
 
         beheerderToevoegenForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         beheerderToevoegenForm.getContentPane().add(panel1);

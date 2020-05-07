@@ -22,12 +22,13 @@ public class Lezer extends Persoon {
     private Transactie transactie;
     private Schuld schuld;
 
-    public Lezer(String voornaam, String naam, LocalDate geboortedatum, String email, String telefoon, String wachtwoord) {
+    public Lezer(String voornaam, String naam, LocalDate geboortedatum, String email, String telefoon, String wachtwoord, Adres adres) {
         super(voornaam, naam);
         this.geboortedatum = geboortedatum;
         this.email = email;
         this.telefoon = telefoon;
         this.wachtwoord = wachtwoord;
+        this.adres = adres;
     }
 
     public Lezer(String voornaam, String naam, int id, LocalDate geboortedatum, String email) {

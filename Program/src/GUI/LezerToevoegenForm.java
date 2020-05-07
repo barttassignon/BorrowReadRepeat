@@ -6,50 +6,55 @@ package GUI;
 
 import db.BeheerderDAO;
 import db.LezerDAO;
+import entity.Adres;
 import entity.Beheerder;
 import entity.Lezer;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 public class LezerToevoegenForm extends JFrame {
 
     private JFrame lezerToevoegenFrame = new JFrame("BorrowReadRepeat");
     private JPanel panel1;
-    private JTextField voornaamTextField;
-    private JTextField naamTextField;
-    private JTextField straatTextField;
-    private JTextField woonplaatsTextField;
-    private JTextField emailtextField;
-    private JButton ToevoegenButton;
-    private JButton TerugButton;
+
+    private JLabel TitelLabel;
     private JLabel VoornaamLabel;
     private JLabel NaamLabel;
+    private JLabel GeboortedatumLabel;
+    private JLabel dagLabel;
+    private JLabel maandLabel;
+    private JLabel jaarLabel;
     private JLabel AdresLabel;
     private JLabel StraatLabel;
-    private JTextField nummerTextField;
-    private JTextField postcodeTextField;
-    private JPasswordField passwordField;
-    private JTextField geboortedatumTextField;
-    private JLabel GeboortedatumLabel;
-    private JLabel WoonplaatsLabel;
     private JLabel NrLabel;
-    private JLabel PostcodeLabel;
-    private JLabel EmailLabel;
-    private JLabel PaswoordLabel;
     private JLabel BusLabel;
-    private JTextField busTextField;
+    private JLabel PostcodeLabel;
+    private JLabel WoonplaatsLabel;
+    private JLabel EmailLabel;
     private JLabel TelefoonLabel;
-    private JTextField telefoonTextField;
-    private JPasswordField bevestigPaswoord;
-    private JLabel dagLabel;
-    private JTextField dagTextField;
-    private JLabel maandLabel;
-    private JTextField maandTextfield;
-    private JLabel jaarLabel;
-    private JTextField jaarTextfield;
+    private JLabel PaswoordLabel;
+    private JLabel BevestigPaswoordLabel;
 
+    private JTextField voornaamTextField;
+    private JTextField naamTextField;
+    private JTextField dagTextField;
+    private JTextField maandTextfield;
+    private JTextField jaarTextfield;
+    private JTextField straatTextField;
+    private JTextField nummerTextField;
+    private JTextField busTextField;
+    private JTextField postcodeTextField;
+    private JTextField woonplaatsTextField;
+    private JTextField emailtextField;
+    private JTextField telefoonTextField;
+    private JPasswordField passwordField;
+    private JPasswordField bevestigPaswoord;
+
+    private JButton ToevoegenButton;
+    private JButton TerugButton;
 
     public LezerToevoegenForm() {
 
@@ -75,11 +80,14 @@ public class LezerToevoegenForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String voornaam = voornaamTextField.getText();
                 String naam = naamTextField.getText();
-                String geboortedatum = geboortedatumTextField.getText();
+                String dag = dagTextField.getText();
+                String maand = maandTextfield.getText();
+                String jaar = jaarTextfield.getText();
+                LocalDate geboortedatum = LocalDate.parse(jaar + "-" + maand + "-" + dag);
                 String straatnaam = straatTextField.getText();
-                String nummer = nummerTextField.getText();
+                int nummer = Integer.parseInt(nummerTextField.getText());
                 String bus = busTextField.getText();
-                String postcode = postcodeTextField.getText();
+                int postcode = Integer.parseInt(postcodeTextField.getText());
                 String woonplaats = woonplaatsTextField.getText();
                 String email = emailtextField.getText();
                 String telefoon = telefoonTextField.getText();
@@ -87,23 +95,23 @@ public class LezerToevoegenForm extends JFrame {
                 String paswoord = String.valueOf(passwordField.getPassword());
                 String bevestigWachtwoord = String.valueOf(bevestigPaswoord.getPassword());
 
-
+                if(paswoord.length() == 0){
+                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geen wachtwoord ingevuld!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                } else{
                 if (paswoord.equals(bevestigWachtwoord)) {
-                    LezerDAO.toevoegenLezer(new Lezer(voornaam, naam, geboortedatum, straatnaam, nummer, bus, postcode, woonplaats, email, telefoon, paswoord, bevestigWachtwoord));
+                    LezerDAO.toevoegenLezer(new Lezer(voornaam, naam, geboortedatum, email, telefoon, paswoord, new Adres(straatnaam, nummer, bus, postcode, woonplaats)));
                     JOptionPane.showMessageDialog(lezerToevoegenFrame, "Lezer toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(lezerToevoegenFrame, "Uw wachtwoord komt niet overeen", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     passwordField.setText("");
                     bevestigPaswoord.setText("");
                 }
-            }
+            }}
 
     });
 }
 
-    public static void main(String[] args) {
-        new LezerToevoegenForm();
-    }
+    public static void main(String[] args) { new LezerToevoegenForm(); }
 }
 
 
