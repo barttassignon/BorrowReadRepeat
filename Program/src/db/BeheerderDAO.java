@@ -37,7 +37,7 @@ public class BeheerderDAO extends BaseDAO implements Security {
 
     // Aanmaken van een nieuwe beheerder:
 
-    public void toevoegenBeheerder(Beheerder beheerder) {
+    public static void toevoegenBeheerder(Beheerder beheerder) {
         byte[] salt = Security.createSalt();
 
         try (Connection c = getConn()) {

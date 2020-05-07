@@ -22,7 +22,7 @@
           <verticalTextPosition value="3"/>
         </properties>
       </component>
-      <component id="caa58" class="javax.swing.JLabel" binding="ISBNLabel">
+      <component id="caa58" class="javax.swing.JLabel" binding="voornaam">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -33,7 +33,7 @@
           <text value="Voornaam:"/>
         </properties>
       </component>
-      <component id="12f6c" class="javax.swing.JTextField" binding="ISBNtextField">
+      <component id="12f6c" class="javax.swing.JTextField" binding="voornaamField">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="20"/>
@@ -45,7 +45,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="37425" class="javax.swing.JLabel">
+      <component id="37425" class="javax.swing.JLabel" binding="naam">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -56,7 +56,7 @@
           <text value="Naam:"/>
         </properties>
       </component>
-      <component id="8bc26" class="javax.swing.JTextField">
+      <component id="8bc26" class="javax.swing.JTextField" binding="naamField">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="20"/>
@@ -68,7 +68,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="68a9e" class="javax.swing.JLabel" binding="GebruikersnaamTextField">
+      <component id="68a9e" class="javax.swing.JLabel" binding="gebruikersnaamTextField">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -79,7 +79,7 @@
           <text value="Gebruikersnaam:"/>
         </properties>
       </component>
-      <component id="7e2d6" class="javax.swing.JTextField">
+      <component id="7e2d6" class="javax.swing.JTextField" binding="gebruikersnaamField">
         <constraints>
           <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="20"/>
@@ -91,7 +91,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="f0602" class="javax.swing.JLabel">
+      <component id="f0602" class="javax.swing.JLabel" binding="paswoord">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
