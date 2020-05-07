@@ -30,6 +30,21 @@ public class Lezer extends Persoon {
         this.wachtwoord = wachtwoord;
     }
 
+    public Lezer(String voornaam, String naam, int id, LocalDate geboortedatum, String email) {
+        super(voornaam, naam);
+        this.id = id;
+        this.geboortedatum = geboortedatum;
+        this.email = email;
+    }
+
+    public Lezer(String voornaam, String naam, int id, LocalDate geboortedatum, String email, String telefoon) {
+        super(voornaam, naam);
+        this.id = id;
+        this.geboortedatum = geboortedatum;
+        this.email = email;
+        this.telefoon = telefoon;
+    }
+
     public int getId() {
         return id;
     }
@@ -87,15 +102,6 @@ public class Lezer extends Persoon {
         this.schuld = schuld;
     }
 
-
-    public Lezer(String voornaam, String naam, int id, LocalDate geboortedatum, String email, String telefoon) {
-        super(voornaam, naam);
-        this.id = id;
-        this.geboortedatum = geboortedatum;
-        this.email = email;
-        this.telefoon = telefoon;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -121,9 +127,8 @@ public class Lezer extends Persoon {
 
     @Override
     public String toString() {
-        return super.toString() + ", geboortedatum: " + getGeboortedatum() +
-                ", email: " + getEmail() +
-                ", telefoon: " + getTelefoon();
+        return "ID: " + getId() + ", " + super.toString() + ", geboortedatum: " + getGeboortedatum().getDayOfMonth() + "/" + getGeboortedatum().getMonth().getValue() + "/" + getGeboortedatum().getYear() +
+                ", email: " + getEmail();
     }
 }
 
