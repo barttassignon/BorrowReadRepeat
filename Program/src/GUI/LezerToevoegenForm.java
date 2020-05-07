@@ -95,6 +95,13 @@ public class LezerToevoegenForm extends JFrame {
                 String paswoord = String.valueOf(passwordField.getPassword());
                 String bevestigWachtwoord = String.valueOf(bevestigPaswoord.getPassword());
 
+                /* Problemen:
+                - Er zit 1 dag verschil tussen de geboortedatum die ingetikt wordt in de GUI en tussen degene die opgeslagen wordt in de DB?!
+                - Indien leeftijd < 12 jaar => in Java krijgt men de melding dat de lezer werd toegevoegd (NOK), maar in werkelijkheid is dit niet het geval (OK) => catch exception?
+                - Indien er een 2de lezer met identiek mailadres wordt toegevoegd => in Java melding dat lezer toegevoegd (NOK), maar in werkelijkheid niet het geval (OK) => catch exception?
+                - In GUI intikken: dag en maand met 2 cijfers => anders krijgt men een Exception (vb. 8-6-1986 mag niet, moet 08-06-1986 zijn) => opvangen?
+                 */
+
                 if(paswoord.length() == 0){
                     JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geen wachtwoord ingevuld!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                 } else{
