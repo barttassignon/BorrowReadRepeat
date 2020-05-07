@@ -18,7 +18,8 @@ public class LezerDAO extends BaseDAO {
 
     // Een lezer toevoegen
 
-    public void toevoegenLezer(Lezer lezer) {
+    public static void toevoegenLezer(Lezer lezer) {
+
 
         if (lezer.berekenLeeftijd() < 12) {
             System.out.println("De lezer kan niet worden toegevoegd. Hij/zij voldoet niet aan de vereiste leeftijdsvoorwaarde (min. 12 jaar).");
@@ -130,6 +131,7 @@ public class LezerDAO extends BaseDAO {
 
         public static void main(String[] args) {
         LezerDAO lda = new LezerDAO();
+
         //Lezer l1 = new Lezer("Jan", "Modaal", LocalDate.of(2000, Month.MAY, 15), "jan.modaal@hotmail.com", "0485/15.12.24", "hallo");
         //l1.setAdres(new Adres("Schoolstraat", 15, "", 1000, "Brussel"));
         //lda.toevoegenLezer(l1);

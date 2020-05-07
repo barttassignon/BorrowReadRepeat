@@ -143,14 +143,25 @@ public class BeheerderDAO extends BaseDAO implements Security {
 
     }
 
+//    public void save() throws SQLException {
+//        PreparedStatement checkStmt = getConn().prepareStatement("");
+//
+//        for (Beheerder beheerder: ) {
+//
+//        }
+//    }
+
     public static void main(String[] args) {
 
         // Toevoegen van beheerder:
 
         BeheerderDAO bda = new BeheerderDAO();
+
 /*
        Beheerder b1 = new Beheerder("Virginie", "Ortegat", "vortegat", "12345");
         bda.toevoegenBeheerder(b1);
+
+
 
         // Weergeven van de beheerders:
 

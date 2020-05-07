@@ -45,6 +45,16 @@ public class DatabaseSingleton {
         return connection;
     }
 
+    public void disconnect() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.out.println("Cannot close connection!");
+            }
+        }
+    }
+
     @Override
     protected Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException();

@@ -24,23 +24,6 @@
           <verticalTextPosition value="3"/>
         </properties>
       </component>
-      <component id="7f38f" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="-1" height="50"/>
-          </grid>
-        </constraints>
-        <properties>
-          <background color="-16777216"/>
-          <enabled value="true"/>
-          <font name="Consolas" size="18" style="0"/>
-          <foreground color="-16777216"/>
-          <horizontalTextPosition value="0"/>
-          <text value="Geef het artikelnummer dat je wilt verwijderen?"/>
-          <verticalAlignment value="3"/>
-          <verticalTextPosition value="3"/>
-        </properties>
-      </component>
       <component id="ac481" class="javax.swing.JTextField" binding="textField1" default-binding="true">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="1" fill="0" indent="0" use-parent-layout="false">
@@ -65,10 +48,27 @@
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Consolas" size="18"/>
+          <font name="Consolas" size="14"/>
           <foreground color="-12508416"/>
           <horizontalAlignment value="2"/>
           <text value="&lt;-- Terug"/>
+        </properties>
+      </component>
+      <component id="7f38f" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+          <enabled value="true"/>
+          <font name="Consolas" size="18" style="0"/>
+          <foreground color="-16777216"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Geef het artikelnummer van het boek?"/>
+          <verticalAlignment value="3"/>
+          <verticalTextPosition value="3"/>
         </properties>
       </component>
     </children>

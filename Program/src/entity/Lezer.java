@@ -21,6 +21,10 @@ public class Lezer extends Persoon {
     private Transactie transactie;
     private Schuld schuld;
 
+    public Lezer(String voornaam, String naam, String geboortedatum, String straatnaam, String nummer, String bus, String postcode, String woonplaats, String email, String telefoon, String paswoord, String bevestigWachtwoord) {
+        super();
+    }
+
     public int getId() {
         return id;
     }

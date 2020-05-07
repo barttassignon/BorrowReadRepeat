@@ -77,7 +77,7 @@ public class BeheerderForm extends JFrame {
         });
         beheerderToevoegenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(BeheerderForm.this, "Ben je zeker?", "Opgepast!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(BeheerderForm.this, "Wil je een beheerder toevoegen?", "Opgepast!", JOptionPane.WARNING_MESSAGE);
                 new BeheerderToevoegenForm();
                 beheerderFormFrame.dispose();
             }

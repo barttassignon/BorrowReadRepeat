@@ -10,6 +10,10 @@ public abstract class Persoon {
         this.naam = naam;
     }
 
+    public Persoon() {
+
+    }
+
     public String getVoornaam() {
         return voornaam;
     }
