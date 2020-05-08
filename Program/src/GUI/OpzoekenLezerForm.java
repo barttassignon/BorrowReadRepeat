@@ -9,6 +9,8 @@ import entity.Lezer;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class OpzoekenLezerForm extends JFrame {
@@ -22,6 +24,7 @@ public class OpzoekenLezerForm extends JFrame {
     private JFrame opzoekenLezerFrame = new JFrame();
     private JPanel panel1;
     private JTable weergevenLezersJtable;
+    private JButton TerugButton;
 
     public OpzoekenLezerForm() {
 
@@ -37,10 +40,13 @@ public class OpzoekenLezerForm extends JFrame {
         showUser();
 
 
-
-
-
-
+        TerugButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new BeheerderForm();
+                opzoekenLezerFrame.dispose();
+            }
+        });
     }
     public ArrayList<Lezer> lezersList(){
         LezerDAO l1 = new LezerDAO();
