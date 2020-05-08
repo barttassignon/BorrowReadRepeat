@@ -1,38 +1,42 @@
 package entity;
 
-
 import java.time.LocalDate;
 
 public class Uitlening extends Transactie{
 
-    private LocalDate datumUitleen;
-    private LocalDate datumEind;
-    private LocalDate datumInlever;
-    private boolean uitleningVerlengd;
+    private LocalDate datumUitgeleend;
+    private LocalDate datumVerlengd;
+    private LocalDate datumIngeleverd;
 
-    public LocalDate getDatumUitleen() {
-        return datumUitleen;
+    public LocalDate getDatumUitgeleend() {
+        return datumUitgeleend;
     }
 
-    public LocalDate getDatumEind() {
-        return datumEind;
+    public void setDatumUitgeleend(LocalDate datumUitgeleend) {
+        this.datumUitgeleend = datumUitgeleend;
     }
 
-    public LocalDate getInlever() {
-        return datumInlever;
+    public LocalDate getDatumVerlengd() {
+        return datumVerlengd;
     }
 
-    public boolean getUitleveringVerlengd() {
-        return uitleningVerlengd;
+    public void setDatumVerlengd(LocalDate datumVerlengd) {
+        this.datumVerlengd = datumVerlengd;
+    }
+
+    public LocalDate getDatumIngeleverd() {
+        return datumIngeleverd;
+    }
+
+    public void setDatumIngeleverd(LocalDate datumIngeleverd) {
+        this.datumIngeleverd = datumIngeleverd;
     }
 
     @Override
     public String toString() {
-        return "Uitlening{" +
-                ", datum uitlening='" + datumUitleen + '\'' +
-                ", datum in te leveren='" + datumEind + '\'' +
-                ", datum ingeleverd='" + datumInlever + '\'' +
-                ", verlegend='" + uitleningVerlengd + '\'' +
-                '}';
+        return "Uitlening: " +
+                ", datum uitgeleend: " + datumUitgeleend +
+                ", datum verlengd: " + datumVerlengd +
+                ", datum ingeleverd: " + datumIngeleverd;
     }
 }
