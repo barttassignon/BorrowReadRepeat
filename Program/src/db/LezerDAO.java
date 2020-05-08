@@ -77,6 +77,8 @@ public class LezerDAO extends BaseDAO {
 
     // Een overzicht van alle lezers:
 
+
+
      public ArrayList<Lezer> ophalenLezers() {
         ArrayList<Lezer> lijst = new ArrayList<>();
         try (Connection c = getConn()) {

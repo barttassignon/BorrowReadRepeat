@@ -82,6 +82,13 @@ public class BeheerderForm extends JFrame {
                 beheerderFormFrame.dispose();
             }
         });
+        opzoekenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new OpzoekenLezerForm();
+                beheerderFormFrame.dispose();
+            }
+        });
     }
 
     public static void main(String[] args) {

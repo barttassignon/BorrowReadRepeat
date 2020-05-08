@@ -21,6 +21,8 @@ public class Lezer extends Persoon {
     private Uitlening uitlening;
     private Transactie transactie;
     private Schuld schuld;
+    // kolomnamen om lezers weer te geven bij opzoekenlezer
+    private String iD, voornaam, naam;
 
     public Lezer(String voornaam, String naam, LocalDate geboortedatum, String email, String telefoon, String wachtwoord, Adres adres) {
         super(voornaam, naam);
