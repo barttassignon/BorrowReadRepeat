@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public class OpzoekenLezerForm extends JFrame {
 
-
     private JLabel OpzoekenLezerJlabel;
     private JLabel voornaamLabel;
     private JTextField voornaamTextField;
@@ -28,8 +27,6 @@ public class OpzoekenLezerForm extends JFrame {
 
     public OpzoekenLezerForm() {
 
-
-
         opzoekenLezerFrame.getContentPane().add(panel1);
         opzoekenLezerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -39,7 +36,6 @@ public class OpzoekenLezerForm extends JFrame {
         opzoekenLezerFrame.setLocationRelativeTo(null);
         showUser();
 
-
         TerugButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,10 +44,9 @@ public class OpzoekenLezerForm extends JFrame {
             }
         });
     }
+
     public ArrayList<Lezer> lezersList(){
         LezerDAO l1 = new LezerDAO();
-
-
         return l1.ophalenLezers();
     }
 
@@ -68,22 +63,13 @@ public class OpzoekenLezerForm extends JFrame {
             row[5] = lijst.get(i).getTelefoon();
             model.addRow(row);
 
-
         }
         System.out.println(row[0]);
 
     }
 
-
-
-
-
-
     public static void main(String[] args) {
         new OpzoekenLezerForm();
-
-
-
     }
 }
 
