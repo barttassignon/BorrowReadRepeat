@@ -37,7 +37,7 @@ public class BeheerderDAO extends BaseDAO implements Security {
 
     // Aanmaken van een nieuwe beheerder:
 
-    public static void toevoegenBeheerder(Beheerder beheerder) {
+    public static boolean toevoegenBeheerder(Beheerder beheerder) {
         byte[] salt = Security.createSalt();
 
         try (Connection c = getConn()) {
@@ -53,15 +53,20 @@ public class BeheerderDAO extends BaseDAO implements Security {
             // Foutmelding toevoegen indien gegevens reeds in de databank zitten
 
             int result = s.executeUpdate();
-            if (result > 0)
+            if (result > 0) {
                 System.out.println("De beheerder werd toegevoegd!");
-            else System.out.println("De beheerder kon niet worden toegevoegd!");
+                return true;
+            } else {
+                System.out.println("De beheerder kon niet worden toegevoegd!");
+                return false;
+            }
 
             // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: beheerder bestaat reeds)
 
         } catch (SQLException | NoSuchAlgorithmException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
+            return false;
         }
     }
 
