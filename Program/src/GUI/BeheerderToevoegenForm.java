@@ -68,12 +68,12 @@ public class BeheerderToevoegenForm extends JFrame{
                 String bevestigWachtwoord = String.valueOf(bevestigPasswordField1.getPassword());
 
                 if(wachtwoord.length() == 0){
-                    JOptionPane.showMessageDialog(beheerderToevoegenForm, "Geen wachtwoord ingevuld!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(beheerderToevoegenForm, "Geen wachtwoord ingevuld!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 } else{
                 if(wachtwoord.equals(bevestigWachtwoord)) {
                     if(BeheerderDAO.toevoegenBeheerder(new Beheerder(voornaam, naam, gebruikersnaam, wachtwoord)))
                     JOptionPane.showMessageDialog(beheerderToevoegenForm, "Beheerder toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
-                    else JOptionPane.showMessageDialog(beheerderToevoegenForm, "Beheerder kon niet worden toegevoegd.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                    else JOptionPane.showMessageDialog(beheerderToevoegenForm, "Beheerder kon niet worden toegevoegd. Gebruikersnaam bestaat al.", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 } else{
                     JOptionPane.showMessageDialog(beheerderToevoegenForm, "Uw wachtwoord komt niet overeen", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     passwordField1.setText("");
