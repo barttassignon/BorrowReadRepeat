@@ -34,7 +34,7 @@ public class OpzoekenLezerForm extends JFrame {
         opzoekenLezerFrame.setSize(600, 600);
         opzoekenLezerFrame.setResizable(false);
         opzoekenLezerFrame.setLocationRelativeTo(null);
-        showUser();
+        showLezers();
 
         TerugButton.addActionListener(new ActionListener() {
             @Override
@@ -50,7 +50,7 @@ public class OpzoekenLezerForm extends JFrame {
         return l1.ophalenLezers();
     }
 
-    public void showUser(){
+    public void showLezers(){
         ArrayList<Lezer> lijst = lezersList();
         DefaultTableModel model = (DefaultTableModel)weergevenLezersJtable.getModel();
         Object[] row = new Object[5];
