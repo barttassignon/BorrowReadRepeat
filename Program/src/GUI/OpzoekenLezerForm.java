@@ -17,19 +17,21 @@ import java.time.LocalDate;
 
 public class OpzoekenLezerForm extends JFrame {
 
-    private JLabel OpzoekenLezerJlabel;
-    private JLabel voornaamLabel;
-    private JTextField voornaamTextField;
-    private JLabel naamLabel;
-    private JTextField naamTextField;
     private JFrame opzoekenLezerFrame = new JFrame();
     private JPanel panel1;
-    private JButton TerugButton;
 
+    private JLabel OpzoekenLezerJlabel;
+    private JLabel voornaamLabel;
+    private JLabel naamLabel;
+
+    private JTextField voornaamTextField;
+    private JTextField naamTextField;
+
+    private JScrollPane scrollpane;
     DefaultTableModel model = new DefaultTableModel();
-    Container cnt = this.getContentPane();
-    private JTable jtbl = new JTable(model);
+    private JTable table1;
 
+    private JButton TerugButton;
 
     public static void main(String[] args) {
         new OpzoekenLezerForm();
@@ -37,14 +39,24 @@ public class OpzoekenLezerForm extends JFrame {
 
     public OpzoekenLezerForm() {
 
+        opzoekenLezerFrame.getContentPane().add(panel1);
+        opzoekenLezerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        opzoekenLezerFrame.setVisible(true);
+        opzoekenLezerFrame.setSize(600, 600);
+        opzoekenLezerFrame.setResizable(false);
+        opzoekenLezerFrame.setLocationRelativeTo(null);
 
-        cnt.setLayout(new FlowLayout(FlowLayout.LEFT));
+        table1.setAutoCreateRowSorter(true);
+        table1.setFillsViewportHeight(true);
+        table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
         model.addColumn("LezerId");
         model.addColumn("Voornaam");
         model.addColumn("Naam");
         model.addColumn("Geboortedatum");
         model.addColumn("Emailadres");
         model.addColumn("Telefoon");
+        table1.setModel(model);
+
         try {
             String url = "jdbc:mysql://dt5.ehb.be/1920mobappgr1";
             String user = "1920mobappgr1";
@@ -59,18 +71,8 @@ public class OpzoekenLezerForm extends JFrame {
             System.out.println(e.getMessage());
         }
 
-        JScrollPane pg = new JScrollPane(jtbl);
-        cnt.add(pg);
+
         this.pack();
-
-        //opzoekenLezerFrame.getContentPane().add(panel1);
-        opzoekenLezerFrame.getContentPane().add(jtbl);
-        opzoekenLezerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        opzoekenLezerFrame.setVisible(true);
-        opzoekenLezerFrame.setSize(600, 600);
-        opzoekenLezerFrame.setResizable(false);
-        opzoekenLezerFrame.setLocationRelativeTo(null);
-
 
         TerugButton.addActionListener(new ActionListener() {
             @Override
@@ -80,6 +82,7 @@ public class OpzoekenLezerForm extends JFrame {
             }
         });
     }
+
 
 
 }

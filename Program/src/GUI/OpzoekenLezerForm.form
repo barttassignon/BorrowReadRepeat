@@ -68,14 +68,6 @@
           <font name="Consolas" size="14"/>
         </properties>
       </component>
-      <component id="6339a" class="javax.swing.JTable" binding="jtbl">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="6" hsize-policy="6" anchor="0" fill="2" indent="0" use-parent-layout="false">
-            <preferred-size width="550" height="50"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
       <component id="5635" class="javax.swing.JButton" binding="TerugButton">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -87,6 +79,19 @@
           <text value="&lt;-- Terug"/>
         </properties>
       </component>
+      <scrollpane id="df" binding="scrollpane">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="11699" class="javax.swing.JTable" binding="table1" default-binding="true">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>
