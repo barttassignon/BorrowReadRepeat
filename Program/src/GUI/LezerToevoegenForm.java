@@ -9,10 +9,12 @@ import db.LezerDAO;
 import entity.Adres;
 import entity.Beheerder;
 import entity.Lezer;
+import entity.LezerTeJong;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 
 public class LezerToevoegenForm extends JFrame {
@@ -80,10 +82,46 @@ public class LezerToevoegenForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String voornaam = voornaamTextField.getText();
                 String naam = naamTextField.getText();
-                String dag = dagTextField.getText();
-                String maand = maandTextfield.getText();
-                String jaar = jaarTextfield.getText();
-                LocalDate geboortedatum = LocalDate.parse(jaar + "-" + maand + "-" + dag);
+
+                try{
+                    int dag = Integer.parseInt(dagTextField.getText());
+                } catch(NumberFormatException nr){
+                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geef een cijfer in bij dag!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    dagTextField.setText("");
+                }
+
+                try{
+                    int maand = Integer.parseInt(maandTextfield.getText());
+                } catch(NumberFormatException nr){
+                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geef een cijfer in bij maand!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    maandTextfield.setText("");
+                }
+
+                try{
+                    int jaar = Integer.parseInt(jaarTextfield.getText());
+                } catch(NumberFormatException nr){
+                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geef een cijfer in bij jaar!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    jaarTextfield.setText("");
+                }
+
+                try{
+                    int nummer = Integer.parseInt(nummerTextField.getText());
+                } catch(NumberFormatException nr){
+                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geef een cijfer in bij huisnummer!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    nummerTextField.setText("");
+                }
+
+                try{
+                    int postcode = Integer.parseInt(postcodeTextField.getText());
+                } catch(NumberFormatException nr){
+                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geef 4 cijfers in bij postcode!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    postcodeTextField.setText("");
+                }
+
+                int dag = Integer.parseInt(dagTextField.getText());
+                int maand = Integer.parseInt(maandTextfield.getText());
+                int jaar = Integer.parseInt(jaarTextfield.getText());
+                LocalDate geboortedatum = LocalDate.of(jaar, maand, dag);
                 String straatnaam = straatTextField.getText();
                 int nummer = Integer.parseInt(nummerTextField.getText());
                 String bus = busTextField.getText();
@@ -97,17 +135,22 @@ public class LezerToevoegenForm extends JFrame {
 
                 /* Problemen:
                 - Er zit 1 dag verschil tussen de geboortedatum die ingetikt wordt in de GUI en tussen degene die opgeslagen wordt in de DB?!
-                - Indien leeftijd < 12 jaar => in Java krijgt men de melding dat de lezer werd toegevoegd (NOK), maar in werkelijkheid is dit niet het geval (OK) => catch exception?
-                - Indien er een 2de lezer met identiek mailadres wordt toegevoegd => in Java melding dat lezer toegevoegd (NOK), maar in werkelijkheid niet het geval (OK) => catch exception?
-                - In GUI intikken: dag en maand met 2 cijfers => anders krijgt men een Exception (vb. 8-6-1986 mag niet, moet 08-06-1986 zijn) => opvangen?
+                - Jaar => verplichten dat dit 4 cijfers moeten zijn.
                  */
 
-                if(paswoord.length() == 0){
-                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geen wachtwoord ingevuld!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                if(paswoord.length() < 4){
+                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Wachtwoord moet mininmum 4 tekens bevatten!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 } else{
                 if (paswoord.equals(bevestigWachtwoord)) {
-                    LezerDAO.toevoegenLezer(new Lezer(voornaam, naam, geboortedatum, email, telefoon, paswoord, new Adres(straatnaam, nummer, bus, postcode, woonplaats)));
-                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Lezer toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                    try {
+                        LezerDAO.toevoegenLezer(new Lezer(voornaam, naam, geboortedatum, email, telefoon, paswoord, new Adres(straatnaam, nummer, bus, postcode, woonplaats)));
+                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Lezer toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (LezerTeJong lezerTeJong) {
+                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Lezer te jong!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    } catch (SQLIntegrityConstraintViolationException dubbel){
+                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Er bestaat reeds een lezer met dit emailadres!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                        emailtextField.setText("");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(lezerToevoegenFrame, "Uw wachtwoord komt niet overeen", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     passwordField.setText("");
