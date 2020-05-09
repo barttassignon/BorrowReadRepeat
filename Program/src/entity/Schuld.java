@@ -34,6 +34,11 @@ public class Schuld {
         return datumBetaald;
     }
 
+    public void setDatumBetaald(LocalDate datumBetaald) {
+        if (datumBetaald.isAfter(datumAangemaakt))
+        this.datumBetaald = datumBetaald;
+    }
+
     public double getBedrag() {
         return bedrag;
     }
