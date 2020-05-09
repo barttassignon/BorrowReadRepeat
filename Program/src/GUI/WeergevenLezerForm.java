@@ -15,7 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 
-public class OpzoekenLezerForm extends JFrame {
+public class WeergevenLezerForm extends JFrame {
 
     private JFrame opzoekenLezerFrame = new JFrame();
     private JPanel panel1;
@@ -35,10 +35,10 @@ public class OpzoekenLezerForm extends JFrame {
     private JButton AlleLezerButton;
 
     public static void main(String[] args) {
-        new OpzoekenLezerForm();
+        new WeergevenLezerForm();
     }
 
-    public OpzoekenLezerForm() {
+    public WeergevenLezerForm() {
 
         opzoekenLezerFrame.getContentPane().add(panel1);
         opzoekenLezerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
