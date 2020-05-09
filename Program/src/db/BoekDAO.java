@@ -75,16 +75,15 @@ public class BoekDAO extends BaseDAO {
         }
     }
 
-    // geef alle boeken weer
+    // Een overzicht van alle boeken:
 
-    public ArrayList<Boek> ophalenBoeken() {
+    public static ArrayList<Boek> ophalenBoeken() {
         ArrayList<Boek> lijstBoeken = new ArrayList<>();
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select * from Boeken");
             ResultSet rs = s.executeQuery();
-
             while (rs.next()) {
-                lijstBoeken.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4)));
+                lijstBoeken.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class)));
             }
             System.out.println("GELUKT!");
         } catch (SQLException e) {
@@ -94,16 +93,16 @@ public class BoekDAO extends BaseDAO {
         return lijstBoeken;
     }
 
-    // zoek boek  :
+    // Boek opzoeken op titel :
 
-    public ArrayList<Boek> opzoekenBoek (String titel){
+    public static ArrayList<Boek> opzoekenBoek(String titel){
         ArrayList<Boek> lijst = new ArrayList<>();
         try (Connection c = getConn()){
-            PreparedStatement s = c.prepareStatement("select + from Boek where titel = ?");
-            s.setString(2, titel);
+            PreparedStatement s = c.prepareStatement("select * from Boeken where Titel LIKE ?");
+            s.setString(1, "%"+titel+"%");
             ResultSet rs = s.executeQuery();
             while (rs.next()){
-                lijst.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4)));
+                lijst.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class)));
             }
 
             } catch (SQLException e){
@@ -113,7 +112,7 @@ public class BoekDAO extends BaseDAO {
         return lijst;
     }
 
-    // verwijder boek :
+    // Boek verwijderen :
 
     public static void verwijderenBoek(int artikelnummer) throws BoekNietGevonden {
         try {
@@ -139,6 +138,9 @@ public class BoekDAO extends BaseDAO {
      //   Kinderboek b1 = new Kinderboek (65498232L, "Titel", "Auteur", "Uitgeverij", Boek.Taal.NEDERLANDS, Boek.Genre.GEZONDHEID, 123, LocalDate.of(2000, 11, 17), 12.35, "AUT" );
      //   bda.toevoegenBoek(b1);
 
+            for(Boek b : BoekDAO.opzoekenBoek("Blabla")){
+                System.out.println(b.toString());
+            }
     }
 
 }

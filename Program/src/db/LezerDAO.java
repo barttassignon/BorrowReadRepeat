@@ -114,8 +114,6 @@ public class LezerDAO extends BaseDAO {
          return lijst;
     }
 
-    // Verwijderen lezer: werkt maar kan enkel als er geen schulden meer zijn -> nog toe te voegen
-
         public static void verwijderenLezer(int id) throws LezerNietGevonden, SQLIntegrityConstraintViolationException {
         try (Connection c = getConn()) {
         PreparedStatement s = c.prepareStatement("delete from Adressen where Lezer_ID = ?");
@@ -136,27 +134,4 @@ public class LezerDAO extends BaseDAO {
             throw new SQLIntegrityConstraintViolationException();
         }
     }
-
-        public static void main(String[] args) {
-        LezerDAO lda = new LezerDAO();
-        //Lezer l1 = new Lezer("Maxim", "De Boeck", LocalDate.of(1980, Month.JUNE, 5), "maxim20@gmail.com", "0479/25.18.13", "voornaam");
-        //l1.setAdres(new Adres("Dorp", 255, "", 9300, "Aalst"));
-        //lda.toevoegenLezer(l1);
-        //lda.ophalenLezers();
-
-        for(Lezer l : lda.ophalenLezers()){
-            System.out.println(l.toString());
-        }
-        //lda.verwijderenLezer(16);
-
-   /*         if(lda.opzoekenLezer("Helena", "De Munck").size() == 0) {
-                System.out.println("Geen lezers gevonden met deze naam");
-            }
-            else {
-                for (Lezer l : lda.opzoekenLezer("Helena", "De Munck")) {
-                    System.out.println(l.toString());
-                }
-
-    */
-            }
     }

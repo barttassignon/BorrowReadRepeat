@@ -35,6 +35,21 @@ public class Boek {
         this.auteur = auteur;
     }
 
+    // Constructor om boek te kunnen weergeven:
+
+    public Boek(int artikelnummer, long ISBN, String titel, String auteur, String uitgeverij, int paginas, LocalDate aankoopdatum) {
+        this.artikelnummer = artikelnummer;
+        this.ISBN = ISBN;
+        this.titel = titel;
+        this.auteur = auteur;
+        this.uitgeverij = uitgeverij;
+        this.paginas = paginas;
+        this.aankoopdatum = aankoopdatum;
+    }
+
+
+    // Constructor om boek te kunnen toevoegen:
+
     public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal1, String genre1, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
         AantalBoekenInBib++;
         this.artikelnummer = AantalBoekenInBib;

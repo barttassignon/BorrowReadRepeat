@@ -4,6 +4,11 @@
 
 package GUI;
 
+import db.BoekDAO;
+import db.LezerDAO;
+import entity.Boek;
+import entity.Lezer;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -29,6 +34,9 @@ public class WeergevenBoekForm extends JFrame{
 
     private JButton alleBoekenButton;
     private JButton TerugButton;
+    private JLabel titelLabel;
+    private JTextField titelTextField;
+    private JButton zoekButton;
 
     public static void main(String[] args) {
         new WeergevenBoekForm();
@@ -42,6 +50,19 @@ public class WeergevenBoekForm extends JFrame{
         weergevenBoekFrame.setSize(600, 600);
         weergevenBoekFrame.setResizable(false);
         weergevenBoekFrame.setLocationRelativeTo(null);
+
+        table1.setAutoCreateRowSorter(true);
+        table1.setFillsViewportHeight(true);
+        table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
+        model.addColumn("BoekID");
+        model.addColumn("ISBN");
+        model.addColumn("Titel");
+        model.addColumn("Auteur");
+        model.addColumn("Uitgeverij");
+        model.addColumn("AantalBlz");
+        model.addColumn("Aankoopdatum");
+        table1.setModel(model);
+
         this.pack();
 
         TerugButton.addActionListener(new ActionListener() {
@@ -50,34 +71,25 @@ public class WeergevenBoekForm extends JFrame{
 
             }
         });
+
         alleBoekenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                table1.setAutoCreateRowSorter(true);
-                table1.setFillsViewportHeight(true);
-                table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
-                model.addColumn("BoekID");
-                model.addColumn("ISBN");
-                model.addColumn("Titel");
-                model.addColumn("Auteur");
-                model.addColumn("Uitgeverij");
-                model.addColumn("AantalBlz");
-                model.addColumn("Aankoopdatum");
-                table1.setModel(model);
-
-                try {
-                    String url = "jdbc:mysql://dt5.ehb.be/1920mobappgr1";
-                    String user = "1920mobappgr1";
-                    String password = "XNnhDjw";
-                    Connection con = DriverManager.getConnection(url, user, password);
-                    PreparedStatement pstm = con.prepareStatement("select * from Boeken");
-                    ResultSet Rs = pstm.executeQuery();
-                    while (Rs.next()) {
-                        model.addRow(new Object[]{Rs.getInt(1), Rs.getInt(2), Rs.getString(3), Rs.getString(4), Rs.getString(5), Rs.getInt(9),Rs.getObject(10, LocalDate.class)});
-                    }
-                } catch (Exception ev) {
-                    System.out.println(ev.getMessage());
+                model.setRowCount(0);
+                for(Boek b : BoekDAO.ophalenBoeken()){
+                    model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
                 }
+            }
+        });
 
+        zoekButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                model.setRowCount(0);
+
+                String titel = titelTextField.getText();
+
+                for(Boek b : BoekDAO.opzoekenBoek(titel)){
+                    model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
+                }
             }
         });
     }
