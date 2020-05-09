@@ -83,39 +83,16 @@ public class LezerToevoegenForm extends JFrame {
                 String voornaam = voornaamTextField.getText();
                 String naam = naamTextField.getText();
 
+                // Zorgt ervoor dat er enkel cijfers kunnen worden ingegeven:
+
                 try{
                     int dag = Integer.parseInt(dagTextField.getText());
-                } catch(NumberFormatException nr){
-                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geef een cijfer in bij dag!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    dagTextField.setText("");
-                }
-
-                try{
                     int maand = Integer.parseInt(maandTextfield.getText());
-                } catch(NumberFormatException nr){
-                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geef een cijfer in bij maand!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    maandTextfield.setText("");
-                }
-
-                try{
                     int jaar = Integer.parseInt(jaarTextfield.getText());
-                } catch(NumberFormatException nr){
-                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geef een cijfer in bij jaar!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    jaarTextfield.setText("");
-                }
-
-                try{
                     int nummer = Integer.parseInt(nummerTextField.getText());
-                } catch(NumberFormatException nr){
-                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geef een cijfer in bij huisnummer!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    nummerTextField.setText("");
-                }
-
-                try{
                     int postcode = Integer.parseInt(postcodeTextField.getText());
                 } catch(NumberFormatException nr){
-                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Geef 4 cijfers in bij postcode!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    postcodeTextField.setText("");
+                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve (enkel) cijfers in te geven bij dag, maand, jaar, huisnummer en postcode!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 }
 
                 int dag = Integer.parseInt(dagTextField.getText());
@@ -135,11 +112,13 @@ public class LezerToevoegenForm extends JFrame {
 
                 /* Problemen:
                 - Er zit 1 dag verschil tussen de geboortedatum die ingetikt wordt in de GUI en tussen degene die opgeslagen wordt in de DB?!
-                - Jaar => verplichten dat dit 4 cijfers moeten zijn.
+                - Jaar en postcode => verplichting toevoegen dat dit 4 cijfers moeten zijn
                  */
 
-                if(paswoord.length() < 4){
+                if(paswoord.length() < 4) {
                     JOptionPane.showMessageDialog(lezerToevoegenFrame, "Wachtwoord moet mininmum 4 tekens bevatten!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                } else if (voornaam.length() == 0 || naam.length() == 0 || straatnaam.length() == 0 || woonplaats.length() == 0 || email.length() == 0 || telefoon.length() == 0) {
+                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 } else{
                 if (paswoord.equals(bevestigWachtwoord)) {
                     try {
