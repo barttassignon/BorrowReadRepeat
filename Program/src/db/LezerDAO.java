@@ -96,6 +96,8 @@ public class LezerDAO extends BaseDAO {
             System.out.println("MISLUKT!");
         }
         return lijst;
+
+
     }
 
     // Opzoeken lezer
