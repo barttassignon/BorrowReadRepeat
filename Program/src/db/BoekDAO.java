@@ -1,6 +1,7 @@
 package db;
 
 import entity.Boek;
+import entity.BoekNietGevonden;
 import entity.Kinderboek;
 
 import java.sql.Connection;
@@ -114,16 +115,17 @@ public class BoekDAO extends BaseDAO {
 
     // verwijder boek :
 
-    public void verwijderenBoek(int artikelnummer) {
+    public static void verwijderenBoek(int artikelnummer) throws BoekNietGevonden {
         try {
             Connection c = getConn();
-            PreparedStatement s = c.prepareStatement("delete from Boek where artikelnummer = ?");
+            PreparedStatement s = c.prepareStatement("delete from Boeken where Boek_ID = ?");
             s.setInt(1, artikelnummer);
             int result = s.executeUpdate();
             if (result > 0) {
                 System.out.println("Het boek werd verwijderd");
             } else {
                 System.out.println("Er bestaat geen boek met dit artikelnummer");
+                throw new BoekNietGevonden();
             }
         } catch (SQLException e) {
             e.printStackTrace();
