@@ -77,15 +77,13 @@ public class LezerDAO extends BaseDAO {
 
     // Een overzicht van alle lezers:
 
-
-
-     public ArrayList<Lezer> ophalenLezers() {
+     public static ArrayList<Lezer> ophalenLezers() {
         ArrayList<Lezer> lijst = new ArrayList<>();
         try (Connection c = getConn()) {
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("select * from Lezers");
             while (rs.next()) {
-                //lijst.add(new Lezer(rs.getString(2), rs.getString(3), rs.getObject(4, LocalDate.class), rs.getString(6), rs.getString(7)));
+                lijst.add(new Lezer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getObject(4, LocalDate.class), rs.getString(5), rs.getString(6)));
             }
 
         } catch (SQLException e) {
@@ -149,18 +147,19 @@ public class LezerDAO extends BaseDAO {
         //lda.toevoegenLezer(l1);
         //lda.ophalenLezers();
 
-        //for(Lezer l : lda.ophalenLezers()){
-        //    System.out.println(l.toString());
-        //}
+        for(Lezer l : lda.ophalenLezers()){
+            System.out.println(l.toString());
+        }
         //lda.verwijderenLezer(16);
 
-            if(lda.opzoekenLezer("Helena", "De Munck").size() == 0) {
+   /*         if(lda.opzoekenLezer("Helena", "De Munck").size() == 0) {
                 System.out.println("Geen lezers gevonden met deze naam");
             }
             else {
                 for (Lezer l : lda.opzoekenLezer("Helena", "De Munck")) {
                     System.out.println(l.toString());
                 }
+
+    */
             }
     }
-}

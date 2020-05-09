@@ -4,6 +4,9 @@
 
 package GUI;
 
+import db.LezerDAO;
+import entity.Lezer;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -72,21 +75,12 @@ public class WeergevenLezerForm extends JFrame {
                 model.addColumn("Telefoon");
                 table1.setModel(model);
 
-                try {
-                    String url = "jdbc:mysql://dt5.ehb.be/1920mobappgr1";
-                    String user = "1920mobappgr1";
-                    String password = "XNnhDjw";
-                    Connection con = DriverManager.getConnection(url, user, password);
-                    PreparedStatement pstm = con.prepareStatement("select * from Lezers");
-                    ResultSet Rs = pstm.executeQuery();
-                    while (Rs.next()) {
-                        model.addRow(new Object[]{Rs.getInt(1), Rs.getString(2), Rs.getString(3), Rs.getObject(4, LocalDate.class), Rs.getString(5), Rs.getString(6)});
-                    }
-                } catch (Exception ev) {
-                    System.out.println(ev.getMessage());
-                }
-
+              for(Lezer l : LezerDAO.ophalenLezers()){
+                  model.addRow(new Object[]{l.getId(), l.getVoornaam(), l.getNaam(), l.getGeboortedatum(), l.getEmail(), l.getTelefoon()});
+              }
             }
+
+
         });
 
         zoekButton.addActionListener(new ActionListener() {
