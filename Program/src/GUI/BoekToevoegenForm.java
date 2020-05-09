@@ -153,6 +153,8 @@ public class BoekToevoegenForm extends JFrame {
 
                 if (titel.length() == 0 || auteur.length() == 0 || uitgeverij.length() == 0 || plaats.length() == 0) {
                     JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                } else if(aankoopdatum.isAfter(LocalDate.now())){
+                    JOptionPane.showMessageDialog(boekToevoegenFrame, "Je kan geen aankoopdatum in de toekomst vermelden!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 } else{
                         if(kind) {
                             BoekDAO.toevoegenBoek(new Kinderboek(ISBN, titel, auteur, uitgeverij, taal, genre, paginas, aankoopdatum, aankoopprijs, plaats));
