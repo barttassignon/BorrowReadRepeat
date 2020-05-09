@@ -110,11 +110,6 @@ public class LezerToevoegenForm extends JFrame {
                 String paswoord = String.valueOf(passwordField.getPassword());
                 String bevestigWachtwoord = String.valueOf(bevestigPaswoord.getPassword());
 
-                /* Problemen:
-                - Er zit 1 dag verschil tussen de geboortedatum die ingetikt wordt in de GUI en tussen degene die opgeslagen wordt in de DB?!
-                - Jaar en postcode => verplichting toevoegen dat dit 4 cijfers moeten zijn
-                 */
-
                 if(paswoord.length() < 4) {
                     JOptionPane.showMessageDialog(lezerToevoegenFrame, "Wachtwoord moet mininmum 4 tekens bevatten!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 } else if (voornaam.length() == 0 || naam.length() == 0 || straatnaam.length() == 0 || woonplaats.length() == 0 || email.length() == 0 || telefoon.length() == 0) {
@@ -139,6 +134,12 @@ public class LezerToevoegenForm extends JFrame {
 
     });
 }
+
+     /* Op te lossen:
+          - Er zit 1 dag verschil tussen de geboortedatum die ingetikt wordt in de GUI en tussen degene die opgeslagen wordt in de DB?!
+          - Jaar en postcode => verplichting toevoegen dat dit 4 cijfers moeten zijn
+          - Vermijden dat er bij voornaam, naam, straat en woonplaats cijfers kan worden ingevuld.
+     */
 
     public static void main(String[] args) { new LezerToevoegenForm(); }
 }
