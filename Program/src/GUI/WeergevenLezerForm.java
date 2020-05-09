@@ -33,6 +33,7 @@ public class WeergevenLezerForm extends JFrame {
 
     private JButton TerugButton;
     private JButton AlleLezerButton;
+    private JButton zoekButton;
 
     public static void main(String[] args) {
         new WeergevenLezerForm();
@@ -84,6 +85,13 @@ public class WeergevenLezerForm extends JFrame {
                 } catch (Exception ev) {
                     System.out.println(ev.getMessage());
                 }
+
+            }
+        });
+
+        zoekButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
             }
         });
