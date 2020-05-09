@@ -85,7 +85,14 @@ public class BeheerderForm extends JFrame {
         weergevenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new OpzoekenLezerForm();
+                new WeergevenLezerForm();
+                beheerderFormFrame.dispose();
+            }
+        });
+        weergevenBoek.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new WeergevenBoekForm();
                 beheerderFormFrame.dispose();
             }
         });
