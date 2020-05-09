@@ -85,28 +85,25 @@ public class LezerDAO extends BaseDAO {
             while (rs.next()) {
                 lijst.add(new Lezer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getObject(4, LocalDate.class), rs.getString(5), rs.getString(6)));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
         }
         return lijst;
-
-
     }
 
-    // Opzoeken lezer
+    // Opzoeken lezer op voornaam en naam:
 
-     ArrayList<Lezer> opzoekenLezer (String voornaam, String naam) {
+     public static ArrayList<Lezer> opzoekenLezer (String voornaam, String naam) {
       ArrayList<Lezer> lijst = new ArrayList<>();
 
          try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("select Lezer_ID, Voornaam, Naam, Geboortedatum, Emailadres from Lezers where voornaam = ? AND naam = ?");
+            PreparedStatement s = c.prepareStatement("select * from Lezers where voornaam = ? AND naam = ?");
             s.setString(1, voornaam);
             s.setString(2, naam);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
-                lijst.add(new Lezer(rs.getString(2), rs.getString(3), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getString(5)));
+                lijst.add(new Lezer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getObject(4, LocalDate.class), rs.getString(5), rs.getString(6)));
             }
 
         } catch (SQLException e) {

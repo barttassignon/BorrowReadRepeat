@@ -51,6 +51,16 @@ public class WeergevenLezerForm extends JFrame {
         opzoekenLezerFrame.setResizable(false);
         opzoekenLezerFrame.setLocationRelativeTo(null);
 
+        table1.setAutoCreateRowSorter(true);
+        table1.setFillsViewportHeight(true);
+        table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
+        model.addColumn("LezerId");
+        model.addColumn("Voornaam");
+        model.addColumn("Naam");
+        model.addColumn("Geboortedatum");
+        model.addColumn("Emailadres");
+        model.addColumn("Telefoon");
+        table1.setModel(model);
 
         this.pack();
 
@@ -64,29 +74,24 @@ public class WeergevenLezerForm extends JFrame {
         AlleLezerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                table1.setAutoCreateRowSorter(true);
-                table1.setFillsViewportHeight(true);
-                table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
-                model.addColumn("LezerId");
-                model.addColumn("Voornaam");
-                model.addColumn("Naam");
-                model.addColumn("Geboortedatum");
-                model.addColumn("Emailadres");
-                model.addColumn("Telefoon");
-                table1.setModel(model);
-
+                model.setRowCount(0);
               for(Lezer l : LezerDAO.ophalenLezers()){
                   model.addRow(new Object[]{l.getId(), l.getVoornaam(), l.getNaam(), l.getGeboortedatum(), l.getEmail(), l.getTelefoon()});
               }
             }
-
-
         });
 
         zoekButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String voornaam = voornaamTextField.getText();
+                String naam = naamTextField.getText();
 
+                model.setRowCount(0);
+
+                for(Lezer l : LezerDAO.opzoekenLezer(voornaam, naam)){
+                    model.addRow(new Object[]{l.getId(), l.getVoornaam(), l.getNaam(), l.getGeboortedatum(), l.getEmail(), l.getTelefoon()});
+                }
             }
         });
     }

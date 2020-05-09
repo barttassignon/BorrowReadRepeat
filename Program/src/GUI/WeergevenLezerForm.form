@@ -53,7 +53,7 @@
           <font name="Consolas" size="18"/>
           <foreground color="-12508416"/>
           <horizontalAlignment value="2"/>
-          <text value="Voornaam:"/>
+          <text value="Naam:"/>
         </properties>
       </component>
       <component id="c72e5" class="javax.swing.JTextField" binding="naamTextField">
