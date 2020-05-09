@@ -58,7 +58,10 @@ public class WeergevenBoekForm extends JFrame{
                 model.addColumn("BoekID");
                 model.addColumn("ISBN");
                 model.addColumn("Titel");
+                model.addColumn("Auteur");
+                model.addColumn("Uitgeverij");
                 model.addColumn("AantalBlz");
+                model.addColumn("Aankoopdatum");
                 table1.setModel(model);
 
                 try {
@@ -69,7 +72,7 @@ public class WeergevenBoekForm extends JFrame{
                     PreparedStatement pstm = con.prepareStatement("select * from Boeken");
                     ResultSet Rs = pstm.executeQuery();
                     while (Rs.next()) {
-                        model.addRow(new Object[]{Rs.getInt(1), Rs.getInt(2), Rs.getString(3), Rs.getInt(9)});
+                        model.addRow(new Object[]{Rs.getInt(1), Rs.getInt(2), Rs.getString(3), Rs.getString(4), Rs.getString(5), Rs.getInt(9),Rs.getObject(10, LocalDate.class)});
                     }
                 } catch (Exception ev) {
                     System.out.println(ev.getMessage());
