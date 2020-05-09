@@ -7,6 +7,7 @@ package db;
 import entity.Adres;
 import entity.Beheerder;
 import entity.Lezer;
+import entity.LezerTeJong;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
@@ -18,10 +19,11 @@ public class LezerDAO extends BaseDAO {
 
     // Een lezer toevoegen
 
-    public static void toevoegenLezer(Lezer lezer) {
+    public static void toevoegenLezer(Lezer lezer) throws LezerTeJong, SQLIntegrityConstraintViolationException {
 
         if (lezer.berekenLeeftijd() < 12) {
             System.out.println("De lezer kan niet worden toegevoegd. Hij/zij voldoet niet aan de vereiste leeftijdsvoorwaarde (min. 12 jaar).");
+            throw new LezerTeJong();
         } else {
 
             byte[] salt = Security.createSalt();
@@ -32,7 +34,7 @@ public class LezerDAO extends BaseDAO {
                 PreparedStatement p = c.prepareStatement("insert into Lezers values (NULL, ?, ?, ?, ?, ?, ?, ?)");
                 p.setString(1, lezer.getVoornaam());
                 p.setString(2, lezer.getNaam());
-                p.setObject(3, lezer.getGeboortedatum());
+                p.setObject(3, lezer.getGeboortedatumDB());
                 p.setString(4, lezer.getEmail());
                 p.setString(5, lezer.getTelefoon());
                 p.setBytes(6, salt);
@@ -69,6 +71,7 @@ public class LezerDAO extends BaseDAO {
             } catch (SQLException | NoSuchAlgorithmException e) {
                 e.printStackTrace();
                 System.out.println("MISLUKT!");
+                throw new SQLIntegrityConstraintViolationException();
             }
         }
     }
