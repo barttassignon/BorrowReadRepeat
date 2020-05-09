@@ -9,15 +9,16 @@ import java.time.LocalDate;
 public class Boek {
     private int artikelnummer;
     private long ISBN;
-    // ISBN telt 13 cijfers en dat is te groot voor een int
     private String titel;
     private String auteur;
     private String uitgeverij;
-    private String taal;
-    // Genre varGenre = Genre.BIOGRAFIE (om op te roepen)
-    enum Genre {BIOGRAFIE, FANTASY, GESCHIEDENIS, GEZONDHEID, PRENTENBOEK, KOOKBOEK, ROMAN, THRILLER, TECHNOLOGIE };
+    public enum Taal {NEDERLANDS, FRANS, ENGELS};
+    private Taal taal;
+    public enum Genre {BIOGRAFIE, FANTASY, GESCHIEDENIS, GEZONDHEID, PRENTENBOEK, KOOKBOEK, ROMAN, THRILLER, TECHNOLOGIE };
+    private Genre genre;
     private int paginas;
     private LocalDate aankoopdatum;
+    private LocalDate aankoopdatumDB;
     private double prijs;
     private String plaatsInBib;
     private boolean gereserveerd;
@@ -39,7 +40,7 @@ public class Boek {
         this.auteur = auteur;
     }
 
-    public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
+    public Boek(long ISBN, String titel, String auteur, String uitgeverij, Taal taal, Genre genre, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
         this();
         this.artikelnummer = AantalBoekenInBib;
         this.ISBN = ISBN;
@@ -47,8 +48,10 @@ public class Boek {
         this.auteur = auteur;
         this.uitgeverij = uitgeverij;
         this.taal = taal;
+        this.genre = genre;
         this.paginas = paginas;
         this.aankoopdatum = aankoopdatum;
+        this.aankoopdatumDB = aankoopdatum.plusDays(1);
         this.prijs = prijs;
         this.plaatsInBib = plaatsInBib;
         this.gereserveerd = false;
@@ -97,12 +100,20 @@ public class Boek {
         this.uitgeverij = uitgeverij;
     }
 
-    public String getTaal() {
+    public Taal getTaal() {
         return taal;
     }
 
-    public void setTaal(String taal) {
+    public void setTaal(Taal taal) {
         this.taal = taal;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     public int getPaginas() {
@@ -120,6 +131,8 @@ public class Boek {
     public void setAankoopdatum(LocalDate aankoopdatum) {
         this.aankoopdatum = aankoopdatum;
     }
+
+    public LocalDate getAankoopdatumDB() { return aankoopdatumDB; }
 
     public double getPrijs() {
         return prijs;

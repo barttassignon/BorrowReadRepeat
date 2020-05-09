@@ -1,6 +1,7 @@
 package db;
 
 import entity.Boek;
+import entity.Kinderboek;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,24 +19,55 @@ public class BoekDAO extends BaseDAO {
 
         try (Connection c = getConn()) {
 
-            PreparedStatement s = c.prepareStatement("insert into Boeken values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement s = c.prepareStatement("insert into Boeken values (NULL, ?, ?, ?, ?, ?, ?, false, ?, ?, ?, ?, false, false, 0)");
             s.setLong(1, boek.getISBN());
             s.setString(2, boek.getTitel());
             s.setString(3, boek.getAuteur());
             s.setString(4, boek.getUitgeverij());
-            s.setString(5, boek.getTaal());
-            s.setInt(6, boek.getPaginas());
-            s.setObject(7, boek.getAankoopdatum());
-            s.setDouble(8, boek.getPrijs());
-            s.setString(9, boek.getPlaatsInBib());
+            s.setString(5, boek.getTaal().name());
+            s.setString(6, boek.getGenre().name());
+            s.setInt(7, boek.getPaginas());
+            s.setObject(8, boek.getAankoopdatumDB());
+            s.setDouble(9, boek.getPrijs());
+            s.setString(10, boek.getPlaatsInBib());
 
             // Aanpassen zodat CSV-bestand kan worden ingelezen en afgelopen met while-loop om gegevens in batch toe te voegen
             // Foutmelding toevoegen indien gegevens reeds in de databank zitten ("boek bestaat reeds")
 
             int result = s.executeUpdate();
             if (result > 0)
-                System.out.println("GELUKT");
-            else System.out.println("MISLUKT!");
+                System.out.println("Boek werd toegevoegd!");
+            else System.out.println("Boek werd niet toegevoegd!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+    // Toevoegen kinderboek:
+
+    public void toevoegenBoek(Kinderboek boek) {
+
+        try (Connection c = getConn()) {
+
+            PreparedStatement s = c.prepareStatement("insert into Boeken values (NULL, ?, ?, ?, ?, ?, ?, true, ?, ?, ?, ?, false, false, 0)");
+            s.setLong(1, boek.getISBN());
+            s.setString(2, boek.getTitel());
+            s.setString(3, boek.getAuteur());
+            s.setString(4, boek.getUitgeverij());
+            s.setString(5, boek.getTaal().name());
+            s.setString(6, boek.getGenre().name());
+            s.setInt(7, boek.getPaginas());
+            s.setObject(8, boek.getAankoopdatumDB());
+            s.setDouble(9, boek.getPrijs());
+            s.setString(10, boek.getPlaatsInBib());
+
+            // Aanpassen zodat CSV-bestand kan worden ingelezen en afgelopen met while-loop om gegevens in batch toe te voegen
+            // Foutmelding toevoegen indien gegevens reeds in de databank zitten ("boek bestaat reeds")
+
+            int result = s.executeUpdate();
+            if (result > 0)
+                System.out.println("Kinderboek werd toegevoegd!");
+            else System.out.println("Kinderboek werd niet toegevoegd!");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
@@ -100,20 +132,11 @@ public class BoekDAO extends BaseDAO {
     }
 
         public static void main(String[] args)  {
-        // Boek b = new Boek(9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.of(2000, Month.MAY, 15), 25.45, "COE135.2");
+
         BoekDAO bda = new BoekDAO();
- //       Boek b1 = new Boek (9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.of(2000, Month.MAY, 15), 25.45, "COE135.2"));
- //       bda.toevoegenBoek(b1);
- //       bda.ophalenBoeken();
+        Kinderboek b1 = new Kinderboek (65498232L, "Titel", "Auteur", "Uitgeverij", Boek.Taal.NEDERLANDS, Boek.Genre.GEZONDHEID, 123, LocalDate.of(2000, 11, 17), 12.35, "AUT" );
+        bda.toevoegenBoek(b1);
 
-        for(Boek b: bda.ophalenBoeken())
-        {
-            System.out.println(b.toString());
-        }
-//        bda.toevoegenBoek(b1);
-        // "-L" aan ISBN toevoegen -  aanzien als een long in plaats van een int
-
-//            if(bda.opzoekenBoek("De Bourgondiërs", ))
     }
 
 }

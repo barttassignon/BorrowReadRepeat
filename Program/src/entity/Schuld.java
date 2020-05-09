@@ -76,7 +76,7 @@ public class Schuld {
                 throw new IllegalStateException("Unexpected value: " + o);
         }
     }
-
+/*
     public static void main(String[] args) {
         Uitlening u = new Uitlening(LocalDate.of(2020, 5, 1), LocalDate.of(2020, 5, 22), LocalDate.of(2020, 5, 30));
         Oorsprong o = Oorsprong.OVERTIJD;
@@ -86,4 +86,6 @@ public class Schuld {
         System.out.println(u.getDatumVerlengd().plusDays(21));
         System.out.println(String.format("%.2f", s.bepalenSchuld(b, u, o)));
     }
+
+ */
 }
