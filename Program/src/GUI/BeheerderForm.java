@@ -96,6 +96,13 @@ public class BeheerderForm extends JFrame {
                 beheerderFormFrame.dispose();
             }
         });
+        Uitlening.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new UitleningForm();
+                beheerderFormFrame.dispose();
+            }
+        });
     }
 
     public static void main(String[] args) {

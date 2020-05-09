@@ -76,16 +76,15 @@ public class Schuld {
                 throw new IllegalStateException("Unexpected value: " + o);
         }
     }
-/*
+
     public static void main(String[] args) {
         Uitlening u = new Uitlening(LocalDate.of(2020, 5, 1), LocalDate.of(2020, 5, 22), LocalDate.of(2020, 5, 30));
         Oorsprong o = Oorsprong.OVERTIJD;
-        Boek b = new Boek(123456789L, "Hallo", "Man", "Pelckmans", "Frans", 145, LocalDate.of(2015, 10, 12), 24, "COE 138");
+        Boek b = new Boek(132456, "titel", "aut", "uit", "Nederlands", "Gezondheid", 123, LocalDate.of(2000, 11, 01), 23.3, "aut");
         Schuld s = new Schuld();
         System.out.println(u.getDatumIngeleverd());
         System.out.println(u.getDatumVerlengd().plusDays(21));
         System.out.println(String.format("%.2f", s.bepalenSchuld(b, u, o)));
     }
 
- */
 }
