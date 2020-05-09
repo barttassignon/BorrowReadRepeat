@@ -16,10 +16,10 @@ public class Schuld {
     public Schuld() {
     }
 
-    public Schuld(LocalDate datumAangemaakt, Oorsprong oorsprong, double bedrag) {
-        this.datumAangemaakt = datumAangemaakt;
+    public Schuld(Oorsprong oorsprong, double bedrag, LocalDate datumAangemaakt) {
         this.oorsprong = oorsprong;
         this.bedrag = bedrag;
+        this.datumAangemaakt = datumAangemaakt;
     }
 
     public Oorsprong getOorsprong() {
