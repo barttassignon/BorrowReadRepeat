@@ -4,10 +4,7 @@ package db;
  * @author Katrien Persoons
  */
 
-import entity.Adres;
-import entity.Beheerder;
-import entity.Lezer;
-import entity.LezerTeJong;
+import entity.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
@@ -124,7 +121,7 @@ public class LezerDAO extends BaseDAO {
 
     // Verwijderen lezer: werkt maar kan enkel als er geen schulden meer zijn -> nog toe te voegen
 
-        public void verwijderenLezer(int id) {
+        public static void verwijderenLezer(int id) throws LezerNietGevonden, SQLIntegrityConstraintViolationException {
         try (Connection c = getConn()) {
         PreparedStatement s = c.prepareStatement("delete from Adressen where Lezer_ID = ?");
             s.setInt(1, id);
@@ -136,11 +133,12 @@ public class LezerDAO extends BaseDAO {
 
             if (result1 > 0 && result2 > 0)
                 System.out.println("De lezer werd verwijderd!");
-            else System.out.println("Lezer niet gevonden");
+            else throw new LezerNietGevonden();
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
+            throw new SQLIntegrityConstraintViolationException();
         }
     }
 

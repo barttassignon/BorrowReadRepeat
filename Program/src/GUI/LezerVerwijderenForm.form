@@ -46,7 +46,7 @@
           <verticalTextPosition value="3"/>
         </properties>
       </component>
-      <component id="5d1f7" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="5d1f7" class="javax.swing.JTextField" binding="lezerTextField">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="1" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
