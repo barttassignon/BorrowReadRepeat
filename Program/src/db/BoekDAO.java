@@ -15,7 +15,7 @@ public class BoekDAO extends BaseDAO {
 
     // Toevoegen van boek
 
-    public void toevoegenBoek(Boek boek) {
+    public static void toevoegenBoek(Boek boek) {
 
         try (Connection c = getConn()) {
 
@@ -24,8 +24,8 @@ public class BoekDAO extends BaseDAO {
             s.setString(2, boek.getTitel());
             s.setString(3, boek.getAuteur());
             s.setString(4, boek.getUitgeverij());
-            s.setString(5, boek.getTaal().name());
-            s.setString(6, boek.getGenre().name());
+            s.setString(5, boek.getTaal1());
+            s.setString(6, boek.getGenre1());
             s.setInt(7, boek.getPaginas());
             s.setObject(8, boek.getAankoopdatumDB());
             s.setDouble(9, boek.getPrijs());
@@ -45,7 +45,7 @@ public class BoekDAO extends BaseDAO {
     }
     // Toevoegen kinderboek:
 
-    public void toevoegenBoek(Kinderboek boek) {
+    public static void toevoegenBoek(Kinderboek boek) {
 
         try (Connection c = getConn()) {
 
@@ -54,8 +54,8 @@ public class BoekDAO extends BaseDAO {
             s.setString(2, boek.getTitel());
             s.setString(3, boek.getAuteur());
             s.setString(4, boek.getUitgeverij());
-            s.setString(5, boek.getTaal().name());
-            s.setString(6, boek.getGenre().name());
+            s.setString(5, boek.getTaal1());
+            s.setString(6, boek.getGenre1());
             s.setInt(7, boek.getPaginas());
             s.setObject(8, boek.getAankoopdatumDB());
             s.setDouble(9, boek.getPrijs());
@@ -133,9 +133,9 @@ public class BoekDAO extends BaseDAO {
 
         public static void main(String[] args)  {
 
-        BoekDAO bda = new BoekDAO();
-        Kinderboek b1 = new Kinderboek (65498232L, "Titel", "Auteur", "Uitgeverij", Boek.Taal.NEDERLANDS, Boek.Genre.GEZONDHEID, 123, LocalDate.of(2000, 11, 17), 12.35, "AUT" );
-        bda.toevoegenBoek(b1);
+     //   BoekDAO bda = new BoekDAO();
+     //   Kinderboek b1 = new Kinderboek (65498232L, "Titel", "Auteur", "Uitgeverij", Boek.Taal.NEDERLANDS, Boek.Genre.GEZONDHEID, 123, LocalDate.of(2000, 11, 17), 12.35, "AUT" );
+     //   bda.toevoegenBoek(b1);
 
     }
 

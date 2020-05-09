@@ -12,10 +12,8 @@ public class Boek {
     private String titel;
     private String auteur;
     private String uitgeverij;
-    public enum Taal {NEDERLANDS, FRANS, ENGELS};
-    private Taal taal;
-    public enum Genre {BIOGRAFIE, FANTASY, GESCHIEDENIS, GEZONDHEID, PRENTENBOEK, KOOKBOEK, ROMAN, THRILLER, TECHNOLOGIE };
-    private Genre genre;
+    private String taal1;
+    private String genre1;
     private int paginas;
     private LocalDate aankoopdatum;
     private LocalDate aankoopdatumDB;
@@ -29,9 +27,6 @@ public class Boek {
     private static int AantalBoekenInBib = 0;
 
     // Constructors
-    public Boek() {
-        AantalBoekenInBib++;
-    }
 
     public Boek(int artikelnummer, long ISBN, String titel, String auteur) {
         this.artikelnummer = artikelnummer;
@@ -40,15 +35,15 @@ public class Boek {
         this.auteur = auteur;
     }
 
-    public Boek(long ISBN, String titel, String auteur, String uitgeverij, Taal taal, Genre genre, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
-        this();
+    public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal1, String genre1, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
+        AantalBoekenInBib++;
         this.artikelnummer = AantalBoekenInBib;
         this.ISBN = ISBN;
         this.titel = titel;
         this.auteur = auteur;
         this.uitgeverij = uitgeverij;
-        this.taal = taal;
-        this.genre = genre;
+        this.taal1 = taal1;
+        this.genre1 = genre1;
         this.paginas = paginas;
         this.aankoopdatum = aankoopdatum;
         this.aankoopdatumDB = aankoopdatum.plusDays(1);
@@ -100,20 +95,12 @@ public class Boek {
         this.uitgeverij = uitgeverij;
     }
 
-    public Taal getTaal() {
-        return taal;
+    public String getTaal1() {
+        return taal1;
     }
 
-    public void setTaal(Taal taal) {
-        this.taal = taal;
-    }
-
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public String getGenre1() {
+        return genre1;
     }
 
     public int getPaginas() {
