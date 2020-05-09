@@ -8,6 +8,19 @@ public class Uitlening extends Transactie{
     private LocalDate datumVerlengd;
     private LocalDate datumIngeleverd;
 
+    public Uitlening() {
+    }
+
+    public Uitlening(LocalDate datumUitgeleend, LocalDate datumVerlengd, LocalDate datumIngeleverd) {
+        this.datumUitgeleend = datumUitgeleend;
+        if(datumVerlengd.isAfter(datumUitgeleend) && datumVerlengd.isBefore(datumUitgeleend.plusDays(22)))
+        this.datumVerlengd = datumVerlengd;
+        else System.out.println("Foutieve invoer");
+        if(datumIngeleverd.isAfter(datumUitgeleend))
+        this.datumIngeleverd = datumIngeleverd;
+        else System.out.println("Foutieve invoer");
+    }
+
     public LocalDate getDatumUitgeleend() {
         return datumUitgeleend;
     }
@@ -21,7 +34,9 @@ public class Uitlening extends Transactie{
     }
 
     public void setDatumVerlengd(LocalDate datumVerlengd) {
-        this.datumVerlengd = datumVerlengd;
+        if(datumVerlengd.isAfter(datumUitgeleend) && datumVerlengd.isBefore(datumUitgeleend.plusDays(22)))
+            this.datumVerlengd = datumVerlengd;
+        else System.out.println("Foutieve invoer");
     }
 
     public LocalDate getDatumIngeleverd() {
@@ -29,7 +44,9 @@ public class Uitlening extends Transactie{
     }
 
     public void setDatumIngeleverd(LocalDate datumIngeleverd) {
-        this.datumIngeleverd = datumIngeleverd;
+        if(datumIngeleverd.isAfter(datumUitgeleend))
+            this.datumIngeleverd = datumIngeleverd;
+        else System.out.println("Foutieve invoer");
     }
 
     @Override

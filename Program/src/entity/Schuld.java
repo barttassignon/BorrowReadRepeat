@@ -1,7 +1,8 @@
 package entity;
 
 import java.time.LocalDate;
-import java.time.Period;
+import static java.time.temporal.ChronoUnit.DAYS;
+// bevat methode DAYS.between. Static toevoegen om de leesbaarheid te verhogen (anders moet je telkens ook ChronoUnit zelf toevoegen)
 
 public class Schuld {
 
@@ -37,52 +38,52 @@ public class Schuld {
         return bedrag;
     }
 
- /*   public double bepalenSchuld(Boek b, Uitlening u, Oorsprong o) {
-        if (o.equals("beschadiging")) {
-            return b.getPrijs() / 2;
-        }
+    public double bepalenSchuld(Boek b, Uitlening u, Oorsprong o) {
 
-        if (o.equals("verlies")) {
-            return b.getPrijs();
-        }
-        if (o.equals("reservatie"))
-            return 0.5;
-
-        if (o.equals("overtijd")) {
-
-            if (u.getDatumVerlengd() != null) {
-                LocalDate einddatum = u.getDatumVerlengd().plusDays(21);
-                if (einddatum.isAfter(u.getDatumIngeleverd())) {
-                    int dagenTeLaat = Period.between(u.getDatumIngeleverd(), einddatum).getDays();
-                    if (dagenTeLaat * 0.1 > b.getPrijs()) {
-                        return b.getPrijs();
-                    } else {
-                        return dagenTeLaat * 0.1;
+        switch (o) {
+            case BESCHADIGING:
+                return b.getPrijs()/ 2.0;
+            case VERLIES:
+                return b.getPrijs();
+            case RESERVATIE:
+                return 0.5;
+            case OVERTIJD: {
+                if (u.getDatumVerlengd() != null) {
+                    LocalDate einddatum = u.getDatumVerlengd().plusDays(21);
+                    if (u.getDatumIngeleverd().isAfter(einddatum)) {
+                        long dagenTeLaat = DAYS.between(einddatum, u.getDatumIngeleverd());
+                        if (dagenTeLaat * 0.1 > b.getPrijs()) {
+                            return b.getPrijs();
+                        } else {
+                            return dagenTeLaat * 0.1;
+                        }
                     }
-                } else
-                    return 0;
-            }
-            else {
-                LocalDate einddatum = u.getDatumIngeleverd().plusDays(21);
-                if (einddatum.isAfter(u.getDatumIngeleverd())) {
-                    int dagenTeLaat = Period.between(u.getDatumIngeleverd(), einddatum).getDays();
-                    if (dagenTeLaat * 0.1 > b.getPrijs()) {
-                        return b.getPrijs();
-                    } else {
-                        return dagenTeLaat * 0.1;
+                    else return 0;
+                } else {
+                    LocalDate einddatum = u.getDatumUitgeleend().plusDays(21);
+                    if (u.getDatumIngeleverd().isAfter(einddatum)) {
+                        long dagenTeLaat = DAYS.between(einddatum, u.getDatumIngeleverd());
+                        if (dagenTeLaat * 0.1 > b.getPrijs()) {
+                            return b.getPrijs();
+                        } else {
+                            return dagenTeLaat * 0.1;
+                        }
                     }
-                } else
-                    return 0;
+                    else return 0;
+                }
             }
+            default:
+                throw new IllegalStateException("Unexpected value: " + o);
         }
-
-}*/
+    }
 
     public static void main(String[] args) {
-        Uitlening u = new Uitlening();
-       Oorsprong o = Oorsprong.BESCHADIGING;
+        Uitlening u = new Uitlening(LocalDate.of(2020, 5, 1), LocalDate.of(2020, 5, 22), LocalDate.of(2020, 5, 30));
+        Oorsprong o = Oorsprong.OVERTIJD;
         Boek b = new Boek(123456789L, "Hallo", "Man", "Pelckmans", "Frans", 145, LocalDate.of(2015, 10, 12), 24, "COE 138");
         Schuld s = new Schuld();
-        //System.out.println(s.bepalenSchuld(b, u, o));
+        System.out.println(u.getDatumIngeleverd());
+        System.out.println(u.getDatumVerlengd().plusDays(21));
+        System.out.println(String.format("%.2f", s.bepalenSchuld(b, u, o)));
     }
 }
