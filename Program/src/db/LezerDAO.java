@@ -34,7 +34,7 @@ public class LezerDAO extends BaseDAO {
                 PreparedStatement p = c.prepareStatement("insert into Lezers values (NULL, ?, ?, ?, ?, ?, ?, ?)");
                 p.setString(1, lezer.getVoornaam());
                 p.setString(2, lezer.getNaam());
-                p.setObject(3, lezer.getGeboortedatum());
+                p.setObject(3, lezer.getGeboortedatumDB());
                 p.setString(4, lezer.getEmail());
                 p.setString(5, lezer.getTelefoon());
                 p.setBytes(6, salt);

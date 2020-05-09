@@ -136,7 +136,6 @@ public class LezerToevoegenForm extends JFrame {
 }
 
      /* Op te lossen:
-          - Er zit 1 dag verschil tussen de geboortedatum die ingetikt wordt in de GUI en tussen degene die opgeslagen wordt in de DB?!
           - Jaar en postcode => verplichting toevoegen dat dit 4 cijfers moeten zijn
           - Vermijden dat er bij voornaam, naam, straat en woonplaats cijfers kan worden ingevuld.
      */
