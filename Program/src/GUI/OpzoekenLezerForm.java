@@ -32,6 +32,7 @@ public class OpzoekenLezerForm extends JFrame {
     private JTable table1;
 
     private JButton TerugButton;
+    private JButton AlleLezerButton;
 
     public static void main(String[] args) {
         new OpzoekenLezerForm();
@@ -46,31 +47,6 @@ public class OpzoekenLezerForm extends JFrame {
         opzoekenLezerFrame.setResizable(false);
         opzoekenLezerFrame.setLocationRelativeTo(null);
 
-        table1.setAutoCreateRowSorter(true);
-        table1.setFillsViewportHeight(true);
-        table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
-        model.addColumn("LezerId");
-        model.addColumn("Voornaam");
-        model.addColumn("Naam");
-        model.addColumn("Geboortedatum");
-        model.addColumn("Emailadres");
-        model.addColumn("Telefoon");
-        table1.setModel(model);
-
-        try {
-            String url = "jdbc:mysql://dt5.ehb.be/1920mobappgr1";
-            String user = "1920mobappgr1";
-            String password = "XNnhDjw";
-            Connection con = DriverManager.getConnection(url, user, password);
-            PreparedStatement pstm = con.prepareStatement("select * from Lezers");
-            ResultSet Rs = pstm.executeQuery();
-            while (Rs.next()) {
-                model.addRow(new Object[]{Rs.getInt(1), Rs.getString(2), Rs.getString(3), Rs.getObject(4, LocalDate.class), Rs.getString(5), Rs.getString(6)});
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
 
         this.pack();
 
@@ -79,6 +55,36 @@ public class OpzoekenLezerForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
                 opzoekenLezerFrame.dispose();
+            }
+        });
+        AlleLezerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                table1.setAutoCreateRowSorter(true);
+                table1.setFillsViewportHeight(true);
+                table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
+                model.addColumn("LezerId");
+                model.addColumn("Voornaam");
+                model.addColumn("Naam");
+                model.addColumn("Geboortedatum");
+                model.addColumn("Emailadres");
+                model.addColumn("Telefoon");
+                table1.setModel(model);
+
+                try {
+                    String url = "jdbc:mysql://dt5.ehb.be/1920mobappgr1";
+                    String user = "1920mobappgr1";
+                    String password = "XNnhDjw";
+                    Connection con = DriverManager.getConnection(url, user, password);
+                    PreparedStatement pstm = con.prepareStatement("select * from Lezers");
+                    ResultSet Rs = pstm.executeQuery();
+                    while (Rs.next()) {
+                        model.addRow(new Object[]{Rs.getInt(1), Rs.getString(2), Rs.getString(3), Rs.getObject(4, LocalDate.class), Rs.getString(5), Rs.getString(6)});
+                    }
+                } catch (Exception ev) {
+                    System.out.println(ev.getMessage());
+                }
+
             }
         });
     }

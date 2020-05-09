@@ -20,8 +20,8 @@ public class BeheerderForm extends JFrame {
     private JButton LezertoevoegenButton;
     private JButton LezerverwijderenButton;
     private JButton wijzigenButton;
-    private JButton BoekOpzoeken;
-    private JButton opzoekenButton;
+    private JButton weergevenBoek;
+    private JButton weergevenButton;
     private JButton beheerderToevoegenButton;
     private JLabel labelBoek;
     private JButton UitloggenButton;
@@ -82,7 +82,7 @@ public class BeheerderForm extends JFrame {
                 beheerderFormFrame.dispose();
             }
         });
-        opzoekenButton.addActionListener(new ActionListener() {
+        weergevenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new OpzoekenLezerForm();
