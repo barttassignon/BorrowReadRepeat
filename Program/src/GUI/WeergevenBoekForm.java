@@ -7,6 +7,7 @@ package GUI;
 import db.BoekDAO;
 import db.LezerDAO;
 import entity.Boek;
+import entity.BoekNietGevonden;
 import entity.Lezer;
 
 import javax.swing.*;
@@ -14,10 +15,13 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class WeergevenBoekForm extends JFrame{
@@ -37,6 +41,7 @@ public class WeergevenBoekForm extends JFrame{
     private JLabel titelLabel;
     private JTextField titelTextField;
     private JButton zoekButton;
+    private JButton verwijderBoek;
 
     public static void main(String[] args) {
         new WeergevenBoekForm();
@@ -62,14 +67,15 @@ public class WeergevenBoekForm extends JFrame{
         model.addColumn("AantalBlz");
         model.addColumn("Aankoopdatum");
         table1.setModel(model);
-
         this.pack();
+
+
+
 
         TerugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
                 weergevenBoekFrame.dispose();
-
             }
         });
 
@@ -90,6 +96,22 @@ public class WeergevenBoekForm extends JFrame{
 
                 for(Boek b : BoekDAO.opzoekenBoek(titel)){
                     model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
+                }
+            }
+        });
+
+        verwijderBoek.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int row = table1.getSelectedRow();
+                System.out.println(row);
+                int value = (((int) table1.getModel().getValueAt(row, 0)));
+                System.out.println(value);
+
+                try {
+                    BoekDAO.verwijderenBoek(value);
+
+                } catch (BoekNietGevonden boekNietGevonden) {
+                    boekNietGevonden.printStackTrace();
                 }
             }
         });
