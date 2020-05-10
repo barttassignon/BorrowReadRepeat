@@ -98,9 +98,9 @@ public class LezerDAO extends BaseDAO {
         ArrayList<Lezer> lijst = new ArrayList<>();
 
         try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("select * from Lezers where voornaam = ? AND naam = ?");
-            s.setString(1, voornaam);
-            s.setString(2, naam);
+            PreparedStatement s = c.prepareStatement("select * from Lezers where voornaam LIKE ? OR naam LIKE ?");
+            s.setString(1, "%" + voornaam + "%");
+            s.setString(2, "%" + naam + "%");
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 lijst.add(new Lezer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getObject(4, LocalDate.class), rs.getString(5), rs.getString(6)));
@@ -114,7 +114,7 @@ public class LezerDAO extends BaseDAO {
         return lijst;
     }
 
-    public static void verwijderenLezer(int id) throws SQLIntegrityConstraintViolationException {
+    public static void verwijderenLezer(int id) throws SQLIntegrityConstraintViolationException, LezerNietGevonden {
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("delete from Adressen where Lezer_ID = ?");
