@@ -92,6 +92,24 @@ public class LezerDAO extends BaseDAO {
         return lijst;
     }
 
+    // Ophalen lezer die een uitlening doet:
+
+    public static Lezer uitleenLezer(int id){
+        Lezer lezer = null;
+        try (Connection c = getConn()) {
+            PreparedStatement s = c.prepareStatement("select * from Lezers where Lezer_ID = ?");
+            s.setInt(1, id);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                lezer = new Lezer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getObject(4, LocalDate.class), rs.getString(5), rs.getString(6));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+        return lezer;
+    }
+
     // Opzoeken lezer op voornaam en naam:
 
     public static ArrayList<Lezer> opzoekenLezer(String voornaam, String naam) {

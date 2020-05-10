@@ -2,6 +2,7 @@ package db;
 
 import entity.Boek;
 import entity.Kinderboek;
+import entity.Lezer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -91,6 +92,24 @@ public class BoekDAO extends BaseDAO {
         return lijstBoeken;
     }
 
+    // Ophalen boek dat wordt uitgeleend:
+
+    public static Boek uitleenBoek(int id){
+        Boek boek = null;
+        try (Connection c = getConn()) {
+            PreparedStatement s = c.prepareStatement("select * from Boeken where Boek_ID = ?");
+            s.setInt(1, id);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                boek = new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+        return boek;
+    }
+
     // Boek opzoeken op titel :
 
     public static ArrayList<Boek> opzoekenBoek(String titel){
@@ -127,17 +146,6 @@ public class BoekDAO extends BaseDAO {
             e.printStackTrace();
             System.out.println("MISLUKT!");
         }
-    }
-
-        public static void main(String[] args)  {
-
-     //   BoekDAO bda = new BoekDAO();
-     //   Kinderboek b1 = new Kinderboek (65498232L, "Titel", "Auteur", "Uitgeverij", Boek.Taal.NEDERLANDS, Boek.Genre.GEZONDHEID, 123, LocalDate.of(2000, 11, 17), 12.35, "AUT" );
-     //   bda.toevoegenBoek(b1);
-
-            for(Boek b : BoekDAO.opzoekenBoek("Blabla")){
-                System.out.println(b.toString());
-            }
     }
 
 }

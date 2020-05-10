@@ -1,14 +1,24 @@
 package entity;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 
 public class Uitlening extends Transactie{
 
+    private static int uitleen_ID = 0;
     private LocalDate datumUitgeleend;
     private LocalDate datumVerlengd;
     private LocalDate datumIngeleverd;
 
     public Uitlening() {
+    }
+
+    // Constructor om nieuwe uitlening toe te voegen:
+
+    public Uitlening(Lezer lezer, Boek boek) {
+        super(lezer, boek);
+        uitleen_ID++;
+        this.datumUitgeleend = LocalDate.now();
     }
 
     public Uitlening(LocalDate datumUitgeleend, LocalDate datumVerlengd, LocalDate datumIngeleverd) {
@@ -20,6 +30,11 @@ public class Uitlening extends Transactie{
         this.datumIngeleverd = datumIngeleverd;
         else System.out.println("Foutieve invoer");
     }
+
+    public int getUitleen_ID() {
+        return uitleen_ID;
+    }
+
 
     public LocalDate getDatumUitgeleend() {
         return datumUitgeleend;

@@ -28,6 +28,10 @@ public class Boek {
 
     // Constructors
 
+
+    public Boek() {
+    }
+
     public Boek(int artikelnummer, long ISBN, String titel, String auteur) {
         this.artikelnummer = artikelnummer;
         this.ISBN = ISBN;

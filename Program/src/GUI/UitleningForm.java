@@ -1,5 +1,12 @@
 package GUI;
 
+import db.BoekDAO;
+import db.LezerDAO;
+import db.UitleenDAO;
+import entity.Boek;
+import entity.Kinderboek;
+import entity.Uitlening;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,8 +53,19 @@ public class UitleningForm extends JFrame {
 
         toevoegenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new BeheerderForm();
-                uitleningFrame.dispose();
+                try{
+                    int lezerID = Integer.parseInt(lezerTextField.getText());
+                    int boekID = Integer.parseInt(artikelTextField1.getText());
+                } catch(NumberFormatException nr){
+                    JOptionPane.showMessageDialog(uitleningFrame, "Gelieve (enkel) cijfers in te geven!");
+                }
+
+                int lezerID = Integer.parseInt(lezerTextField.getText());
+                int boekID = Integer.parseInt(artikelTextField1.getText());
+
+                UitleenDAO.uitleningToevoegen(new Uitlening(LezerDAO.uitleenLezer(lezerID), BoekDAO.uitleenBoek(boekID)));
+                JOptionPane.showMessageDialog(uitleningFrame, "Boek toegevoegd!");
+
             }
         });
     }
