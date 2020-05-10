@@ -4,10 +4,8 @@
 
 package GUI;
 
-import db.BeheerderDAO;
 import db.LezerDAO;
 import entity.Adres;
-import entity.Beheerder;
 import entity.Lezer;
 import entity.LezerTeJong;
 
@@ -111,7 +109,7 @@ public class LezerToevoegenForm extends JFrame {
                 String bevestigWachtwoord = String.valueOf(bevestigPaswoord.getPassword());
 
                 if(paswoord.length() < 4) {
-                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Wachtwoord moet mininmum 4 tekens bevatten!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Wachtwoord moet minimum 4 tekens bevatten!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 } else if (voornaam.length() == 0 || naam.length() == 0 || straatnaam.length() == 0 || woonplaats.length() == 0 || email.length() == 0 || telefoon.length() == 0) {
                     JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 } else{
