@@ -49,19 +49,6 @@
           <text value="Toevoegen"/>
         </properties>
       </component>
-      <component id="2853c" class="javax.swing.JButton" binding="BoekVerwijderen">
-        <constraints>
-          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-721409"/>
-          <enabled value="true"/>
-          <font name="Consolas" size="16" style="0"/>
-          <foreground color="-16318021"/>
-          <hideActionText value="true"/>
-          <text value="Verwijderen"/>
-        </properties>
-      </component>
       <component id="75b22" class="javax.swing.JButton" binding="Uitlening">
         <constraints>
           <grid row="4" column="5" row-span="3" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -75,32 +62,6 @@
           <text value="Uitlening"/>
         </properties>
       </component>
-      <component id="8e3f5" class="javax.swing.JButton" binding="reservatieButton" default-binding="true">
-        <constraints>
-          <grid row="7" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-721409"/>
-          <enabled value="true"/>
-          <font name="Consolas" size="16" style="0"/>
-          <foreground color="-16318021"/>
-          <hideActionText value="true"/>
-          <text value="Reservatie"/>
-        </properties>
-      </component>
-      <component id="c818f" class="javax.swing.JButton" binding="placeholderButton" default-binding="true">
-        <constraints>
-          <grid row="8" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-721409"/>
-          <enabled value="true"/>
-          <font name="Consolas" size="16" style="0"/>
-          <foreground color="-16318021"/>
-          <hideActionText value="true"/>
-          <text value=""/>
-        </properties>
-      </component>
       <component id="5fb45" class="javax.swing.JButton" binding="LezertoevoegenButton">
         <constraints>
           <grid row="4" column="3" row-span="3" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -112,19 +73,6 @@
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
           <text value="Toevoegen"/>
-        </properties>
-      </component>
-      <component id="a8ce8" class="javax.swing.JButton" binding="LezerverwijderenButton">
-        <constraints>
-          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-721409"/>
-          <enabled value="true"/>
-          <font name="Consolas" size="16" style="0"/>
-          <foreground color="-16318021"/>
-          <hideActionText value="true"/>
-          <text value="Verwijderen"/>
         </properties>
       </component>
       <component id="2beb2" class="javax.swing.JButton" binding="wijzigenButton" default-binding="true">
@@ -236,6 +184,19 @@
         </constraints>
         <properties>
           <text value="Uitloggen"/>
+        </properties>
+      </component>
+      <component id="8e3f5" class="javax.swing.JButton" binding="reservatieButton" default-binding="true">
+        <constraints>
+          <grid row="8" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-721409"/>
+          <enabled value="true"/>
+          <font name="Consolas" size="16" style="0"/>
+          <foreground color="-16318021"/>
+          <hideActionText value="true"/>
+          <text value="Reservatie"/>
         </properties>
       </component>
     </children>

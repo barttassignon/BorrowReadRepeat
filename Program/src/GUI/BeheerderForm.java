@@ -16,7 +16,6 @@ public class BeheerderForm extends JFrame {
     private JButton BoekVerwijderen;
     private JButton Uitlening;
     private JButton reservatieButton;
-    private JButton placeholderButton;
     private JButton LezertoevoegenButton;
     private JButton LezerverwijderenButton;
     private JButton wijzigenButton;
