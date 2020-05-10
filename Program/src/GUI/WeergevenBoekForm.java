@@ -47,7 +47,7 @@ public class WeergevenBoekForm extends JFrame{
         weergevenBoekFrame.getContentPane().add(panel1);
         weergevenBoekFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         weergevenBoekFrame.setVisible(true);
-        weergevenBoekFrame.setSize(600, 600);
+        weergevenBoekFrame.setSize(1200, 600);
         weergevenBoekFrame.setResizable(false);
         weergevenBoekFrame.setLocationRelativeTo(null);
 
@@ -68,6 +68,7 @@ public class WeergevenBoekForm extends JFrame{
         TerugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
+                weergevenBoekFrame.dispose();
 
             }
         });
