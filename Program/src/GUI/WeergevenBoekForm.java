@@ -5,24 +5,13 @@
 package GUI;
 
 import db.BoekDAO;
-import db.LezerDAO;
 import entity.Boek;
-import entity.BoekNietGevonden;
-import entity.Lezer;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class WeergevenBoekForm extends JFrame{
 
@@ -107,13 +96,8 @@ public class WeergevenBoekForm extends JFrame{
                 int value = (((int) table1.getModel().getValueAt(row, 0)));
                 System.out.println(value);
 
-                try {
-                    BoekDAO.verwijderenBoek(value);
-                    JOptionPane.showMessageDialog(null,"Boek verwijderd");
-
-                } catch (BoekNietGevonden boekNietGevonden) {
-                    boekNietGevonden.printStackTrace();
-                }
+                BoekDAO.verwijderenBoek(value);
+                JOptionPane.showMessageDialog(null,"Boek verwijderd");
             }
         });
     }

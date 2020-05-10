@@ -12,11 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.time.LocalDate;
+import java.sql.*;
 
 public class WeergevenLezerForm extends JFrame {
 
@@ -37,6 +33,7 @@ public class WeergevenLezerForm extends JFrame {
     private JButton TerugButton;
     private JButton AlleLezerButton;
     private JButton zoekButton;
+    private JButton verwijderButton;
 
     public static void main(String[] args) {
         new WeergevenLezerForm();
@@ -91,6 +88,22 @@ public class WeergevenLezerForm extends JFrame {
 
                 for(Lezer l : LezerDAO.opzoekenLezer(voornaam, naam)){
                     model.addRow(new Object[]{l.getId(), l.getVoornaam(), l.getNaam(), l.getGeboortedatum(), l.getEmail(), l.getTelefoon()});
+                }
+            }
+        });
+
+        verwijderButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int row = table1.getSelectedRow();
+                System.out.println(row);
+                int value = (((int) table1.getModel().getValueAt(row, 0)));
+                System.out.println(value);
+
+                try {
+                    LezerDAO.verwijderenLezer(value);
+                    JOptionPane.showMessageDialog(opzoekenLezerFrame,"Lezer verwijderd");
+                } catch (SQLIntegrityConstraintViolationException ex) {
+                    JOptionPane.showMessageDialog(opzoekenLezerFrame, "De lezer heeft nog schulden en kan bijgevolg niet worden verwijderd!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

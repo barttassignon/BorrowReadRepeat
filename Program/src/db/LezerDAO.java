@@ -114,7 +114,7 @@ public class LezerDAO extends BaseDAO {
         return lijst;
     }
 
-    public static void verwijderenLezer(int id) throws SQLIntegrityConstraintViolationException, LezerNietGevonden {
+    public static void verwijderenLezer(int id) throws SQLIntegrityConstraintViolationException {
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("delete from Adressen where Lezer_ID = ?");
@@ -127,8 +127,7 @@ public class LezerDAO extends BaseDAO {
 
             if (result1 > 0 && result2 > 0)
                 System.out.println("De lezer werd verwijderd!");
-            else throw new LezerNietGevonden();
-                System.out.println("De lezer kon niet worden verwijderd.");
+            else System.out.println("De lezer kon niet worden verwijderd.");
 
         } catch (SQLException e) {
             e.printStackTrace();
