@@ -168,4 +168,47 @@ public class LezerDAO extends BaseDAO {
             System.out.println("MISLUKT!");
         }
     }
+
+    public void wijzigenTelLezer(int lezer_id, String telefoon) {
+        try (Connection c = getConn()) {
+
+            PreparedStatement p = c.prepareStatement("update Lezers set Telefoon = ? where Lezer_ID = ?");
+            p.setString(1, telefoon);
+            p.setInt(2, lezer_id);
+
+            int result = p.executeUpdate();
+
+            if (result > 0)
+                System.out.println("De wijziging werd geregistreerd!");
+            else System.out.println("De wijziging kon niet worden geregistreerd!");
+
+            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: lezer niet gevonden)
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+
+    public void wijzigenWachtwoordLezer(int lezer_id, String wachtwoord) {
+        try (Connection c = getConn()) {
+            byte[] salt = Security.createSalt();
+            PreparedStatement p = c.prepareStatement("update Lezers set Salt = ? and HashCode = ? where Lezer_ID = ?");
+            p.setBytes(1, salt);
+            p.setString(2, Security.generateHash(wachtwoord, salt));
+            p.setInt(3, lezer_id);
+
+            int result = p.executeUpdate();
+
+            if (result > 0)
+                System.out.println("De wachtwoordswijziging werd geregistreerd!");
+            else System.out.println("De wachtwoordswijziging kon niet worden geregistreerd!");
+
+            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: lezer niet gevonden)
+
+        } catch (SQLException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
 }
