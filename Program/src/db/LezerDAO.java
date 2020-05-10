@@ -114,16 +114,8 @@ public class LezerDAO extends BaseDAO {
         return lijst;
     }
 
-    public static void verwijderenLezer(int id) throws LezerNietGevonden, SQLIntegrityConstraintViolationException {
+    public static void verwijderenLezer(int id) throws SQLIntegrityConstraintViolationException {
         try (Connection c = getConn()) {
-
-             /*if(lezer.getSchuld().getBedrag() > 0) {
-                System.out.println("De lezer heeft nog een openstaande schuld.");
-                throw new LezerMetSchuld();
-
-                PROBLEEM: LezerVewijderenForm houdt reeds rekening met id als parameter ipv lezer
-
-            }*/
 
             PreparedStatement s = c.prepareStatement("delete from Adressen where Lezer_ID = ?");
             s.setInt(1, id);
@@ -135,7 +127,8 @@ public class LezerDAO extends BaseDAO {
 
             if (result1 > 0 && result2 > 0)
                 System.out.println("De lezer werd verwijderd!");
-            else throw new LezerNietGevonden();
+            else
+                System.out.println("De lezer kon niet worden verwijderd.");
 
         } catch (SQLException e) {
             e.printStackTrace();
