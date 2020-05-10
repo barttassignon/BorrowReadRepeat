@@ -109,6 +109,7 @@ public class WeergevenBoekForm extends JFrame{
 
                 try {
                     BoekDAO.verwijderenBoek(value);
+                    JOptionPane.showMessageDialog(null,"Boek verwijderd");
 
                 } catch (BoekNietGevonden boekNietGevonden) {
                     boekNietGevonden.printStackTrace();

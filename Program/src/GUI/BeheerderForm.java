@@ -56,18 +56,19 @@ public class BeheerderForm extends JFrame {
             }
         });
 
-        LezerverwijderenButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new LezerVerwijderenForm();
-                beheerderFormFrame.dispose();
-            }
-        });
-        BoekVerwijderen.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new BoekVerwijderenForm();
-                beheerderFormFrame.dispose();
-            }
-        });
+//        LezerverwijderenButton.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                new LezerVerwijderenForm();
+//                beheerderFormFrame.dispose();
+//            }
+//        });
+//        BoekVerwijderen.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                new BoekVerwijderenForm();
+//                beheerderFormFrame.dispose();
+//            }
+//        });
+
         BoekToevoegenButton.addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent e) {
                   new BoekToevoegenForm();
