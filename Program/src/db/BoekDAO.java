@@ -1,6 +1,8 @@
 package db;
 
 import entity.Boek;
+import entity.BoekNietGevonden;
+import entity.Kinderboek;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,44 +16,74 @@ public class BoekDAO extends BaseDAO {
 
     // Toevoegen van boek
 
-    public void toevoegenBoek(Boek boek) {
+    public static void toevoegenBoek(Boek boek) {
 
         try (Connection c = getConn()) {
 
-            PreparedStatement s = c.prepareStatement("insert into Boeken values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement s = c.prepareStatement("insert into Boeken values (NULL, ?, ?, ?, ?, ?, ?, false, ?, ?, ?, ?, false, false, 0)");
             s.setLong(1, boek.getISBN());
             s.setString(2, boek.getTitel());
             s.setString(3, boek.getAuteur());
             s.setString(4, boek.getUitgeverij());
-            s.setString(5, boek.getTaal());
-            s.setInt(6, boek.getPaginas());
-            s.setObject(7, boek.getAankoopdatum());
-            s.setDouble(8, boek.getPrijs());
-            s.setString(9, boek.getPlaatsInBib());
+            s.setString(5, boek.getTaal1());
+            s.setString(6, boek.getGenre1());
+            s.setInt(7, boek.getPaginas());
+            s.setObject(8, boek.getAankoopdatumDB());
+            s.setDouble(9, boek.getPrijs());
+            s.setString(10, boek.getPlaatsInBib());
 
             // Aanpassen zodat CSV-bestand kan worden ingelezen en afgelopen met while-loop om gegevens in batch toe te voegen
             // Foutmelding toevoegen indien gegevens reeds in de databank zitten ("boek bestaat reeds")
 
             int result = s.executeUpdate();
             if (result > 0)
-                System.out.println("GELUKT");
-            else System.out.println("MISLUKT!");
+                System.out.println("Boek werd toegevoegd!");
+            else System.out.println("Boek werd niet toegevoegd!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+    // Toevoegen kinderboek:
+
+    public static void toevoegenBoek(Kinderboek boek) {
+
+        try (Connection c = getConn()) {
+
+            PreparedStatement s = c.prepareStatement("insert into Boeken values (NULL, ?, ?, ?, ?, ?, ?, true, ?, ?, ?, ?, false, false, 0)");
+            s.setLong(1, boek.getISBN());
+            s.setString(2, boek.getTitel());
+            s.setString(3, boek.getAuteur());
+            s.setString(4, boek.getUitgeverij());
+            s.setString(5, boek.getTaal1());
+            s.setString(6, boek.getGenre1());
+            s.setInt(7, boek.getPaginas());
+            s.setObject(8, boek.getAankoopdatumDB());
+            s.setDouble(9, boek.getPrijs());
+            s.setString(10, boek.getPlaatsInBib());
+
+            // Aanpassen zodat CSV-bestand kan worden ingelezen en afgelopen met while-loop om gegevens in batch toe te voegen
+            // Foutmelding toevoegen indien gegevens reeds in de databank zitten ("boek bestaat reeds")
+
+            int result = s.executeUpdate();
+            if (result > 0)
+                System.out.println("Kinderboek werd toegevoegd!");
+            else System.out.println("Kinderboek werd niet toegevoegd!");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
         }
     }
 
-    // geef alle boeken weer
+    // Een overzicht van alle boeken:
 
-    public ArrayList<Boek> ophalenBoeken() {
+    public static ArrayList<Boek> ophalenBoeken() {
         ArrayList<Boek> lijstBoeken = new ArrayList<>();
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select * from Boeken");
             ResultSet rs = s.executeQuery();
-
             while (rs.next()) {
-                lijstBoeken.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4)));
+                lijstBoeken.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class)));
             }
             System.out.println("GELUKT!");
         } catch (SQLException e) {
@@ -61,16 +93,16 @@ public class BoekDAO extends BaseDAO {
         return lijstBoeken;
     }
 
-    // zoek boek  :
+    // Boek opzoeken op titel :
 
-    public ArrayList<Boek> opzoekenBoek (String titel){
+    public static ArrayList<Boek> opzoekenBoek(String titel){
         ArrayList<Boek> lijst = new ArrayList<>();
         try (Connection c = getConn()){
-            PreparedStatement s = c.prepareStatement("select + from Boek where titel = ?");
-            s.setString(2, titel);
+            PreparedStatement s = c.prepareStatement("select * from Boeken where Titel LIKE ?");
+            s.setString(1, "%"+titel+"%");
             ResultSet rs = s.executeQuery();
             while (rs.next()){
-                lijst.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4)));
+                lijst.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class)));
             }
 
             } catch (SQLException e){
@@ -80,18 +112,19 @@ public class BoekDAO extends BaseDAO {
         return lijst;
     }
 
-    // verwijder boek :
+    // Boek verwijderen :
 
-    public void verwijderenBoek(int artikelnummer) {
+    public static void verwijderenBoek(int artikelnummer) throws BoekNietGevonden {
         try {
             Connection c = getConn();
-            PreparedStatement s = c.prepareStatement("delete from Boek where artikelnummer = ?");
+            PreparedStatement s = c.prepareStatement("delete from Boeken where Boek_ID = ?");
             s.setInt(1, artikelnummer);
             int result = s.executeUpdate();
             if (result > 0) {
                 System.out.println("Het boek werd verwijderd");
             } else {
                 System.out.println("Er bestaat geen boek met dit artikelnummer");
+                throw new BoekNietGevonden();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,20 +133,14 @@ public class BoekDAO extends BaseDAO {
     }
 
         public static void main(String[] args)  {
-        // Boek b = new Boek(9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.of(2000, Month.MAY, 15), 25.45, "COE135.2");
-        BoekDAO bda = new BoekDAO();
- //       Boek b1 = new Boek (9789029586665L, "De alchemist", "Paolo Coelho", "de Arbeiderspers", "Nederlands", 144, LocalDate.of(2000, Month.MAY, 15), 25.45, "COE135.2"));
- //       bda.toevoegenBoek(b1);
- //       bda.ophalenBoeken();
 
-        for(Boek b: bda.ophalenBoeken())
-        {
-            System.out.println(b.toString());
-        }
-//        bda.toevoegenBoek(b1);
-        // "-L" aan ISBN toevoegen -  aanzien als een long in plaats van een int
+     //   BoekDAO bda = new BoekDAO();
+     //   Kinderboek b1 = new Kinderboek (65498232L, "Titel", "Auteur", "Uitgeverij", Boek.Taal.NEDERLANDS, Boek.Genre.GEZONDHEID, 123, LocalDate.of(2000, 11, 17), 12.35, "AUT" );
+     //   bda.toevoegenBoek(b1);
 
-//            if(bda.opzoekenBoek("De Bourgondiërs", ))
+            for(Boek b : BoekDAO.opzoekenBoek("Blabla")){
+                System.out.println(b.toString());
+            }
     }
 
 }

@@ -9,15 +9,14 @@ import java.time.LocalDate;
 public class Boek {
     private int artikelnummer;
     private long ISBN;
-    // ISBN telt 13 cijfers en dat is te groot voor een int
     private String titel;
     private String auteur;
     private String uitgeverij;
-    private String taal;
-    // Genre varGenre = Genre.BIOGRAFIE (om op te roepen)
-    enum Genre {BIOGRAFIE, FANTASY, GESCHIEDENIS, GEZONDHEID, PRENTENBOEK, KOOKBOEK, ROMAN, THRILLER, TECHNOLOGIE };
+    private String taal1;
+    private String genre1;
     private int paginas;
     private LocalDate aankoopdatum;
+    private LocalDate aankoopdatumDB;
     private double prijs;
     private String plaatsInBib;
     private boolean gereserveerd;
@@ -28,9 +27,6 @@ public class Boek {
     private static int AantalBoekenInBib = 0;
 
     // Constructors
-    public Boek() {
-        AantalBoekenInBib++;
-    }
 
     public Boek(int artikelnummer, long ISBN, String titel, String auteur) {
         this.artikelnummer = artikelnummer;
@@ -39,16 +35,33 @@ public class Boek {
         this.auteur = auteur;
     }
 
-    public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
-        this();
+    // Constructor om boek te kunnen weergeven:
+
+    public Boek(int artikelnummer, long ISBN, String titel, String auteur, String uitgeverij, int paginas, LocalDate aankoopdatum) {
+        this.artikelnummer = artikelnummer;
+        this.ISBN = ISBN;
+        this.titel = titel;
+        this.auteur = auteur;
+        this.uitgeverij = uitgeverij;
+        this.paginas = paginas;
+        this.aankoopdatum = aankoopdatum;
+    }
+
+
+    // Constructor om boek te kunnen toevoegen:
+
+    public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal1, String genre1, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
+        AantalBoekenInBib++;
         this.artikelnummer = AantalBoekenInBib;
         this.ISBN = ISBN;
         this.titel = titel;
         this.auteur = auteur;
         this.uitgeverij = uitgeverij;
-        this.taal = taal;
+        this.taal1 = taal1;
+        this.genre1 = genre1;
         this.paginas = paginas;
         this.aankoopdatum = aankoopdatum;
+        this.aankoopdatumDB = aankoopdatum.plusDays(1);
         this.prijs = prijs;
         this.plaatsInBib = plaatsInBib;
         this.gereserveerd = false;
@@ -97,12 +110,12 @@ public class Boek {
         this.uitgeverij = uitgeverij;
     }
 
-    public String getTaal() {
-        return taal;
+    public String getTaal1() {
+        return taal1;
     }
 
-    public void setTaal(String taal) {
-        this.taal = taal;
+    public String getGenre1() {
+        return genre1;
     }
 
     public int getPaginas() {
@@ -120,6 +133,8 @@ public class Boek {
     public void setAankoopdatum(LocalDate aankoopdatum) {
         this.aankoopdatum = aankoopdatum;
     }
+
+    public LocalDate getAankoopdatumDB() { return aankoopdatumDB; }
 
     public double getPrijs() {
         return prijs;
