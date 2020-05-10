@@ -7,7 +7,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 public class Schuld {
 
     public enum Oorsprong {OVERTIJD, VERLIES, BESCHADIGING, RESERVATIE}
-
+    private int id;
     private Oorsprong oorsprong;
     private double bedrag;
     private LocalDate datumAangemaakt;
@@ -20,6 +20,15 @@ public class Schuld {
         this.oorsprong = oorsprong;
         this.bedrag = bedrag;
         this.datumAangemaakt = datumAangemaakt;
+    }
+
+    public Schuld(int id, Oorsprong oorsprong, double bedrag, LocalDate datumAangemaakt, LocalDate datumBetaald) {
+        this.id = id;
+        this.oorsprong = oorsprong;
+        this.bedrag = bedrag;
+        this.datumAangemaakt = datumAangemaakt;
+        if(datumBetaald.isAfter(datumAangemaakt) || datumBetaald.isEqual(datumAangemaakt))
+        this.datumBetaald = datumBetaald;
     }
 
     public Oorsprong getOorsprong() {

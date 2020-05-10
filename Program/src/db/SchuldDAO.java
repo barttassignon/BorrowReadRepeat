@@ -1,11 +1,11 @@
 package db;
 
+import entity.Lezer;
 import entity.Schuld;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class SchuldDAO extends BaseDAO {
 
@@ -33,32 +33,48 @@ public class SchuldDAO extends BaseDAO {
         }
     }
 
-    public void betalenSchuld(int id, LocalDate betaaldatum)
-        {
+    public void betalenSchuld(int lezer_id, double bedrag, LocalDate betaaldatum) {
+        try (Connection c = getConn()) {
+
+            PreparedStatement p = c.prepareStatement("update Schulden set Bedrag = ? and Betaaldatum = ? where Lezer_ID = ?");
+            p.setDouble(1, -(bedrag));
+            if (betaaldatum.isBefore(LocalDate.now().plusDays(1)))
+                p.setObject(2, betaaldatum);
+            p.setObject(3, lezer_id);
+
+            int result = p.executeUpdate();
+
+            if (result > 0)
+                System.out.println("De betaling werd geregistreerd!");
+            else System.out.println("De betaling kon niet worden geregistreerd!");
+
+            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: lezer niet gevonden)
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+                public ArrayList<Schuld> overzichtOpenstaandeSchulden()
+            {
+                ArrayList<Schuld> lijst = new ArrayList<>();
                 try (Connection c = getConn()) {
-
-                    PreparedStatement p = c.prepareStatement("update Schulden set Betaaldatum = ? where Lezer_ID = ?");
-                    p.setObject(1, betaaldatum);
-                    p.setObject(2, id);
-
-                    int result = p.executeUpdate();
-
-                    if (result > 0)
-                        System.out.println("De betaaldatum werd toegevoegd!");
-                    else System.out.println("De betaaldatum kon niet worden toegevoegd!");
-
-                    // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: lezer niet gevonden)
-
+                    Statement s = c.createStatement();
+                    ResultSet rs = s.executeQuery("select * from Schulden where bedrag > 0");
+                    while (rs.next()) {
+                        lijst.add(new Schuld(rs.getInt(1), Schuld.Oorsprong.valueOf(rs.getString(2)), rs.getDouble(3), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class)));
+                    }
                 } catch (SQLException e) {
                     e.printStackTrace();
                     System.out.println("MISLUKT!");
                 }
+                return lijst;
 }
 
     public static void main(String[] args) {
         SchuldDAO schuldda = new SchuldDAO();
-        Schuld schuld = new Schuld(Schuld.Oorsprong.RESERVATIE, 0.5, LocalDate.of(2020, 1, 5));
-        //schuldda.aanrekenenSchuld(37, schuld);
-        schuldda.betalenSchuld(37, LocalDate.of(2020, 1, 10));
+        Schuld schuld = new Schuld(Schuld.Oorsprong.OVERTIJD, 0.5, LocalDate.of(2020, 2, 5));
+        schuldda.aanrekenenSchuld(37, schuld);
+        //schuldda.betalenSchuld(37, 0.5, LocalDate.of(2020, 1, 11));
     }
 }
