@@ -148,6 +148,28 @@ public class BeheerderDAO extends BaseDAO implements Security {
 
     }
 
+    public void wijzigenWachtwoordBeheerder(String gebruikersnaam, String wachtwoord) {
+        try (Connection c = getConn()) {
+            byte[] salt = Security.createSalt();
+            PreparedStatement p = c.prepareStatement("update Beheerders set Salt = ? and HashCode = ? where Gebruikersnaam = ?");
+            p.setBytes(1, salt);
+            p.setString(2, Security.generateHash(wachtwoord, salt));
+            p.setString(3, gebruikersnaam);
+
+            int result = p.executeUpdate();
+
+            if (result > 0)
+                System.out.println("De wachtwoordswijziging werd geregistreerd!");
+            else System.out.println("De wachtwoordswijziging kon niet worden geregistreerd!");
+
+            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: beheerder niet gevonden)
+
+        } catch (SQLException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+
 //    public void save() throws SQLException {
 //        PreparedStatement checkStmt = getConn().prepareStatement("");
 //
