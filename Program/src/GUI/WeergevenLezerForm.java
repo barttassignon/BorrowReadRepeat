@@ -53,7 +53,7 @@ public class WeergevenLezerForm extends JFrame {
 
         table1.setAutoCreateRowSorter(true);
         table1.setFillsViewportHeight(true);
-        table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
+        table1.setPreferredScrollableViewportSize(new Dimension(850, 200));
         model.addColumn("LezerId");
         model.addColumn("Voornaam");
         model.addColumn("Naam");
