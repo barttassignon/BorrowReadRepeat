@@ -102,6 +102,10 @@ public class WeergevenLezerForm extends JFrame {
                 try {
                     LezerDAO.verwijderenLezer(value);
                     JOptionPane.showMessageDialog(opzoekenLezerFrame,"Lezer verwijderd");
+                    model.setRowCount(0);
+                    for(Lezer l : LezerDAO.ophalenLezers()){
+                        model.addRow(new Object[]{l.getId(), l.getVoornaam(), l.getNaam(), l.getGeboortedatum(), l.getEmail(), l.getTelefoon()});
+                    }
                 } catch (SQLIntegrityConstraintViolationException ex) {
                     JOptionPane.showMessageDialog(opzoekenLezerFrame, "De lezer heeft nog schulden en kan bijgevolg niet worden verwijderd!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 }

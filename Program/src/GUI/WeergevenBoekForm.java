@@ -98,6 +98,10 @@ public class WeergevenBoekForm extends JFrame{
 
                 BoekDAO.verwijderenBoek(value);
                 JOptionPane.showMessageDialog(null,"Boek verwijderd");
+                model.setRowCount(0);
+                for(Boek b : BoekDAO.ophalenBoeken()){
+                    model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
+                }
             }
         });
     }
