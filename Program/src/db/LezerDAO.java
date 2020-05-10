@@ -127,7 +127,7 @@ public class LezerDAO extends BaseDAO {
 
             if (result1 > 0 && result2 > 0)
                 System.out.println("De lezer werd verwijderd!");
-            else
+            else throw new LezerNietGevonden();
                 System.out.println("De lezer kon niet worden verwijderd.");
 
         } catch (SQLException e) {
