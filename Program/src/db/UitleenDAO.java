@@ -20,17 +20,24 @@ public class UitleenDAO extends BaseDAO {
 
             // Tabel uitlening updaten:
 
-            PreparedStatement s = c.prepareStatement("insert into Uitleningen values (?, ?, ?, NULL, NULL)");
-            s.setInt(1, uitlening.getUitleen_ID());
-            s.setInt(2, uitlening.getLezer().getId());
-            s.setObject(3, uitlening.getDatumUitgeleend());
+            PreparedStatement s = c.prepareStatement("insert into Uitleningen values (NULL, ?, ?, NULL, NULL)");
+            s.setInt(1, uitlening.getLezer().getId());
+            s.setObject(2, uitlening.getDatumUitgeleend());
 
             int result1 = s.executeUpdate();
 
             // Tabel winkelmandje updaten:
 
+            int autoIncKeyFromFunc = -1;
+            ResultSet rs = s.executeQuery("SELECT LAST_INSERT_ID()");
+
+            if (rs.next())
+                autoIncKeyFromFunc = rs.getInt(1);
+            else
+                System.out.println("Lezer_ID niet gevonden");
+
             PreparedStatement p = c.prepareStatement("insert into Winkelmandje values (?, ?)");
-            p.setInt(1, uitlening.getUitleen_ID());
+            p.setInt(1, autoIncKeyFromFunc);
             p.setInt(2, uitlening.getBoek().getArtikelnummer());
 
             int result2 = p.executeUpdate();

@@ -5,7 +5,7 @@ import java.util.HashSet;
 
 public class Uitlening extends Transactie{
 
-    private static int uitleen_ID = 0;
+    private int uitleen_ID;
     private LocalDate datumUitgeleend;
     private LocalDate datumVerlengd;
     private LocalDate datumIngeleverd;
@@ -17,7 +17,6 @@ public class Uitlening extends Transactie{
 
     public Uitlening(Lezer lezer, Boek boek) {
         super(lezer, boek);
-        uitleen_ID++;
         this.datumUitgeleend = LocalDate.now();
     }
 
