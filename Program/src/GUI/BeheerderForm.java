@@ -16,7 +16,6 @@ public class BeheerderForm extends JFrame {
     private JButton BoekVerwijderen;
     private JButton Uitlening;
     private JButton reservatieButton;
-    private JButton placeholderButton;
     private JButton LezertoevoegenButton;
     private JButton LezerverwijderenButton;
     private JButton wijzigenButton;
@@ -57,18 +56,19 @@ public class BeheerderForm extends JFrame {
             }
         });
 
-        LezerverwijderenButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new LezerVerwijderenForm();
-                beheerderFormFrame.dispose();
-            }
-        });
-        BoekVerwijderen.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new BoekVerwijderenForm();
-                beheerderFormFrame.dispose();
-            }
-        });
+//        LezerverwijderenButton.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                new LezerVerwijderenForm();
+//                beheerderFormFrame.dispose();
+//            }
+//        });
+//        BoekVerwijderen.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                new BoekVerwijderenForm();
+//                beheerderFormFrame.dispose();
+//            }
+//        });
+
         BoekToevoegenButton.addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent e) {
                   new BoekToevoegenForm();
