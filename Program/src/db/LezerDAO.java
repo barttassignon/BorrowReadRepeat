@@ -77,7 +77,7 @@ public class LezerDAO extends BaseDAO {
 
     // Een overzicht van alle lezers:
 
-     public static ArrayList<Lezer> ophalenLezers() {
+    public static ArrayList<Lezer> ophalenLezers() {
         ArrayList<Lezer> lijst = new ArrayList<>();
         try (Connection c = getConn()) {
             Statement s = c.createStatement();
@@ -94,10 +94,10 @@ public class LezerDAO extends BaseDAO {
 
     // Opzoeken lezer op voornaam en naam:
 
-     public static ArrayList<Lezer> opzoekenLezer (String voornaam, String naam) {
-      ArrayList<Lezer> lijst = new ArrayList<>();
+    public static ArrayList<Lezer> opzoekenLezer(String voornaam, String naam) {
+        ArrayList<Lezer> lijst = new ArrayList<>();
 
-         try (Connection c = getConn()) {
+        try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select * from Lezers where voornaam = ? AND naam = ?");
             s.setString(1, voornaam);
             s.setString(2, naam);
@@ -111,14 +111,23 @@ public class LezerDAO extends BaseDAO {
             System.out.println("MISLUKT!");
         }
 
-         return lijst;
+        return lijst;
     }
 
-        public static void verwijderenLezer(int id) throws LezerNietGevonden, SQLIntegrityConstraintViolationException {
+    public static void verwijderenLezer(int id) throws LezerNietGevonden, SQLIntegrityConstraintViolationException {
         try (Connection c = getConn()) {
-        PreparedStatement s = c.prepareStatement("delete from Adressen where Lezer_ID = ?");
+
+             /*if(lezer.getSchuld().getBedrag() > 0) {
+                System.out.println("De lezer heeft nog een openstaande schuld.");
+                throw new LezerMetSchuld();
+
+                PROBLEEM: LezerVewijderenForm houdt reeds rekening met id als parameter ipv lezer
+
+            }*/
+
+            PreparedStatement s = c.prepareStatement("delete from Adressen where Lezer_ID = ?");
             s.setInt(1, id);
-        PreparedStatement p = c.prepareStatement("delete from Lezers where Lezer_ID = ?");
+            PreparedStatement p = c.prepareStatement("delete from Lezers where Lezer_ID = ?");
             p.setInt(1, id);
 
             int result1 = s.executeUpdate();
@@ -134,4 +143,29 @@ public class LezerDAO extends BaseDAO {
             throw new SQLIntegrityConstraintViolationException();
         }
     }
+
+    public void wijzigenAdresLezer(int lezer_id, Adres adres) {
+        try (Connection c = getConn()) {
+
+            PreparedStatement p = c.prepareStatement("update Adressen set Straat = ? and Huisnr = ? and bus = ? and Postcode = ? and Woonplaats = ? where Lezer_ID = ?");
+            p.setString(1, adres.getStraatnaam());
+            p.setInt(2, adres.getHuisnummer());
+            p.setString(3, adres.getBus());
+            p.setInt(4, adres.getPostcode());
+            p.setString(5, adres.getWoonplaats());
+            p.setInt(6, lezer_id);
+
+            int result = p.executeUpdate();
+
+            if (result > 0)
+                System.out.println("De adreswijziging werd geregistreerd!");
+            else System.out.println("De adreswijziging kon niet worden geregistreerd!");
+
+            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: lezer niet gevonden)
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
     }
+}
