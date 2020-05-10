@@ -35,8 +35,10 @@ public class Lezer extends Persoon {
         this.adres = adres;
     }
 
-    // Constructor op lezers te kunnen weergeven:
+    // Constructoren om lezers te kunnen weergeven:
 
+    public Lezer() {
+    }
 
     public Lezer(int id, String voornaam, String naam, LocalDate geboortedatum, String email, String telefoon) {
         super(voornaam, naam);
@@ -120,24 +122,6 @@ public class Lezer extends Persoon {
         this.schuld = schuld;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Lezer)) return false;
-        Lezer lezer = (Lezer) o;
-        return id == lezer.id &&
-                Objects.equals(geboortedatum, lezer.geboortedatum) &&
-                Objects.equals(adres, lezer.adres) &&
-                Objects.equals(email, lezer.email) &&
-                Objects.equals(telefoon, lezer.telefoon) &&
-                Objects.equals(wachtwoord, lezer.wachtwoord);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, geboortedatum, adres, email, telefoon, wachtwoord);
-    }
-
     public int berekenLeeftijd() {
         int leeftijd = Period.between(geboortedatum, LocalDate.now()).getYears();
         return leeftijd;
@@ -147,6 +131,12 @@ public class Lezer extends Persoon {
     public String toString() {
         return "ID: " + getId() + ", " + super.toString() + ", geboortedatum: " + getGeboortedatum().getDayOfMonth() + "/" + getGeboortedatum().getMonth().getValue() + "/" + getGeboortedatum().getYear() +
                 ", email: " + getEmail();
+    }
+
+    public boolean controleEmailadres(String email)
+    {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
     }
 }
 
