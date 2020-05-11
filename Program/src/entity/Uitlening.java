@@ -1,7 +1,6 @@
 package entity;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 
 public class Uitlening extends Transactie{
 

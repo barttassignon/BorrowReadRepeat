@@ -3,8 +3,6 @@ package GUI;
 import db.BoekDAO;
 import db.LezerDAO;
 import db.UitleenDAO;
-import entity.Boek;
-import entity.Kinderboek;
 import entity.Uitlening;
 
 import javax.swing.*;

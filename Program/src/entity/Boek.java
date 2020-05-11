@@ -21,9 +21,7 @@ public class Boek {
     private boolean gereserveerd;
     private boolean uitgeleend;
     private int aantalKeerUitgeleend;
-
-    // bijhouden totaal aantal boeken in de Bib
-    private static int AantalBoekenInBib = 0;
+    private boolean kinderboek;
 
     // Constructors
 
@@ -52,7 +50,7 @@ public class Boek {
 
     // Constructor om alle nuttige info van een boek op te halen m.b.t. status:
 
-    public Boek(int artikelnummer, long ISBN, String titel, String auteur, String uitgeverij, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib, boolean gereserveerd, boolean uitgeleend, int aantalKeerUitgeleend) {
+    public Boek(int artikelnummer, long ISBN, String titel, String auteur, String uitgeverij, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib, boolean gereserveerd, boolean uitgeleend, int aantalKeerUitgeleend, boolean kinderboek) {
         this.artikelnummer = artikelnummer;
         this.ISBN = ISBN;
         this.titel = titel;
@@ -65,14 +63,12 @@ public class Boek {
         this.gereserveerd = gereserveerd;
         this.uitgeleend = uitgeleend;
         this.aantalKeerUitgeleend = aantalKeerUitgeleend;
+        this.kinderboek = kinderboek;
     }
-
 
     // Constructor om boek te kunnen toevoegen:
 
-    public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal1, String genre1, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib) {
-        AantalBoekenInBib++;
-        this.artikelnummer = AantalBoekenInBib;
+    public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal1, String genre1, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib, boolean kinderboek) {
         this.ISBN = ISBN;
         this.titel = titel;
         this.auteur = auteur;
@@ -83,6 +79,7 @@ public class Boek {
         this.aankoopdatum = aankoopdatum;
         this.prijs = prijs;
         this.plaatsInBib = plaatsInBib;
+        this.kinderboek = kinderboek;
         this.gereserveerd = false;
         this.uitgeleend = false;
         this.aantalKeerUitgeleend = 0;
@@ -189,11 +186,9 @@ public class Boek {
 
     public void setUitgeleend(boolean uitgeleend) { this.uitgeleend = uitgeleend; }
 
-    public static int getAantalBoekenInBib() {
-        return AantalBoekenInBib;
-    }
+    public boolean isKinderboek() { return kinderboek; }
 
-    public static void setAantalBoekenInBib(int aantalBoekenInBib) { AantalBoekenInBib = aantalBoekenInBib; }
+    public void setKinderboek(boolean kinderboek) { this.kinderboek = kinderboek; }
 
     @Override
     public String toString() {
