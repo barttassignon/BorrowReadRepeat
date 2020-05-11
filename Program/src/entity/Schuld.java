@@ -94,7 +94,7 @@ public class Schuld {
     public static void main(String[] args) {
         Uitlening u = new Uitlening(LocalDate.of(2020, 5, 1), LocalDate.of(2020, 5, 22), LocalDate.of(2020, 5, 30));
         Oorsprong o = Oorsprong.OVERTIJD;
-        Boek b = new Boek(132456, "titel", "aut", "uit", "Nederlands", "Gezondheid", 123, LocalDate.of(2000, 11, 01), 23.3, "aut");
+        Boek b = new Boek(132456, "titel", "aut", "uit", "Nederlands", "Gezondheid", 123, LocalDate.of(2000, 11, 01), 23.3, "aut", false);
         Schuld s = new Schuld();
         System.out.println(u.getDatumIngeleverd());
         System.out.println(u.getDatumVerlengd().plusDays(21));

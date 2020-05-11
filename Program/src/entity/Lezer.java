@@ -37,6 +37,10 @@ public class Lezer extends Persoon {
     public Lezer() {
     }
 
+    public Lezer(int id) {
+        this.id = id;
+    }
+
     public Lezer(int id, String voornaam, String naam, LocalDate geboortedatum, String email, String telefoon) {
         super(voornaam, naam);
         this.id = id;

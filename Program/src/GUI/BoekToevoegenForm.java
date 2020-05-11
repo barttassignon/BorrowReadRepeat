@@ -133,7 +133,6 @@ public class BoekToevoegenForm extends JFrame {
                     } else{
                         BoekDAO.toevoegenBoek(new Boek(ISBN, titel, auteur, uitgeverij, taal, genre, paginas, aankoopdatum, aankoopprijs, plaats, kind));
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Boek toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
-
                     }
                 } catch (NumberFormatException nr){
                     JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve (enkel) cijfers in te geven bij ISBN, paginas en aankoopprijs", "Resultaat", JOptionPane.ERROR_MESSAGE);

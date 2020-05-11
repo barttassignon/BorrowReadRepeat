@@ -101,7 +101,9 @@ public class WeergevenLezerForm extends JFrame {
                     LezerDAO.verwijderenLezer(value);
                     JOptionPane.showMessageDialog(opzoekenLezerFrame,"Lezer verwijderd");
                     model.setRowCount(0);
-                    for(Lezer l : LezerDAO.ophalenLezers()){
+                    String voornaam = voornaamTextField.getText();
+                    String naam = naamTextField.getText();
+                    for(Lezer l : LezerDAO.opzoekenLezer(voornaam, naam)){
                         model.addRow(new Object[]{l.getId(), l.getVoornaam(), l.getNaam(), l.getGeboortedatum(), l.getEmail(), l.getTelefoon()});
                     }
                 } catch (SQLIntegrityConstraintViolationException ex) {

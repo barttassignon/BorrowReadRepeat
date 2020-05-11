@@ -5,7 +5,6 @@ import java.time.LocalDate;
 public class Uitlening extends Transactie{
 
     private int uitleen_ID;
-    private int lezer_ID;
     private LocalDate datumUitgeleend;
     private LocalDate datumVerlengd;
     private LocalDate datumIngeleverd;
@@ -32,19 +31,17 @@ public class Uitlening extends Transactie{
 
     // Constructoren om uitleningen te kunnen weergeven:
 
-    public Uitlening(int uitleen_ID, int lezer_ID, LocalDate datumUitgeleend, LocalDate datumVerlengd, LocalDate datumIngeleverd) {
+    public Uitlening(Lezer lezer, Boek boek, int uitleen_ID, LocalDate datumUitgeleend, LocalDate datumVerlengd, LocalDate datumIngeleverd) {
+        super(lezer, boek);
         this.uitleen_ID = uitleen_ID;
-        this.lezer_ID = lezer_ID;
         this.datumUitgeleend = datumUitgeleend;
         this.datumVerlengd = datumVerlengd;
         this.datumIngeleverd = datumIngeleverd;
     }
 
-
     public int getUitleen_ID() {
         return uitleen_ID;
     }
-
 
     public LocalDate getDatumUitgeleend() {
         return datumUitgeleend;

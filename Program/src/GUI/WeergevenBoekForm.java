@@ -59,8 +59,6 @@ public class WeergevenBoekForm extends JFrame{
         this.pack();
 
 
-
-
         TerugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
@@ -97,7 +95,8 @@ public class WeergevenBoekForm extends JFrame{
                 BoekDAO.verwijderenBoek(value);
                 JOptionPane.showMessageDialog(null,"Boek verwijderd");
                 model.setRowCount(0);
-                for(Boek b : BoekDAO.ophalenBoeken()){
+                String titel = titelTextField.getText();
+                for(Boek b : BoekDAO.opzoekenBoek(titel)){
                     model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
                 }
             }
