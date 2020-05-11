@@ -106,56 +106,32 @@ public class BoekToevoegenForm extends JFrame {
 
                 try {
                     Long ISBN = Long.parseLong(ISBNtextField.getText());
+                    String titel = TiteltextField.getText();
+                    String auteur = AuteurtextField.getText();
+                    String uitgeverij = UitgeverijtextField.getText();
+                    String taal = null;
+                    if(nederlandsRadioButton.isSelected()) {
+                        taal = "Nederlands";
+                    } else if(fransRadioButton.isSelected()) {
+                        taal = "Frans";
+                    }else if(engelsRadioButton.isSelected()) {
+                        taal = "Engels";
+                    }
+                    Boolean kind = false;
+                    if (JaRadioButton.isSelected()) {kind = true;}
+                    String genre = GenreModel.getSelectedItem().toString();
                     int paginas = Integer.parseInt(PaginatextField.getText());
-                } catch (NumberFormatException nr){
-                    JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve (enkel) cijfers in te geven bij ISBN en paginas", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                }
-
-                Long ISBN = Long.parseLong(ISBNtextField.getText());
-                String titel = TiteltextField.getText();
-                String auteur = AuteurtextField.getText();
-                String uitgeverij = UitgeverijtextField.getText();
-
-                String taal = null;
-                if(nederlandsRadioButton.isSelected()) {
-                    taal = "Nederlands";
-                } else if(fransRadioButton.isSelected()) {
-                    taal = "Frans";
-                }else if(engelsRadioButton.isSelected()) {
-                    taal = "Engels";
-                }
-
-                Boolean kind = false;
-                if (JaRadioButton.isSelected()) {kind = true;}
-
-                String genre = GenreModel.getSelectedItem().toString();
-
-                int paginas = Integer.parseInt(PaginatextField.getText());
-
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-                try {
-                    LocalDate aankoopdatum = LocalDate.parse(AankoopdatumtextField.getText(), formatter);
-                } catch(DateTimeParseException datum){
-                    JOptionPane.showMessageDialog(boekToevoegenFrame, "Vul datum als volgt in: dd/mm/jjjj", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                }
-
-                LocalDate aankoopdatum = LocalDate.parse(AankoopdatumtextField.getText(), formatter);
-
-                try{
                     double aankoopprijs = Double.parseDouble(PrijstextField.getText());
-                } catch(NumberFormatException nr){
-                    JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve (enkel) cijfers in te geven bij aankoopprijs en een punt te gebruiken in plaats van een komma", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                }
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate aankoopdatum = LocalDate.parse(AankoopdatumtextField.getText(), formatter);
+                    if(aankoopdatum.isAfter(LocalDate.now())){
+                        JOptionPane.showMessageDialog(boekToevoegenFrame, "Je kan geen aankoopdatum in de toekomst vermelden!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    }
+                    String plaats = PlaatsInBibtextField.getText();
 
-                double aankoopprijs = Double.parseDouble(PrijstextField.getText());
-                String plaats = PlaatsInBibtextField.getText();
-
-                if (titel.length() == 0 || auteur.length() == 0 || uitgeverij.length() == 0 || plaats.length() == 0) {
-                    JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                } else if(aankoopdatum.isAfter(LocalDate.now())){
-                    JOptionPane.showMessageDialog(boekToevoegenFrame, "Je kan geen aankoopdatum in de toekomst vermelden!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                } else{
+                    if (titel.length() == 0 || auteur.length() == 0 || uitgeverij.length() == 0 || plaats.length() == 0) {
+                        JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    } else{
                         if(kind) {
                             BoekDAO.toevoegenBoek(new Kinderboek(ISBN, titel, auteur, uitgeverij, taal, genre, paginas, aankoopdatum, aankoopprijs, plaats));
                             JOptionPane.showMessageDialog(boekToevoegenFrame, "Boek toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
@@ -163,8 +139,12 @@ public class BoekToevoegenForm extends JFrame {
                             BoekDAO.toevoegenBoek(new Boek(ISBN, titel, auteur, uitgeverij, taal, genre, paginas, aankoopdatum, aankoopprijs, plaats));
                             JOptionPane.showMessageDialog(boekToevoegenFrame, "Lezer toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                         }
+                    }
+                } catch (NumberFormatException nr){
+                    JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve (enkel) cijfers in te geven bij ISBN, paginas en aankoopprijs", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                }catch(DateTimeParseException datum){
+                    JOptionPane.showMessageDialog(boekToevoegenFrame, "Vul datum als volgt in: dd/mm/jjjj", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 }
-
             }
         });
     }

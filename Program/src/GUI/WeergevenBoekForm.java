@@ -92,9 +92,7 @@ public class WeergevenBoekForm extends JFrame{
         verwijderBoek.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int row = table1.getSelectedRow();
-                System.out.println(row);
                 int value = (((int) table1.getModel().getValueAt(row, 0)));
-                System.out.println(value);
 
                 BoekDAO.verwijderenBoek(value);
                 JOptionPane.showMessageDialog(null,"Boek verwijderd");

@@ -56,16 +56,11 @@ public class UitleningForm extends JFrame {
                 try{
                     int lezerID = Integer.parseInt(lezerTextField.getText());
                     int boekID = Integer.parseInt(artikelTextField1.getText());
+                    UitleenDAO.uitleningToevoegen(new Uitlening(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(boekID)));
+                    JOptionPane.showMessageDialog(uitleningFrame, "Boek toegevoegd!");
                 } catch(NumberFormatException nr){
                     JOptionPane.showMessageDialog(uitleningFrame, "Gelieve (enkel) cijfers in te geven!");
                 }
-
-                int lezerID = Integer.parseInt(lezerTextField.getText());
-                int boekID = Integer.parseInt(artikelTextField1.getText());
-
-                UitleenDAO.uitleningToevoegen(new Uitlening(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(boekID)));
-                JOptionPane.showMessageDialog(uitleningFrame, "Boek toegevoegd!");
-
             }
         });
     }

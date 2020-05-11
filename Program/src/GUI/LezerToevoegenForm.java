@@ -13,6 +13,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 
 public class LezerToevoegenForm extends JFrame {
@@ -78,65 +79,58 @@ public class LezerToevoegenForm extends JFrame {
         });
         ToevoegenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String voornaam = voornaamTextField.getText();
-                String naam = naamTextField.getText();
-
-                // Zorgt ervoor dat er enkel cijfers kunnen worden ingegeven:
 
                 try{
+                    String voornaam = voornaamTextField.getText();
+                    String naam = naamTextField.getText();
                     int dag = Integer.parseInt(dagTextField.getText());
                     int maand = Integer.parseInt(maandTextfield.getText());
                     int jaar = Integer.parseInt(jaarTextfield.getText());
+                    LocalDate geboortedatum = LocalDate.of(jaar, maand, dag);
+                    String straatnaam = straatTextField.getText();
                     int nummer = Integer.parseInt(nummerTextField.getText());
+                    String bus = busTextField.getText();
                     int postcode = Integer.parseInt(postcodeTextField.getText());
+                    String woonplaats = woonplaatsTextField.getText();
+                    String email = emailtextField.getText();
+                    String telefoon = telefoonTextField.getText();
+                    String paswoord = String.valueOf(passwordField.getPassword());
+                    String bevestigWachtwoord = String.valueOf(bevestigPaswoord.getPassword());
+
+                    if (voornaam.length() == 0 || naam.length() == 0 || straatnaam.length() == 0 || woonplaats.length() == 0 || email.length() == 0 || telefoon.length() == 0) {
+                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    } else if(postcode < 1000 || postcode > 9999){
+                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Postcode moet uit 4 cijfers bestaan!");
+                    } else if(jaar < 1900 || jaar > 2050){
+                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve een geldig jaartal in te geven!");
+                    } else if(paswoord.length() < 4) {
+                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Wachtwoord moet minimum 4 tekens bevatten!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        if (paswoord.equals(bevestigWachtwoord)) {
+                            try {
+                                LezerDAO.toevoegenLezer(new Lezer(voornaam, naam, geboortedatum, email, telefoon, paswoord, new Adres(straatnaam, nummer, bus, postcode, woonplaats)));
+                                JOptionPane.showMessageDialog(lezerToevoegenFrame, "Lezer toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                            } catch (LezerTeJong lezerTeJong) {
+                                JOptionPane.showMessageDialog(lezerToevoegenFrame, "Lezer te jong!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                            } catch (SQLIntegrityConstraintViolationException dubbel) {
+                                JOptionPane.showMessageDialog(lezerToevoegenFrame, "Er bestaat reeds een lezer met dit emailadres!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                                emailtextField.setText("");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(lezerToevoegenFrame, "Uw wachtwoord komt niet overeen", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                            passwordField.setText("");
+                            bevestigPaswoord.setText("");
+                        }
+                    }
                 } catch(NumberFormatException nr){
                     JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve (enkel) cijfers in te geven bij dag, maand, jaar, huisnummer en postcode!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                } catch(DateTimeException dte){
+                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Ongeldige datum. Gelieve een geldige datum in te geven!");
                 }
-
-                int dag = Integer.parseInt(dagTextField.getText());
-                int maand = Integer.parseInt(maandTextfield.getText());
-                int jaar = Integer.parseInt(jaarTextfield.getText());
-                LocalDate geboortedatum = LocalDate.of(jaar, maand, dag);
-                String straatnaam = straatTextField.getText();
-                int nummer = Integer.parseInt(nummerTextField.getText());
-                String bus = busTextField.getText();
-                int postcode = Integer.parseInt(postcodeTextField.getText());
-                String woonplaats = woonplaatsTextField.getText();
-                String email = emailtextField.getText();
-                String telefoon = telefoonTextField.getText();
-
-                String paswoord = String.valueOf(passwordField.getPassword());
-                String bevestigWachtwoord = String.valueOf(bevestigPaswoord.getPassword());
-
-                if(paswoord.length() < 4) {
-                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Wachtwoord moet minimum 4 tekens bevatten!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                } else if (voornaam.length() == 0 || naam.length() == 0 || straatnaam.length() == 0 || woonplaats.length() == 0 || email.length() == 0 || telefoon.length() == 0) {
-                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                } else{
-                if (paswoord.equals(bevestigWachtwoord)) {
-                    try {
-                        LezerDAO.toevoegenLezer(new Lezer(voornaam, naam, geboortedatum, email, telefoon, paswoord, new Adres(straatnaam, nummer, bus, postcode, woonplaats)));
-                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Lezer toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
-                    } catch (LezerTeJong lezerTeJong) {
-                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Lezer te jong!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    } catch (SQLIntegrityConstraintViolationException dubbel){
-                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Er bestaat reeds een lezer met dit emailadres!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                        emailtextField.setText("");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Uw wachtwoord komt niet overeen", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    passwordField.setText("");
-                    bevestigPaswoord.setText("");
-                }
-            }}
+            }
 
     });
 }
-
-     /* Op te lossen:
-          - Jaar en postcode => verplichting toevoegen dat dit 4 cijfers moeten zijn
-          - Vermijden dat er bij voornaam, naam, straat en woonplaats cijfers kan worden ingevuld.
-     */
 
     public static void main(String[] args) { new LezerToevoegenForm(); }
 }

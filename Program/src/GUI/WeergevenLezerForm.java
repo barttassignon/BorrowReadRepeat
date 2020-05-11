@@ -95,9 +95,7 @@ public class WeergevenLezerForm extends JFrame {
         verwijderButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int row = table1.getSelectedRow();
-                System.out.println(row);
                 int value = (((int) table1.getModel().getValueAt(row, 0)));
-                System.out.println(value);
 
                 try {
                     LezerDAO.verwijderenLezer(value);

@@ -83,8 +83,6 @@ public class BeheerderToevoegenForm extends JFrame{
         });
     }
 
-    // Op te lossen: vermijden dat er cijfers ingevuld kunnen worden bij voornaam en naam
-
     public static void main(String[] args) {
         new BeheerderToevoegenForm();
     }
