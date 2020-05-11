@@ -92,7 +92,7 @@ public class BoekDAO extends BaseDAO {
         return lijstBoeken;
     }
 
-    // Ophalen boek dat wordt uitgeleend:
+    // Ophalen boek op basis van ID (voor uitlening/reservering):
 
     public static Boek uitleenBoek(int id){
         Boek boek = null;

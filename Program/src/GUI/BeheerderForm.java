@@ -4,6 +4,8 @@
 
 package GUI;
 
+import entity.Reservatie;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,11 +15,9 @@ public class BeheerderForm extends JFrame {
     private JPanel panel1;
     private JButton BoekWijzigen;
     private JButton BoekToevoegenButton;
-    private JButton BoekVerwijderen;
     private JButton Uitlening;
     private JButton reservatieButton;
     private JButton LezertoevoegenButton;
-    private JButton LezerverwijderenButton;
     private JButton wijzigenButton;
     private JButton weergevenBoek;
     private JButton weergevenButton;
@@ -47,27 +47,12 @@ public class BeheerderForm extends JFrame {
             }
         });
 
-
-
         LezertoevoegenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new LezerToevoegenForm();
                 beheerderFormFrame.dispose();
             }
         });
-
-//        LezerverwijderenButton.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                new LezerVerwijderenForm();
-//                beheerderFormFrame.dispose();
-//            }
-//        });
-//        BoekVerwijderen.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                new BoekVerwijderenForm();
-//                beheerderFormFrame.dispose();
-//            }
-//        });
 
         BoekToevoegenButton.addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent e) {
@@ -100,6 +85,14 @@ public class BeheerderForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new UitleningForm();
+                beheerderFormFrame.dispose();
+            }
+        });
+
+        reservatieButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ReservatieForm();
                 beheerderFormFrame.dispose();
             }
         });

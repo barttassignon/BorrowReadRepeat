@@ -92,7 +92,7 @@ public class LezerDAO extends BaseDAO {
         return lijst;
     }
 
-    // Ophalen lezer die een uitlening doet:
+    // Ophalen lezer op basis van ID (voor reservatie/uitlening):
 
     public static Lezer uitleenLezer(int id){
         Lezer lezer = null;

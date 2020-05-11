@@ -1,0 +1,100 @@
+package GUI;
+
+import db.BoekDAO;
+import db.LezerDAO;
+import db.ReservatieDAO;
+import entity.Boek;
+import entity.Reservatie;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ReservatieForm {
+
+    private JFrame reservatieFrame = new JFrame();
+    private JPanel panel1;
+
+    private JLabel weergevenBoekenLabel;
+    private JLabel lezerLabel;
+    private JLabel titelLabel;
+
+    private JTextField lezerTextField;
+    private JTextField titelTextField;
+
+    private JScrollPane scrollpane;
+    DefaultTableModel model = new DefaultTableModel();
+    private JTable table1;
+
+    private JButton TerugButton;
+    private JButton zoekButton;
+    private JButton alleBoekenButton;
+    private JButton reserveerButton;
+
+    public ReservatieForm() {
+
+        reservatieFrame.getContentPane().add(panel1);
+        reservatieFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        reservatieFrame.setVisible(true);
+        reservatieFrame.setSize(1200, 600);
+        reservatieFrame.setResizable(false);
+        reservatieFrame.setLocationRelativeTo(null);
+
+        table1.setAutoCreateRowSorter(true);
+        table1.setFillsViewportHeight(true);
+        table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
+        model.addColumn("BoekID");
+        model.addColumn("ISBN");
+        model.addColumn("Titel");
+        model.addColumn("Auteur");
+        model.addColumn("Uitgeverij");
+        model.addColumn("AantalBlz");
+        model.addColumn("Aankoopdatum");
+        table1.setModel(model);
+
+        TerugButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new BeheerderForm();
+                reservatieFrame.dispose();
+            }
+        });
+
+        alleBoekenButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                model.setRowCount(0);
+                for (Boek b : BoekDAO.ophalenBoeken()) {
+                    model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
+                }
+            }
+        });
+
+        zoekButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                model.setRowCount(0);
+
+                String titel = titelTextField.getText();
+
+                for (Boek b : BoekDAO.opzoekenBoek(titel)) {
+                    model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
+                }
+            }
+        });
+
+        reserveerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int row = table1.getSelectedRow();
+                int artikelnummer = (((int) table1.getModel().getValueAt(row, 0)));
+                int lezerID = Integer.parseInt(lezerTextField.getText());
+
+                ReservatieDAO.maakReservatie(new Reservatie(LezerDAO.uitleenLezer(lezerID), BoekDAO.uitleenBoek(artikelnummer)));
+                JOptionPane.showMessageDialog(null, "Reservatie gemaakt!");
+            }
+        });
+
+
+    }
+    public static void main(String[] args) { new ReservatieForm(); }
+}
+

@@ -8,6 +8,13 @@ public class Reservatie extends Transactie{
     private int reservatieId;
     private LocalDate reservatieDatum;
 
+    // Constructor om nieuwe reservatie toe te voegen:
+
+    public Reservatie(Lezer lezer, Boek boek) {
+        super(lezer, boek);
+        reservatieDatum = LocalDate.now();
+    }
+
     public int getReservatieId() {
         return reservatieId;
     }
