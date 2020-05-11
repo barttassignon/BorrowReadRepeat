@@ -92,6 +92,8 @@ public class ReservatieForm {
 
                     if(LezerDAO.ophalenLezer(lezerID) == null){
                         JOptionPane.showMessageDialog(null, "Geen lezer gevonden met dit lezerID!");
+                    } else if(BoekDAO.ophalenBoek(artikelnummer).isGereserveerd()){
+                        JOptionPane.showMessageDialog(null, "Boek is reeds gereserveerd door iemand anders!");
                     } else{
                         ReservatieDAO.maakReservatie(new Reservatie(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(artikelnummer)));
                         BoekDAO.isGereserveerd(artikelnummer);
@@ -102,6 +104,7 @@ public class ReservatieForm {
                 } catch (ArrayIndexOutOfBoundsException oob) {
                     JOptionPane.showMessageDialog(null, "Selecteer een boek in de tabel!");
                 }
+
             }
         });
 

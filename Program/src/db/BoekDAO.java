@@ -120,7 +120,7 @@ public class BoekDAO extends BaseDAO {
             s.setString(1, "%"+titel+"%");
             ResultSet rs = s.executeQuery();
             while (rs.next()){
-                lijst.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class)));
+                lijst.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class), rs.getDouble(11), rs.getString(12), rs.getBoolean(13), rs.getBoolean(14), rs.getInt(15)));
             }
 
             } catch (SQLException e){
