@@ -51,6 +51,23 @@ public class Boek {
         this.aankoopdatum = aankoopdatum;
     }
 
+    // Constructor om alle nuttige info van een boek op te halen m.b.t. status:
+
+    public Boek(int artikelnummer, long ISBN, String titel, String auteur, String uitgeverij, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib, boolean gereserveerd, boolean uitgeleend, int aantalKeerUitgeleend) {
+        this.artikelnummer = artikelnummer;
+        this.ISBN = ISBN;
+        this.titel = titel;
+        this.auteur = auteur;
+        this.uitgeverij = uitgeverij;
+        this.paginas = paginas;
+        this.aankoopdatum = aankoopdatum;
+        this.prijs = prijs;
+        this.plaatsInBib = plaatsInBib;
+        this.gereserveerd = gereserveerd;
+        this.uitgeleend = uitgeleend;
+        this.aantalKeerUitgeleend = aantalKeerUitgeleend;
+    }
+
 
     // Constructor om boek te kunnen toevoegen:
 

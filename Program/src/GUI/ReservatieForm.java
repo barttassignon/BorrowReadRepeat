@@ -84,12 +84,24 @@ public class ReservatieForm {
 
         reserveerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int row = table1.getSelectedRow();
-                int artikelnummer = (((int) table1.getModel().getValueAt(row, 0)));
-                int lezerID = Integer.parseInt(lezerTextField.getText());
 
-                ReservatieDAO.maakReservatie(new Reservatie(LezerDAO.uitleenLezer(lezerID), BoekDAO.uitleenBoek(artikelnummer)));
-                JOptionPane.showMessageDialog(null, "Reservatie gemaakt!");
+                try{
+                    int lezerID = Integer.parseInt(lezerTextField.getText());
+                    int row = table1.getSelectedRow();
+                    int artikelnummer = (((int) table1.getModel().getValueAt(row, 0)));
+
+                    if(LezerDAO.ophalenLezer(lezerID) == null){
+                        JOptionPane.showMessageDialog(null, "Geen lezer gevonden met dit lezerID!");
+                    } else{
+                        ReservatieDAO.maakReservatie(new Reservatie(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(artikelnummer)));
+                        BoekDAO.isGereserveerd(artikelnummer);
+                        JOptionPane.showMessageDialog(null, "Reservatie gemaakt!");
+                    }
+                } catch(NumberFormatException nr){
+                    JOptionPane.showMessageDialog(null, "Geef een (geldig) lezerID in!");
+                } catch (ArrayIndexOutOfBoundsException oob) {
+                    JOptionPane.showMessageDialog(null, "Selecteer een boek in de tabel!");
+                }
             }
         });
 

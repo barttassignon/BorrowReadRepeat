@@ -3,6 +3,7 @@ package db;
 import entity.Boek;
 import entity.Kinderboek;
 import entity.Lezer;
+import entity.Reservatie;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -94,14 +95,14 @@ public class BoekDAO extends BaseDAO {
 
     // Ophalen boek op basis van ID (voor uitlening/reservering):
 
-    public static Boek uitleenBoek(int id){
+    public static Boek ophalenBoek(int id){
         Boek boek = null;
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select * from Boeken where Boek_ID = ?");
             s.setInt(1, id);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
-                boek = new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class));
+                boek = new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class), rs.getDouble(11), rs.getString(12), rs.getBoolean(13), rs.getBoolean(14), rs.getInt(15));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -142,6 +143,101 @@ public class BoekDAO extends BaseDAO {
             } else {
                 System.out.println("Er bestaat geen boek met dit artikelnummer");
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+
+    // methode om status boek te wijzigen naar gereserveerd:
+
+    public static void isGereserveerd(int artikelnummer) {
+
+        try (Connection c = getConn()) {
+
+            PreparedStatement s = c.prepareStatement("update Boeken set isGereserveerd = true where Boek_ID = ?");
+            s.setInt(1, artikelnummer);
+
+            int result = s.executeUpdate();
+            if (result > 0)
+                System.out.println("Status boek = gereserveerd");
+            else System.out.println("Status boek kon niet worden aangepast!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+
+    // methode om status boek te wijzigen naar niet gereserveerd:
+
+    public static void nietGereserveerd(int artikelnummer) {
+
+        try (Connection c = getConn()) {
+
+            PreparedStatement s = c.prepareStatement("update Boeken set isGereserveerd = false where Boek_ID = ?");
+            s.setInt(1, artikelnummer);
+
+            int result = s.executeUpdate();
+            if (result > 0)
+                System.out.println("Status boek = niet gereserveerd");
+            else System.out.println("Status boek kon niet worden aangepast!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+
+    // methode om status boek te wijzigen naar uitgeleend:
+
+    public static void isUitgeleend(int artikelnummer) {
+
+        try (Connection c = getConn()) {
+
+            PreparedStatement s = c.prepareStatement("update Boeken set isUitgeleend = true where Boek_ID = ?");
+            s.setInt(1, artikelnummer);
+
+            int result = s.executeUpdate();
+            if (result > 0)
+                System.out.println("Status boek = uitgeleend");
+            else System.out.println("Status boek kon niet worden aangepast!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+
+    // methode om status boek te wijzigen naar niet uitgeleend:
+
+    public static void nietUitgeleend(int artikelnummer) {
+
+        try (Connection c = getConn()) {
+
+            PreparedStatement s = c.prepareStatement("update Boeken set isUitgeleend = false where Boek_ID = ?");
+            s.setInt(1, artikelnummer);
+
+            int result = s.executeUpdate();
+            if (result > 0)
+                System.out.println("Status boek = niet uitgeleend");
+            else System.out.println("Status boek kon niet worden aangepast!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+
+    // methode om aantal uitleningen boek te verhogen:
+
+    public static void verhoogAantalKeerUitgeleend(int artikelnummer) {
+
+        try (Connection c = getConn()) {
+
+            PreparedStatement s = c.prepareStatement("update Boeken set AantalKeerUitgeleend = AantalKeerUitgeleend + 1 where Boek_ID = ?");
+            s.setInt(1, artikelnummer);
+
+            int result = s.executeUpdate();
+            if (result > 0)
+                System.out.println("AantalKeerUitgeleend werd verhoogd met 1");
+            else System.out.println("AantalKeerUitgeleend kon niet worden aangepast!");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");

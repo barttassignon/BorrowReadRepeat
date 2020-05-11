@@ -94,7 +94,7 @@ public class LezerDAO extends BaseDAO {
 
     // Ophalen lezer op basis van ID (voor reservatie/uitlening):
 
-    public static Lezer uitleenLezer(int id){
+    public static Lezer ophalenLezer(int id){
         Lezer lezer = null;
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select * from Lezers where Lezer_ID = ?");

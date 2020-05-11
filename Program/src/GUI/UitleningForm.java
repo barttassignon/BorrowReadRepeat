@@ -63,7 +63,7 @@ public class UitleningForm extends JFrame {
                 int lezerID = Integer.parseInt(lezerTextField.getText());
                 int boekID = Integer.parseInt(artikelTextField1.getText());
 
-                UitleenDAO.uitleningToevoegen(new Uitlening(LezerDAO.uitleenLezer(lezerID), BoekDAO.uitleenBoek(boekID)));
+                UitleenDAO.uitleningToevoegen(new Uitlening(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(boekID)));
                 JOptionPane.showMessageDialog(uitleningFrame, "Boek toegevoegd!");
 
             }
