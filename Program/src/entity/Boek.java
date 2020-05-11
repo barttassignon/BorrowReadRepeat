@@ -16,7 +16,6 @@ public class Boek {
     private String genre1;
     private int paginas;
     private LocalDate aankoopdatum;
-    private LocalDate aankoopdatumDB;
     private double prijs;
     private String plaatsInBib;
     private boolean gereserveerd;
@@ -82,7 +81,6 @@ public class Boek {
         this.genre1 = genre1;
         this.paginas = paginas;
         this.aankoopdatum = aankoopdatum;
-        this.aankoopdatumDB = aankoopdatum.plusDays(1);
         this.prijs = prijs;
         this.plaatsInBib = plaatsInBib;
         this.gereserveerd = false;
@@ -154,8 +152,6 @@ public class Boek {
     public void setAankoopdatum(LocalDate aankoopdatum) {
         this.aankoopdatum = aankoopdatum;
     }
-
-    public LocalDate getAankoopdatumDB() { return aankoopdatumDB; }
 
     public double getPrijs() {
         return prijs;

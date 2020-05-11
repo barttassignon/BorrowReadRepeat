@@ -4,7 +4,6 @@
 
 package GUI;
 
-import db.LezerDAO;
 import entity.*;
 import db.BoekDAO;
 

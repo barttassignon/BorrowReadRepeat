@@ -28,7 +28,7 @@ public class BoekDAO extends BaseDAO {
             s.setString(5, boek.getTaal1());
             s.setString(6, boek.getGenre1());
             s.setInt(7, boek.getPaginas());
-            s.setObject(8, boek.getAankoopdatumDB());
+            s.setObject(8, boek.getAankoopdatum());
             s.setDouble(9, boek.getPrijs());
             s.setString(10, boek.getPlaatsInBib());
 
@@ -58,7 +58,7 @@ public class BoekDAO extends BaseDAO {
             s.setString(5, boek.getTaal1());
             s.setString(6, boek.getGenre1());
             s.setInt(7, boek.getPaginas());
-            s.setObject(8, boek.getAankoopdatumDB());
+            s.setObject(8, boek.getAankoopdatum());
             s.setDouble(9, boek.getPrijs());
             s.setString(10, boek.getPlaatsInBib());
 

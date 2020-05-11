@@ -13,8 +13,6 @@ public class Lezer extends Persoon {
 
     private int id;
     private LocalDate geboortedatum;
-    private LocalDate geboortedatumDB;
-    // toegevoegd door Bart na aanmaak klasse Adres
     private Adres adres;
     private String email;
     private String telefoon;
@@ -28,7 +26,6 @@ public class Lezer extends Persoon {
     public Lezer(String voornaam, String naam, LocalDate geboortedatum, String email, String telefoon, String wachtwoord, Adres adres) {
         super(voornaam, naam);
         this.geboortedatum = geboortedatum;
-        this.geboortedatumDB = geboortedatum.plusDays(1);
         this.email = email;
         this.telefoon = telefoon;
         this.wachtwoord = wachtwoord;
@@ -79,8 +76,6 @@ public class Lezer extends Persoon {
     {
         this.geboortedatum = geboortedatum;
     }
-
-    public LocalDate getGeboortedatumDB() { return geboortedatumDB; }
 
     public Adres getAdres() {
         return adres;
