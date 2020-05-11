@@ -6,6 +6,7 @@ import java.util.HashSet;
 public class Uitlening extends Transactie{
 
     private int uitleen_ID;
+    private int lezer_ID;
     private LocalDate datumUitgeleend;
     private LocalDate datumVerlengd;
     private LocalDate datumIngeleverd;
@@ -29,6 +30,17 @@ public class Uitlening extends Transactie{
         this.datumIngeleverd = datumIngeleverd;
         else System.out.println("Foutieve invoer");
     }
+
+    // Constructoren om uitleningen te kunnen weergeven:
+
+    public Uitlening(int uitleen_ID, int lezer_ID, LocalDate datumUitgeleend, LocalDate datumVerlengd, LocalDate datumIngeleverd) {
+        this.uitleen_ID = uitleen_ID;
+        this.lezer_ID = lezer_ID;
+        this.datumUitgeleend = datumUitgeleend;
+        this.datumVerlengd = datumVerlengd;
+        this.datumIngeleverd = datumIngeleverd;
+    }
+
 
     public int getUitleen_ID() {
         return uitleen_ID;

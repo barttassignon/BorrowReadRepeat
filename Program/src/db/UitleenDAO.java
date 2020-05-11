@@ -1,5 +1,7 @@
 package db;
 
+import entity.Beheerder;
+import entity.Lezer;
 import entity.Uitlening;
 
 import java.sql.Connection;
@@ -70,4 +72,26 @@ public class UitleenDAO extends BaseDAO {
         }
         return lijstUitlening;
     }
+
+// Ophalen alle uitleningen van lezer:
+
+    public ArrayList<Uitlening> uitleenGeschiedenisLezer(String id) {
+        ArrayList<Uitlening> lijst = new ArrayList<>();
+        try (Connection c = getConn()) {
+            PreparedStatement s = c.prepareStatement("select * from Uitleningen where Lezer_ID = ?");
+            s.setString(1, id);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                lijst.add(new Uitlening(rs.getInt(1), rs.getInt(2), rs.getObject(3, LocalDate.class), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class)));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+
+        return lijst;
+    }
+
+
 }
