@@ -116,7 +116,7 @@ public class LezerDAO extends BaseDAO {
         ArrayList<Lezer> lijst = new ArrayList<>();
 
         try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("select * from Lezers where voornaam LIKE ? OR naam LIKE ?");
+            PreparedStatement s = c.prepareStatement("select * from Lezers where voornaam LIKE ? AND naam LIKE ?");
             s.setString(1, "%" + voornaam + "%");
             s.setString(2, "%" + naam + "%");
             ResultSet rs = s.executeQuery();

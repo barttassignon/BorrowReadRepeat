@@ -131,11 +131,5 @@ public class Lezer extends Persoon {
         return "ID: " + getId() + ", " + super.toString() + ", geboortedatum: " + getGeboortedatum().getDayOfMonth() + "/" + getGeboortedatum().getMonth().getValue() + "/" + getGeboortedatum().getYear() +
                 ", email: " + getEmail();
     }
-
-    public boolean controleEmailadres(String email)
-    {
-        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-        return email.matches(regex);
-    }
 }
 

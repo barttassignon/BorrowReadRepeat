@@ -36,15 +36,14 @@ public class DatabaseSingleton {
         try {
             if (connection == null || connection.isClosed()) {
 
+                // URL database en login-gegevens ophalen uit bestand
+
                 FileInputStream fis = new FileInputStream("connection.properties");
                 Properties p = new Properties ();
                 p.load (fis);
                 String url= (String) p.get ("URL");
                 String username= (String) p.get ("username");
                 String password= (String) p.get ("password");
-                //String url = "jdbc:mysql://dt5.ehb.be/1920mobappgr1";
-                //String user = "1920mobappgr1";
-                //String password = "XNnhDjw";
 
                 connection = DriverManager.getConnection(url, username, password);
             }
@@ -67,17 +66,5 @@ public class DatabaseSingleton {
     @Override
     protected Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException();
-    }
-
-    public static void main(String[] args) {
-
-        String url = "jdbc:mysql://dt5.ehb.be/1920mobappgr1";
-        String user = "1920mobappgr1";
-        String password = "XNnhDjw";
-        try {
-            Connection con = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -89,6 +89,11 @@ public class WeergevenLezerForm extends JFrame {
                 for(Lezer l : LezerDAO.opzoekenLezer(voornaam, naam)){
                     model.addRow(new Object[]{l.getId(), l.getVoornaam(), l.getNaam(), l.getGeboortedatum(), l.getEmail(), l.getTelefoon()});
                 }
+
+                if(LezerDAO.opzoekenLezer(voornaam, naam).size() == 0)
+                {
+                    JOptionPane.showMessageDialog(opzoekenLezerFrame, "Geen lezers gevonden met deze naam.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
 
