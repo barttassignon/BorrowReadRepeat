@@ -59,13 +59,13 @@ public class DatabaseSingleton {
 
                 connection = DriverManager.getConnection(url, username, password);
 
-                // Loglevel Severe. message in console en in 'logging.txt' bestand telkens er connectie w gemaakt met DB
+                // Loglevel Info. message in console en in 'logging.txt' bestand telkens er connectie w gemaakt met DB
                 FileHandler fileTxt = new FileHandler("Logging.txt");
                 formatterTxt = new SimpleFormatter();
                 fileTxt.setFormatter(formatterTxt);
                 LOGGER.addHandler(fileTxt);
-                LOGGER.log(Level.SEVERE, "Connectie met SQL Database gemaakt.");
-                LOGGER.severe("Info Log");
+                LOGGER.log(Level.INFO, "Connectie met SQL Database gemaakt.");
+
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
