@@ -64,8 +64,8 @@ public class DatabaseSingleton {
                 formatterTxt = new SimpleFormatter();
                 fileTxt.setFormatter(formatterTxt);
                 LOGGER.addHandler(fileTxt);
-                LOGGER.log(Level.SEVERE, "Connectie met SQL Database gemaakt.");
-                LOGGER.severe("Info Log");
+                LOGGER.log(Level.INFO, "Connectie met SQL Database gemaakt.");
+
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
