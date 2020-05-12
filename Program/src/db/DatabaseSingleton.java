@@ -36,14 +36,15 @@ public class DatabaseSingleton {
         try {
             if (connection == null || connection.isClosed()) {
 
-                // URL database en login-gegevens ophalen uit bestand
-
+                // Bestand met URL database en login-gegevens ophalen en uitlezen
                 FileInputStream fis = new FileInputStream("connection.properties");
+                // Properties-klasse aanmaken om key/value-pairs in dit bestand te kunnen uitlezen
                 Properties p = new Properties ();
+                // Load-functie om gegevens effectief uit te lezen
                 p.load (fis);
-                String url= (String) p.get ("URL");
-                String username= (String) p.get ("username");
-                String password= (String) p.get ("password");
+                String url = (String) p.get("URL");
+                String username = (String) p.get("username");
+                String password = (String) p.get("password");
 
                 connection = DriverManager.getConnection(url, username, password);
             }

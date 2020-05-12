@@ -100,7 +100,7 @@ public class UitleenDAO extends BaseDAO {
         return lijstUitlening;
     }
 
-// Ophalen alle uitleningen van lezer:
+// Ophalen alle uitleningen van specifieke lezer:
 
     public static ArrayList<Uitlening> uitleengeschiedenisLezer(int lezerID) {
         ArrayList<Uitlening> lijst = new ArrayList<>();
@@ -138,5 +138,23 @@ public class UitleenDAO extends BaseDAO {
         return uitlening;
     }
 
+// Ophalen alle uitleningen van specifiek boek:
 
+    public static ArrayList<Uitlening> uitleengeschiedenisBoek(int boekID) {
+        ArrayList<Uitlening> lijst = new ArrayList<>();
+        try (Connection c = getConn()) {
+            PreparedStatement s = c.prepareStatement("select * from Uitleningen where Boek_ID = ?");
+            s.setInt(1, boekID);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                lijst.add(new Uitlening(new Lezer(rs.getInt(2)), new Boek(rs.getInt(3)), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+
+        return lijst;
+    }
 }
