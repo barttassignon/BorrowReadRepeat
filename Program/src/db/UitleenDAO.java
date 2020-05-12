@@ -157,4 +157,36 @@ public class UitleenDAO extends BaseDAO {
 
         return lijst;
     }
-}
+
+    // Per lezer max. 10 boeken tegelijk uitlenen, waarvan max. 5 normale boeken:
+
+    public static int aantalUitleningenPerLezer(int Lezer_ID) {
+        int aantal = 0;
+        try (Connection c = getConn()) {
+            PreparedStatement s = c.prepareStatement("select count(Lezer_ID) from Uitleningen where Lezer_ID = ? AND Inleverdatum is null");
+            s.setInt(1, Lezer_ID);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                aantal = rs.getInt(1);}
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+            return aantal;
+        }
+
+    public static int aantalVolwassenboekenPerLezer(int Lezer_ID) {
+        int aantal = 0;
+        try (Connection c = getConn()) {
+            PreparedStatement s = c.prepareStatement("select count(isKinderboek) from Boeken b join Uitleningen u on (b.Boek_ID = u.Boek_ID) where isKinderboek = ? AND Lezer_ID = ? AND Inleverdatum is null");
+            s.setInt(1, 0);
+            s.setInt(2, Lezer_ID);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                aantal = rs.getInt(1);}
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return aantal;
+    }
+
+    }
