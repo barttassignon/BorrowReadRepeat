@@ -36,6 +36,7 @@ public class UitleenDAO extends BaseDAO {
         }
     }
 
+    // Een uitlening verlengen:
 
     public static void verlengUitlening(int uitleenID){
         try (Connection c = getConn()) {
@@ -51,6 +52,29 @@ public class UitleenDAO extends BaseDAO {
             if (result1 > 0)
                 System.out.println("Verlenging toegevoegd!");
             else System.out.println("De verlenging kon niet worden toegevoegd!");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+
+    // Een uitlening terugbrengen:
+
+    public static void binnenbrengenUitlening(int boekID){
+        try (Connection c = getConn()) {
+
+            // Tabel uitlening updaten:
+
+            PreparedStatement s = c.prepareStatement("update Uitleningen set Inleverdatum = ? where Boek_ID = ? AND Inleverdatum is null");
+            s.setObject(1, LocalDate.now());
+            s.setInt(2, boekID);
+
+            int result1 = s.executeUpdate();
+
+            if (result1 > 0)
+                System.out.println("Boek teruggebracht!");
+            else System.out.println("Boek niet teruggebracht!");
 
         } catch (SQLException e) {
             e.printStackTrace();
