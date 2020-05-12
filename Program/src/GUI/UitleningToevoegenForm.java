@@ -2,6 +2,7 @@ package GUI;
 
 import db.BoekDAO;
 import db.LezerDAO;
+import db.ReservatieDAO;
 import db.UitleenDAO;
 import entity.Uitlening;
 
@@ -46,14 +47,23 @@ public class UitleningToevoegenForm extends JFrame {
                     int lezerID = Integer.parseInt(lezerTextField.getText());
                     int boekID = Integer.parseInt(artikelTextField1.getText());
 
-                    if(UitleenDAO.aantalUitleningenPerLezer(lezerID) >= 10){
-                        JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Max. totaal aantal boeken bereikt!");
-                    } else if((UitleenDAO.aantalVolwassenboekenPerLezer(lezerID) >= 5) && (BoekDAO.ophalenBoek(boekID).isKinderboek() == false)) {
-                        JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Max. aantal boeken voor volwassenen bereikt!");
-                    } else{
-                        UitleenDAO.uitleningToevoegen(new Uitlening(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(boekID)));
-                        BoekDAO.isUitgeleend(boekID);
-                        JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Uitlening toegevoegd!");
+                    if((BoekDAO.ophalenBoek(boekID).isGereserveerd() == true) && (lezerID != ReservatieDAO.ophalenReservatie(boekID))){
+                        JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Boek gereserveerd door iemand anders!");
+                    } else {
+                        if(UitleenDAO.aantalUitleningenPerLezer(lezerID) >= 10){
+                            JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Max. totaal aantal boeken bereikt!");
+                        } else if((UitleenDAO.aantalVolwassenboekenPerLezer(lezerID) >= 5) && (BoekDAO.ophalenBoek(boekID).isKinderboek() == false)) {
+                            JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Max. aantal boeken voor volwassenen bereikt!");
+                        } else{
+                            UitleenDAO.uitleningToevoegen(new Uitlening(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(boekID)));
+                            BoekDAO.isUitgeleend(boekID);
+                            if(BoekDAO.ophalenBoek(boekID).isGereserveerd() == true){
+                                BoekDAO.nietGereserveerd(boekID);
+                                ReservatieDAO.eindeReservatie(boekID);
+                            }
+
+                            JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Uitlening toegevoegd!");
+                        }
                     }
                 } catch(NumberFormatException nr){
                     JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Gelieve (enkel) cijfers in te geven!");

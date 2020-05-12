@@ -7,6 +7,7 @@ import java.util.*;
 public class Reservatie extends Transactie{
     private int reservatieId;
     private LocalDate reservatieDatum;
+    private LocalDate einddatum;
 
     // Constructor om nieuwe reservatie toe te voegen:
 
@@ -30,6 +31,10 @@ public class Reservatie extends Transactie{
     public void setReservatieDatum(LocalDate reservatieDatum) {
         this.reservatieDatum = reservatieDatum;
     }
+
+    public LocalDate getEinddatum() { return einddatum; }
+
+    public void setEinddatum(LocalDate einddatum) { this.einddatum = einddatum; }
 
     @Override
     public String toString() {
