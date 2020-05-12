@@ -10,9 +10,12 @@ package db;
  * 4. Bestand toevoegen aan project (File -> Project Structure -> Libraries -> New Project Library -> bestand selecteren -> Apply)
  */
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DatabaseSingleton {
 
@@ -32,14 +35,20 @@ public class DatabaseSingleton {
     public Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {
-                String url = "jdbc:mysql://dt5.ehb.be/1920mobappgr1";
-                String user = "1920mobappgr1";
-                String password = "XNnhDjw";
 
-                // Nog aan te passen! In werkelijkheid niet hardcoded: meesturen als argument in logic vanuit config file
-                connection = DriverManager.getConnection(url, user, password);
+                FileInputStream fis = new FileInputStream("connection.properties");
+                Properties p = new Properties ();
+                p.load (fis);
+                String url= (String) p.get ("URL");
+                String username= (String) p.get ("username");
+                String password= (String) p.get ("password");
+                //String url = "jdbc:mysql://dt5.ehb.be/1920mobappgr1";
+                //String user = "1920mobappgr1";
+                //String password = "XNnhDjw";
+
+                connection = DriverManager.getConnection(url, username, password);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
         return connection;
