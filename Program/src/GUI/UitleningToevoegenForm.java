@@ -45,9 +45,16 @@ public class UitleningToevoegenForm extends JFrame {
                 try{
                     int lezerID = Integer.parseInt(lezerTextField.getText());
                     int boekID = Integer.parseInt(artikelTextField1.getText());
-                    UitleenDAO.uitleningToevoegen(new Uitlening(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(boekID)));
-                    BoekDAO.isUitgeleend(boekID);
-                    JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Uitlening toegevoegd!");
+
+                    if(UitleenDAO.aantalUitleningenPerLezer(lezerID) >= 10){
+                        JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Max. totaal aantal boeken bereikt!");
+                    } else if((UitleenDAO.aantalVolwassenboekenPerLezer(lezerID) >= 5) && (BoekDAO.ophalenBoek(boekID).isKinderboek() == false)) {
+                        JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Max. aantal boeken voor volwassenen bereikt!");
+                    } else{
+                        UitleenDAO.uitleningToevoegen(new Uitlening(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(boekID)));
+                        BoekDAO.isUitgeleend(boekID);
+                        JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Uitlening toegevoegd!");
+                    }
                 } catch(NumberFormatException nr){
                     JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Gelieve (enkel) cijfers in te geven!");
                 } catch(NullPointerException npe){
