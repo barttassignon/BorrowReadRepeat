@@ -82,6 +82,7 @@ public class ReservatieForm {
             }
         });
 
+
         reserveerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
@@ -107,9 +108,10 @@ public class ReservatieForm {
 
             }
         });
-
-
     }
+
+   
+
     public static void main(String[] args) { new ReservatieForm(); }
 }
 

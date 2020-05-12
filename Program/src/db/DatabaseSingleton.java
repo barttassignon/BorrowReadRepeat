@@ -10,17 +10,27 @@ package db;
  * 4. Bestand toevoegen aan project (File -> Project Structure -> Libraries -> New Project Library -> bestand selecteren -> Apply)
  */
 
+import entity.OnzeLogger;
+
+import javax.swing.*;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class DatabaseSingleton {
 
     private Connection connection = null;
     private static DatabaseSingleton instance = null;
+    private final static java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(OnzeLogger.class.getName());
+    private static SimpleFormatter formatterTxt;
 
     private DatabaseSingleton()
     {}
@@ -33,6 +43,7 @@ public class DatabaseSingleton {
     }
 
     public Connection getConnection() {
+
         try {
             if (connection == null || connection.isClosed()) {
 
@@ -47,11 +58,21 @@ public class DatabaseSingleton {
                 String password = (String) p.get("password");
 
                 connection = DriverManager.getConnection(url, username, password);
+
+                // Loglevel Severe. message in console en in 'logging.txt' bestand telkens er connectie w gemaakt met DB
+                FileHandler fileTxt = new FileHandler("Logging.txt");
+                formatterTxt = new SimpleFormatter();
+                fileTxt.setFormatter(formatterTxt);
+                LOGGER.addHandler(fileTxt);
+                LOGGER.log(Level.SEVERE, "Connectie met SQL Database gemaakt.");
+                LOGGER.severe("Info Log");
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
         return connection;
+
+
     }
 
     public void disconnect() {
