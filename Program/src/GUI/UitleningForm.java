@@ -3,6 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
 
 public class UitleningForm {
 
@@ -14,6 +15,7 @@ public class UitleningForm {
     private JButton toevoegenButton;
     private JButton binnenbrengenButton;
     private JButton verlengButton;
+    private JButton weergevenButton;
     private JButton terugButton;
 
     public UitleningForm() {
@@ -56,6 +58,16 @@ public class UitleningForm {
             }
         });
 
+        weergevenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new UitleningVerlengenForm();
+                uitleningFrame.dispose();
+            }
+        });
+
+        panel1.addComponentListener(new ComponentAdapter() {
+        });
     }
 
     public static void main(String[] args) {
