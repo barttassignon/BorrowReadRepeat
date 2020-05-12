@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 public class UitleningVerlengenForm {
 
@@ -45,6 +46,7 @@ public class UitleningVerlengenForm {
         table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
         model.addColumn("UitleenID");
         model.addColumn("LezerID");
+        model.addColumn("Boeknummer");
         model.addColumn("Titel");
         model.addColumn("Uitleendatum");
         model.addColumn("Verlengdatum");
@@ -62,7 +64,7 @@ public class UitleningVerlengenForm {
             public void actionPerformed(ActionEvent e) {
                 model.setRowCount(0);
                 for(Uitlening u : UitleenDAO.ophalenUitleningen()){
-                    model.addRow(new Object[]{u.getUitleen_ID(), u.getLezer().getId(), u.getBoek().getArtikelnummer(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
+                    model.addRow(new Object[]{u.getUitleen_ID(), u.getLezer().getId(), u.getBoek().getArtikelnummer(), BoekDAO.ophalenBoek(u.getBoek().getArtikelnummer()).getTitel(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
                 }
             }
         });
@@ -74,7 +76,11 @@ public class UitleningVerlengenForm {
                 try{
                     int lezerID = Integer.parseInt(lezerTextField.getText());
                     for(Uitlening u : UitleenDAO.uitleengeschiedenisLezer(lezerID)){
-                        model.addRow(new Object[]{u.getUitleen_ID(), u.getLezer().getId(), u.getBoek().getArtikelnummer(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
+                        model.addRow(new Object[]{u.getUitleen_ID(), u.getLezer().getId(), u.getBoek().getArtikelnummer(), BoekDAO.ophalenBoek(u.getBoek().getArtikelnummer()).getTitel(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
+                    }
+                    if(UitleenDAO.uitleengeschiedenisLezer(lezerID).size() == 0)
+                    {
+                        JOptionPane.showMessageDialog(uitleningverlengenFrame, "Geen lezer gevonden met dit ID.");
                     }
                 } catch (NumberFormatException nr){
                     JOptionPane.showMessageDialog(uitleningverlengenFrame, "Gelieve enkel cijfers in te vullen!");
@@ -87,13 +93,19 @@ public class UitleningVerlengenForm {
             public void actionPerformed(ActionEvent e) {
                 int row = table1.getSelectedRow();
                 int uitleenID = (((int) table1.getModel().getValueAt(row, 0)));
+                int boekID = (((int) table1.getModel().getValueAt(row, 2)));
 
-                UitleenDAO.verlengUitlening(uitleenID);
-                JOptionPane.showMessageDialog(null,"Uitlening verlengd!");
-                model.setRowCount(0);
-                int lezerID = Integer.parseInt(lezerTextField.getText());
-                for(Uitlening u : UitleenDAO.uitleengeschiedenisLezer(lezerID)){
-                    model.addRow(new Object[]{u.getUitleen_ID(), u.getLezer().getId(), u.getBoek().getArtikelnummer(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
+                if(UitleenDAO.ophalenUitlening(uitleenID).getDatumVerlengd() != null) {
+                    JOptionPane.showMessageDialog(null, "Uitlening werd reeds eerder verlengd!");
+                } else if(BoekDAO.ophalenBoek(boekID).isGereserveerd() == true){
+                    JOptionPane.showMessageDialog(null, "Boek door iemand anders gereserveerd!");
+                } else {
+                    UitleenDAO.verlengUitlening(uitleenID);
+                    JOptionPane.showMessageDialog(null, "Uitlening verlengd!");
+                    model.setRowCount(0);
+                    for (Uitlening u : UitleenDAO.ophalenUitleningen()) {
+                        model.addRow(new Object[]{u.getUitleen_ID(), u.getLezer().getId(), u.getBoek().getArtikelnummer(), BoekDAO.ophalenBoek(u.getBoek().getArtikelnummer()).getTitel(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
+                    }
                 }
             }
         });

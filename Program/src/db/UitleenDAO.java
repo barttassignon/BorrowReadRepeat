@@ -5,10 +5,7 @@ import entity.Boek;
 import entity.Lezer;
 import entity.Uitlening;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -39,15 +36,15 @@ public class UitleenDAO extends BaseDAO {
         }
     }
 
-    // Werkt nog niet => LocalDate.now().
 
     public static void verlengUitlening(int uitleenID){
         try (Connection c = getConn()) {
 
             // Tabel uitlening updaten:
 
-            PreparedStatement s = c.prepareStatement("update Uitleningen set Verlengdatum = LocalDate.now() where Uitleen_ID = ?");
-            s.setInt(1, uitleenID);
+            PreparedStatement s = c.prepareStatement("update Uitleningen set Verlengdatum = ? where Uitleen_ID = ?");
+            s.setObject(1, LocalDate.now());
+            s.setInt(2, uitleenID);
 
             int result1 = s.executeUpdate();
 
@@ -97,6 +94,24 @@ public class UitleenDAO extends BaseDAO {
         }
 
         return lijst;
+    }
+
+    // Ophalen uitlening op basis van uitleenID:
+
+    public static Uitlening ophalenUitlening(int id){
+        Uitlening uitlening = null;
+        try (Connection c = getConn()) {
+            PreparedStatement s = c.prepareStatement("select * from Uitleningen where Uitleen_ID = ?");
+            s.setInt(1, id);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                uitlening = new Uitlening(new Lezer(rs.getInt(2)), new Boek(rs.getInt(3)), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+        return uitlening;
     }
 
 
