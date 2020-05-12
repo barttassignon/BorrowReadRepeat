@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.UitleningWeergevenForm">
+  <grid id="27dc6" binding="panel1" layout-manager="GridLayoutManager" row-count="5" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="15" left="15" bottom="15" right="15"/>
+    <constraints>
+      <xy x="20" y="20" width="630" height="400"/>
+    </constraints>
+    <properties>
+      <background color="-4992257"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="e6ffe" class="javax.swing.JLabel" binding="weergevenUitleningLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="36" style="1"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Weergeven Uitleningen"/>
+          <verticalAlignment value="3"/>
+          <verticalTextPosition value="3"/>
+        </properties>
+      </component>
+      <vspacer id="a1003">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <scrollpane id="64bc8" binding="scrollpane">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="e6f99" class="javax.swing.JTable" binding="table1" default-binding="true">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="d6216" class="javax.swing.JButton" binding="TerugBotton">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="14"/>
+          <horizontalAlignment value="2"/>
+          <text value="&lt;-- Terug"/>
+        </properties>
+      </component>
+      <component id="7e6e3" class="javax.swing.JLabel" binding="artikelNummer">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <foreground color="-12508416"/>
+          <horizontalAlignment value="2"/>
+          <text value="Artikelnummer :"/>
+        </properties>
+      </component>
+      <component id="1fe95" class="javax.swing.JTextField" binding="artikelnummerTextField">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="20"/>
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font size="14"/>
+        </properties>
+      </component>
+      <component id="969d6" class="javax.swing.JButton" binding="zoekButton1">
+        <constraints>
+          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="14"/>
+          <foreground color="-12508416"/>
+          <text value="Zoek"/>
+        </properties>
+      </component>
+      <component id="b8567" class="javax.swing.JLabel" binding="lezerID">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <foreground color="-12508416"/>
+          <horizontalAlignment value="2"/>
+          <text value="LezerID :"/>
+        </properties>
+      </component>
+      <component id="c16bf" class="javax.swing.JTextField" binding="lezerIDTextField">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font size="14"/>
+        </properties>
+      </component>
+      <component id="b0b90" class="javax.swing.JButton" binding="zoekButton2">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="14"/>
+          <foreground color="-12508416"/>
+          <text value="Zoek"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
