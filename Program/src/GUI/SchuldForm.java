@@ -105,6 +105,8 @@ public class SchuldForm {
                         model.addRow(new Object[]{lezerID, s.getId(), s.getOorsprong(), s.getBedrag(), s.getDatumAangemaakt(), s.getDatumBetaald()});
                     }
 
+                    JOptionPane.showMessageDialog(schuldFrame, "De betaling werd geregistreerd.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+
                     // werkt maar betaaldatum wordt niet opgenomen in databank
                 }
                 catch (ArrayIndexOutOfBoundsException a)
