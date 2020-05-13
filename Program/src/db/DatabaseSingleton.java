@@ -59,7 +59,7 @@ public class DatabaseSingleton {
                 connection = DriverManager.getConnection(url, username, password);
 
                 OnzeLogger SingletonLog = new OnzeLogger();
-                SingletonLog.doLoggingInfo("Connectie met SQL Database is gemaakt.");
+                SingletonLog.doLoggingInfo(this.getClass().getSimpleName() + " : Connectie met SQL Database is gemaakt.");
 
 
 
@@ -69,7 +69,7 @@ public class DatabaseSingleton {
             e.printStackTrace();
 
             OnzeLogger SingletonLog = new OnzeLogger();
-            SingletonLog.doLoggingSevere("Connectie met SQL Database is mislukt.");
+            SingletonLog.doLoggingSevere(this.getClass().getSimpleName() + ": Connectie met SQL Database is mislukt.");
         }
         return connection;
 
@@ -81,11 +81,11 @@ public class DatabaseSingleton {
             try {
                 connection.close();
                 OnzeLogger SingletonLog = new OnzeLogger();
-                SingletonLog.doLoggingInfo("Connectie met SQL Database is afgesloten.");
+                SingletonLog.doLoggingInfo(this.getClass().getSimpleName() + ": Connectie met SQL Database is afgesloten.");
             } catch (SQLException e) {
                 System.out.println("Cannot close connection!");
                 OnzeLogger SingletonLog = new OnzeLogger();
-                SingletonLog.doLoggingSevere("Kan de connectie met SQL Database is niet afsluiten.");
+                SingletonLog.doLoggingSevere(this.getClass().getSimpleName() + ": Kan de connectie met SQL Database is niet afsluiten.");
             }
         }
     }

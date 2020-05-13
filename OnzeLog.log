@@ -16,3 +16,15 @@ May 13, 2020 5:17:52 PM entity.OnzeLogger doLoggingInfo
 INFO: Connectie met SQL Database is gemaakt.
 May 13, 2020 5:19:45 PM entity.OnzeLogger doLoggingInfo
 INFO: Connectie met SQL Database is gemaakt.
+May 13, 2020 5:31:09 PM entity.OnzeLogger doLoggingInfo
+INFO: OnzeLoggerConnectie met SQL Database is gemaakt.
+May 13, 2020 5:31:46 PM entity.OnzeLogger doLoggingInfo
+INFO: OnzeLoggerConnectie met SQL Database is gemaakt.
+May 13, 2020 5:32:57 PM entity.OnzeLogger doLoggingInfo
+INFO: DatabaseSingletonConnectie met SQL Database is gemaakt.
+May 13, 2020 5:33:38 PM entity.OnzeLogger doLoggingInfo
+INFO: DatabaseSingleton : Connectie met SQL Database is gemaakt.
+May 13, 2020 5:35:06 PM entity.OnzeLogger doLoggingInfo
+INFO: DatabaseSingleton : Connectie met SQL Database is gemaakt.
+May 13, 2020 5:35:14 PM entity.OnzeLogger doLoggingInfo
+INFO: DatabaseSingleton : Connectie met SQL Database is gemaakt.
