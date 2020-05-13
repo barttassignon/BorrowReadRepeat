@@ -50,11 +50,13 @@ public class UitleningWeergevenForm {
         table1.setAutoCreateRowSorter(true);
         table1.setFillsViewportHeight(true);
         table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
-        model.addColumn("BoekID");
+        model.addColumn("UitleenID");
         model.addColumn("LezerID");
-        model.addColumn("Datum Uitgeleend");
-        model.addColumn("Datum Verlengd");
-        model.addColumn("Datum Ingeleverd");
+        model.addColumn("Boeknummer");
+        model.addColumn("Titel");
+        model.addColumn("Uitleendatum");
+        model.addColumn("Verlengdatum");
+        model.addColumn("Inleverdatum");
         table1.setModel(model);
 
 
@@ -66,42 +68,45 @@ public class UitleningWeergevenForm {
             }
         });
 
+        zoekButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                model.setRowCount(0);
 
-        //       zoekButton1.addActionListener(new ActionListener() {
-        //           @Override
-        //           public void actionPerformed(ActionEvent e) {
-        //               int artikelNummer = artikelnummerTextField.getText();
+                try{
+                    int artikelnummer = Integer.parseInt(artikelnummerTextField.getText());
+                    for(Uitlening u : UitleenDAO.uitleengeschiedenisBoek(artikelnummer)){
+                        model.addRow(new Object[]{u.getUitleen_ID(), u.getLezer().getId(), u.getBoek().getArtikelnummer(), BoekDAO.ophalenBoek(u.getBoek().getArtikelnummer()).getTitel(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
+                    }
+                    if(UitleenDAO.uitleengeschiedenisBoek(artikelnummer).size() == 0)
+                    {
+                        JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen uitlening gevonden met dit artikelnummer.");
+                    }
+                } catch (NumberFormatException nr){
+                    JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Gelieve enkel cijfers in te vullen!");
+                }
+            }
+        });
 
-        //               model.setRowCount(0);
 
-        //               for(Uitlening b: UitleenDAO.uitleengeschiedenisBoek(artikelNummer)){
-        //                   model.addRow(new Object[]{b.getArtikelnummer(), b.lezerID(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
-        //               }
+        zoekButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                model.setRowCount(0);
 
-        //               if(UitleningDAO.opzoekenBoek(artikelNummer).size() == 0)
-        //               {
-        //                   JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen boek gevonden met dit artikelnummer.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
-        //               }
-        //           }
-//        });
+                try{
+                    int lezerID = Integer.parseInt(lezerIDTextField.getText());
+                    for(Uitlening u : UitleenDAO.uitleengeschiedenisLezer(lezerID)){
+                        model.addRow(new Object[]{u.getUitleen_ID(), u.getLezer().getId(), u.getBoek().getArtikelnummer(), BoekDAO.ophalenBoek(u.getBoek().getArtikelnummer()).getTitel(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
+                    }
+                    if(UitleenDAO.uitleengeschiedenisLezer(lezerID).size() == 0)
+                    {
+                        JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen uitlening gevonden met dit lezerID.");
+                    }
+                } catch (NumberFormatException nr){
+                    JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Gelieve enkel cijfers in te vullen!");
+                }
+            }
+        });
 
-        //       zoekButton2.addActionListener(new ActionListener() {
-        //           public void actionPerformed(ActionEvent e) {
-        //               model.setRowCount(0);
 
-        //               String titel = titelTextField.getText();
-
-        //               for(Uitlening b : UitleenDAO.uitleengeschiedenisLezer(titel)){
-        //                   model.addRow(new Object[]{b.getArtikelnummer(), b.lezerID(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
-        //               }
-
-        //               if(UitleningDAO.opzoekenBoek(titel).size() == 0)
-//                {
-//                    JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen lezer gevonden met deze ID.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
-//                }
-//            }
-        //       });
-
-//    }
     }
-}
+    }
