@@ -31,6 +31,7 @@ public class DatabaseSingleton {
     private static DatabaseSingleton instance = null;
     private final static java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(OnzeLogger.class.getName());
     private static SimpleFormatter formatterTxt;
+    private OnzeLogger connectieLogger;
 
     private DatabaseSingleton()
     {}
@@ -63,8 +64,10 @@ public class DatabaseSingleton {
                 FileHandler fileTxt = new FileHandler("Logging.txt");
                 formatterTxt = new SimpleFormatter();
                 fileTxt.setFormatter(formatterTxt);
-                LOGGER.addHandler(fileTxt);
                 LOGGER.log(Level.INFO, "Connectie met SQL Database gemaakt.");
+                LOGGER.addHandler(fileTxt);
+
+
 
             }
         } catch (SQLException | IOException e) {

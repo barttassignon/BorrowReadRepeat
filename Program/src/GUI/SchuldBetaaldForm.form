@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI.SchuldBetaaldForm">
+  <grid id="27dc6" binding="panel1" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="15" left="15" bottom="15" right="15"/>
+    <constraints>
+      <xy x="20" y="20" width="920" height="400"/>
+    </constraints>
+    <properties>
+      <background color="-4992257"/>
+      <enabled value="false"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="a025d" class="javax.swing.JLabel" binding="SchuldLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="36" style="1"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Betalen van Schuld"/>
+        </properties>
+      </component>
+      <component id="926fa" class="javax.swing.JLabel" binding="lezerLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="18"/>
+          <horizontalAlignment value="2"/>
+          <horizontalTextPosition value="11"/>
+          <text value="Lezer Naam"/>
+        </properties>
+      </component>
+      <component id="800d7" class="javax.swing.JLabel" binding="datumLabel">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="18"/>
+          <horizontalAlignment value="2"/>
+          <horizontalTextPosition value="11"/>
+          <text value="Datum Betaald"/>
+        </properties>
+      </component>
+      <component id="93be5" class="javax.swing.JTextField" binding="lezerNaamField">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="14"/>
+          <horizontalAlignment value="11"/>
+        </properties>
+      </component>
+      <component id="e2a66" class="javax.swing.JButton" binding="betaalDatum">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="18"/>
+          <text value="Betaald"/>
+        </properties>
+      </component>
+      <component id="583dc" class="javax.swing.JTextField" binding="datumField">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="14"/>
+          <horizontalAlignment value="11"/>
+        </properties>
+      </component>
+      <component id="b6f9b" class="javax.swing.JLabel" binding="bedragLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="18"/>
+          <horizontalAlignment value="2"/>
+          <horizontalTextPosition value="11"/>
+          <text value="Bedrag"/>
+        </properties>
+      </component>
+      <component id="f31be" class="javax.swing.JTextField" binding="bedragField">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="14"/>
+          <horizontalAlignment value="11"/>
+        </properties>
+      </component>
+      <component id="78deb" class="javax.swing.JButton" binding="TerugButton">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="14"/>
+          <foreground color="-12508416"/>
+          <horizontalAlignment value="2"/>
+          <text value="&lt;-- Terug"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
