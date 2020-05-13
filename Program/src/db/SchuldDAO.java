@@ -1,6 +1,5 @@
 package db;
 
-import entity.Lezer;
 import entity.Schuld;
 
 import java.sql.*;
@@ -33,7 +32,7 @@ public class SchuldDAO extends BaseDAO {
         }
     }
 
-    public void betalenSchuld(int lezer_id, double bedrag, LocalDate betaaldatum) {
+    public static void betalenSchuld(int lezer_id, double bedrag, LocalDate betaaldatum) {
         try (Connection c = getConn()) {
 
             PreparedStatement p = c.prepareStatement("update Schulden set Bedrag = ? and Betaaldatum = ? where Lezer_ID = ?");
@@ -55,26 +54,50 @@ public class SchuldDAO extends BaseDAO {
             System.out.println("MISLUKT!");
         }
     }
-                public ArrayList<Schuld> overzichtOpenstaandeSchulden()
-            {
-                ArrayList<Schuld> lijst = new ArrayList<>();
-                try (Connection c = getConn()) {
-                    Statement s = c.createStatement();
-                    ResultSet rs = s.executeQuery("select * from Schulden where bedrag > 0");
-                    while (rs.next()) {
-                        lijst.add(new Schuld(rs.getInt(1), Schuld.Oorsprong.valueOf(rs.getString(2)), rs.getDouble(3), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class)));
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    System.out.println("MISLUKT!");
-                }
-                return lijst;
-}
+
+    public static ArrayList<Schuld> overzichtOpenstaandeSchulden() {
+        ArrayList<Schuld> lijst = new ArrayList<>();
+        try (Connection c = getConn()) {
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery("select * from Schulden where Bedrag > 0");
+            while (rs.next()) {
+                lijst.add(new Schuld(rs.getInt(1), Schuld.Oorsprong.valueOf(rs.getString(2)), rs.getDouble(3), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+        return lijst;
+    }
+
+    public static ArrayList<Schuld> overzichtSchuldenLezer(int lezerid)
+    {
+        ArrayList<Schuld> lijst = new ArrayList<>();
+        try (Connection c = getConn()) {
+
+            PreparedStatement s = c.prepareStatement("select * from Schulden where Lezer_ID = ?");
+            s.setInt(1, lezerid);
+            ResultSet rs = s.executeQuery();
+
+            while (rs.next()) {
+                //lijst.add(new Schuld(rs.getInt(1), Schuld.Oorsprong.valueOf(rs.getString(2)), rs.getDouble(3), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class)));
+                lijst.add(new Schuld(rs.getInt(1), rs.getDouble(4), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+        return lijst;
+    }
 
     public static void main(String[] args) {
         SchuldDAO schuldda = new SchuldDAO();
-        Schuld schuld = new Schuld(Schuld.Oorsprong.OVERTIJD, 0.5, LocalDate.of(2020, 2, 5));
-        schuldda.aanrekenenSchuld(37, schuld);
+        //Schuld schuld = new Schuld("Overtijd", 0.5, LocalDate.of(2020, 2, 5));
+        //schuldda.aanrekenenSchuld(37, schuld);
         //schuldda.betalenSchuld(37, 0.5, LocalDate.of(2020, 1, 11));
+        for(Schuld s: schuldda.overzichtSchuldenLezer(37))
+        {
+            System.out.println(s);
+        }
     }
 }
