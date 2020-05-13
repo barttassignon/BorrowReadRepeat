@@ -52,7 +52,7 @@ public class UitleningWeergevenForm {
         table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
         model.addColumn("UitleenID");
         model.addColumn("LezerID");
-        model.addColumn("Boeknummer");
+        model.addColumn("Artikelnummer");
         model.addColumn("Titel");
         model.addColumn("Uitleendatum");
         model.addColumn("Verlengdatum");
