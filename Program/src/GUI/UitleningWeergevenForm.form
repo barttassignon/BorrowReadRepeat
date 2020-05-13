@@ -40,12 +40,12 @@
           </component>
         </children>
       </scrollpane>
-      <component id="d6216" class="javax.swing.JButton" binding="TerugBotton">
+      <component id="d6216" class="javax.swing.JButton" binding="terugButton">
         <constraints>
           <grid row="4" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font size="14"/>
+          <font name="Consolas" size="14"/>
           <horizontalAlignment value="2"/>
           <text value="&lt;-- Terug"/>
         </properties>
