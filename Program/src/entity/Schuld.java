@@ -31,6 +31,10 @@ public class Schuld {
         this.datumBetaald = datumBetaald;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public Oorsprong getOorsprong() {
         return oorsprong;
     }
