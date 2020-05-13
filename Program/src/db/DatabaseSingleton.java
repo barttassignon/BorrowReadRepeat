@@ -29,9 +29,7 @@ public class DatabaseSingleton {
 
     private Connection connection = null;
     private static DatabaseSingleton instance = null;
-    private final static java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(OnzeLogger.class.getName());
-    private static SimpleFormatter formatterTxt;
-    private OnzeLogger connectieLogger;
+
 
     private DatabaseSingleton()
     {}
@@ -60,18 +58,18 @@ public class DatabaseSingleton {
 
                 connection = DriverManager.getConnection(url, username, password);
 
-                // Loglevel Info. message in console en in 'logging.txt' bestand telkens er connectie w gemaakt met DB
-                FileHandler fileTxt = new FileHandler("Logging.txt");
-                formatterTxt = new SimpleFormatter();
-                fileTxt.setFormatter(formatterTxt);
-                LOGGER.log(Level.INFO, "Connectie met SQL Database gemaakt.");
-                LOGGER.addHandler(fileTxt);
+                OnzeLogger SingletonLog = new OnzeLogger();
+                SingletonLog.doLoggingInfo("Connectie met SQL Database is gemaakt.");
+
 
 
 
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
+
+            OnzeLogger SingletonLog = new OnzeLogger();
+            SingletonLog.doLoggingSevere("Connectie met SQL Database is mislukt.");
         }
         return connection;
 
@@ -82,8 +80,12 @@ public class DatabaseSingleton {
         if (connection != null) {
             try {
                 connection.close();
+                OnzeLogger SingletonLog = new OnzeLogger();
+                SingletonLog.doLoggingInfo("Connectie met SQL Database is afgesloten.");
             } catch (SQLException e) {
                 System.out.println("Cannot close connection!");
+                OnzeLogger SingletonLog = new OnzeLogger();
+                SingletonLog.doLoggingSevere("Kan de connectie met SQL Database is niet afsluiten.");
             }
         }
     }

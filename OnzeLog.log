@@ -1,0 +1,18 @@
+May 13, 2020 5:12:31 PM entity.OnzeLogger doLoggingInfo
+INFO: DB connectie
+May 13, 2020 5:12:31 PM entity.OnzeLogger doLoggingSevere
+SEVERE: error in OnzeLogger
+May 13, 2020 5:12:54 PM entity.OnzeLogger doLoggingInfo
+INFO: DB connectie
+May 13, 2020 5:12:54 PM entity.OnzeLogger doLoggingSevere
+SEVERE: error in OnzeLogger
+May 13, 2020 5:14:22 PM entity.OnzeLogger doLoggingInfo
+INFO: DB connectiejava.text.SimpleDateFormat@3e8acabb
+May 13, 2020 5:14:22 PM entity.OnzeLogger doLoggingSevere
+SEVERE: error in OnzeLoggerjava.text.SimpleDateFormat@3e8acabb
+May 13, 2020 5:17:37 PM entity.OnzeLogger doLoggingInfo
+INFO: Connectie met SQL Database is gemaakt.
+May 13, 2020 5:17:52 PM entity.OnzeLogger doLoggingInfo
+INFO: Connectie met SQL Database is gemaakt.
+May 13, 2020 5:19:45 PM entity.OnzeLogger doLoggingInfo
+INFO: Connectie met SQL Database is gemaakt.
