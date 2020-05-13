@@ -39,7 +39,7 @@
         </constraints>
         <properties>
           <font name="Consolas" size="18" style="1"/>
-          <text value="Alle schulden weergeven"/>
+          <text value="Alle openstaande schulden weergeven"/>
         </properties>
       </component>
       <component id="9145e" class="javax.swing.JButton" binding="TerugButton">

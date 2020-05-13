@@ -1,8 +1,7 @@
 package GUI;
 
-import db.BoekDAO;
 import db.SchuldDAO;
-import entity.Boek;
+import entity.Lezer;
 import entity.Schuld;
 
 import javax.swing.*;
@@ -70,18 +69,7 @@ public class SchuldForm {
             }
         });
 
-        betaalDatum.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                int lezerID = Integer.parseInt(lezerTextField.getText());
-
-
-                //SchuldDAO.betalenSchuld(lezerID, );
-            }
-        });
-
-        zoekButton.addActionListener(new ActionListener() {
+           zoekButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 model.setRowCount(0);
 
@@ -96,7 +84,7 @@ public class SchuldForm {
                 }
 
                 catch (NumberFormatException nr) {
-                    JOptionPane.showMessageDialog(schuldFrame, "Gelieve een (geldig) LezerID in te geven", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(schuldFrame, "Gelieve een (geldig) LezerID in te geven", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 }
 
             }
@@ -105,11 +93,24 @@ public class SchuldForm {
         betaalDatum.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                int row = table1.getSelectedRow();
-                int lezerID = (((int) table1.getModel().getValueAt(row, 0)));
-                double bedrag = (((double) table1.getModel().getValueAt(row, 3)));
 
-                SchuldDAO.betalenSchuld(lezerID, bedrag, LocalDate.now());
+                try {
+                    int row = table1.getSelectedRow();
+                    int lezerID = (((int) table1.getModel().getValueAt(row, 0)));
+
+                    SchuldDAO.betalenSchuld(lezerID, LocalDate.now());
+
+                    model.setRowCount(0);
+                    for (Schuld s : SchuldDAO.overzichtSchuldenLezer(lezerID)) {
+                        model.addRow(new Object[]{lezerID, s.getId(), s.getOorsprong(), s.getBedrag(), s.getDatumAangemaakt(), s.getDatumBetaald()});
+                    }
+
+                    // werkt maar betaaldatum wordt niet opgenomen in databank
+                }
+                catch (ArrayIndexOutOfBoundsException a)
+                {
+                    JOptionPane.showMessageDialog(schuldFrame, "Gelieve een schuld te selecteren", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }

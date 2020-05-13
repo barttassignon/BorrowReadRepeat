@@ -32,22 +32,19 @@ public class SchuldDAO extends BaseDAO {
         }
     }
 
-    public static void betalenSchuld(int lezer_id, double bedrag, LocalDate betaaldatum) {
+    public static void betalenSchuld(int lezer_id, LocalDate betaaldatum) {
         try (Connection c = getConn()) {
 
-            PreparedStatement p = c.prepareStatement("update Schulden set Bedrag = ? and Betaaldatum = ? where Lezer_ID = ?");
-            p.setDouble(1, -(bedrag));
-            if (betaaldatum.isBefore(LocalDate.now().plusDays(1)))
-                p.setObject(2, betaaldatum);
-            p.setObject(3, lezer_id);
+            PreparedStatement p = c.prepareStatement("update Schulden set Bedrag = ?, Betaaldatum = ? where Lezer_ID = ?");
+            p.setDouble(1, 0);
+            p.setObject(2, betaaldatum);
+            p.setInt(3, lezer_id);
 
             int result = p.executeUpdate();
 
             if (result > 0)
                 System.out.println("De betaling werd geregistreerd!");
             else System.out.println("De betaling kon niet worden geregistreerd!");
-
-            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: lezer niet gevonden)
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,7 +72,7 @@ public class SchuldDAO extends BaseDAO {
         ArrayList<Schuld> lijst = new ArrayList<>();
         try (Connection c = getConn()) {
 
-            PreparedStatement s = c.prepareStatement("select * from Schulden where Lezer_ID = ? and Bedrag > 0");
+            PreparedStatement s = c.prepareStatement("select * from Schulden where Lezer_ID = ?");
             s.setInt(1, lezerid);
             ResultSet rs = s.executeQuery();
 
