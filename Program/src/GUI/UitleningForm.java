@@ -61,7 +61,7 @@ public class UitleningForm {
         weergevenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new UitleningVerlengenForm();
+                new UitleningWeergevenForm();
                 uitleningFrame.dispose();
             }
         });

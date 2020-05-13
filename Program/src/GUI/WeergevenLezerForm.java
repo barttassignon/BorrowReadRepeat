@@ -5,6 +5,8 @@
 package GUI;
 
 import db.LezerDAO;
+import db.SchuldDAO;
+import db.UitleenDAO;
 import entity.Lezer;
 
 import javax.swing.*;
@@ -100,19 +102,21 @@ public class WeergevenLezerForm extends JFrame {
         verwijderButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int row = table1.getSelectedRow();
-                int value = (((int) table1.getModel().getValueAt(row, 0)));
+                int lezer = (((int) table1.getModel().getValueAt(row, 0)));
 
-                try {
-                    LezerDAO.verwijderenLezer(value);
-                    JOptionPane.showMessageDialog(opzoekenLezerFrame,"Lezer verwijderd");
+                if(SchuldDAO.aantalOpenstaandeSchulden(lezer) > 0){
+                    JOptionPane.showMessageDialog(opzoekenLezerFrame,"Lezer kan niet worden verwijderd want hij heeft nog " + SchuldDAO.aantalOpenstaandeSchulden(lezer) + " openstaande schuld(en)!");
+                } else if(UitleenDAO.aantalUitleningenPerLezer(lezer) > 0){
+                    JOptionPane.showMessageDialog(opzoekenLezerFrame,"Lezer kan niet worden verwijderd want hij heeft nog " + UitleenDAO.aantalUitleningenPerLezer(lezer) + " uitlening(en)!");
+                } else {
+                    LezerDAO.verwijderenLezer(lezer);
+                    JOptionPane.showMessageDialog(opzoekenLezerFrame, "Lezer verwijderd");
                     model.setRowCount(0);
                     String voornaam = voornaamTextField.getText();
                     String naam = naamTextField.getText();
-                    for(Lezer l : LezerDAO.opzoekenLezer(voornaam, naam)){
+                    for (Lezer l : LezerDAO.opzoekenLezer(voornaam, naam)) {
                         model.addRow(new Object[]{l.getId(), l.getVoornaam(), l.getNaam(), l.getGeboortedatum(), l.getEmail(), l.getTelefoon()});
                     }
-                } catch (SQLIntegrityConstraintViolationException ex) {
-                    JOptionPane.showMessageDialog(opzoekenLezerFrame, "De lezer heeft nog schulden of openstaande reservaties en kan bijgevolg niet worden verwijderd!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

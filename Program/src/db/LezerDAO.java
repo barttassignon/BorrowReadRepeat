@@ -132,12 +132,12 @@ public class LezerDAO extends BaseDAO {
         return lijst;
     }
 
-    public static void verwijderenLezer(int id) throws SQLIntegrityConstraintViolationException {
+    public static void verwijderenLezer(int id) {
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("delete from Adressen where Lezer_ID = ?");
             s.setInt(1, id);
-            PreparedStatement p = c.prepareStatement("delete from Lezers where Lezer_ID = ?");
+            PreparedStatement p = c.prepareStatement("update Lezers set Voornaam = null, Naam = null, Geboortedatum = null, Telefoon = null where Lezer_ID = ?");
             p.setInt(1, id);
 
             int result1 = s.executeUpdate();
@@ -150,7 +150,6 @@ public class LezerDAO extends BaseDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
-            throw new SQLIntegrityConstraintViolationException();
         }
     }
 
