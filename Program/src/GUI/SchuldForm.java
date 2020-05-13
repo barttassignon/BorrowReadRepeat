@@ -43,8 +43,8 @@ public class SchuldForm {
         table1.setAutoCreateRowSorter(true);
         table1.setFillsViewportHeight(true);
         table1.setPreferredScrollableViewportSize(new Dimension(550, 200));
-        model.addColumn("SchuldID");
         model.addColumn("LezerID");
+        model.addColumn("SchuldID");
         model.addColumn("Oorsprong");
         model.addColumn("Bedrag");
         model.addColumn("Creatiedatum");
@@ -80,18 +80,17 @@ public class SchuldForm {
             }
         });
 
-      /*zoekButton.addActionListener(new ActionListener() {
+      zoekButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 model.setRowCount(0);
 
-                String titel = lezerTextField.getText();
+                int lezerID = Integer.parseInt(lezerTextField.getText());
 
-
-                for (Schuld s : SchuldDAO.overzichtSchuldenLezer()) {
-                    model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
+                for (Schuld s : SchuldDAO.overzichtSchuldenLezer(lezerID)) {
+                    model.addRow(new Object[]{lezerID, s.getId(), s.getOorsprong(), s.getBedrag(), s.getDatumAangemaakt(), s.getDatumBetaald()});
                 }
             }
-        });*/
+        });
     }
 
 
