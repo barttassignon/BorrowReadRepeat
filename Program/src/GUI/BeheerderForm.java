@@ -15,6 +15,7 @@ public class BeheerderForm extends JFrame {
     private JButton BoekToevoegenButton;
     private JButton Uitlening;
     private JButton reservatieButton;
+    private JButton SchuldButton;
     private JButton LezertoevoegenButton;
     private JButton wijzigenButton;
     private JButton weergevenBoek;
@@ -22,6 +23,8 @@ public class BeheerderForm extends JFrame {
     private JButton beheerderToevoegenButton;
     private JLabel labelBoek;
     private JButton UitloggenButton;
+    private JTabbedPane tabbedPane1;
+    private JButton schuldenButton;
     private JFrame beheerderFormFrame = new JFrame("BorrowReadRepeat");
 
     public BeheerderForm() {
@@ -94,13 +97,19 @@ public class BeheerderForm extends JFrame {
                 beheerderFormFrame.dispose();
             }
         });
+
+        SchuldButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //new SchuldForm();
+                beheerderFormFrame.dispose();
+            }
+        });
     }
 
     public static void main(String[] args) {
         new BeheerderForm();
     }
-
-
 
 }
 

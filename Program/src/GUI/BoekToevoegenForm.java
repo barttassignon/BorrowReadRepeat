@@ -10,7 +10,6 @@ import db.BoekDAO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -135,7 +134,7 @@ public class BoekToevoegenForm extends JFrame {
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Boek toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (NumberFormatException nr){
-                    JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve (enkel) cijfers in te geven bij ISBN, paginas en aankoopprijs", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve (enkel) cijfers in te geven bij ISBN, pagina's en aankoopprijs", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 }catch(DateTimeParseException datum){
                     JOptionPane.showMessageDialog(boekToevoegenFrame, "Vul datum als volgt in: dd/mm/jjjj", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 }
