@@ -90,6 +90,24 @@ public class SchuldDAO extends BaseDAO {
         return lijst;
     }
 
+    public static int aantalOpenstaandeSchulden(int lezer){
+        int schuld = 0;
+        try (Connection c = getConn()) {
+
+            PreparedStatement s = c.prepareStatement("select count(Schuld_ID) from Schulden where Lezer_ID = ? and Betaaldatum is null");
+            s.setInt(1, lezer);
+            ResultSet rs = s.executeQuery();
+
+            while (rs.next()) {
+                schuld = rs.getInt(1);
+                }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+        return schuld;
+    }
+
     public static void main(String[] args) {
         SchuldDAO schuldda = new SchuldDAO();
         //Schuld schuld = new Schuld("Overtijd", 0.5, LocalDate.of(2020, 2, 5));
