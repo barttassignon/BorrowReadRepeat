@@ -138,6 +138,24 @@ public class UitleenDAO extends BaseDAO {
         return uitlening;
     }
 
+    // Ophalen uitlening op basis van boekID:
+
+    public static Uitlening ophalenUitleningSchuld(int boekID) {
+        Uitlening uitlening = null;
+        try (Connection c = getConn()) {
+            PreparedStatement s = c.prepareStatement("select * from Uitleningen where Boek_ID = ? AND Inleverdatum is null");
+            s.setInt(1, boekID);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                uitlening = new Uitlening(new Lezer(rs.getInt(2)), new Boek(rs.getInt(3)), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+        return uitlening;
+    }
+
 // Ophalen alle uitleningen van specifiek boek:
 
     public static ArrayList<Uitlening> uitleengeschiedenisBoek(int artikelnummer) {

@@ -29,7 +29,6 @@ public class SchuldForm {
     private JButton alleSchuldenWeergevenButton;
     private JButton zoekButton;
     private JButton betaalDatum;
-    private JButton alleSchuldenButton;
 
     public SchuldForm() {
 
@@ -58,13 +57,11 @@ public class SchuldForm {
             }
         });
 
-        //Werkt nog niet: probleem met enum + hoe LezerID toevoegen?
-
         alleSchuldenWeergevenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 model.setRowCount(0);
                 for (Schuld s : SchuldDAO.overzichtOpenstaandeSchulden()) {
-                    model.addRow(new Object[]{s.getId(), s.getOorsprong(), s.getBedrag(), s.getDatumAangemaakt(), s.getDatumBetaald()});
+                    model.addRow(new Object[]{s.getLezer().getId(), s.getId(), s.getOorsprong(), s.getBedrag(), s.getDatumAangemaakt(), s.getDatumBetaald()});
                 }
             }
         });
@@ -77,7 +74,7 @@ public class SchuldForm {
                     int lezerID = Integer.parseInt(lezerTextField.getText());
 
                     if (SchuldDAO.overzichtSchuldenLezer(lezerID).size() == 0)
-                        JOptionPane.showMessageDialog(schuldFrame, "LezerID niet gevonden", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(schuldFrame, "Deze lezer heeft geen schulden", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                     for (Schuld s : SchuldDAO.overzichtSchuldenLezer(lezerID)) {
                         model.addRow(new Object[]{lezerID, s.getId(), s.getOorsprong(), s.getBedrag(), s.getDatumAangemaakt(), s.getDatumBetaald()});
                     }
@@ -97,8 +94,9 @@ public class SchuldForm {
                 try {
                     int row = table1.getSelectedRow();
                     int lezerID = (((int) table1.getModel().getValueAt(row, 0)));
+                    int schuldID = (((int) table1.getModel().getValueAt(row, 1)));
 
-                    SchuldDAO.betalenSchuld(lezerID, LocalDate.now());
+                    SchuldDAO.betalenSchuld(schuldID, LocalDate.now());
 
                     model.setRowCount(0);
                     for (Schuld s : SchuldDAO.overzichtSchuldenLezer(lezerID)) {
@@ -107,7 +105,6 @@ public class SchuldForm {
 
                     JOptionPane.showMessageDialog(schuldFrame, "De betaling werd geregistreerd.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
 
-                    // werkt maar betaaldatum wordt niet opgenomen in databank
                 }
                 catch (ArrayIndexOutOfBoundsException a)
                 {

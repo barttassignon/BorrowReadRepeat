@@ -1,5 +1,7 @@
 package db;
 
+import entity.Boek;
+import entity.Lezer;
 import entity.Schuld;
 
 import java.sql.*;
@@ -8,13 +10,36 @@ import java.util.ArrayList;
 
 public class SchuldDAO extends BaseDAO {
 
+    public static void overtijdSchuld(int lezerID, double schuld){
+        try (Connection c = getConn()) {
+
+            PreparedStatement p = c.prepareStatement("insert into Schulden values (NULL, ?, ?, ?, ?, NULL)");
+            p.setInt(1, lezerID);
+            p.setString(2, "Overtijd");
+            p.setDouble(3, schuld);
+            p.setObject(4, LocalDate.now());
+
+            int result = p.executeUpdate();
+
+            if (result > 0)
+                System.out.println("De schuld werd toegevoegd!");
+            else System.out.println("De schuld kon niet worden toegevoegd!");
+
+            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: lezer niet gevonden)
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+
     public void aanrekenenSchuld(int lezer_id, Schuld schuld)
     {
         try (Connection c = getConn()) {
 
             PreparedStatement p = c.prepareStatement("insert into Schulden values (NULL, ?, ?, ?, ?, NULL)");
             p.setInt(1, lezer_id);
-            p.setString(2, schuld.getOorsprong().name());
+            p.setString(2, schuld.getOorsprong());
             p.setDouble(3, schuld.getBedrag());
             p.setObject(4, schuld.getDatumAangemaakt());
 
@@ -32,13 +57,13 @@ public class SchuldDAO extends BaseDAO {
         }
     }
 
-    public static void betalenSchuld(int lezer_id, LocalDate betaaldatum) {
+    public static void betalenSchuld(int schuldID, LocalDate betaaldatum) {
         try (Connection c = getConn()) {
 
-            PreparedStatement p = c.prepareStatement("update Schulden set Bedrag = ?, Betaaldatum = ? where Lezer_ID = ?");
+            PreparedStatement p = c.prepareStatement("update Schulden set Bedrag = ?, Betaaldatum = ? where Schuld_ID = ?");
             p.setDouble(1, 0);
             p.setObject(2, betaaldatum);
-            p.setInt(3, lezer_id);
+            p.setInt(3, schuldID);
 
             int result = p.executeUpdate();
 
@@ -56,9 +81,9 @@ public class SchuldDAO extends BaseDAO {
         ArrayList<Schuld> lijst = new ArrayList<>();
         try (Connection c = getConn()) {
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("select * from Schulden where Bedrag > 0");
+            ResultSet rs = s.executeQuery("select * from Schulden where Betaaldatum is null");
             while (rs.next()) {
-                lijst.add(rs.getInt(1), new Schuld(rs.getInt(1), Schuld.Oorsprong.valueOf(rs.getString(2)), rs.getDouble(3), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class)));
+                lijst.add(new Schuld(new Lezer(rs.getInt(2)), rs.getInt(1), rs.getString(3), rs.getDouble(4), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,13 +97,12 @@ public class SchuldDAO extends BaseDAO {
         ArrayList<Schuld> lijst = new ArrayList<>();
         try (Connection c = getConn()) {
 
-            PreparedStatement s = c.prepareStatement("select * from Schulden where Lezer_ID = ?");
+            PreparedStatement s = c.prepareStatement("select * from Schulden where Lezer_ID = ? and Betaaldatum is null");
             s.setInt(1, lezerid);
             ResultSet rs = s.executeQuery();
 
             while (rs.next()) {
-                //lijst.add(new Schuld(rs.getInt(1), Schuld.Oorsprong.valueOf(rs.getString(2)), rs.getDouble(3), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class)));
-                lijst.add(new Schuld(rs.getInt(1), rs.getDouble(4), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
+                lijst.add(new Schuld(new Lezer(rs.getInt(2)), rs.getInt(1), rs.getString(3), rs.getDouble(4), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,6 +110,8 @@ public class SchuldDAO extends BaseDAO {
         }
         return lijst;
     }
+
+    // Methode om na te gaan of een lezer nog openstaande schulden heeft (want dan mag hij niet verwijderd worden uit de database!):
 
     public static int aantalOpenstaandeSchulden(int lezer){
         int schuld = 0;

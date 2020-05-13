@@ -6,20 +6,14 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 public class Schuld {
 
-    public enum Oorsprong {OVERTIJD, VERLIES, BESCHADIGING, RESERVATIE}
+    public String oorsprong;
     private int id;
-    private Oorsprong oorsprong;
+    private Lezer lezer;
     private double bedrag;
     private LocalDate datumAangemaakt;
     private LocalDate datumBetaald;
 
     public Schuld() {
-    }
-
-    public Schuld(Oorsprong oorsprong, double bedrag, LocalDate datumAangemaakt) {
-        this.oorsprong = oorsprong;
-        this.bedrag = bedrag;
-        this.datumAangemaakt = datumAangemaakt;
     }
 
     public Schuld(int id, double bedrag, LocalDate datumAangemaakt, LocalDate datumBetaald) {
@@ -29,12 +23,12 @@ public class Schuld {
         this.datumBetaald = datumBetaald;
     }
 
-    public Schuld(int id, Oorsprong oorsprong, double bedrag, LocalDate datumAangemaakt, LocalDate datumBetaald) {
-        this.id = id;
+    public Schuld(Lezer lezer, int id, String oorsprong, double bedrag, LocalDate datumAangemaakt, LocalDate datumBetaald) {
         this.oorsprong = oorsprong;
+        this.id = id;
+        this.lezer = lezer;
         this.bedrag = bedrag;
         this.datumAangemaakt = datumAangemaakt;
-        if(datumBetaald.isAfter(datumAangemaakt) || datumBetaald.isEqual(datumAangemaakt))
         this.datumBetaald = datumBetaald;
     }
 
@@ -42,9 +36,7 @@ public class Schuld {
         return id;
     }
 
-    public Oorsprong getOorsprong() {
-        return oorsprong;
-    }
+    public String getOorsprong() { return oorsprong; }
 
     public LocalDate getDatumAangemaakt() {
         return datumAangemaakt;
@@ -63,6 +55,48 @@ public class Schuld {
         return bedrag;
     }
 
+    public Lezer getLezer() { return lezer; }
+
+    public static boolean overtijd(Uitlening u){
+        if (u.getDatumVerlengd() != null) {
+            LocalDate einddatum = u.getDatumVerlengd().plusDays(21);
+            if (u.getDatumIngeleverd().isAfter(einddatum)) return true;
+            else return false;}
+        else {
+            LocalDate einddatum = u.getDatumUitgeleend().plusDays(21);
+            if (u.getDatumIngeleverd().isAfter(einddatum)) return true;
+            else return false;
+        }
+    }
+
+    public static double overtijdSchuld(Uitlening u, Boek b){
+        if (u.getDatumVerlengd() != null) {
+            LocalDate einddatum = u.getDatumVerlengd().plusDays(21);
+            if (u.getDatumIngeleverd().isAfter(einddatum)) {
+                long dagenTeLaat = DAYS.between(einddatum, u.getDatumIngeleverd());
+                if (dagenTeLaat * 0.1 > b.getPrijs()) {
+                    return b.getPrijs();
+                } else {
+                    return dagenTeLaat * 0.1;
+                }
+            }
+            else return 0;
+        } else {
+            LocalDate einddatum = u.getDatumUitgeleend().plusDays(21);
+            if (u.getDatumIngeleverd().isAfter(einddatum)) {
+                long dagenTeLaat = DAYS.between(einddatum, u.getDatumIngeleverd());
+                if (dagenTeLaat * 0.1 > b.getPrijs()) {
+                    return b.getPrijs();
+                } else {
+                    return dagenTeLaat * 0.1;
+                }
+            }
+            else return 0;
+        }
+    }
+
+
+    /*
     public double bepalenSchuld(Boek b, Uitlening u, Oorsprong o) {
 
         switch (o) {
@@ -111,5 +145,5 @@ public class Schuld {
         System.out.println(u.getDatumVerlengd().plusDays(21));
         System.out.println(String.format("%.2f", s.bepalenSchuld(b, u, o)));
     }
-
+*/
 }

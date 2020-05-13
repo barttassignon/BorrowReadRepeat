@@ -1,7 +1,10 @@
 package GUI;
 
 import db.BoekDAO;
+import db.SchuldDAO;
 import db.UitleenDAO;
+import entity.Boek;
+import entity.Schuld;
 import entity.Uitlening;
 
 import javax.swing.*;
@@ -43,9 +46,17 @@ public class UitleningBinnenbrengenForm {
             public void actionPerformed(ActionEvent e) {
                 try{
                     int boeknummer = Integer.parseInt(artikelTextField1.getText());
+                    Uitlening u = UitleenDAO.ophalenUitleningSchuld(boeknummer);
+                    Boek b = BoekDAO.ophalenBoek(boeknummer);
                     UitleenDAO.binnenbrengenUitlening(boeknummer);
                     BoekDAO.nietUitgeleend(boeknummer);
-                    JOptionPane.showMessageDialog(null, "Het boek is terug binnengebracht!");
+                    Uitlening s = UitleenDAO.ophalenUitlening(u.getUitleen_ID());
+                    if(Schuld.overtijd(s)){
+                        SchuldDAO.overtijdSchuld(u.getLezer().getId(), Schuld.overtijdSchuld(s, b));
+                        JOptionPane.showMessageDialog(null, "Boek te laat ingediend. U moet een boete betalen van " + Schuld.overtijdSchuld(s, b) + " euro.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Het boek is terug binnengebracht!");
+                    }
                 } catch (NumberFormatException nr){
                     JOptionPane.showMessageDialog(null, "Gelieve een geldig boeknummer in te geven!");
                 }
