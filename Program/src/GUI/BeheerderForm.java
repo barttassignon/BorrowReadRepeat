@@ -106,6 +106,14 @@ public class BeheerderForm extends JFrame {
             }
         });
 
+        wijzigenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new WijzigLezerForm();
+                beheerderFormFrame.dispose();
+            }
+        });
+
     }
 
     public static void main(String[] args) {

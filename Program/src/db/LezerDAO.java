@@ -153,10 +153,27 @@ public class LezerDAO extends BaseDAO {
         }
     }
 
-    public void wijzigenAdresLezer(int lezer_id, Adres adres) {
+    public static int bestaatLezer(int lezerID){
+        int lezer = 0;
         try (Connection c = getConn()) {
 
-            PreparedStatement p = c.prepareStatement("update Adressen set Straat = ? and Huisnr = ? and bus = ? and Postcode = ? and Woonplaats = ? where Lezer_ID = ?");
+            PreparedStatement s = c.prepareStatement("select count(Lezer_ID) from Lezers where Lezer_ID = ?");
+            s.setInt(1, lezerID);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+              lezer = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+        return lezer;
+    }
+
+    public static void wijzigenAdresLezer(int lezer_id, Adres adres) {
+        try (Connection c = getConn()) {
+
+            PreparedStatement p = c.prepareStatement("update Adressen set Straat = ?, Huisnr = ?, Bus = ?, Postcode = ?, Woonplaats = ? where Lezer_ID = ?");
             p.setString(1, adres.getStraatnaam());
             p.setInt(2, adres.getHuisnummer());
             p.setString(3, adres.getBus());
@@ -169,8 +186,21 @@ public class LezerDAO extends BaseDAO {
             if (result > 0)
                 System.out.println("De adreswijziging werd geregistreerd!");
             else System.out.println("De adreswijziging kon niet worden geregistreerd!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
 
-            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: lezer niet gevonden)
+    public static void wijzigenTelLezer(int lezer_id, String telefoon) {
+        int result = 0;
+        try (Connection c = getConn()) {
+
+            PreparedStatement p = c.prepareStatement("update Lezers set Telefoon = ? where Lezer_ID = ?");
+            p.setString(1, telefoon);
+            p.setInt(2, lezer_id);
+
+            result = p.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -178,24 +208,20 @@ public class LezerDAO extends BaseDAO {
         }
     }
 
-    public void wijzigenTelLezer(int lezer_id, String telefoon) {
+    public static void wijzigenEmailLezer(int lezer_id, String email) throws SQLIntegrityConstraintViolationException{
+        int result = 0;
         try (Connection c = getConn()) {
 
-            PreparedStatement p = c.prepareStatement("update Lezers set Telefoon = ? where Lezer_ID = ?");
-            p.setString(1, telefoon);
+            PreparedStatement p = c.prepareStatement("update Lezers set Emailadres = ? where Lezer_ID = ?");
+            p.setString(1, email);
             p.setInt(2, lezer_id);
 
-            int result = p.executeUpdate();
-
-            if (result > 0)
-                System.out.println("De wijziging werd geregistreerd!");
-            else System.out.println("De wijziging kon niet worden geregistreerd!");
-
-            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: lezer niet gevonden)
+            result = p.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
+            throw new SQLIntegrityConstraintViolationException();
         }
     }
 

@@ -113,8 +113,8 @@ public class LezerToevoegenForm extends JFrame {
                             } catch (LezerTeJong lezerTeJong) {
                                 JOptionPane.showMessageDialog(lezerToevoegenFrame, "Lezer te jong!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                             } catch (SQLIntegrityConstraintViolationException dubbel) {
-                                JOptionPane.showMessageDialog(lezerToevoegenFrame, "Er bestaat reeds een lezer met dit emailadres!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                                emailtextField.setText("");
+                                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Er bestaat reeds een lezer met dit emailadres!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                                    emailtextField.setText("");
                             }
                         } else {
                             JOptionPane.showMessageDialog(lezerToevoegenFrame, "Uw wachtwoord komt niet overeen", "Resultaat", JOptionPane.ERROR_MESSAGE);
