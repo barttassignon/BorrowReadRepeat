@@ -23,6 +23,7 @@ public class SchuldForm {
     private JButton TerugButton;
     private JButton alleSchuldenWeergevenButton;
     private JButton zoekButton;
+    private JButton betaalDatum;
     private JButton alleSchuldenButton;
 
     public SchuldForm() {
@@ -77,4 +78,6 @@ public class SchuldForm {
 
 
     public static void main(String[] args) { new SchuldForm(); }
+
+
 }

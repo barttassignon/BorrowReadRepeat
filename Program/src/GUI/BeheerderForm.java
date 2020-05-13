@@ -101,10 +101,11 @@ public class BeheerderForm extends JFrame {
         SchuldButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //new SchuldForm();
+                new SchuldForm();
                 beheerderFormFrame.dispose();
             }
         });
+
     }
 
     public static void main(String[] args) {
