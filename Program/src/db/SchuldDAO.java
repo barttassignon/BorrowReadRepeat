@@ -61,7 +61,7 @@ public class SchuldDAO extends BaseDAO {
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("select * from Schulden where Bedrag > 0");
             while (rs.next()) {
-                lijst.add(new Schuld(rs.getInt(1), Schuld.Oorsprong.valueOf(rs.getString(2)), rs.getDouble(3), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class)));
+                lijst.add(rs.getInt(1), new Schuld(rs.getInt(1), Schuld.Oorsprong.valueOf(rs.getString(2)), rs.getDouble(3), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,7 +75,7 @@ public class SchuldDAO extends BaseDAO {
         ArrayList<Schuld> lijst = new ArrayList<>();
         try (Connection c = getConn()) {
 
-            PreparedStatement s = c.prepareStatement("select * from Schulden where Lezer_ID = ?");
+            PreparedStatement s = c.prepareStatement("select * from Schulden where Lezer_ID = ? and Bedrag > 0");
             s.setInt(1, lezerid);
             ResultSet rs = s.executeQuery();
 
