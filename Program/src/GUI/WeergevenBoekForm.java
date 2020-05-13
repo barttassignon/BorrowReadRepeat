@@ -82,14 +82,15 @@ public class WeergevenBoekForm extends JFrame{
 
                 String titel = titelTextField.getText();
 
-                for(Boek b : BoekDAO.opzoekenBoek(titel)){
-                    model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
-                }
-
                 if(BoekDAO.opzoekenBoek(titel).size() == 0)
                 {
                     JOptionPane.showMessageDialog(weergevenBoekFrame, "Geen boeken gevonden met deze titel.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                 }
+
+                for(Boek b : BoekDAO.opzoekenBoek(titel)){
+                    model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
+                }
+
             }
         });
 
