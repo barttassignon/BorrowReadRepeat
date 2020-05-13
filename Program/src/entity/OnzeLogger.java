@@ -6,36 +6,46 @@
 package entity;
 
 import java.io.IOException;
-import java.util.logging.*;
-
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class OnzeLogger {
-    private final static java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(OnzeLogger.class.getName());
+    Logger OnzeLogger = Logger.getLogger(OnzeLogger.class.getName());
+    FileHandler fh = null;
 
-
-    public static void setUpLogger() {
-        LogManager.getLogManager().reset();
-        LOGGER.setLevel(Level.INFO);
-
-        ConsoleHandler ch = new ConsoleHandler();
-        ch.setLevel(Level.SEVERE);
-        LOGGER.addHandler(ch);
+    public OnzeLogger() {
 
         try {
-            FileHandler fh = new FileHandler("myLogger.log");
-            fh.setLevel(Level.FINE);
-            LOGGER.addHandler(fh);
+            //schrijf log weg naar logfile
+            fh = new FileHandler("OnzeLog.log", true);
+
+        } catch (SecurityException e) {
+            e.printStackTrace();
         } catch (IOException e) {
-            //ignore
-            LOGGER.log(Level.SEVERE, "File logger werkt niet.", e);
+            e.printStackTrace();
         }
+
+        //formatter voor de teks in logfile
+        fh.setFormatter(new SimpleFormatter());
+        OnzeLogger.addHandler(fh);
     }
 
+    //logger voor info log
+    public void doLoggingInfo(String tekst) {
+        OnzeLogger.info(tekst);
+        // geen bericht in console voor info berichten
+        OnzeLogger.setUseParentHandlers(false);
+    }
 
-    public static void main(String[] args) throws IOException {
+    //logger voor warning log
+    public void doLoggingWarning(String tekst) {
+        OnzeLogger.warning(tekst);
+    }
 
-
-
+    //logger voor severe log
+    public void doLoggingSevere(String tekst) {
+        OnzeLogger.severe(tekst);
     }
 }
 
