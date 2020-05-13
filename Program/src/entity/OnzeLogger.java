@@ -5,12 +5,8 @@
 
 package entity;
 
-import javax.swing.*;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.logging.*;
-
 
 public class OnzeLogger {
     Logger OnzeLogger = Logger.getLogger(OnzeLogger.class.getName());
@@ -19,6 +15,7 @@ public class OnzeLogger {
 public OnzeLogger() {
 
     try {
+        //schrijf log weg naar logfile
         fh = new FileHandler("OnzeLog.log", true);
 
     } catch (SecurityException e) {
@@ -27,22 +24,23 @@ public OnzeLogger() {
         e.printStackTrace();
     }
 
+    //formatter voor de teks in logfile
     fh.setFormatter(new SimpleFormatter());
     OnzeLogger.addHandler(fh);
 
 }
 
+//logger voor info log
 public void doLoggingInfo(String tekst){
     OnzeLogger.info(tekst);
 
 }
 
+//logger voor severe log
 public void doLoggingSevere(String tekst) {
     OnzeLogger.severe(tekst);
 }
-    public static void main(String[] args) throws IOException {
 
-    }
 }
 
 
