@@ -1,5 +1,10 @@
 package GUI;
 
+import db.BoekDAO;
+import db.SchuldDAO;
+import entity.Boek;
+import entity.Schuld;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -53,28 +58,41 @@ public class SchuldForm {
             }
         });
 
-        /*alleSchuldenButton.addActionListener(new ActionListener() {
+      /* Werkt nog niet: probleem met enum
+
+      alleSchuldenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 model.setRowCount(0);
-                for (Boek b : BoekDAO.ophalenBoeken()) {
-                    model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
+                for (Schuld s : SchuldDAO.overzichtOpenstaandeSchulden()) {
+                    model.addRow(new Object[]{s.getId(), s.getOorsprong(), s.getBedrag(), s.getDatumAangemaakt(), s.getDatumBetaald()});
                 }
             }
         });*/
 
-        zoekButton.addActionListener(new ActionListener() {
+        betaalDatum.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int lezerID = Integer.parseInt(lezerTextField.getText());
+
+
+                //SchuldDAO.betalenSchuld(lezerID, );
+            }
+        });
+
+      /*zoekButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 model.setRowCount(0);
 
                 String titel = lezerTextField.getText();
 
-                /*for (Boek b : BoekDAO.opzoekenBoek(titel)) {
-                    model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
-                }*/
-            }
-        });
-    }
 
+                for (Schuld s : SchuldDAO.overzichtSchuldenLezer()) {
+                    model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
+                }
+            }
+        });*/
+    }
 
 
     public static void main(String[] args) { new SchuldForm(); }
