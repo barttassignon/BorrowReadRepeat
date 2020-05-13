@@ -103,13 +103,13 @@ public class UitleenDAO extends BaseDAO {
 // Ophalen alle uitleningen van specifieke lezer:
 
     public static ArrayList<Uitlening> uitleengeschiedenisLezer(int lezerID) {
-        ArrayList<Uitlening> lijst = new ArrayList<>();
+        ArrayList<Uitlening> lijstUitlening = new ArrayList<>();
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select * from Uitleningen where Lezer_ID = ?");
             s.setInt(1, lezerID);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
-                lijst.add(new Uitlening(new Lezer(rs.getInt(2)), new Boek(rs.getInt(3)), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
+                lijstUitlening.add(new Uitlening(new Lezer(rs.getInt(2)), new Boek(rs.getInt(3)), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
             }
 
         } catch (SQLException e) {
@@ -117,7 +117,7 @@ public class UitleenDAO extends BaseDAO {
             System.out.println("MISLUKT!");
         }
 
-        return lijst;
+        return lijstUitlening;
     }
 
     // Ophalen uitlening op basis van uitleenID:
@@ -140,14 +140,14 @@ public class UitleenDAO extends BaseDAO {
 
 // Ophalen alle uitleningen van specifiek boek:
 
-    public static ArrayList<Uitlening> uitleengeschiedenisBoek(int boekID) {
-        ArrayList<Uitlening> lijst = new ArrayList<>();
+    public static ArrayList<Uitlening> uitleengeschiedenisBoek(int artikelnummer) {
+        ArrayList<Uitlening> lijstUitlening = new ArrayList<>();
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select * from Uitleningen where Boek_ID = ?");
-            s.setInt(1, boekID);
+            s.setInt(1, artikelnummer);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
-                lijst.add(new Uitlening(new Lezer(rs.getInt(2)), new Boek(rs.getInt(3)), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
+                lijstUitlening.add(new Uitlening(new Lezer(rs.getInt(2)), new Boek(rs.getInt(3)), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
             }
 
         } catch (SQLException e) {
@@ -155,7 +155,7 @@ public class UitleenDAO extends BaseDAO {
             System.out.println("MISLUKT!");
         }
 
-        return lijst;
+        return lijstUitlening;
     }
 
     // Per lezer max. 10 boeken tegelijk uitlenen, waarvan max. 5 normale boeken:
