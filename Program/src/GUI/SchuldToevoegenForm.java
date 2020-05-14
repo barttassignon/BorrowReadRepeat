@@ -92,6 +92,7 @@ public class SchuldToevoegenForm {
                         double prijs = BoekDAO.ophalenBoek(artikelnummer).getPrijs()/2;
                         SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Beschadiging", prijs, LocalDate.now()));
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
+                        UitleenDAO.binnenbrengenUitlening(artikelnummer);
                         // zorgen dat boek nadien niet meer kan worden uitgeleend (?)
                     }
                 }
