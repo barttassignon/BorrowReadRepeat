@@ -67,23 +67,25 @@ public class UitleningWeergevenForm {
         });
 
 
-        //       zoekButton1.addActionListener(new ActionListener() {
-        //           @Override
-        //           public void actionPerformed(ActionEvent e) {
-        //               int artikelNummer = artikelnummerTextField.getText();
+        zoekButton1.addActionListener(new ActionListener() {
+                   @Override
+                   public void actionPerformed(ActionEvent e) {
+                       int artikelNummer = Integer.parseInt(artikelnummerTextField.getText());
 
-        //               model.setRowCount(0);
+                       model.setRowCount(0);
 
-        //               for(Uitlening b: UitleenDAO.uitleengeschiedenisBoek(artikelNummer)){
-        //                   model.addRow(new Object[]{b.getArtikelnummer(), b.lezerID(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
-        //               }
+                       if(UitleenDAO.uitleengeschiedenisBoek(artikelNummer).size() == 0)
+                       {
+                           JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen boek gevonden met dit artikelnummer.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                       }
 
-        //               if(UitleningDAO.opzoekenBoek(artikelNummer).size() == 0)
-        //               {
-        //                   JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen boek gevonden met dit artikelnummer.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
-        //               }
-        //           }
-//        });
+                       for(Uitlening u: UitleenDAO.uitleengeschiedenisBoek(artikelNummer)){
+                           model.addRow(new Object[]{artikelNummer, u.getLezer().getId(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
+                       }
+
+
+                   }
+          });
 
         //       zoekButton2.addActionListener(new ActionListener() {
         //           public void actionPerformed(ActionEvent e) {
