@@ -87,22 +87,25 @@ public class UitleningWeergevenForm {
                    }
           });
 
-        //       zoekButton2.addActionListener(new ActionListener() {
-        //           public void actionPerformed(ActionEvent e) {
-        //               model.setRowCount(0);
+               zoekButton2.addActionListener(new ActionListener() {
+                   public void actionPerformed(ActionEvent e) {
 
-        //               String titel = titelTextField.getText();
+                       int lezerid = Integer.parseInt(lezerIDTextField.getText());
 
-        //               for(Uitlening b : UitleenDAO.uitleengeschiedenisLezer(titel)){
-        //                   model.addRow(new Object[]{b.getArtikelnummer(), b.lezerID(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
-        //               }
+                       model.setRowCount(0);
 
-        //               if(UitleningDAO.opzoekenBoek(titel).size() == 0)
-//                {
-//                    JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen lezer gevonden met deze ID.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
-//                }
-//            }
-        //       });
+                       if(UitleenDAO.uitleengeschiedenisLezer(lezerid).size() == 0)
+                       {
+                           JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen lezer gevonden met deze ID.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                       }
+
+                       for(Uitlening u : UitleenDAO.uitleengeschiedenisLezer(lezerid)){
+                           model.addRow(new Object[]{u.getBoek().getArtikelnummer(), u.getLezer().getId(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
+                       }
+
+
+            }
+               });
 
 //    }
     }
