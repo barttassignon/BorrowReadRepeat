@@ -79,7 +79,6 @@ public class SchuldForm {
                         model.addRow(new Object[]{lezerID, s.getId(), s.getOorsprong(), s.getBedrag(), s.getDatumAangemaakt(), s.getDatumBetaald()});
                     }
                 }
-
                 catch (NumberFormatException nr) {
                     JOptionPane.showMessageDialog(schuldFrame, "Gelieve een (geldig) LezerID in te geven", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 }

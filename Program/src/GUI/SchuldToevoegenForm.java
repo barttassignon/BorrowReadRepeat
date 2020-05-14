@@ -51,7 +51,6 @@ public class SchuldToevoegenForm {
 
                 try {
                     int lezerid = Integer.parseInt(lezerTextField.getText());
-
                     int artikelnummer = Integer.parseInt(boekTextField.getText());
 
                     if (UitleenDAO.uitleengeschiedenisLezer(lezerid) == null)
@@ -62,14 +61,12 @@ public class SchuldToevoegenForm {
                         double prijs = BoekDAO.ophalenBoek(artikelnummer).getPrijs();
                         SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Verlies", prijs, LocalDate.now()));
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
+                        UitleenDAO.binnenbrengenUitlening(artikelnummer);
                         BoekDAO.verwijderenBoek(artikelnummer);
                     }
-                }
-                catch (NumberFormatException nr)
-                {
+                } catch (NumberFormatException nr) {
                     JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Gelieve een (geldig) ID in te geven.");
-                }
-                catch (NullPointerException npe) {
+                } catch (NullPointerException npe) {
                     JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Deze lezer heeft dit boek niet in zijn bezit.");
                 }
             }
@@ -81,7 +78,6 @@ public class SchuldToevoegenForm {
 
                 try {
                     int lezerid = Integer.parseInt(lezerTextField.getText());
-
                     int artikelnummer = Integer.parseInt(boekTextField.getText());
 
                     if (UitleenDAO.uitleengeschiedenisLezer(lezerid) == null)
@@ -94,12 +90,9 @@ public class SchuldToevoegenForm {
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
                         UitleenDAO.binnenbrengenUitlening(artikelnummer);
                     }
-                }
-                catch (NumberFormatException nr)
-                {
+                } catch (NumberFormatException nr) {
                     JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Gelieve een (geldig) ID in te geven.");
-                }
-                catch (NullPointerException npe) {
+                } catch (NullPointerException npe) {
                     JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Deze lezer heeft dit boek niet in zijn bezit.");
                 }
             }

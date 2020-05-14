@@ -129,10 +129,9 @@ public class BoekToevoegenForm extends JFrame {
 
                     if (titel.length() == 0 || auteur.length() == 0 || uitgeverij.length() == 0 || plaats.length() == 0) {
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    }
-                    if(ISBNtextField.getText().length() != 10 && ISBNtextField.getText().length() != 13)
+                    } else if(ISBNtextField.getText().length() != 10 && ISBNtextField.getText().length() != 13) {
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Geef een geldig ISBN.", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    else{
+                    } else{
                         BoekDAO.toevoegenBoek(new Boek(ISBN, titel, auteur, uitgeverij, taal, genre, paginas, aankoopdatum, aankoopprijs, plaats, kind));
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Boek toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                     }

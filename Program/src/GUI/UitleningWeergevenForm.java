@@ -70,43 +70,38 @@ public class UitleningWeergevenForm {
         zoekButton1.addActionListener(new ActionListener() {
                    @Override
                    public void actionPerformed(ActionEvent e) {
-                       int artikelNummer = Integer.parseInt(artikelnummerTextField.getText());
-
                        model.setRowCount(0);
+                       try {
+                           int artikelNummer = Integer.parseInt(artikelnummerTextField.getText());
+                           if (UitleenDAO.uitleengeschiedenisBoek(artikelNummer).size() == 0) {
+                               JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen boek gevonden met dit artikelnummer.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                           }
+                           for (Uitlening u : UitleenDAO.uitleengeschiedenisBoek(artikelNummer)) {
+                               model.addRow(new Object[]{artikelNummer, u.getLezer().getId(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
+                           }
 
-                       if(UitleenDAO.uitleengeschiedenisBoek(artikelNummer).size() == 0)
-                       {
-                           JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen boek gevonden met dit artikelnummer.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
+                       } catch (NumberFormatException nr){
+                           JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Gelieve een geldig ID in te vullen!");
                        }
-
-                       for(Uitlening u: UitleenDAO.uitleengeschiedenisBoek(artikelNummer)){
-                           model.addRow(new Object[]{artikelNummer, u.getLezer().getId(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
-                       }
-
-
                    }
           });
 
                zoekButton2.addActionListener(new ActionListener() {
                    public void actionPerformed(ActionEvent e) {
 
-                       int lezerid = Integer.parseInt(lezerIDTextField.getText());
-
                        model.setRowCount(0);
-
-                       if(UitleenDAO.uitleengeschiedenisLezer(lezerid).size() == 0)
-                       {
+                       try{
+                       int lezerid = Integer.parseInt(lezerIDTextField.getText());
+                       if(UitleenDAO.uitleengeschiedenLezer(lezerid).size() == 0) {
                            JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen lezer gevonden met deze ID.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                        }
-
-                       for(Uitlening u : UitleenDAO.uitleengeschiedenisLezer(lezerid)){
+                       for(Uitlening u : UitleenDAO.uitleengeschiedenLezer(lezerid)){
                            model.addRow(new Object[]{u.getBoek().getArtikelnummer(), u.getLezer().getId(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
                        }
-
-
-            }
+                       } catch (NumberFormatException nr){
+                               JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Gelieve een geldig ID in te vullen!");
+                           }
+                }
                });
-
-//    }
     }
 }

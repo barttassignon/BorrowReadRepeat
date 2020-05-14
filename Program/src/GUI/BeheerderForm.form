@@ -197,7 +197,7 @@
           <background color="-721409"/>
           <font name="Consolas" size="16" style="0"/>
           <foreground color="-16318021"/>
-          <text value="Overzicht schulden"/>
+          <text value="Schuld toevoegen"/>
         </properties>
       </component>
       <component id="33e59" class="javax.swing.JButton" binding="UitloggenButton">
