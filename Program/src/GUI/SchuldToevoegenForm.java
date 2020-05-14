@@ -9,6 +9,7 @@ import entity.Schuld;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 
 public class SchuldToevoegenForm {
@@ -55,20 +56,22 @@ public class SchuldToevoegenForm {
 
                     if (UitleenDAO.uitleengeschiedenisLezer(lezerid) == null)
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Geen lezer gevonden met dit ID");
-                    if (UitleenDAO.uitleengeschiedenisBoek(artikelnummer) == null)
+                    else if (UitleenDAO.uitleengeschiedenisBoek(artikelnummer) == null)
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Geen boek gevonden met dit ID.");
-
-                    double prijs = BoekDAO.ophalenBoek(artikelnummer).getPrijs();
-                    SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Verlies", prijs, LocalDate.now()));
-                    JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
+                    else {
+                        double prijs = BoekDAO.ophalenBoek(artikelnummer).getPrijs();
+                        SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Verlies", prijs, LocalDate.now()));
+                        JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
+                        // zorgen dat boek nadien niet meer kan worden uitgeleend
+                    }
                 }
-
                 catch (NumberFormatException nr)
                 {
                     JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Gelieve een (geldig) ID in te geven.");
-
                 }
-
+                catch (NullPointerException npe) {
+                    JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Deze lezer heeft dit boek niet in zijn bezit.");
+                }
             }
         });
 
