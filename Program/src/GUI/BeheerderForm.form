@@ -23,7 +23,7 @@
           <verticalTextPosition value="3"/>
         </properties>
       </component>
-      <component id="f81a4" class="javax.swing.JButton" binding="BoekWijzigen">
+      <component id="f81a4" class="javax.swing.JButton" binding="weergevenBoek">
         <constraints>
           <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -33,7 +33,7 @@
           <font name="Consolas" size="16" style="0"/>
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
-          <text value="Wijzigen"/>
+          <text value="Weergeven"/>
         </properties>
       </component>
       <component id="e9b32" class="javax.swing.JButton" binding="BoekToevoegenButton">
@@ -86,19 +86,6 @@
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
           <text value="Wijzigen"/>
-        </properties>
-      </component>
-      <component id="f6966" class="javax.swing.JButton" binding="weergevenBoek">
-        <constraints>
-          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-721409"/>
-          <enabled value="true"/>
-          <font name="Consolas" size="16" style="0"/>
-          <foreground color="-16318021"/>
-          <hideActionText value="true"/>
-          <text value="Weergeven"/>
         </properties>
       </component>
       <component id="76077" class="javax.swing.JButton" binding="weergevenButton">
@@ -202,6 +189,17 @@
       <component id="9fa56" class="javax.swing.JButton" binding="SchuldButton">
         <constraints>
           <grid row="10" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-721409"/>
+          <font name="Consolas" size="16" style="0"/>
+          <foreground color="-16318021"/>
+          <text value="Overzicht schulden"/>
+        </properties>
+      </component>
+      <component id="83203" class="javax.swing.JButton" binding="SchuldToevoegenButton">
+        <constraints>
+          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-721409"/>

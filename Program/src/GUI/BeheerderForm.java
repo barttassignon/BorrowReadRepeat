@@ -11,20 +11,23 @@ import java.awt.event.ActionListener;
 public class BeheerderForm extends JFrame {
 
     private JPanel panel1;
-    private JButton BoekWijzigen;
+    private JLabel labelBoek;
+
     private JButton BoekToevoegenButton;
-    private JButton Uitlening;
-    private JButton reservatieButton;
-    private JButton SchuldButton;
+    private JButton weergevenBoek;
+    private JButton schuldToevoegenButton;
+
     private JButton LezertoevoegenButton;
     private JButton wijzigenButton;
-    private JButton weergevenBoek;
     private JButton weergevenButton;
+    private JButton SchuldButton;
+
+    private JButton Uitlening;
+    private JButton reservatieButton;
     private JButton beheerderToevoegenButton;
-    private JLabel labelBoek;
     private JButton UitloggenButton;
-    private JTabbedPane tabbedPane1;
-    private JButton schuldenButton;
+    private JButton SchuldToevoegenButton;
+
     private JFrame beheerderFormFrame = new JFrame("BorrowReadRepeat");
 
     public BeheerderForm() {
@@ -34,7 +37,7 @@ public class BeheerderForm extends JFrame {
         beheerderFormFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         beheerderFormFrame.setVisible(true);
-        beheerderFormFrame.setSize(600, 600);
+        beheerderFormFrame.setSize(700, 600);
         beheerderFormFrame.setResizable(false);
         beheerderFormFrame.setLocationRelativeTo(null);
 
@@ -114,6 +117,13 @@ public class BeheerderForm extends JFrame {
             }
         });
 
+        SchuldToevoegenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SchuldToevoegenForm();
+                beheerderFormFrame.dispose();
+            }
+        });
     }
 
     public static void main(String[] args) {
