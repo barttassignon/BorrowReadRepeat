@@ -33,6 +33,27 @@ public class SchuldDAO extends BaseDAO {
         }
     }
 
+    public static void reservatieSchuld(int lezerID){
+        try (Connection c = getConn()) {
+
+            PreparedStatement p = c.prepareStatement("insert into Schulden values (NULL, ?, ?, ?, ?, NULL)");
+            p.setInt(1, lezerID);
+            p.setString(2, "Reservatie");
+            p.setDouble(3, 0.5);
+            p.setObject(4, LocalDate.now());
+
+            int result = p.executeUpdate();
+
+            if (result > 0)
+                System.out.println("De schuld werd toegevoegd!");
+            else System.out.println("De schuld kon niet worden toegevoegd!");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MISLUKT!");
+        }
+    }
+
     public void aanrekenenSchuld(int lezer_id, Schuld schuld)
     {
         try (Connection c = getConn()) {

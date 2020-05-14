@@ -3,8 +3,10 @@ package GUI;
 import db.BoekDAO;
 import db.LezerDAO;
 import db.ReservatieDAO;
+import db.SchuldDAO;
 import entity.Boek;
 import entity.Reservatie;
+import entity.Schuld;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -98,7 +100,8 @@ public class ReservatieForm {
                     } else{
                         ReservatieDAO.maakReservatie(new Reservatie(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(artikelnummer)));
                         BoekDAO.isGereserveerd(artikelnummer);
-                        JOptionPane.showMessageDialog(null, "Reservatie gemaakt!");
+                        SchuldDAO.reservatieSchuld(lezerID);
+                        JOptionPane.showMessageDialog(null, "Reservatie gemaakt. Nieuwe schuld van " + 0.5 + " euro.");
                     }
                 } catch(NumberFormatException nr){
                     JOptionPane.showMessageDialog(null, "Geef een (geldig) lezerID in!");
