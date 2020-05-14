@@ -105,6 +105,8 @@ public class LezerToevoegenForm extends JFrame {
                         JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve een geldig jaartal in te geven!");
                     } else if(paswoord.length() < 4) {
                         JOptionPane.showMessageDialog(lezerToevoegenFrame, "Wachtwoord moet minimum 4 tekens bevatten!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    } else if (telefoon.length() <= 13) {
+                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Telefoonnummer kan max uit 13 cijfers bestaan!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     } else {
                         if (paswoord.equals(bevestigWachtwoord)) {
                             try {

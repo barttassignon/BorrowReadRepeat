@@ -26,7 +26,7 @@ public class OnzeLogger {
             e.printStackTrace();
         }
 
-        //formatter voor de teks in logfile
+        //formatter voor de tekst in logfile
         fh.setFormatter(new SimpleFormatter());
         OnzeLogger.addHandler(fh);
     }

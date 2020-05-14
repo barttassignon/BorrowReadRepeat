@@ -58,12 +58,6 @@ public class DatabaseSingleton {
 
                 connection = DriverManager.getConnection(url, username, password);
 
-                OnzeLogger SingletonLog = new OnzeLogger();
-                SingletonLog.doLoggingInfo(this.getClass().getSimpleName() + " : Connectie met SQL Database is gemaakt.");
-
-
-
-
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();

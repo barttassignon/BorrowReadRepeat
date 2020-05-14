@@ -30,6 +30,8 @@
         <properties>
           <enabled value="true"/>
           <font name="Consolas" size="18"/>
+          <text value=""/>
+          <toolTipText value=""/>
         </properties>
       </component>
       <component id="c356d" class="javax.swing.JLabel" binding="ISBNLabel">
