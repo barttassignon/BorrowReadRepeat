@@ -16,6 +16,12 @@ public class Schuld {
     public Schuld() {
     }
 
+    public Schuld(String oorsprong, double bedrag, LocalDate datumAangemaakt) {
+        this.oorsprong = oorsprong;
+        this.bedrag = bedrag;
+        this.datumAangemaakt = datumAangemaakt;
+    }
+
     public Schuld(int id, double bedrag, LocalDate datumAangemaakt, LocalDate datumBetaald) {
         this.id = id;
         this.bedrag = bedrag;

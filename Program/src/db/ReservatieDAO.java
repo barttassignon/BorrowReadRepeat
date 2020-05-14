@@ -5,6 +5,7 @@ import entity.Lezer;
 import entity.Reservatie;
 import entity.Uitlening;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,8 +26,10 @@ public class ReservatieDAO extends BaseDAO {
             s.setObject(3, reservatie.getReservatieDatum());
 
             int result = s.executeUpdate();
-            if (result > 0)
+            if (result > 0) {
                 System.out.println("Reservatie werd toegevoegd!");
+            }
+
             else System.out.println("Reservatie werd niet toegevoegd!");
         } catch (SQLException e) {
             e.printStackTrace();

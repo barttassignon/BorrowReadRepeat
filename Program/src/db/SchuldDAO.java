@@ -33,7 +33,7 @@ public class SchuldDAO extends BaseDAO {
         }
     }
 
-    public void aanrekenenSchuld(int lezer_id, Schuld schuld)
+    public static void aanrekenenSchuld(int lezer_id, Schuld schuld)
     {
         try (Connection c = getConn()) {
 

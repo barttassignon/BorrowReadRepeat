@@ -3,14 +3,17 @@ package GUI;
 import db.BoekDAO;
 import db.LezerDAO;
 import db.ReservatieDAO;
+import db.SchuldDAO;
 import entity.Boek;
 import entity.Reservatie;
+import entity.Schuld;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 public class ReservatieForm {
 
@@ -76,6 +79,9 @@ public class ReservatieForm {
 
                 String titel = titelTextField.getText();
 
+                if (BoekDAO.opzoekenBoek(titel).size() == 0) {
+                    JOptionPane.showMessageDialog(null, "Geen boeken gevonden met deze titel.");
+                }
                 for (Boek b : BoekDAO.opzoekenBoek(titel)) {
                     model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
                 }
@@ -98,6 +104,7 @@ public class ReservatieForm {
                     } else{
                         ReservatieDAO.maakReservatie(new Reservatie(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(artikelnummer)));
                         BoekDAO.isGereserveerd(artikelnummer);
+                        SchuldDAO.aanrekenenSchuld(lezerID, new Schuld("Reservatie", 0.5, LocalDate.now()));
                         JOptionPane.showMessageDialog(null, "Reservatie gemaakt!");
                     }
                 } catch(NumberFormatException nr){
