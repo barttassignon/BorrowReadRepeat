@@ -62,7 +62,7 @@ public class SchuldToevoegenForm {
                         double prijs = BoekDAO.ophalenBoek(artikelnummer).getPrijs();
                         SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Verlies", prijs, LocalDate.now()));
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
-                        // zorgen dat boek nadien niet meer kan worden uitgeleend
+                        BoekDAO.verwijderenBoek(artikelnummer);
                     }
                 }
                 catch (NumberFormatException nr)
@@ -93,7 +93,6 @@ public class SchuldToevoegenForm {
                         SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Beschadiging", prijs, LocalDate.now()));
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
                         UitleenDAO.binnenbrengenUitlening(artikelnummer);
-                        // zorgen dat boek nadien niet meer kan worden uitgeleend (?)
                     }
                 }
                 catch (NumberFormatException nr)
