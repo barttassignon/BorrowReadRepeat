@@ -75,7 +75,35 @@ public class SchuldToevoegenForm {
             }
         });
 
+        beschadigdButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+                try {
+                    int lezerid = Integer.parseInt(lezerTextField.getText());
+
+                    int artikelnummer = Integer.parseInt(boekTextField.getText());
+
+                    if (UitleenDAO.uitleengeschiedenisLezer(lezerid) == null)
+                        JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Geen lezer gevonden met dit ID");
+                    else if (UitleenDAO.uitleengeschiedenisBoek(artikelnummer) == null)
+                        JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Geen boek gevonden met dit ID.");
+                    else {
+                        double prijs = BoekDAO.ophalenBoek(artikelnummer).getPrijs()/2;
+                        SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Beschadiging", prijs, LocalDate.now()));
+                        JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
+                        // zorgen dat boek nadien niet meer kan worden uitgeleend (?)
+                    }
+                }
+                catch (NumberFormatException nr)
+                {
+                    JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Gelieve een (geldig) ID in te geven.");
+                }
+                catch (NullPointerException npe) {
+                    JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Deze lezer heeft dit boek niet in zijn bezit.");
+                }
+            }
+        });
     }
 
     public static void main(String[] args) { new SchuldToevoegenForm(); }
