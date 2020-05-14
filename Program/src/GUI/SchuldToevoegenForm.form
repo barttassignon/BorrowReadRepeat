@@ -24,7 +24,7 @@
       </component>
       <component id="de56d" class="javax.swing.JLabel" binding="lezerID">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Consolas" size="18"/>
@@ -35,7 +35,7 @@
       </component>
       <component id="be50b" class="javax.swing.JTextField" binding="lezerTextField">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="10" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="20"/>
             <preferred-size width="250" height="-1"/>
           </grid>

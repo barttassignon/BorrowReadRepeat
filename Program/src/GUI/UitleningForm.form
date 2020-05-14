@@ -24,7 +24,9 @@
       </component>
       <component id="e4f97" class="javax.swing.JButton" binding="toevoegenButton">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <preferred-size width="250" height="-1"/>
+          </grid>
         </constraints>
         <properties>
           <background color="-721409"/>
@@ -37,7 +39,9 @@
       </component>
       <component id="6ada3" class="javax.swing.JButton" binding="binnenbrengenButton">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <preferred-size width="250" height="-1"/>
+          </grid>
         </constraints>
         <properties>
           <background color="-721409"/>
@@ -50,7 +54,9 @@
       </component>
       <component id="49e97" class="javax.swing.JButton" binding="verlengButton">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <preferred-size width="250" height="-1"/>
+          </grid>
         </constraints>
         <properties>
           <background color="-721409"/>
@@ -74,7 +80,9 @@
       </component>
       <component id="65b94" class="javax.swing.JButton" binding="weergevenButton">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <preferred-size width="250" height="-1"/>
+          </grid>
         </constraints>
         <properties>
           <background color="-721409"/>
@@ -82,7 +90,7 @@
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
           <horizontalAlignment value="0"/>
-          <text value="Uitleengeschiedenis weergeven"/>
+          <text value="Uitleengeschiedenis"/>
         </properties>
       </component>
     </children>
