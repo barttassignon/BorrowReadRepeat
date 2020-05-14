@@ -82,12 +82,12 @@ public class UitleenDAO extends BaseDAO {
         }
     }
 
-    // Een overzicht van alle uitleningen:
+    // Een overzicht van alle lopende uitleningen:
 
     public static ArrayList<Uitlening> ophalenUitleningen() {
         ArrayList<Uitlening> lijstUitlening = new ArrayList<>();
         try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("select * from Uitleningen");
+            PreparedStatement s = c.prepareStatement("select * from Uitleningen where Inleverdatum is null");
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 lijstUitlening.add(new Uitlening(new Lezer(rs.getInt(2)), new Boek(rs.getInt(3)), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
@@ -100,18 +100,17 @@ public class UitleenDAO extends BaseDAO {
         return lijstUitlening;
     }
 
-// Ophalen alle uitleningen van specifieke lezer:
+    // Ophalen alle lopende uitleningen van specifieke lezer:
 
     public static ArrayList<Uitlening> uitleengeschiedenisLezer(int lezerID) {
         ArrayList<Uitlening> lijstUitlening = new ArrayList<>();
         try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("select * from Uitleningen where Lezer_ID = ?");
+            PreparedStatement s = c.prepareStatement("select * from Uitleningen where Lezer_ID = ? and Inleverdatum is null");
             s.setInt(1, lezerID);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 lijstUitlening.add(new Uitlening(new Lezer(rs.getInt(2)), new Boek(rs.getInt(3)), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
