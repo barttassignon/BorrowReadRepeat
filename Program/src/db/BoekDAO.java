@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 public class BoekDAO extends BaseDAO {
 
-    // Toevoegen van boek
+    // Toevoegen van boek aan database:
 
     public static void toevoegenBoek(Boek boek) {
 
         try (Connection c = getConn()) {
 
-            PreparedStatement s = c.prepareStatement("insert into Boeken values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, false, false, 0)");
+            PreparedStatement s = c.prepareStatement("insert into Boeken values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, false, false, false)");
             s.setLong(1, boek.getISBN());
             s.setString(2, boek.getTitel());
             s.setString(3, boek.getAuteur());
@@ -30,8 +30,6 @@ public class BoekDAO extends BaseDAO {
             s.setDouble(10, boek.getPrijs());
             s.setString(11, boek.getPlaatsInBib());
 
-            // Aanpassen zodat CSV-bestand kan worden ingelezen en afgelopen met while-loop om gegevens in batch toe te voegen
-
             int result = s.executeUpdate();
             if (result > 0)
                 System.out.println("Boek werd toegevoegd!");
@@ -42,12 +40,12 @@ public class BoekDAO extends BaseDAO {
         }
     }
 
-    // Een overzicht van alle boeken:
+    // Een overzicht van alle boeken in stock:
 
     public static ArrayList<Boek> ophalenBoeken() {
         ArrayList<Boek> lijstBoeken = new ArrayList<>();
         try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("select * from Boeken");
+            PreparedStatement s = c.prepareStatement("select * from Boeken where UitStock = false");
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 lijstBoeken.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class)));
@@ -69,7 +67,7 @@ public class BoekDAO extends BaseDAO {
             s.setInt(1, id);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
-                boek = new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class), rs.getDouble(11), rs.getString(12), rs.getBoolean(13), rs.getBoolean(14), rs.getInt(15), rs.getBoolean(8));
+                boek = new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class), rs.getDouble(11), rs.getString(12), rs.getBoolean(13), rs.getBoolean(14), rs.getBoolean(15), rs.getBoolean(8));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -83,11 +81,11 @@ public class BoekDAO extends BaseDAO {
     public static ArrayList<Boek> opzoekenBoek(String titel){
         ArrayList<Boek> lijst = new ArrayList<>();
         try (Connection c = getConn()){
-            PreparedStatement s = c.prepareStatement("select * from Boeken where Titel LIKE ?");
+            PreparedStatement s = c.prepareStatement("select * from Boeken where Titel LIKE ? and UitStock = false");
             s.setString(1, "%"+titel+"%");
             ResultSet rs = s.executeQuery();
             while (rs.next()){
-                lijst.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class), rs.getDouble(11), rs.getString(12), rs.getBoolean(13), rs.getBoolean(14), rs.getInt(15), rs.getBoolean(8)));
+                lijst.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class), rs.getDouble(11), rs.getString(12), rs.getBoolean(13), rs.getBoolean(14), rs.getBoolean(15), rs.getBoolean(8)));
             }
 
             } catch (SQLException e){
@@ -97,12 +95,12 @@ public class BoekDAO extends BaseDAO {
         return lijst;
     }
 
-    // Boek verwijderen :
+    // Boek uit stock halen  :
 
     public static void verwijderenBoek(int artikelnummer) {
         try {
             Connection c = getConn();
-            PreparedStatement s = c.prepareStatement("delete from Boeken where Boek_ID = ?");
+            PreparedStatement s = c.prepareStatement("update Boeken set Uitstock = true where Boek_ID = ?");
             s.setInt(1, artikelnummer);
             int result = s.executeUpdate();
             if (result > 0) {
@@ -186,25 +184,6 @@ public class BoekDAO extends BaseDAO {
             if (result > 0)
                 System.out.println("Status boek = niet uitgeleend");
             else System.out.println("Status boek kon niet worden aangepast!");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("MISLUKT!");
-        }
-    }
-
-    // methode om aantal uitleningen boek te verhogen:
-
-    public static void verhoogAantalKeerUitgeleend(int artikelnummer) {
-
-        try (Connection c = getConn()) {
-
-            PreparedStatement s = c.prepareStatement("update Boeken set AantalKeerUitgeleend = AantalKeerUitgeleend + 1 where Boek_ID = ?");
-            s.setInt(1, artikelnummer);
-
-            int result = s.executeUpdate();
-            if (result > 0)
-                System.out.println("AantalKeerUitgeleend werd verhoogd met 1");
-            else System.out.println("AantalKeerUitgeleend kon niet worden aangepast!");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("MISLUKT!");
