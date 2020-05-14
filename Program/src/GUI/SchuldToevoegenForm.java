@@ -1,8 +1,15 @@
 package GUI;
 
+import db.BoekDAO;
+import db.LezerDAO;
+import db.SchuldDAO;
+import db.UitleenDAO;
+import entity.Schuld;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 public class SchuldToevoegenForm {
 
@@ -34,6 +41,34 @@ public class SchuldToevoegenForm {
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
                 schuldToevoegenFormFrame.dispose();
+            }
+        });
+
+        verlorenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    int lezerid = Integer.parseInt(lezerTextField.getText());
+
+                    int artikelnummer = Integer.parseInt(boekTextField.getText());
+
+                    if (UitleenDAO.uitleengeschiedenisLezer(lezerid) == null)
+                        JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Geen lezer gevonden met dit ID");
+                    if (UitleenDAO.uitleengeschiedenisBoek(artikelnummer) == null)
+                        JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Geen boek gevonden met dit ID.");
+
+                    double prijs = BoekDAO.ophalenBoek(artikelnummer).getPrijs();
+                    SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Verlies", prijs, LocalDate.now()));
+                    JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
+                }
+
+                catch (NumberFormatException nr)
+                {
+                    JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Gelieve een (geldig) ID in te geven.");
+
+                }
+
             }
         });
 
