@@ -77,7 +77,7 @@ public class WijzigLezerForm {
                                     LezerDAO.wijzigenEmailLezer(lezer, email);
                                     JOptionPane.showMessageDialog(wijzigLezerFrame, "Email gewijzigd!");
                             }
-                           
+
                             String straat = straatTextfield.getText();
                             if (!straat.equals("")){
                                 int nummer = Integer.parseInt(nummerTextField.getText());

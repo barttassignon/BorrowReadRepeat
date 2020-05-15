@@ -1,9 +1,5 @@
 package db;
 
-/**
- * @author Katrien Persoons
- */
-
 import java.sql.Connection;
 import java.sql.SQLException;
 

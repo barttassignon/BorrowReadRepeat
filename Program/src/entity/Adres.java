@@ -1,7 +1,3 @@
-/**
- * @Author Bart Tassignon
- */
-
 package entity;
 
 import java.io.Serializable;

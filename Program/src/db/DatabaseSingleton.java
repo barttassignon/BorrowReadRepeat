@@ -1,7 +1,6 @@
 package db;
 
 /**
- * @author Katrien Persoons
  * Doel: Connectie met databank
  * Voorafgaande stappen:
  * 1. "mysql jdbc connector download" opzoeken in Google,

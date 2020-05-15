@@ -1,9 +1,5 @@
 package entity;
 
-/**
- * @author Katrien Persoons
- */
-
 public class Beheerder extends Persoon{
 
     private String gebruikersnaam;

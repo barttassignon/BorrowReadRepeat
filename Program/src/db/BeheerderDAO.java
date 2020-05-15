@@ -1,9 +1,5 @@
 package db;
 
-/**
- * @author Katrien Persoons
- */
-
 import entity.Beheerder;
 
 import java.security.NoSuchAlgorithmException;
