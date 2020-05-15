@@ -1,9 +1,6 @@
 package GUI;
 
-import db.BoekDAO;
-import db.LezerDAO;
-import db.ReservatieDAO;
-import db.UitleenDAO;
+import db.*;
 import entity.Uitlening;
 
 import javax.swing.*;
@@ -47,7 +44,9 @@ public class UitleningToevoegenForm extends JFrame {
                     int lezerID = Integer.parseInt(lezerTextField.getText());
                     int boekID = Integer.parseInt(artikelTextField1.getText());
 
-                    if((BoekDAO.ophalenBoek(boekID).isGereserveerd() == true) && (lezerID != ReservatieDAO.ophalenReservatie(boekID))){
+                    if(SchuldDAO.aantalOpenstaandeSchulden(lezerID) > 0){
+                        JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Niet mogelijk om uitleningen te doen. De persoon heeft nog schulden!");
+                    } else if((BoekDAO.ophalenBoek(boekID).isGereserveerd() == true) && (lezerID != ReservatieDAO.ophalenReservatie(boekID))){
                         JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Boek gereserveerd door iemand anders!");
                     } else {
                         if(UitleenDAO.aantalUitleningenPerLezer(lezerID) >= 10){
