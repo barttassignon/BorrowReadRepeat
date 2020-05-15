@@ -33,10 +33,6 @@ public class UitleningWeergevenForm {
     private JButton zoekButton2;
     private JButton terugButton;
 
-    public static void main(String[] args) {
-        new UitleningWeergevenForm();
-    }
-
     public UitleningWeergevenForm() {
 
         uitleningWeergevenFrame.getContentPane().add(panel1);
@@ -100,5 +96,9 @@ public class UitleningWeergevenForm {
                            }
                 }
                });
+    }
+
+    public static void main(String[] args) {
+        new UitleningWeergevenForm();
     }
 }

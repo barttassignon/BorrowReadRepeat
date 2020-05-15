@@ -36,10 +36,6 @@ public class WeergevenLezerForm extends JFrame {
     private JButton zoekButton;
     private JButton verwijderButton;
 
-    public static void main(String[] args) {
-        new WeergevenLezerForm();
-    }
-
     public WeergevenLezerForm() {
 
         opzoekenLezerFrame.getContentPane().add(panel1);
@@ -120,6 +116,10 @@ public class WeergevenLezerForm extends JFrame {
                 }
             }
         });
+    }
+
+    public static void main(String[] args) {
+        new WeergevenLezerForm();
     }
 }
 

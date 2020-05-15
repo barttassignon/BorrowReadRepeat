@@ -71,7 +71,7 @@ public class LezerDAO extends BaseDAO {
         ArrayList<Lezer> lijst = new ArrayList<>();
         try (Connection c = getConn()) {
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("select * from Lezers");
+            ResultSet rs = s.executeQuery("select * from Lezers where Voornaam is not null");
             while (rs.next()) {
                 lijst.add(new Lezer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getObject(4, LocalDate.class), rs.getString(5), rs.getString(6)));
             }

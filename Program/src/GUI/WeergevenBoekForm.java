@@ -32,10 +32,6 @@ public class WeergevenBoekForm extends JFrame{
     private JButton verwijderBoek;
     private JButton terugButton;
 
-    public static void main(String[] args) {
-        new WeergevenBoekForm();
-    }
-
     public WeergevenBoekForm() {
 
         weergevenBoekFrame.getContentPane().add(panel1);
@@ -106,6 +102,10 @@ public class WeergevenBoekForm extends JFrame{
                 }
             }
         });
+    }
+
+    public static void main(String[] args) {
+        new WeergevenBoekForm();
     }
 }
 
