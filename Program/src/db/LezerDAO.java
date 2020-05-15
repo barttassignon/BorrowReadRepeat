@@ -28,6 +28,8 @@ public class LezerDAO extends BaseDAO {
 
                 // Eerst tabel Lezers updaten (parent)
 
+                c.setAutoCommit(false);
+
                 PreparedStatement p = c.prepareStatement("insert into Lezers values (NULL, ?, ?, ?, ?, ?, ?, ?)");
                 p.setString(1, lezer.getVoornaam());
                 p.setString(2, lezer.getNaam());
@@ -63,7 +65,7 @@ public class LezerDAO extends BaseDAO {
                     System.out.println("De lezer werd toegevoegd!");
                 else System.out.println("De lezer kon niet worden toegevoegd!");
 
-                // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: lezer bestaat reeds)
+                c.commit();
 
             } catch (SQLException | NoSuchAlgorithmException e) {
                 e.printStackTrace();
