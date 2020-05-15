@@ -106,9 +106,9 @@ public class LezerToevoegenForm extends JFrame {
                     } else if (paswoord.length() < 4) {
                         JOptionPane.showMessageDialog(lezerToevoegenFrame, "Wachtwoord moet minimum 4 tekens bevatten!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     } else if (!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
-                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve een geldig e-mailadres in te geven!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    //} //else if (!telefoon.matches("")) {
-                        //JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve een geldig telefoonnummer in te geven!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve een geldig e-mailadres in te voeren!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    } else if (!telefoon.matches("^0[1-9]\\d{7,8}$")) {
+                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve een geldig telefoonnummer in te geven!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     } else {
                         if (paswoord.equals(bevestigWachtwoord)) {
                             try {
