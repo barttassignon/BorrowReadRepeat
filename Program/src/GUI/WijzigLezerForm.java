@@ -66,15 +66,18 @@ public class WijzigLezerForm {
                         String telefoon = telefoonTextField.getText();
                         if(LezerDAO.bestaatLezer(lezer) == 0){
                             JOptionPane.showMessageDialog(wijzigLezerFrame, "Er bestaat geen lezer met dit ID!");
-                        } else {
-                            if (!telefoon.equals("")) {
+                        }
+                        else {
+                            if (telefoon.matches("^0[1-9]\\d{7,8}$")){
                                 LezerDAO.wijzigenTelLezer(lezer, telefoon);
-                                JOptionPane.showMessageDialog(wijzigLezerFrame, "Telefoonnummer gewijzigd!");
+                                JOptionPane.showMessageDialog(wijzigLezerFrame, "Telefoon gewijzigd!");
                             }
-                            if (!email.equals("")){
+
+                            if (email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")){
                                     LezerDAO.wijzigenEmailLezer(lezer, email);
                                     JOptionPane.showMessageDialog(wijzigLezerFrame, "Email gewijzigd!");
                             }
+                           
                             String straat = straatTextfield.getText();
                             if (!straat.equals("")){
                                 int nummer = Integer.parseInt(nummerTextField.getText());
