@@ -99,12 +99,14 @@ public class LezerToevoegenForm extends JFrame {
 
                     if (voornaam.length() == 0 || naam.length() == 0 || straatnaam.length() == 0 || woonplaats.length() == 0 || email.length() == 0 || telefoon.length() == 0) {
                         JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    } else if(postcode < 1000 || postcode > 9999){
+                    } else if (postcode < 1000 || postcode > 9999) {
                         JOptionPane.showMessageDialog(lezerToevoegenFrame, "Postcode moet uit 4 cijfers bestaan!");
-                    } else if(jaar < 1900 || jaar > 2050){
+                    } else if (jaar < 1900 || jaar > 2050) {
                         JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve een geldig jaartal in te geven!");
-                    } else if(paswoord.length() < 4) {
+                    } else if (paswoord.length() < 4) {
                         JOptionPane.showMessageDialog(lezerToevoegenFrame, "Wachtwoord moet minimum 4 tekens bevatten!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    } else if (!email.matches("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
+                        JOptionPane.showMessageDialog(lezerToevoegenFrame, "Gelieve een geldig e-mailadres in te geven!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     } else if (telefoon.length() >= 13) {
                         JOptionPane.showMessageDialog(lezerToevoegenFrame, "Telefoonnummer kan max uit 13 cijfers bestaan!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     } else {
@@ -115,8 +117,8 @@ public class LezerToevoegenForm extends JFrame {
                             } catch (LezerTeJong lezerTeJong) {
                                 JOptionPane.showMessageDialog(lezerToevoegenFrame, "Lezer te jong!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                             } catch (SQLIntegrityConstraintViolationException dubbel) {
-                                    JOptionPane.showMessageDialog(lezerToevoegenFrame, "Er bestaat reeds een lezer met dit emailadres!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                                    emailtextField.setText("");
+                                JOptionPane.showMessageDialog(lezerToevoegenFrame, "Er bestaat reeds een lezer met dit emailadres!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                                emailtextField.setText("");
                             }
                         } else {
                             JOptionPane.showMessageDialog(lezerToevoegenFrame, "Uw wachtwoord komt niet overeen", "Resultaat", JOptionPane.ERROR_MESSAGE);
