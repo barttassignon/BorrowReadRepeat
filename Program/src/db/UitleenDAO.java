@@ -1,6 +1,5 @@
 package db;
 
-import entity.Beheerder;
 import entity.Boek;
 import entity.Lezer;
 import entity.Uitlening;
@@ -17,22 +16,15 @@ public class UitleenDAO extends BaseDAO {
 
         try (Connection c = getConn()) {
 
-            // Tabel uitlening updaten:
-
             PreparedStatement s = c.prepareStatement("insert into Uitleningen values (NULL, ?, ?, ?, NULL, NULL)");
             s.setInt(1, uitlening.getLezer().getId());
             s.setInt(2, uitlening.getBoek().getArtikelnummer());
             s.setObject(3, uitlening.getDatumUitgeleend());
 
-            int result1 = s.executeUpdate();
-
-            if (result1 > 0)
-                System.out.println("Uitlening toegevoegd!");
-            else System.out.println("De uitlening kon niet worden toegevoegd!");
+            s.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 
@@ -41,21 +33,13 @@ public class UitleenDAO extends BaseDAO {
     public static void verlengUitlening(int uitleenID){
         try (Connection c = getConn()) {
 
-            // Tabel uitlening updaten:
-
             PreparedStatement s = c.prepareStatement("update Uitleningen set Verlengdatum = ? where Uitleen_ID = ?");
             s.setObject(1, LocalDate.now());
             s.setInt(2, uitleenID);
-
-            int result1 = s.executeUpdate();
-
-            if (result1 > 0)
-                System.out.println("Verlenging toegevoegd!");
-            else System.out.println("De verlenging kon niet worden toegevoegd!");
+            s.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 
@@ -64,21 +48,14 @@ public class UitleenDAO extends BaseDAO {
     public static void binnenbrengenUitlening(int boekID){
         try (Connection c = getConn()) {
 
-            // Tabel uitlening updaten:
-
             PreparedStatement s = c.prepareStatement("update Uitleningen set Inleverdatum = ? where Boek_ID = ? AND Inleverdatum is null");
             s.setObject(1, LocalDate.now());
             s.setInt(2, boekID);
 
-            int result1 = s.executeUpdate();
-
-            if (result1 > 0)
-                System.out.println("Boek teruggebracht!");
-            else System.out.println("Boek niet teruggebracht!");
+            s.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 
@@ -92,10 +69,8 @@ public class UitleenDAO extends BaseDAO {
             while (rs.next()) {
                 lijstUitlening.add(new Uitlening(new Lezer(rs.getInt(2)), new Boek(rs.getInt(3)), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
             }
-            System.out.println("GELUKT!");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
         return lijstUitlening;
     }
@@ -113,7 +88,6 @@ public class UitleenDAO extends BaseDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
 
         return lijstUitlening;
@@ -132,7 +106,6 @@ public class UitleenDAO extends BaseDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
 
         return lijstUitlening;
@@ -140,18 +113,17 @@ public class UitleenDAO extends BaseDAO {
 
     // Ophalen uitlening op basis van uitleenID:
 
-    public static Uitlening ophalenUitlening(int id){
+    public static Uitlening ophalenUitlening(int uitleenID){
         Uitlening uitlening = null;
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select * from Uitleningen where Uitleen_ID = ?");
-            s.setInt(1, id);
+            s.setInt(1, uitleenID);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 uitlening = new Uitlening(new Lezer(rs.getInt(2)), new Boek(rs.getInt(3)), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
         return uitlening;
     }
@@ -169,18 +141,17 @@ public class UitleenDAO extends BaseDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
         return uitlening;
     }
 
 // Ophalen alle uitleningen van specifiek boek:
 
-    public static ArrayList<Uitlening> uitleengeschiedenisBoek(int artikelnummer) {
+    public static ArrayList<Uitlening> uitleengeschiedenisBoek(int boekID) {
         ArrayList<Uitlening> lijstUitlening = new ArrayList<>();
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select * from Uitleningen where Boek_ID = ?");
-            s.setInt(1, artikelnummer);
+            s.setInt(1, boekID);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 lijstUitlening.add(new Uitlening(new Lezer(rs.getInt(2)), new Boek(rs.getInt(3)), rs.getInt(1), rs.getObject(4, LocalDate.class), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
@@ -188,7 +159,6 @@ public class UitleenDAO extends BaseDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
 
         return lijstUitlening;
@@ -196,11 +166,11 @@ public class UitleenDAO extends BaseDAO {
 
     // Per lezer max. 10 boeken tegelijk uitlenen, waarvan max. 5 normale boeken:
 
-    public static int aantalUitleningenPerLezer(int Lezer_ID) {
+    public static int aantalUitleningenPerLezer(int lezerID) {
         int aantal = 0;
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select count(Lezer_ID) from Uitleningen where Lezer_ID = ? AND Inleverdatum is null");
-            s.setInt(1, Lezer_ID);
+            s.setInt(1, lezerID);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 aantal = rs.getInt(1);}
@@ -210,12 +180,12 @@ public class UitleenDAO extends BaseDAO {
             return aantal;
         }
 
-    public static int aantalVolwassenboekenPerLezer(int Lezer_ID) {
+    public static int aantalVolwassenboekenPerLezer(int lezerID) {
         int aantal = 0;
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select count(isKinderboek) from Boeken b join Uitleningen u on (b.Boek_ID = u.Boek_ID) where isKinderboek = ? AND Lezer_ID = ? AND Inleverdatum is null");
             s.setInt(1, 0);
-            s.setInt(2, Lezer_ID);
+            s.setInt(2, lezerID);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 aantal = rs.getInt(1);}

@@ -1,11 +1,7 @@
 package db;
 
-import entity.Boek;
-import entity.Lezer;
-import entity.Reservatie;
-import entity.Uitlening;
 
-import javax.swing.*;
+import entity.Reservatie;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,26 +20,20 @@ public class ReservatieDAO extends BaseDAO {
             s.setInt(1, reservatie.getLezer().getId());
             s.setInt(2, reservatie.getBoek().getArtikelnummer());
             s.setObject(3, reservatie.getReservatieDatum());
+            s.executeUpdate();
 
-            int result = s.executeUpdate();
-            if (result > 0) {
-                System.out.println("Reservatie werd toegevoegd!");
-            }
-
-            else System.out.println("Reservatie werd niet toegevoegd!");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 
     // Ophalen wie een boek heeft gereserveerd:
 
-    public static int ophalenReservatie(int boeknummer){
+    public static int ophalenReservatie(int boekID){
         int lezer = 0;
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select Lezer_ID from Reservaties where Boek_ID = ? AND Einddatum is null");
-            s.setInt(1, boeknummer);
+            s.setInt(1, boekID);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 lezer = rs.getInt(1);
@@ -64,16 +54,10 @@ public class ReservatieDAO extends BaseDAO {
             PreparedStatement s = c.prepareStatement("update Reservaties set Einddatum = ? where Boek_ID = ? AND Einddatum is null");
             s.setObject(1, LocalDate.now());
             s.setInt(2, boekID);
-
-            int result1 = s.executeUpdate();
-
-            if (result1 > 0)
-                System.out.println("Reservatie afgehandeld!");
-            else System.out.println("Reservatie niet afgehandeld!");
+            s.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 

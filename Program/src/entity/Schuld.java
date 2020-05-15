@@ -2,7 +2,6 @@ package entity;
 
 import java.time.LocalDate;
 import static java.time.temporal.ChronoUnit.DAYS;
-// bevat methode DAYS.between. Static toevoegen om de leesbaarheid te verhogen (anders moet je telkens ook ChronoUnit zelf toevoegen)
 
 public class Schuld {
 
@@ -13,8 +12,7 @@ public class Schuld {
     private LocalDate datumAangemaakt;
     private LocalDate datumBetaald;
 
-    public Schuld() {
-    }
+    public Schuld() { }
 
     public Schuld(String oorsprong, double bedrag, LocalDate datumAangemaakt) {
         this.oorsprong = oorsprong;
@@ -50,11 +48,6 @@ public class Schuld {
 
     public LocalDate getDatumBetaald() {
         return datumBetaald;
-    }
-
-    public void setDatumBetaald(LocalDate datumBetaald) {
-        if (datumBetaald.isAfter(datumAangemaakt))
-        this.datumBetaald = datumBetaald;
     }
 
     public double getBedrag() {
@@ -100,13 +93,4 @@ public class Schuld {
             else return 0;
         }
     }
-
-
-/*
-            case BESCHADIGING:
-                return b.getPrijs()/ 2.0;
-            case VERLIES:
-                return b.getPrijs();
-
-*/
 }

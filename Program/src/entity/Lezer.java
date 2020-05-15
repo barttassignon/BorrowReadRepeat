@@ -28,8 +28,7 @@ public class Lezer extends Persoon {
 
     // Constructoren om lezers te kunnen weergeven:
 
-    public Lezer() {
-    }
+    public Lezer() { }
 
     public Lezer(int id) {
         this.id = id;
@@ -70,60 +69,27 @@ public class Lezer extends Persoon {
         return geboortedatum;
     }
 
-    public void setGeboortedatum(LocalDate geboortedatum)
-    {
-        this.geboortedatum = geboortedatum;
-    }
-
     public Adres getAdres() {
         return adres;
-    }
-
-    public void setAdres(Adres adres) {
-        this.adres = adres;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getTelefoon() {
         return telefoon;
     }
 
-    public void setTelefoon(String telefoon) {
-        this.telefoon = telefoon;
-    }
+    public String getWachtwoord() { return wachtwoord; }
 
-    public String getWachtwoord() {
-        return wachtwoord;
-    }
+    public Schuld getSchuld() { return schuld; }
 
-    public void setWachtwoord(String wachtwoord) {
-        this.wachtwoord = wachtwoord;
-    }
-
-    public Schuld getSchuld() {
-        return schuld;
-    }
-
-    public void setSchuld(Schuld schuld) {
-        this.schuld = schuld;
-    }
+    public void setSchuld(Schuld schuld) { this.schuld = schuld; }
 
     public int berekenLeeftijd() {
         int leeftijd = Period.between(geboortedatum, LocalDate.now()).getYears();
         return leeftijd;
-    }
-
-    @Override
-    public String toString() {
-        return "ID: " + getId() + ", " + super.toString() + ", geboortedatum: " + getGeboortedatum().getDayOfMonth() + "/" + getGeboortedatum().getMonth().getValue() + "/" + getGeboortedatum().getYear() +
-                ", email: " + getEmail();
     }
 }
 

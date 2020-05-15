@@ -4,8 +4,7 @@ public abstract class Transactie {
     private Lezer lezer;
     private Boek boek;
 
-    public Transactie() {
-    }
+    public Transactie() { }
 
     public Transactie(Lezer lezer, Boek boek) {
         this.lezer = lezer;
@@ -24,7 +23,5 @@ public abstract class Transactie {
         return boek;
     }
 
-    public void setBoek(Boek boek) {
-        this.boek = boek;
-    }
+    public void setBoek(Boek boek) { this.boek = boek; }
 }

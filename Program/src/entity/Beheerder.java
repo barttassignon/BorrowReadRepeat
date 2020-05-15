@@ -14,22 +14,13 @@ public class Beheerder extends Persoon{
     public Beheerder(String voornaam, String naam, String gebruikersnaam) {
         super(voornaam, naam);
         this.gebruikersnaam = gebruikersnaam;
-
     }
 
     public String getGebruikersnaam() {
         return gebruikersnaam;
     }
-
-    public void setGebruikersnaam(String gebruikersnaam) {
-        this.gebruikersnaam = gebruikersnaam;
-    }
-
     public String getWachtwoord() {
         return wachtwoord;
     }
 
-    public void setWachtwoord(String wachtwoord) {
-        this.wachtwoord = wachtwoord;
-    }
 }

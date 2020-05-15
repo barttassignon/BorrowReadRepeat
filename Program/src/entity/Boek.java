@@ -21,8 +21,7 @@ public class Boek {
 
     // Constructors
 
-    public Boek() {
-    }
+    public Boek() { }
 
     public Boek(int artikelnummer) {
         this.artikelnummer = artikelnummer;
@@ -138,15 +137,6 @@ public class Boek {
     public boolean isKinderboek() { return kinderboek; }
 
     public boolean isUitStock() { return uitStock; }
-
-    @Override
-    public String toString() {
-        return "Boek{" +
-                "ISBN=" + ISBN +
-                ", titel='" + titel + '\'' +
-                ", auteur='" + auteur + '\'' +
-                '}';
-    }
 }
 
 

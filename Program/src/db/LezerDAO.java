@@ -15,7 +15,6 @@ public class LezerDAO extends BaseDAO {
     public static void toevoegenLezer(Lezer lezer) throws LezerTeJong, SQLIntegrityConstraintViolationException {
 
         if (lezer.berekenLeeftijd() < 12) {
-            System.out.println("De lezer kan niet worden toegevoegd. Hij/zij voldoet niet aan de vereiste leeftijdsvoorwaarde (min. 12 jaar).");
             throw new LezerTeJong();
         } else {
 
@@ -35,7 +34,7 @@ public class LezerDAO extends BaseDAO {
                 p.setBytes(6, salt);
                 p.setString(7, Security.generateHash(lezer.getWachtwoord(), salt));
 
-                int result1 = p.executeUpdate();
+                p.executeUpdate();
 
                 //Gegenereerde Lezer_ID (door middel van auto increment) hergebruiken in tabel Adressen (om te voldoen aan foreign key constraint)
 
@@ -55,23 +54,16 @@ public class LezerDAO extends BaseDAO {
                 s.setInt(5, lezer.getAdres().getPostcode());
                 s.setString(6, lezer.getAdres().getWoonplaats());
 
-                int result2 = s.executeUpdate();
-
-                if (result1 > 0 && result2 > 0)
-                    System.out.println("De lezer werd toegevoegd!");
-                else System.out.println("De lezer kon niet worden toegevoegd!");
+                s.executeUpdate();
 
                 c.commit();
 
             } catch (SQLException | NoSuchAlgorithmException e) {
                 e.printStackTrace();
-                System.out.println("MISLUKT!");
                 throw new SQLIntegrityConstraintViolationException();
             }
         }
     }
-
-    // Nog uit te werken: toevoegen lezers: via PrepareStatement
 
     // Een overzicht van alle lezers:
 
@@ -85,25 +77,23 @@ public class LezerDAO extends BaseDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
         return lijst;
     }
 
     // Ophalen lezer op basis van ID (voor reservatie/uitlening):
 
-    public static Lezer ophalenLezer(int id){
+    public static Lezer ophalenLezer(int lezerID){
         Lezer lezer = null;
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select * from Lezers where Lezer_ID = ?");
-            s.setInt(1, id);
+            s.setInt(1, lezerID);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 lezer = new Lezer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getObject(4, LocalDate.class), rs.getString(5), rs.getString(6));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
         return lezer;
     }
@@ -124,32 +114,29 @@ public class LezerDAO extends BaseDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
-
         return lijst;
     }
 
-    public static void verwijderenLezer(int id) {
+    // Methode om lezer te verwijderen:
+
+    public static void verwijderenLezer(int lezerID) {
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("delete from Adressen where Lezer_ID = ?");
-            s.setInt(1, id);
+            s.setInt(1, lezerID);
             PreparedStatement p = c.prepareStatement("update Lezers set Voornaam = null, Naam = null, Geboortedatum = null, Telefoon = null where Lezer_ID = ?");
-            p.setInt(1, id);
+            p.setInt(1, lezerID);
 
-            int result1 = s.executeUpdate();
-            int result2 = p.executeUpdate();
-
-            if (result1 > 0 && result2 > 0)
-                System.out.println("De lezer werd verwijderd!");
-            else System.out.println("De lezer kon niet worden verwijderd.");
+            s.executeUpdate();
+            p.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
+
+    // Methode om na te kijken of er een lezer met een bepaald ID bestaat:
 
     public static int bestaatLezer(int lezerID){
         int lezer = 0;
@@ -163,12 +150,13 @@ public class LezerDAO extends BaseDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
         return lezer;
     }
 
-    public static void wijzigenAdresLezer(int lezer_id, Adres adres) {
+    // Methode om adres van de lezer te wijzigen:
+
+    public static void wijzigenAdresLezer(int lezerID, Adres adres) {
         try (Connection c = getConn()) {
 
             PreparedStatement p = c.prepareStatement("update Adressen set Straat = ?, Huisnr = ?, Bus = ?, Postcode = ?, Woonplaats = ? where Lezer_ID = ?");
@@ -177,71 +165,42 @@ public class LezerDAO extends BaseDAO {
             p.setString(3, adres.getBus());
             p.setInt(4, adres.getPostcode());
             p.setString(5, adres.getWoonplaats());
-            p.setInt(6, lezer_id);
+            p.setInt(6, lezerID);
+            p.executeUpdate();
 
-            int result = p.executeUpdate();
-
-            if (result > 0)
-                System.out.println("De adreswijziging werd geregistreerd!");
-            else System.out.println("De adreswijziging kon niet worden geregistreerd!");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 
-    public static void wijzigenTelLezer(int lezer_id, String telefoon) {
-        int result = 0;
+    // Methode om telefoonnummer lezer te wijzigen:
+
+    public static void wijzigenTelLezer(int lezerID, String telefoon) {
         try (Connection c = getConn()) {
 
             PreparedStatement p = c.prepareStatement("update Lezers set Telefoon = ? where Lezer_ID = ?");
             p.setString(1, telefoon);
-            p.setInt(2, lezer_id);
-
-            result = p.executeUpdate();
+            p.setInt(2, lezerID);
+            p.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 
-    public static void wijzigenEmailLezer(int lezer_id, String email) throws SQLIntegrityConstraintViolationException{
-        int result = 0;
+    // Methode om emailadres lezer te wijzigen:
+
+    public static void wijzigenEmailLezer(int lezerID, String email) throws SQLIntegrityConstraintViolationException{
         try (Connection c = getConn()) {
 
             PreparedStatement p = c.prepareStatement("update Lezers set Emailadres = ? where Lezer_ID = ?");
             p.setString(1, email);
-            p.setInt(2, lezer_id);
-
-            result = p.executeUpdate();
+            p.setInt(2, lezerID);
+            p.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
             throw new SQLIntegrityConstraintViolationException();
-        }
-    }
-
-    public void wijzigenWachtwoordLezer(int lezer_id, String wachtwoord) {
-        try (Connection c = getConn()) {
-            byte[] salt = Security.createSalt();
-            PreparedStatement p = c.prepareStatement("update Lezers set Salt = ? and HashCode = ? where Lezer_ID = ?");
-            p.setBytes(1, salt);
-            p.setString(2, Security.generateHash(wachtwoord, salt));
-            p.setInt(3, lezer_id);
-
-            int result = p.executeUpdate();
-
-            if (result > 0)
-                System.out.println("De wachtwoordswijziging werd geregistreerd!");
-            else System.out.println("De wachtwoordswijziging kon niet worden geregistreerd!");
-
-            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: lezer niet gevonden)
-
-        } catch (SQLException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 }

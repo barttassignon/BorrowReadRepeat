@@ -23,10 +23,8 @@ public class BeheerderDAO extends BaseDAO implements Security {
             ResultSet rs2 = s2.executeQuery();
                 if(rs2.next()) return true;
                 else return false;}
-
         }catch (SQLException | NoSuchAlgorithmException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
         return false;
     }
@@ -46,167 +44,16 @@ public class BeheerderDAO extends BaseDAO implements Security {
 
             // Er wordt geen batch-functie voorzien voor het toevoegen of verwijderen van beheerders omdat dit
             // een beperkt aantal personen betreft.
-            // Foutmelding toevoegen indien gegevens reeds in de databank zitten
 
             int result = s.executeUpdate();
             if (result > 0) {
-                System.out.println("De beheerder werd toegevoegd!");
                 return true;
             } else {
-                System.out.println("De beheerder kon niet worden toegevoegd!");
                 return false;
             }
-
-            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: beheerder bestaat reeds)
-
         } catch (SQLException | NoSuchAlgorithmException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
             return false;
         }
-    }
-
-    // Een overzicht van alle beheerders:
-
-    public ArrayList<Beheerder> ophalenBeheerders() {
-        ArrayList<Beheerder> lijst = new ArrayList<>();
-        try (Connection c = getConn()) {
-            Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("select * from Beheerders");
-            while (rs.next()) {
-                lijst.add(new Beheerder(rs.getString(1), rs.getString(2), rs.getString(3)));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("MISLUKT!");
-        }
-        return lijst;
-    }
-
-    // Een beheerder opzoeken op voornaam:
-
-    public ArrayList<Beheerder> opzoekenBeheerder(String voornaam) {
-        ArrayList<Beheerder> lijst = new ArrayList<>();
-        try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("select * from Beheerders where voornaam = ?");
-            s.setString(1, voornaam);
-            ResultSet rs = s.executeQuery();
-            while (rs.next()) {
-                lijst.add(new Beheerder(rs.getString(1), rs.getString(2), rs.getString(3)));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("MISLUKT!");
-        }
-
-        return lijst;
-    }
-
-    // Een beheerder opzoeken op voornaam en naam:
-
-    public ArrayList<Beheerder> opzoekenBeheerder(String voornaam, String naam) {
-        ArrayList<Beheerder> lijst = new ArrayList<>();
-        try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("select * from Beheerders where voornaam = ? AND naam = ?");
-            s.setString(1, voornaam);
-            s.setString(2, naam);
-            ResultSet rs = s.executeQuery();
-            while (rs.next()) {
-                lijst.add(new Beheerder(rs.getString(1), rs.getString(2), rs.getString(3)));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("MISLUKT!");
-        }
-
-        return lijst;
-    }
-
-    // Een beheerder verwijderen:
-
-    public void verwijderenBeheerder(String gebruikersnaam) {
-        try (Connection c = getConn()) {
-            PreparedStatement s = c.prepareStatement("delete from Beheerders where gebruikersnaam = ?");
-            s.setString(1, gebruikersnaam);
-
-            int result = s.executeUpdate();
-            if (result > 0)
-                System.out.println("De beheerder werd verwijderd!");
-            else System.out.println("Er bestaat geen beheerder met deze gebruikersnaam!");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("MISLUKT!");
-        }
-
-    }
-
-    public void wijzigenWachtwoordBeheerder(String gebruikersnaam, String wachtwoord) {
-        try (Connection c = getConn()) {
-            byte[] salt = Security.createSalt();
-            PreparedStatement p = c.prepareStatement("update Beheerders set Salt = ? and HashCode = ? where Gebruikersnaam = ?");
-            p.setBytes(1, salt);
-            p.setString(2, Security.generateHash(wachtwoord, salt));
-            p.setString(3, gebruikersnaam);
-
-            int result = p.executeUpdate();
-
-            if (result > 0)
-                System.out.println("De wachtwoordswijziging werd geregistreerd!");
-            else System.out.println("De wachtwoordswijziging kon niet worden geregistreerd!");
-
-            // Nog aan te passen: foutmelding laten afhangen van errorcode (bvb.: beheerder niet gevonden)
-
-        } catch (SQLException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            System.out.println("MISLUKT!");
-        }
-    }
-
-//    public void save() throws SQLException {
-//        PreparedStatement checkStmt = getConn().prepareStatement("");
-//
-//        for (Beheerder beheerder: ) {
-//
-//        }
-//    }
-
-    public static void main(String[] args) {
-
-        // Toevoegen van beheerder:
-
-        BeheerderDAO bda = new BeheerderDAO();
-
-/*
-       Beheerder b1 = new Beheerder("Virginie", "Ortegat", "vortegat", "12345");
-        bda.toevoegenBeheerder(b1);
-
-
-
-        // Weergeven van de beheerders:
-
-        for(Beheerder b : bda.ophalenBeheerders()){
-            System.out.println(b.getVoornaam() + " " + b.getNaam() + " - " + b.getGebruikersnaam());
-        }
-
-        // Opmerking Katrien: Misschien kan je beter een toString-methode voorzien in Beheerder en deze hier aanroepen?
-
-        // Opzoeken van een beheerder:
-
-        for (Beheerder b : bda.opzoekenBeheerder("Virginie", "Blabla")) {
-            System.out.println(b.getVoornaam() + " " + b.getNaam() + " - " + b.getGebruikersnaam());
-        }
-
-        // Verwijderen van een beheerder:
-
-        bda.verwijderenBeheerder("vblabla");
- */
-
-        // Inloggen beheerder:
-        System.out.println(bda.inloggen("vortegat", "12345"));
-
     }
 }

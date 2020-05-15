@@ -29,14 +29,10 @@ public class BoekDAO extends BaseDAO {
             s.setObject(9, boek.getAankoopdatum());
             s.setDouble(10, boek.getPrijs());
             s.setString(11, boek.getPlaatsInBib());
+            s.executeUpdate();
 
-            int result = s.executeUpdate();
-            if (result > 0)
-                System.out.println("Boek werd toegevoegd!");
-            else System.out.println("Boek werd niet toegevoegd!");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 
@@ -50,28 +46,25 @@ public class BoekDAO extends BaseDAO {
             while (rs.next()) {
                 lijstBoeken.add(new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class)));
             }
-            System.out.println("GELUKT!");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
         return lijstBoeken;
     }
 
-    // Ophalen boek op basis van ID (voor uitlening/reservering):
+    // Ophalen boek op basis van ID (voor uitlening/reservatie):
 
-    public static Boek ophalenBoek(int id){
+    public static Boek ophalenBoek(int boekID){
         Boek boek = null;
         try (Connection c = getConn()) {
             PreparedStatement s = c.prepareStatement("select * from Boeken where Boek_ID = ?");
-            s.setInt(1, id);
+            s.setInt(1, boekID);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 boek = new Boek(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(9), rs.getObject(10, LocalDate.class), rs.getDouble(11), rs.getString(12), rs.getBoolean(13), rs.getBoolean(14), rs.getBoolean(15), rs.getBoolean(8));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
         return boek;
     }
@@ -90,103 +83,81 @@ public class BoekDAO extends BaseDAO {
 
             } catch (SQLException e){
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
         return lijst;
     }
 
     // Boek uit stock halen  :
 
-    public static void verwijderenBoek(int artikelnummer) {
+    public static void verwijderenBoek(int boekID) {
         try {
             Connection c = getConn();
             PreparedStatement s = c.prepareStatement("update Boeken set Uitstock = true where Boek_ID = ?");
-            s.setInt(1, artikelnummer);
-            int result = s.executeUpdate();
-            if (result > 0) {
-                System.out.println("Het boek werd verwijderd");
-            } else {
-                System.out.println("Er bestaat geen boek met dit artikelnummer");
-            }
+            s.setInt(1, boekID);
+            s.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 
     // methode om status boek te wijzigen naar gereserveerd:
 
-    public static void isGereserveerd(int artikelnummer) {
+    public static void isGereserveerd(int boekID) {
 
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("update Boeken set isGereserveerd = true where Boek_ID = ?");
-            s.setInt(1, artikelnummer);
+            s.setInt(1, boekID);
+            s.executeUpdate();
 
-            int result = s.executeUpdate();
-            if (result > 0)
-                System.out.println("Status boek = gereserveerd");
-            else System.out.println("Status boek kon niet worden aangepast!");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 
     // methode om status boek te wijzigen naar niet gereserveerd:
 
-    public static void nietGereserveerd(int artikelnummer) {
+    public static void nietGereserveerd(int boekID) {
 
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("update Boeken set isGereserveerd = false where Boek_ID = ?");
-            s.setInt(1, artikelnummer);
+            s.setInt(1, boekID);
+            s.executeUpdate();
 
-            int result = s.executeUpdate();
-            if (result > 0)
-                System.out.println("Status boek = niet gereserveerd");
-            else System.out.println("Status boek kon niet worden aangepast!");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 
     // methode om status boek te wijzigen naar uitgeleend:
 
-    public static void isUitgeleend(int artikelnummer) {
+    public static void isUitgeleend(int boekID) {
 
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("update Boeken set isUitgeleend = true where Boek_ID = ?");
-            s.setInt(1, artikelnummer);
+            s.setInt(1, boekID);
+            s.executeUpdate();
 
-            int result = s.executeUpdate();
-            if (result > 0)
-                System.out.println("Status boek = uitgeleend");
-            else System.out.println("Status boek kon niet worden aangepast!");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 
     // methode om status boek te wijzigen naar niet uitgeleend:
 
-    public static void nietUitgeleend(int artikelnummer) {
+    public static void nietUitgeleend(int boekID) {
 
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("update Boeken set isUitgeleend = false where Boek_ID = ?");
-            s.setInt(1, artikelnummer);
+            s.setInt(1, boekID);
+            s.executeUpdate();
 
-            int result = s.executeUpdate();
-            if (result > 0)
-                System.out.println("Status boek = niet uitgeleend");
-            else System.out.println("Status boek kon niet worden aangepast!");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("MISLUKT!");
         }
     }
 
