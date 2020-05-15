@@ -10,6 +10,7 @@ import db.BoekDAO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -25,8 +26,8 @@ public class BoekToevoegenForm extends JFrame {
     private JLabel auteurLabel;
     private JLabel uitgeverijLabel;
     private JLabel taalLabel;
-    private JLabel kinderLabel;
     private JLabel genreJlabel;
+    private JLabel kinderLabel;
     private JLabel paginaLabel;
     private JLabel aankoopdatumLabel;
     private JLabel prijsTextLabel;
@@ -42,6 +43,7 @@ public class BoekToevoegenForm extends JFrame {
     private JTextField plaatsInBibtextField;
 
     private JButton toevoegenButton;
+    private JButton bestandToevoegen;
     private JButton terugButton;
 
     private ButtonGroup taalGroep;
@@ -54,6 +56,7 @@ public class BoekToevoegenForm extends JFrame {
     private JRadioButton jaRadioButton;
 
     private JComboBox genreComboBox1;
+
     String[] genreStrings = {"Biografie", "Fantasy", "Geschiedenis", "Gezondheid", "Prentenboek", "Kookboek", "Roman", "Thriller", "Technologie"};
 
     public BoekToevoegenForm() {
@@ -140,6 +143,16 @@ public class BoekToevoegenForm extends JFrame {
                 }catch(DateTimeParseException datum){
                     JOptionPane.showMessageDialog(boekToevoegenFrame, "Vul datum als volgt in: dd/mm/jjjj", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
+
+        bestandToevoegen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser select = new JFileChooser();
+                select.showOpenDialog(boekToevoegenFrame);
+                File bestand = select.getSelectedFile();
+                BoekDAO.toevoegenBoeken(bestand);
             }
         });
     }

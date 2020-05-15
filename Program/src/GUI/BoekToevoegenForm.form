@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="15" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="20" left="20" bottom="20" right="20"/>
     <constraints>
-      <xy x="20" y="20" width="521" height="564"/>
+      <xy x="20" y="20" width="619" height="584"/>
     </constraints>
     <properties>
       <background color="-4992257"/>
@@ -324,6 +324,17 @@
         </constraints>
         <properties>
           <font name="Consolas" size="18"/>
+        </properties>
+      </component>
+      <component id="18ea7" class="javax.swing.JButton" binding="bestandToevoegen">
+        <constraints>
+          <grid row="14" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="18"/>
+          <foreground color="-12508416"/>
+          <horizontalAlignment value="0"/>
+          <text value="Bestand uploaden"/>
         </properties>
       </component>
     </children>

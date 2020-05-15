@@ -2,10 +2,8 @@ package db;
 
 import entity.Boek;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.*;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -32,6 +30,66 @@ public class BoekDAO extends BaseDAO {
             s.executeUpdate();
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Boeken in bulk toevoegen aan DB:
+
+    public static void toevoegenBoeken(File bestand) {
+
+        int batchSize = 20;
+
+        try (Connection c = getConn()) {
+
+            BufferedReader lineReader = new BufferedReader(new FileReader(bestand));
+            String lineText = null;
+            int count = 0;
+
+            PreparedStatement s = c.prepareStatement("insert into Boeken values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, false, false, false)");
+
+            while ((lineText = lineReader.readLine()) != null) {
+                String[] data = lineText.split(",");
+                String ISBN = data[0];
+                String titel = data[1];
+                String auteur = data[2];
+                String uitgeverij = data[3];
+                String taal = data[4];
+                String genre = data[5];
+                String kinderboek = data[6];
+                String paginas = data[7];
+                String aankoopdatum = data[8];
+                String prijs = data[9];
+                String plaats = data[10];
+
+                long isbn = Long.parseLong(ISBN);
+                s.setLong(1, isbn);
+                s.setString(2, titel);
+                s.setString(3, auteur);
+                s.setString(4, uitgeverij);
+                s.setString(5, taal);
+                s.setString(6, genre);
+                boolean boek = Boolean.parseBoolean(kinderboek);
+                s.setBoolean(7, boek);
+                int blz = Integer.parseInt(paginas);
+                s.setInt(8, blz);
+                Date datum = Date.valueOf(aankoopdatum);
+                s.setObject(9, datum);
+                double aankoopprijs = Double.parseDouble(prijs);
+                s.setDouble(10, aankoopprijs);
+                s.setString(11, plaats);
+
+                s.addBatch();
+
+                if (count % batchSize == 0) {
+                    s.executeBatch();
+                }
+            }
+            lineReader.close();
+            s.executeBatch();
+        } catch (SQLException | FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
