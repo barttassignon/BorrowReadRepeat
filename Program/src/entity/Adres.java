@@ -11,6 +11,8 @@ public class Adres implements Serializable {
     private int postcode;
     private String woonplaats;
 
+    // Constructor om adres toe te voegen aan DB:
+
     public Adres(String straatnaam, int huisnummer, String bus, int postcode, String woonplaats) {
         this.straatnaam = straatnaam;
         this.huisnummer = huisnummer;

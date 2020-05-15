@@ -58,7 +58,7 @@ public class SchuldToevoegenForm {
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Geen boek gevonden met dit ID.");
                     else {
                         double prijs = BoekDAO.ophalenBoek(artikelnummer).getPrijs();
-                        SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Verlies", prijs, LocalDate.now()));
+                        SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Verlies", prijs));
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
                         UitleenDAO.binnenbrengenUitlening(artikelnummer);
                         BoekDAO.nietUitgeleend(artikelnummer);
@@ -86,7 +86,7 @@ public class SchuldToevoegenForm {
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Geen boek gevonden met dit ID.");
                     else {
                         double prijs = BoekDAO.ophalenBoek(artikelnummer).getPrijs()/2;
-                        SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Beschadiging", prijs, LocalDate.now()));
+                        SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Beschadiging", prijs));
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
                         UitleenDAO.binnenbrengenUitlening(artikelnummer);
                     }

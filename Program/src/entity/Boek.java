@@ -19,19 +19,10 @@ public class Boek {
     private boolean uitStock;
     private boolean kinderboek;
 
-    // Constructors
-
-    public Boek() { }
+    // Constructor nodig voor het weergeven van uitleningen:
 
     public Boek(int artikelnummer) {
         this.artikelnummer = artikelnummer;
-    }
-
-    public Boek(int artikelnummer, long ISBN, String titel, String auteur) {
-        this.artikelnummer = artikelnummer;
-        this.ISBN = ISBN;
-        this.titel = titel;
-        this.auteur = auteur;
     }
 
     // Constructor om boek te kunnen weergeven:
@@ -44,24 +35,6 @@ public class Boek {
         this.uitgeverij = uitgeverij;
         this.paginas = paginas;
         this.aankoopdatum = aankoopdatum;
-    }
-
-    // Constructor om info van boek op te halen:
-
-    public Boek(int artikelnummer, long ISBN, String titel, String auteur, String uitgeverij, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib, boolean gereserveerd, boolean uitgeleend, boolean uitStock, boolean kinderboek) {
-        this.artikelnummer = artikelnummer;
-        this.ISBN = ISBN;
-        this.titel = titel;
-        this.auteur = auteur;
-        this.uitgeverij = uitgeverij;
-        this.paginas = paginas;
-        this.aankoopdatum = aankoopdatum;
-        this.prijs = prijs;
-        this.plaatsInBib = plaatsInBib;
-        this.gereserveerd = gereserveerd;
-        this.uitgeleend = uitgeleend;
-        this.kinderboek = kinderboek;
-        this.uitStock = uitStock;
     }
 
     // Constructor om boek te kunnen toevoegen:
@@ -83,7 +56,24 @@ public class Boek {
         this.uitStock = false;
     }
 
-    //Getters
+    // Constructor om alle nuttige info van boek op te halen:
+
+    public Boek(int artikelnummer, long ISBN, String titel, String auteur, String uitgeverij, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib, boolean gereserveerd, boolean uitgeleend, boolean uitStock, boolean kinderboek) {
+        this.artikelnummer = artikelnummer;
+        this.ISBN = ISBN;
+        this.titel = titel;
+        this.auteur = auteur;
+        this.uitgeverij = uitgeverij;
+        this.paginas = paginas;
+        this.aankoopdatum = aankoopdatum;
+        this.prijs = prijs;
+        this.plaatsInBib = plaatsInBib;
+        this.gereserveerd = gereserveerd;
+        this.uitgeleend = uitgeleend;
+        this.kinderboek = kinderboek;
+        this.uitStock = uitStock;
+    }
+
     public int getArtikelnummer() {
         return artikelnummer;
     }

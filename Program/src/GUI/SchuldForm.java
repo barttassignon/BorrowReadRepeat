@@ -94,18 +94,14 @@ public class SchuldForm {
                     int lezerID = (((int) table1.getModel().getValueAt(row, 0)));
                     int schuldID = (((int) table1.getModel().getValueAt(row, 1)));
 
-                    SchuldDAO.betalenSchuld(schuldID, LocalDate.now());
+                    SchuldDAO.betalenSchuld(schuldID);
 
                     model.setRowCount(0);
                     for (Schuld s : SchuldDAO.overzichtSchuldenLezer(lezerID)) {
                         model.addRow(new Object[]{lezerID, s.getId(), s.getOorsprong(), s.getBedrag(), s.getDatumAangemaakt(), s.getDatumBetaald()});
                     }
-
                     JOptionPane.showMessageDialog(schuldFrame, "De betaling werd geregistreerd.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
-
-                }
-                catch (ArrayIndexOutOfBoundsException a)
-                {
+                } catch (ArrayIndexOutOfBoundsException a) {
                     JOptionPane.showMessageDialog(schuldFrame, "Gelieve een schuld te selecteren", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 }
             }

@@ -4,8 +4,6 @@ public abstract class Transactie {
     private Lezer lezer;
     private Boek boek;
 
-    public Transactie() { }
-
     public Transactie(Lezer lezer, Boek boek) {
         this.lezer = lezer;
         this.boek = boek;

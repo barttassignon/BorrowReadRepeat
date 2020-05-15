@@ -1,6 +1,5 @@
 package db;
 
-import entity.Boek;
 import entity.Lezer;
 import entity.Schuld;
 
@@ -33,7 +32,7 @@ public class SchuldDAO extends BaseDAO {
             p.setInt(1, lezerID);
             p.setString(2, schuld.getOorsprong());
             p.setDouble(3, schuld.getBedrag());
-            p.setObject(4, schuld.getDatumAangemaakt());
+            p.setObject(4, LocalDate.now());
             p.executeUpdate();
 
         } catch (SQLException e) {
@@ -41,12 +40,12 @@ public class SchuldDAO extends BaseDAO {
         }
     }
 
-    public static void betalenSchuld(int schuldID, LocalDate betaaldatum) {
+    public static void betalenSchuld(int schuldID) {
         try (Connection c = getConn()) {
 
             PreparedStatement p = c.prepareStatement("update Schulden set Bedrag = ?, Betaaldatum = ? where Schuld_ID = ?");
             p.setDouble(1, 0);
-            p.setObject(2, betaaldatum);
+            p.setObject(2, LocalDate.now());
             p.setInt(3, schuldID);
             p.executeUpdate();
 
@@ -87,7 +86,7 @@ public class SchuldDAO extends BaseDAO {
         return lijst;
     }
 
-    // Methode om na te gaan of een lezer nog openstaande schulden heeft (want dan mag hij niet verwijderd worden uit de database!):
+    // Methode om na te gaan of een lezer nog openstaande schulden heeft (want dan mag hij niet verwijderd worden uit de DB!):
 
     public static int aantalOpenstaandeSchulden(int lezerID){
         int schuld = 0;

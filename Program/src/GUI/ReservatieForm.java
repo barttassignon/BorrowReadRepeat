@@ -103,7 +103,7 @@ public class ReservatieForm {
                     } else{
                         ReservatieDAO.maakReservatie(new Reservatie(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(artikelnummer)));
                         BoekDAO.isGereserveerd(artikelnummer);
-                        SchuldDAO.aanrekenenSchuld(lezerID, new Schuld("Reservatie", 0.5, LocalDate.now()));
+                        SchuldDAO.aanrekenenSchuld(lezerID, new Schuld("Reservatie", 0.5));
                         JOptionPane.showMessageDialog(null, "Reservatie gemaakt!");
                     }
                 } catch(NumberFormatException nr){

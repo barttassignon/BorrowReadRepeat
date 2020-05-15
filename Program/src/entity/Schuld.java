@@ -12,20 +12,14 @@ public class Schuld {
     private LocalDate datumAangemaakt;
     private LocalDate datumBetaald;
 
-    public Schuld() { }
+    // Constructor om een nieuwe schuld toe te voegen:
 
-    public Schuld(String oorsprong, double bedrag, LocalDate datumAangemaakt) {
+    public Schuld(String oorsprong, double bedrag) {
         this.oorsprong = oorsprong;
         this.bedrag = bedrag;
-        this.datumAangemaakt = datumAangemaakt;
     }
 
-    public Schuld(int id, double bedrag, LocalDate datumAangemaakt, LocalDate datumBetaald) {
-        this.id = id;
-        this.bedrag = bedrag;
-        this.datumAangemaakt = datumAangemaakt;
-        this.datumBetaald = datumBetaald;
-    }
+    // Constructor nodig om schulden te kunnen weergeven:
 
     public Schuld(Lezer lezer, int id, String oorsprong, double bedrag, LocalDate datumAangemaakt, LocalDate datumBetaald) {
         this.oorsprong = oorsprong;

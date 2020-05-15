@@ -9,8 +9,6 @@ public class Uitlening extends Transactie{
     private LocalDate datumVerlengd;
     private LocalDate datumIngeleverd;
 
-    public Uitlening() { }
-
     // Constructor om nieuwe uitlening toe te voegen:
 
     public Uitlening(Lezer lezer, Boek boek) {
@@ -18,17 +16,7 @@ public class Uitlening extends Transactie{
         this.datumUitgeleend = LocalDate.now();
     }
 
-    public Uitlening(LocalDate datumUitgeleend, LocalDate datumVerlengd, LocalDate datumIngeleverd) {
-        this.datumUitgeleend = datumUitgeleend;
-        if(datumVerlengd.isAfter(datumUitgeleend) && datumVerlengd.isBefore(datumUitgeleend.plusDays(22)))
-        this.datumVerlengd = datumVerlengd;
-        else System.out.println("Foutieve invoer");
-        if(datumIngeleverd.isAfter(datumUitgeleend))
-        this.datumIngeleverd = datumIngeleverd;
-        else System.out.println("Foutieve invoer");
-    }
-
-    // Constructoren om uitleningen te kunnen weergeven:
+    // Constructor om uitleningen te kunnen weergeven:
 
     public Uitlening(Lezer lezer, Boek boek, int uitleen_ID, LocalDate datumUitgeleend, LocalDate datumVerlengd, LocalDate datumIngeleverd) {
         super(lezer, boek);

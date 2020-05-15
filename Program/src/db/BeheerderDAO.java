@@ -42,8 +42,7 @@ public class BeheerderDAO extends BaseDAO implements Security {
             s.setBytes(4, salt);
             s.setString(5, Security.generateHash(beheerder.getWachtwoord(), salt));
 
-            // Er wordt geen batch-functie voorzien voor het toevoegen of verwijderen van beheerders omdat dit
-            // een beperkt aantal personen betreft.
+            // Er wordt geen batch-functie voorzien voor het toevoegen of verwijderen van beheerders omdat dit een beperkt aantal personen betreft.
 
             int result = s.executeUpdate();
             if (result > 0) {
