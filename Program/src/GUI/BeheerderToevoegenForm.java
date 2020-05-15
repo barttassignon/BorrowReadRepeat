@@ -10,18 +10,17 @@ import entity.Beheerder;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLIntegrityConstraintViolationException;
 
 public class BeheerderToevoegenForm extends JFrame{
 
     private JFrame beheerderToevoegenForm = new JFrame("BorrowReadRepeat");
     private JPanel panel1;
 
-    private JLabel BoekToevoegenLabel;
-    private JLabel voornaam;
-    private JLabel naam;
+    private JLabel boekToevoegenLabel;
+    private JLabel voornaamLabel;
+    private JLabel naamLabel;
     private JLabel gebruikersnaamTextField;
-    private JLabel paswoord;
+    private JLabel paswoordLabel;
     private JLabel bevestigPwLabel;
 
     private JTextField voornaamField;
@@ -30,8 +29,8 @@ public class BeheerderToevoegenForm extends JFrame{
     private JPasswordField passwordField1;
     private JPasswordField bevestigPasswordField1;
 
-    private JButton ToevoegentButton;
-    private JButton TerugButton;
+    private JButton toevoegentButton;
+    private JButton terugButton;
 
     public BeheerderToevoegenForm() {
 
@@ -47,7 +46,7 @@ public class BeheerderToevoegenForm extends JFrame{
         beheerderToevoegenForm.setResizable(false);
         beheerderToevoegenForm.setLocationRelativeTo(null);
 
-        TerugButton.addActionListener(new ActionListener() {
+        terugButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
@@ -55,7 +54,7 @@ public class BeheerderToevoegenForm extends JFrame{
             }
         });
 
-        ToevoegentButton.addActionListener(new ActionListener() {
+        toevoegentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String voornaam = voornaamField.getText();

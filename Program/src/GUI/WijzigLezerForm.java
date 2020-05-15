@@ -16,14 +16,14 @@ public class WijzigLezerForm {
 
     private JLabel lezerWijzigen;
     private JLabel lezerLabel;
-    private JLabel AdresLabel;
-    private JLabel StraatLabel;
-    private JLabel NrLabel;
-    private JLabel BusLabel;
-    private JLabel PostcodeLabel;
-    private JLabel WoonplaatsLabel;
-    private JLabel EmailLabel;
-    private JLabel TelefoonLabel;
+    private JLabel adresLabel;
+    private JLabel straatLabel;
+    private JLabel nummerLabel;
+    private JLabel busLabel;
+    private JLabel postcodeLabel;
+    private JLabel woonplaatsLabel;
+    private JLabel emailLabel;
+    private JLabel telefoonLabel;
 
     private JTextField lezerTextField;
     private JTextField straatTextfield;
@@ -35,7 +35,7 @@ public class WijzigLezerForm {
     private JTextField telefoonTextField;
 
     private JButton wijzigButton;
-    private JButton TerugButton;
+    private JButton terugButton;
 
     public WijzigLezerForm(){
         wijzigLezerFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -47,7 +47,7 @@ public class WijzigLezerForm {
         wijzigLezerFrame.setResizable(false);
         wijzigLezerFrame.setLocationRelativeTo(null);
 
-        TerugButton.addActionListener(new ActionListener() {
+        terugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
                 wijzigLezerFrame.dispose();

@@ -35,7 +35,7 @@
           </component>
         </children>
       </scrollpane>
-      <component id="d98ee" class="javax.swing.JButton" binding="TerugButton">
+      <component id="d98ee" class="javax.swing.JButton" binding="terugButton">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

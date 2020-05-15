@@ -5,7 +5,6 @@
 package GUI;
 
 import db.BoekDAO;
-import db.LezerDAO;
 import entity.Boek;
 
 import javax.swing.*;
@@ -17,21 +16,21 @@ import java.awt.event.ActionListener;
 public class WeergevenBoekForm extends JFrame{
 
     private JFrame weergevenBoekFrame = new JFrame();
+    private JPanel panel1;
 
     private JLabel weergevenBoekenLabel;
-    private JPanel panel1;
+    private JLabel titelLabel;
+
+    private JTextField titelTextField;
 
     private JScrollPane scrollpane;
     DefaultTableModel model = new DefaultTableModel();
-
     private JTable table1;
 
-    private JButton alleBoekenButton;
-    private JButton TerugButton;
-    private JLabel titelLabel;
-    private JTextField titelTextField;
     private JButton zoekButton;
+    private JButton alleBoekenButton;
     private JButton verwijderBoek;
+    private JButton terugButton;
 
     public static void main(String[] args) {
         new WeergevenBoekForm();
@@ -59,8 +58,7 @@ public class WeergevenBoekForm extends JFrame{
         table1.setModel(model);
         this.pack();
 
-
-        TerugButton.addActionListener(new ActionListener() {
+        terugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
                 weergevenBoekFrame.dispose();

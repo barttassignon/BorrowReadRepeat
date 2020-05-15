@@ -42,7 +42,7 @@
           <text value="Alle openstaande schulden weergeven"/>
         </properties>
       </component>
-      <component id="9145e" class="javax.swing.JButton" binding="TerugButton">
+      <component id="9145e" class="javax.swing.JButton" binding="terugButton">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="23" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

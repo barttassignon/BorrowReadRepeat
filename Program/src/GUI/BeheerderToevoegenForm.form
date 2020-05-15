@@ -10,7 +10,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="74f0d" class="javax.swing.JLabel" binding="BoekToevoegenLabel">
+      <component id="74f0d" class="javax.swing.JLabel" binding="boekToevoegenLabel">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -22,7 +22,7 @@
           <verticalTextPosition value="3"/>
         </properties>
       </component>
-      <component id="caa58" class="javax.swing.JLabel" binding="voornaam">
+      <component id="caa58" class="javax.swing.JLabel" binding="voornaamLabel">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -45,7 +45,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="37425" class="javax.swing.JLabel" binding="naam">
+      <component id="37425" class="javax.swing.JLabel" binding="naamLabel">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -91,7 +91,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="f0602" class="javax.swing.JLabel" binding="paswoord">
+      <component id="f0602" class="javax.swing.JLabel" binding="paswoordLabel">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -110,7 +110,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="adbca" class="javax.swing.JButton" binding="ToevoegentButton">
+      <component id="adbca" class="javax.swing.JButton" binding="toevoegentButton">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -119,7 +119,7 @@
           <text value="Toevoegen"/>
         </properties>
       </component>
-      <component id="42093" class="javax.swing.JButton" binding="TerugButton">
+      <component id="42093" class="javax.swing.JButton" binding="terugButton">
         <constraints>
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

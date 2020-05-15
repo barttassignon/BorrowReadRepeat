@@ -31,7 +31,7 @@ public class ReservatieForm {
     DefaultTableModel model = new DefaultTableModel();
     private JTable table1;
 
-    private JButton TerugButton;
+    private JButton terugButton;
     private JButton zoekButton;
     private JButton alleBoekenButton;
     private JButton reserveerButton;
@@ -57,7 +57,7 @@ public class ReservatieForm {
         model.addColumn("Aankoopdatum");
         table1.setModel(model);
 
-        TerugButton.addActionListener(new ActionListener() {
+        terugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
                 reservatieFrame.dispose();
@@ -88,7 +88,6 @@ public class ReservatieForm {
             }
         });
 
-
         reserveerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
@@ -116,8 +115,6 @@ public class ReservatieForm {
             }
         });
     }
-
-   
 
     public static void main(String[] args) { new ReservatieForm(); }
 }

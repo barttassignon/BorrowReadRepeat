@@ -14,14 +14,13 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
 
 public class WeergevenLezerForm extends JFrame {
 
     private JFrame opzoekenLezerFrame = new JFrame();
     private JPanel panel1;
 
-    private JLabel OpzoekenLezerJlabel;
+    private JLabel opzoekenLezerJlabel;
     private JLabel voornaamLabel;
     private JLabel naamLabel;
 
@@ -32,8 +31,8 @@ public class WeergevenLezerForm extends JFrame {
     DefaultTableModel model = new DefaultTableModel();
     private JTable table1;
 
-    private JButton TerugButton;
-    private JButton AlleLezerButton;
+    private JButton terugButton;
+    private JButton alleLezerButton;
     private JButton zoekButton;
     private JButton verwijderButton;
 
@@ -63,14 +62,15 @@ public class WeergevenLezerForm extends JFrame {
 
         this.pack();
 
-        TerugButton.addActionListener(new ActionListener() {
+        terugButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
                 opzoekenLezerFrame.dispose();
             }
         });
-        AlleLezerButton.addActionListener(new ActionListener() {
+
+        alleLezerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.setRowCount(0);
@@ -121,9 +121,6 @@ public class WeergevenLezerForm extends JFrame {
             }
         });
     }
-
-
-
 }
 
 

@@ -1,7 +1,6 @@
 package GUI;
 
 import db.SchuldDAO;
-import entity.Lezer;
 import entity.Schuld;
 
 import javax.swing.*;
@@ -25,7 +24,7 @@ public class SchuldForm {
     DefaultTableModel model = new DefaultTableModel();
     private JTable table1;
 
-    private JButton TerugButton;
+    private JButton terugButton;
     private JButton alleSchuldenWeergevenButton;
     private JButton zoekButton;
     private JButton betaalDatum;
@@ -50,7 +49,7 @@ public class SchuldForm {
         model.addColumn("Betaaldatum");
         table1.setModel(model);
 
-        TerugButton.addActionListener(new ActionListener() {
+        terugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
                 schuldFrame.dispose();

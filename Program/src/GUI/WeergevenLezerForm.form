@@ -10,7 +10,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="dc4d6" class="javax.swing.JLabel" binding="OpzoekenLezerJlabel">
+      <component id="dc4d6" class="javax.swing.JLabel" binding="opzoekenLezerJlabel">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -81,7 +81,7 @@
           </component>
         </children>
       </scrollpane>
-      <component id="5635" class="javax.swing.JButton" binding="TerugButton">
+      <component id="5635" class="javax.swing.JButton" binding="terugButton">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -92,7 +92,7 @@
           <text value="&lt;-- Terug"/>
         </properties>
       </component>
-      <component id="81928" class="javax.swing.JButton" binding="AlleLezerButton">
+      <component id="81928" class="javax.swing.JButton" binding="alleLezerButton">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

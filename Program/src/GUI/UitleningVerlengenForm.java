@@ -2,7 +2,6 @@ package GUI;
 
 import db.BoekDAO;
 import db.UitleenDAO;
-import entity.Boek;
 import entity.Uitlening;
 
 import javax.swing.*;
@@ -10,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 
 public class UitleningVerlengenForm {
 
@@ -112,7 +110,5 @@ public class UitleningVerlengenForm {
 
     }
 
-    public static void main(String[] args) {
-        new UitleningVerlengenForm();
-    }
+    public static void main(String[] args) { new UitleningVerlengenForm();}
 }

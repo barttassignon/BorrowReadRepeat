@@ -22,7 +22,7 @@
           <verticalTextPosition value="3"/>
         </properties>
       </component>
-      <component id="87e2" class="javax.swing.JLabel" binding="AdresLabel">
+      <component id="87e2" class="javax.swing.JLabel" binding="adresLabel">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="58" height="-1"/>
@@ -35,7 +35,7 @@
           <text value="Adres:"/>
         </properties>
       </component>
-      <component id="b100d" class="javax.swing.JLabel" binding="StraatLabel">
+      <component id="b100d" class="javax.swing.JLabel" binding="straatLabel">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="50" height="-1"/>
@@ -46,7 +46,7 @@
           <text value="Straat:"/>
         </properties>
       </component>
-      <component id="6cbb8" class="javax.swing.JLabel" binding="NrLabel">
+      <component id="6cbb8" class="javax.swing.JLabel" binding="nummerLabel">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="22" height="21"/>
@@ -67,7 +67,7 @@
           <font name="Consolas" size="14"/>
         </properties>
       </component>
-      <component id="86f87" class="javax.swing.JLabel" binding="PostcodeLabel">
+      <component id="86f87" class="javax.swing.JLabel" binding="postcodeLabel">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -76,7 +76,7 @@
           <text value="Postcode:"/>
         </properties>
       </component>
-      <component id="75b34" class="javax.swing.JLabel" binding="WoonplaatsLabel">
+      <component id="75b34" class="javax.swing.JLabel" binding="woonplaatsLabel">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -98,7 +98,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="d4ccf" class="javax.swing.JLabel" binding="EmailLabel">
+      <component id="d4ccf" class="javax.swing.JLabel" binding="emailLabel">
         <constraints>
           <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -109,7 +109,7 @@
           <text value="Email:"/>
         </properties>
       </component>
-      <component id="b30e7" class="javax.swing.JLabel" binding="TelefoonLabel">
+      <component id="b30e7" class="javax.swing.JLabel" binding="telefoonLabel">
         <constraints>
           <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -157,7 +157,7 @@
           <text value="Wijzigen"/>
         </properties>
       </component>
-      <component id="271bf" class="javax.swing.JLabel" binding="BusLabel">
+      <component id="271bf" class="javax.swing.JLabel" binding="busLabel">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="29" height="21"/>
@@ -219,7 +219,7 @@
           <font name="Consolas" size="14"/>
         </properties>
       </component>
-      <component id="e7887" class="javax.swing.JButton" binding="TerugButton">
+      <component id="e7887" class="javax.swing.JButton" binding="terugButton">
         <constraints>
           <grid row="10" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

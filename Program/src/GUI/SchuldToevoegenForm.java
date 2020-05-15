@@ -9,7 +9,6 @@ import entity.Schuld;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 
 public class SchuldToevoegenForm {

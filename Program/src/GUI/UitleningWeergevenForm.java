@@ -16,23 +16,22 @@ import java.time.LocalDate;
 public class UitleningWeergevenForm {
 
     private JFrame uitleningWeergevenFrame = new JFrame();
+    private JPanel panel1;
 
     private JLabel weergevenUitleningLabel;
-    private JPanel panel1;
+    private JLabel artikelNummer;
+    private JLabel lezerID;
+
+    private JTextField artikelnummerTextField;
+    private JTextField lezerIDTextField;
 
     private JScrollPane scrollpane;
     DefaultTableModel model = new DefaultTableModel();
-
     private JTable table1;
 
-    private JButton terugButton;
-    private JLabel artikelNummer;
-    private JTextField artikelnummerTextField;
     private JButton zoekButton1;
-    private JLabel lezerID;
-    private JTextField lezerIDTextField;
     private JButton zoekButton2;
-
+    private JButton terugButton;
 
     public static void main(String[] args) {
         new UitleningWeergevenForm();
@@ -57,7 +56,6 @@ public class UitleningWeergevenForm {
         model.addColumn("Datum Ingeleverd");
         table1.setModel(model);
 
-
         terugButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,7 +63,6 @@ public class UitleningWeergevenForm {
                 uitleningWeergevenFrame.dispose();
             }
         });
-
 
         zoekButton1.addActionListener(new ActionListener() {
                    @Override

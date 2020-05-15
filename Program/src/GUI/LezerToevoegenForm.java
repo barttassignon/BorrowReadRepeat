@@ -21,23 +21,23 @@ public class LezerToevoegenForm extends JFrame {
     private JFrame lezerToevoegenFrame = new JFrame("BorrowReadRepeat");
     private JPanel panel1;
 
-    private JLabel TitelLabel;
-    private JLabel VoornaamLabel;
-    private JLabel NaamLabel;
-    private JLabel GeboortedatumLabel;
+    private JLabel titelLabel;
+    private JLabel voornaamLabel;
+    private JLabel naamLabel;
+    private JLabel geboortedatumLabel;
     private JLabel dagLabel;
     private JLabel maandLabel;
     private JLabel jaarLabel;
-    private JLabel AdresLabel;
-    private JLabel StraatLabel;
-    private JLabel NrLabel;
-    private JLabel BusLabel;
-    private JLabel PostcodeLabel;
-    private JLabel WoonplaatsLabel;
-    private JLabel EmailLabel;
-    private JLabel TelefoonLabel;
-    private JLabel PaswoordLabel;
-    private JLabel BevestigPaswoordLabel;
+    private JLabel adresLabel;
+    private JLabel straatLabel;
+    private JLabel nummerLabel;
+    private JLabel busLabel;
+    private JLabel postcodeLabel;
+    private JLabel woonplaatsLabel;
+    private JLabel emailLabel;
+    private JLabel telefoonLabel;
+    private JLabel paswoordLabel;
+    private JLabel bevestigPaswoordLabel;
 
     private JTextField voornaamTextField;
     private JTextField naamTextField;
@@ -54,8 +54,8 @@ public class LezerToevoegenForm extends JFrame {
     private JPasswordField passwordField;
     private JPasswordField bevestigPaswoord;
 
-    private JButton ToevoegenButton;
-    private JButton TerugButton;
+    private JButton toevoegenButton;
+    private JButton terugButton;
 
     public LezerToevoegenForm() {
 
@@ -71,13 +71,14 @@ public class LezerToevoegenForm extends JFrame {
         lezerToevoegenFrame.setResizable(false);
         lezerToevoegenFrame.setLocationRelativeTo(null);
 
-        TerugButton.addActionListener(new ActionListener() {
+        terugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
                 lezerToevoegenFrame.dispose();
             }
         });
-        ToevoegenButton.addActionListener(new ActionListener() {
+
+        toevoegenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 try{

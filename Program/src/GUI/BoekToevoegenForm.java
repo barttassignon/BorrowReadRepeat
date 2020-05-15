@@ -19,30 +19,30 @@ public class BoekToevoegenForm extends JFrame {
     private JFrame boekToevoegenFrame = new JFrame("BorrowReadRepeat");
     private JPanel panel1;
 
-    private JLabel BoekToevoegen;
+    private JLabel boekToevoegen;
     private JLabel ISBNLabel;
-    private JLabel TitelLabel;
-    private JLabel AuteurLabel;
-    private JLabel UitgeverijLabel;
-    private JLabel TaalLabel;
-    private JLabel KinderLabel;
-    private JLabel GenreJlabel;
-    private JLabel PaginaLabel;
-    private JLabel AankoopdatumLabel;
-    private JLabel PrijsTextLabel;
-    private JLabel PlaatsInBibLabel;
+    private JLabel titelLabel;
+    private JLabel auteurLabel;
+    private JLabel uitgeverijLabel;
+    private JLabel taalLabel;
+    private JLabel kinderLabel;
+    private JLabel genreJlabel;
+    private JLabel paginaLabel;
+    private JLabel aankoopdatumLabel;
+    private JLabel prijsTextLabel;
+    private JLabel plaatsInBibLabel;
 
     private JTextField ISBNtextField;
-    private JTextField TiteltextField;
-    private JTextField AuteurtextField;
-    private JTextField UitgeverijtextField;
-    private JTextField PaginatextField;
-    private JTextField AankoopdatumtextField;
-    private JTextField PrijstextField;
-    private JTextField PlaatsInBibtextField;
+    private JTextField titeltextField;
+    private JTextField auteurtextField;
+    private JTextField uitgeverijtextField;
+    private JTextField paginatextField;
+    private JTextField aankoopdatumtextField;
+    private JTextField prijstextField;
+    private JTextField plaatsInBibtextField;
 
-    private JButton ToevoegenButton;
-    private JButton TerugButton;
+    private JButton toevoegenButton;
+    private JButton terugButton;
 
     private ButtonGroup taalGroep;
     private JRadioButton nederlandsRadioButton;
@@ -50,10 +50,10 @@ public class BoekToevoegenForm extends JFrame {
     private JRadioButton engelsRadioButton;
 
     private ButtonGroup kinderGroep;
-    private JRadioButton NeeradioButton1;
-    private JRadioButton JaRadioButton;
+    private JRadioButton neeRadioButton1;
+    private JRadioButton jaRadioButton;
 
-    private JComboBox GenreComboBox1;
+    private JComboBox genreComboBox1;
     String[] genreStrings = {"Biografie", "Fantasy", "Geschiedenis", "Gezondheid", "Prentenboek", "Kookboek", "Roman", "Thriller", "Technologie"};
 
     public BoekToevoegenForm() {
@@ -75,9 +75,9 @@ public class BoekToevoegenForm extends JFrame {
 
         // enkel 1 selectie mogelijk bij keuze taal
         kinderGroep = new ButtonGroup();
-        kinderGroep.add(NeeradioButton1);
-        kinderGroep.add(JaRadioButton);
-        NeeradioButton1.setSelected(true);
+        kinderGroep.add(neeRadioButton1);
+        kinderGroep.add(jaRadioButton);
+        neeRadioButton1.setSelected(true);
 
         DefaultComboBoxModel GenreModel = new DefaultComboBoxModel(genreStrings);
         GenreModel.getElementAt(0);
@@ -89,24 +89,24 @@ public class BoekToevoegenForm extends JFrame {
         GenreModel.getElementAt(6);
         GenreModel.getElementAt(7);
         GenreModel.getElementAt(8);
-        GenreComboBox1.setModel(GenreModel);
-        GenreComboBox1.setSelectedIndex(0);
-        GenreComboBox1.setEditable(true);
+        genreComboBox1.setModel(GenreModel);
+        genreComboBox1.setSelectedIndex(0);
+        genreComboBox1.setEditable(true);
 
-        TerugButton.addActionListener(new ActionListener() {
+        terugButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new BeheerderForm();
                 boekToevoegenFrame.dispose();
             }
         });
-        ToevoegenButton.addActionListener(new ActionListener() {
+        toevoegenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
                 try {
                     Long ISBN = Long.parseLong(ISBNtextField.getText());
-                    String titel = TiteltextField.getText();
-                    String auteur = AuteurtextField.getText();
-                    String uitgeverij = UitgeverijtextField.getText();
+                    String titel = titeltextField.getText();
+                    String auteur = auteurtextField.getText();
+                    String uitgeverij = uitgeverijtextField.getText();
                     String taal = null;
                     if(nederlandsRadioButton.isSelected()) {
                         taal = "Nederlands";
@@ -116,16 +116,16 @@ public class BoekToevoegenForm extends JFrame {
                         taal = "Engels";
                     }
                     Boolean kind = false;
-                    if (JaRadioButton.isSelected()) {kind = true;}
+                    if (jaRadioButton.isSelected()) {kind = true;}
                     String genre = GenreModel.getSelectedItem().toString();
-                    int paginas = Integer.parseInt(PaginatextField.getText());
-                    double aankoopprijs = Double.parseDouble(PrijstextField.getText());
+                    int paginas = Integer.parseInt(paginatextField.getText());
+                    double aankoopprijs = Double.parseDouble(prijstextField.getText());
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    LocalDate aankoopdatum = LocalDate.parse(AankoopdatumtextField.getText(), formatter);
+                    LocalDate aankoopdatum = LocalDate.parse(aankoopdatumtextField.getText(), formatter);
                     if(aankoopdatum.isAfter(LocalDate.now())){
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Je kan geen aankoopdatum in de toekomst vermelden!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     }
-                    String plaats = PlaatsInBibtextField.getText();
+                    String plaats = plaatsInBibtextField.getText();
 
                     if (titel.length() == 0 || auteur.length() == 0 || uitgeverij.length() == 0 || plaats.length() == 0) {
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);

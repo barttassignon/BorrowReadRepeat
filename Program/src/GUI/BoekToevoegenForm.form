@@ -45,7 +45,7 @@
           <text value="ISBN:"/>
         </properties>
       </component>
-      <component id="3c762" class="javax.swing.JLabel" binding="TitelLabel">
+      <component id="3c762" class="javax.swing.JLabel" binding="titelLabel">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -56,7 +56,7 @@
           <text value="Titel:"/>
         </properties>
       </component>
-      <component id="7b259" class="javax.swing.JTextField" binding="TiteltextField">
+      <component id="7b259" class="javax.swing.JTextField" binding="titeltextField">
         <constraints>
           <grid row="3" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="20"/>
@@ -68,7 +68,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="65a88" class="javax.swing.JLabel" binding="AuteurLabel">
+      <component id="65a88" class="javax.swing.JLabel" binding="auteurLabel">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -79,7 +79,7 @@
           <text value="Auteur:"/>
         </properties>
       </component>
-      <component id="3ef89" class="javax.swing.JTextField" binding="AuteurtextField">
+      <component id="3ef89" class="javax.swing.JTextField" binding="auteurtextField">
         <constraints>
           <grid row="4" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="20"/>
@@ -91,7 +91,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="ffe8c" class="javax.swing.JLabel" binding="UitgeverijLabel">
+      <component id="ffe8c" class="javax.swing.JLabel" binding="uitgeverijLabel">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -102,7 +102,7 @@
           <text value="Uitgeverij:"/>
         </properties>
       </component>
-      <component id="fa3f6" class="javax.swing.JTextField" binding="UitgeverijtextField">
+      <component id="fa3f6" class="javax.swing.JTextField" binding="uitgeverijtextField">
         <constraints>
           <grid row="5" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="20"/>
@@ -114,7 +114,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="78cd0" class="javax.swing.JLabel" binding="TaalLabel">
+      <component id="78cd0" class="javax.swing.JLabel" binding="taalLabel">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -125,7 +125,7 @@
           <text value="Taal: "/>
         </properties>
       </component>
-      <component id="a529c" class="javax.swing.JLabel" binding="PaginaLabel">
+      <component id="a529c" class="javax.swing.JLabel" binding="paginaLabel">
         <constraints>
           <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -136,7 +136,7 @@
           <text value="Aantal pagina's:"/>
         </properties>
       </component>
-      <component id="c0fc0" class="javax.swing.JTextField" binding="PaginatextField">
+      <component id="c0fc0" class="javax.swing.JTextField" binding="paginatextField">
         <constraints>
           <grid row="9" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="20"/>
@@ -148,7 +148,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="3dda" class="javax.swing.JLabel" binding="AankoopdatumLabel">
+      <component id="3dda" class="javax.swing.JLabel" binding="aankoopdatumLabel">
         <constraints>
           <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -159,7 +159,7 @@
           <text value="Aankoopdatum:"/>
         </properties>
       </component>
-      <component id="6a994" class="javax.swing.JTextField" binding="AankoopdatumtextField">
+      <component id="6a994" class="javax.swing.JTextField" binding="aankoopdatumtextField">
         <constraints>
           <grid row="10" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="20"/>
@@ -171,7 +171,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="9d89f" class="javax.swing.JLabel" binding="PrijsTextLabel">
+      <component id="9d89f" class="javax.swing.JLabel" binding="prijsTextLabel">
         <constraints>
           <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -182,7 +182,7 @@
           <text value="Prijs:"/>
         </properties>
       </component>
-      <component id="78df1" class="javax.swing.JTextField" binding="PrijstextField">
+      <component id="78df1" class="javax.swing.JTextField" binding="prijstextField">
         <constraints>
           <grid row="11" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="20"/>
@@ -194,7 +194,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="4d4d5" class="javax.swing.JLabel" binding="PlaatsInBibLabel">
+      <component id="4d4d5" class="javax.swing.JLabel" binding="plaatsInBibLabel">
         <constraints>
           <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -205,7 +205,7 @@
           <text value="Plaats in Bib:"/>
         </properties>
       </component>
-      <component id="63a6b" class="javax.swing.JTextField" binding="PlaatsInBibtextField">
+      <component id="63a6b" class="javax.swing.JTextField" binding="plaatsInBibtextField">
         <constraints>
           <grid row="12" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="20"/>
@@ -217,7 +217,7 @@
           <font name="Consolas" size="18"/>
         </properties>
       </component>
-      <component id="135b" class="javax.swing.JLabel" binding="BoekToevoegen">
+      <component id="135b" class="javax.swing.JLabel" binding="boekToevoegen">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -234,7 +234,7 @@
           <grid row="1" column="3" row-span="1" col-span="4" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="59fce" class="javax.swing.JButton" binding="ToevoegenButton">
+      <component id="59fce" class="javax.swing.JButton" binding="toevoegenButton">
         <constraints>
           <grid row="13" column="3" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -245,7 +245,7 @@
           <text value="Toevoegen"/>
         </properties>
       </component>
-      <component id="84285" class="javax.swing.JButton" binding="TerugButton">
+      <component id="84285" class="javax.swing.JButton" binding="terugButton">
         <constraints>
           <grid row="14" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -280,7 +280,7 @@
           <text value="Engels"/>
         </properties>
       </component>
-      <component id="4cac" class="javax.swing.JLabel" binding="KinderLabel">
+      <component id="4cac" class="javax.swing.JLabel" binding="kinderLabel">
         <constraints>
           <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -291,7 +291,7 @@
           <text value="Kinderboek: "/>
         </properties>
       </component>
-      <component id="47a6b" class="javax.swing.JRadioButton" binding="NeeradioButton1">
+      <component id="47a6b" class="javax.swing.JRadioButton" binding="neeRadioButton1">
         <constraints>
           <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -299,7 +299,7 @@
           <text value="Nee"/>
         </properties>
       </component>
-      <component id="530db" class="javax.swing.JRadioButton" binding="JaRadioButton">
+      <component id="530db" class="javax.swing.JRadioButton" binding="jaRadioButton">
         <constraints>
           <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -307,7 +307,7 @@
           <text value="Ja"/>
         </properties>
       </component>
-      <component id="41109" class="javax.swing.JLabel" binding="GenreJlabel">
+      <component id="41109" class="javax.swing.JLabel" binding="genreJlabel">
         <constraints>
           <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -318,7 +318,7 @@
           <text value="Genre:"/>
         </properties>
       </component>
-      <component id="34281" class="javax.swing.JComboBox" binding="GenreComboBox1">
+      <component id="34281" class="javax.swing.JComboBox" binding="genreComboBox1">
         <constraints>
           <grid row="8" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
