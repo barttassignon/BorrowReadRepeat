@@ -62,6 +62,7 @@ public class SchuldToevoegenForm {
                         SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Verlies", prijs, LocalDate.now()));
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
                         UitleenDAO.binnenbrengenUitlening(artikelnummer);
+                        BoekDAO.nietUitgeleend(artikelnummer);
                         BoekDAO.verwijderenBoek(artikelnummer);
                     }
                 } catch (NumberFormatException nr) {
