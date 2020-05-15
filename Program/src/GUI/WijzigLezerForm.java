@@ -71,11 +71,15 @@ public class WijzigLezerForm {
                             if (telefoon.matches("^0[1-9]\\d{7,8}$")){
                                 LezerDAO.wijzigenTelLezer(lezer, telefoon);
                                 JOptionPane.showMessageDialog(wijzigLezerFrame, "Telefoon gewijzigd!");
+                            } else if (telefoon.length() != 0) {
+                                JOptionPane.showMessageDialog(wijzigLezerFrame, "Geef een geldig telefoonnummer in!");
                             }
 
                             if (email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")){
                                     LezerDAO.wijzigenEmailLezer(lezer, email);
                                     JOptionPane.showMessageDialog(wijzigLezerFrame, "Email gewijzigd!");
+                            } else if(email.length() != 0){
+                                JOptionPane.showMessageDialog(wijzigLezerFrame, "Geef een geldig emailadres in!");
                             }
 
                             String straat = straatTextfield.getText();
