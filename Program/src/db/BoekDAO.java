@@ -17,6 +17,7 @@ public class BoekDAO extends BaseDAO {
 
         LocalDateTime datum = boek.getAankoopdatum().atTime(02,00,00);
 
+
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("insert into Boeken values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, false, false, false)");
@@ -48,7 +49,6 @@ public class BoekDAO extends BaseDAO {
 
             BufferedReader lineReader = new BufferedReader(new FileReader(bestand));
             String lineText = null;
-            int count = 0;
 
             PreparedStatement s = c.prepareStatement("insert into Boeken values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, false, false, false)");
 
@@ -86,16 +86,10 @@ public class BoekDAO extends BaseDAO {
                 s.setString(11, plaats);
 
                 s.addBatch();
-
-                if (count % batchSize == 0) {
-                    s.executeBatch();
-                }
             }
             lineReader.close();
             s.executeBatch();
-        } catch (SQLException | FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }

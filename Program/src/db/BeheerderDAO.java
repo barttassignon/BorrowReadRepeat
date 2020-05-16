@@ -1,10 +1,8 @@
 package db;
 
 import entity.Beheerder;
-
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-import java.util.ArrayList;
 
 public class BeheerderDAO extends BaseDAO implements Security {
 

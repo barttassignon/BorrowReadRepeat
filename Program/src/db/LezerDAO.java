@@ -1,7 +1,6 @@
 package db;
 
 import entity.*;
-
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.time.LocalDate;
