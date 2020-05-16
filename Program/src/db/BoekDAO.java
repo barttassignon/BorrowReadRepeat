@@ -5,6 +5,8 @@ import entity.Boek;
 import java.io.*;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class BoekDAO extends BaseDAO {
@@ -12,6 +14,8 @@ public class BoekDAO extends BaseDAO {
     // Toevoegen van boek aan database:
 
     public static void toevoegenBoek(Boek boek) {
+
+        LocalDateTime datum = boek.getAankoopdatum().atTime(02,00,00);
 
         try (Connection c = getConn()) {
 
@@ -24,7 +28,7 @@ public class BoekDAO extends BaseDAO {
             s.setString(6, boek.getGenre());
             s.setBoolean(7, boek.isKinderboek());
             s.setInt(8, boek.getPaginas());
-            s.setObject(9, boek.getAankoopdatum());
+            s.setObject(9, datum);
             s.setDouble(10, boek.getPrijs());
             s.setString(11, boek.getPlaatsInBib());
             s.executeUpdate();
@@ -73,7 +77,9 @@ public class BoekDAO extends BaseDAO {
                 s.setBoolean(7, boek);
                 int blz = Integer.parseInt(paginas);
                 s.setInt(8, blz);
-                Date datum = Date.valueOf(aankoopdatum);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate date = LocalDate.parse(aankoopdatum, formatter);
+                LocalDateTime datum = date.atTime(01,00,00);
                 s.setObject(9, datum);
                 double aankoopprijs = Double.parseDouble(prijs);
                 s.setDouble(10, aankoopprijs);
