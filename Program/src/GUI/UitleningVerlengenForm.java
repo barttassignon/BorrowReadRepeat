@@ -31,7 +31,7 @@ public class UitleningVerlengenForm {
 
 
     public UitleningVerlengenForm() {
-        uitleningverlengenFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
         uitleningverlengenFrame.getContentPane().add(panel1);
         uitleningverlengenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         uitleningverlengenFrame.setVisible(true);

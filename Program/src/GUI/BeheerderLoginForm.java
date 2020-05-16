@@ -32,7 +32,6 @@ public class BeheerderLoginForm extends JFrame{
 
         passwordField.setEchoChar('*');
 
-        beheerdersLoginFormFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         beheerdersLoginFormFrame.getContentPane().add(BeheerderLoginPanel);
         beheerdersLoginFormFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         beheerdersLoginFormFrame.setVisible(true);

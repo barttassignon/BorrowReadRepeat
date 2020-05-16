@@ -26,7 +26,7 @@ public class UitleningBinnenbrengenForm {
 
 
     public UitleningBinnenbrengenForm() {
-        uitleningBinnenbrengenFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
         uitleningBinnenbrengenFrame.getContentPane().add(panel1);
         uitleningBinnenbrengenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         uitleningBinnenbrengenFrame.setVisible(true);

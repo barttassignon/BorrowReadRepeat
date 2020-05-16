@@ -28,10 +28,9 @@ public class SchuldToevoegenForm {
     private JButton beschadigdButton;
 
     public SchuldToevoegenForm() {
-        schuldToevoegenFormFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
         schuldToevoegenFormFrame.getContentPane().add(panel1);
         schuldToevoegenFormFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         schuldToevoegenFormFrame.setVisible(true);
         schuldToevoegenFormFrame.setSize(700, 600);
         schuldToevoegenFormFrame.setResizable(false);

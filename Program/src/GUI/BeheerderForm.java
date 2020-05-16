@@ -34,10 +34,8 @@ public class BeheerderForm extends JPanel {
 
     public BeheerderForm() {
 
-        beheerderFormFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         beheerderFormFrame.getContentPane().add(beheerderPanel);
         beheerderFormFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         beheerderFormFrame.setVisible(true);
         beheerderFormFrame.setSize(700, 600);
         beheerderFormFrame.setResizable(false);

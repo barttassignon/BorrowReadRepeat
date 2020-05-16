@@ -38,7 +38,7 @@ public class WijzigLezerForm {
     private JButton terugButton;
 
     public WijzigLezerForm(){
-        wijzigLezerFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
         wijzigLezerFrame.getContentPane().add(panel1);
         wijzigLezerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

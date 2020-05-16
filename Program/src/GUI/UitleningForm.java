@@ -19,7 +19,7 @@ public class UitleningForm {
     private JButton terugButton;
 
     public UitleningForm() {
-        uitleningFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
         uitleningFrame.getContentPane().add(panel1);
         uitleningFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         uitleningFrame.setVisible(true);

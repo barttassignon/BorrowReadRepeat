@@ -23,7 +23,7 @@ public class UitleningToevoegenForm extends JFrame {
     private JButton toevoegenButton;
 
     public UitleningToevoegenForm() {
-        uitleningToevoegenFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
         uitleningToevoegenFrame.getContentPane().add(panel1);
         uitleningToevoegenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         uitleningToevoegenFrame.setVisible(true);

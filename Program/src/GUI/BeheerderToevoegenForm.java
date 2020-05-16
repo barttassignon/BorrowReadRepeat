@@ -37,10 +37,8 @@ public class BeheerderToevoegenForm extends JFrame{
         passwordField1.setEchoChar('*');
         bevestigPasswordField1.setEchoChar('*');
 
-        beheerderToevoegenForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         beheerderToevoegenForm.getContentPane().add(panel1);
         beheerderToevoegenForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         beheerderToevoegenForm.setVisible(true);
         beheerderToevoegenForm.setSize(600, 600);
         beheerderToevoegenForm.setResizable(false);

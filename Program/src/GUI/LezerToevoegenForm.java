@@ -62,10 +62,8 @@ public class LezerToevoegenForm extends JFrame {
         passwordField.setEchoChar('*');
         bevestigPaswoord.setEchoChar('*');
 
-        lezerToevoegenFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         lezerToevoegenFrame.getContentPane().add(panel1);
         lezerToevoegenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         lezerToevoegenFrame.setVisible(true);
         lezerToevoegenFrame.setSize(600, 600);
         lezerToevoegenFrame.setResizable(false);
