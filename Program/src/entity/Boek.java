@@ -8,8 +8,8 @@ public class Boek {
     private String titel;
     private String auteur;
     private String uitgeverij;
-    private String taal1;
-    private String genre1;
+    private String taal;
+    private String genre;
     private int paginas;
     private LocalDate aankoopdatum;
     private double prijs;
@@ -39,13 +39,13 @@ public class Boek {
 
     // Constructor om boek te kunnen toevoegen:
 
-    public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal1, String genre1, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib, boolean kinderboek) {
+    public Boek(long ISBN, String titel, String auteur, String uitgeverij, String taal, String genre, int paginas, LocalDate aankoopdatum, double prijs, String plaatsInBib, boolean kinderboek) {
         this.ISBN = ISBN;
         this.titel = titel;
         this.auteur = auteur;
         this.uitgeverij = uitgeverij;
-        this.taal1 = taal1;
-        this.genre1 = genre1;
+        this.taal = taal;
+        this.genre = genre;
         this.paginas = paginas;
         this.aankoopdatum = aankoopdatum;
         this.prijs = prijs;
@@ -94,12 +94,12 @@ public class Boek {
         return uitgeverij;
     }
 
-    public String getTaal1() {
-        return taal1;
+    public String getTaal() {
+        return taal;
     }
 
-    public String getGenre1() {
-        return genre1;
+    public String getGenre() {
+        return genre;
     }
 
     public int getPaginas() {

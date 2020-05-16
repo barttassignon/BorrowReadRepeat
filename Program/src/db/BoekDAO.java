@@ -20,8 +20,8 @@ public class BoekDAO extends BaseDAO {
             s.setString(2, boek.getTitel());
             s.setString(3, boek.getAuteur());
             s.setString(4, boek.getUitgeverij());
-            s.setString(5, boek.getTaal1());
-            s.setString(6, boek.getGenre1());
+            s.setString(5, boek.getTaal());
+            s.setString(6, boek.getGenre());
             s.setBoolean(7, boek.isKinderboek());
             s.setInt(8, boek.getPaginas());
             s.setObject(9, boek.getAankoopdatum());
