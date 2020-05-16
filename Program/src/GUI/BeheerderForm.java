@@ -8,10 +8,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BeheerderForm extends JFrame {
+public class BeheerderForm extends JPanel {
 
     private JFrame beheerderFormFrame = new JFrame("BorrowReadRepeat");
-    private JPanel panel1;
+    private JPanel beheerderPanel;
 
     private JLabel labelLezer;
     private JLabel labelBib;
@@ -35,7 +35,7 @@ public class BeheerderForm extends JFrame {
     public BeheerderForm() {
 
         beheerderFormFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        beheerderFormFrame.getContentPane().add(panel1);
+        beheerderFormFrame.getContentPane().add(beheerderPanel);
         beheerderFormFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         beheerderFormFrame.setVisible(true);
@@ -68,8 +68,11 @@ public class BeheerderForm extends JFrame {
         });
         beheerderToevoegenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new BeheerderToevoegenForm();
-                beheerderFormFrame.dispose();
+                int action = JOptionPane.showConfirmDialog(BeheerderForm.this, "Ben je zeker??", "Nieuwe beheerder", JOptionPane.OK_CANCEL_OPTION);
+                if (action == JOptionPane.OK_OPTION) {
+                    new BeheerderToevoegenForm();
+                    beheerderFormFrame.dispose();
+                }
             }
         });
         weergevenButton.addActionListener(new ActionListener() {
@@ -127,10 +130,15 @@ public class BeheerderForm extends JFrame {
         });
     }
 
+    /*public static void main(String[] args) {
+        new BeheerderForm();
+    }
+
+}*/
+
     public static void main(String[] args) {
         new BeheerderForm();
     }
 
 }
-
 
