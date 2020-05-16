@@ -6,6 +6,7 @@ import entity.Uitlening;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class UitleenDAO extends BaseDAO {
@@ -14,12 +15,14 @@ public class UitleenDAO extends BaseDAO {
 
     public static void uitleningToevoegen(Uitlening uitlening) {
 
+        LocalDateTime datum = uitlening.getDatumUitgeleend().atTime(02,00,00);
+
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("insert into Uitleningen values (NULL, ?, ?, ?, NULL, NULL)");
             s.setInt(1, uitlening.getLezer().getId());
             s.setInt(2, uitlening.getBoek().getArtikelnummer());
-            s.setObject(3, uitlening.getDatumUitgeleend());
+            s.setObject(3, datum);
 
             s.executeUpdate();
 
@@ -31,10 +34,13 @@ public class UitleenDAO extends BaseDAO {
     // Een uitlening verlengen:
 
     public static void verlengUitlening(int uitleenID){
+
+        LocalDateTime datum = LocalDate.now().atTime(02,00,00);
+
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("update Uitleningen set Verlengdatum = ? where Uitleen_ID = ?");
-            s.setObject(1, LocalDate.now());
+            s.setObject(1, datum);
             s.setInt(2, uitleenID);
             s.executeUpdate();
 
@@ -46,10 +52,13 @@ public class UitleenDAO extends BaseDAO {
     // Een uitlening terugbrengen:
 
     public static void binnenbrengenUitlening(int boekID){
+
+        LocalDateTime datum = LocalDate.now().atTime(02,00,00);
+
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("update Uitleningen set Inleverdatum = ? where Boek_ID = ? AND Inleverdatum is null");
-            s.setObject(1, LocalDate.now());
+            s.setObject(1, datum);
             s.setInt(2, boekID);
 
             s.executeUpdate();

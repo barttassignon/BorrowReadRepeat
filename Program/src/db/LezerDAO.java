@@ -5,7 +5,7 @@ import entity.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.Month;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class LezerDAO extends BaseDAO {
@@ -21,6 +21,7 @@ public class LezerDAO extends BaseDAO {
             byte[] salt = Security.createSalt();
             try (Connection c = getConn()) {
 
+                LocalDateTime datum = lezer.getGeboortedatum().atTime(02,00,00);
                 // Eerst tabel Lezers updaten (parent)
 
                 c.setAutoCommit(false);
@@ -28,7 +29,7 @@ public class LezerDAO extends BaseDAO {
                 PreparedStatement p = c.prepareStatement("insert into Lezers values (NULL, ?, ?, ?, ?, ?, ?, ?)");
                 p.setString(1, lezer.getVoornaam());
                 p.setString(2, lezer.getNaam());
-                p.setObject(3, lezer.getGeboortedatum());
+                p.setObject(3, datum);
                 p.setString(4, lezer.getEmail());
                 p.setString(5, lezer.getTelefoon());
                 p.setBytes(6, salt);

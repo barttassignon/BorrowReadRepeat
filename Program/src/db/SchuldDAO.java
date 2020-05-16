@@ -5,18 +5,22 @@ import entity.Schuld;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class SchuldDAO extends BaseDAO {
 
     public static void overtijdSchuld(int lezerID, double schuld){
+
+        LocalDateTime datum = LocalDate.now().atTime(02,00,00);
+
         try (Connection c = getConn()) {
 
             PreparedStatement p = c.prepareStatement("insert into Schulden values (NULL, ?, ?, ?, ?, NULL)");
             p.setInt(1, lezerID);
             p.setString(2, "Overtijd");
             p.setDouble(3, schuld);
-            p.setObject(4, LocalDate.now());
+            p.setObject(4, datum);
             p.executeUpdate();
 
         } catch (SQLException e) {
@@ -24,15 +28,17 @@ public class SchuldDAO extends BaseDAO {
         }
     }
 
-    public static void aanrekenenSchuld(int lezerID, Schuld schuld)
-    {
+    public static void aanrekenenSchuld(int lezerID, Schuld schuld) {
+
+        LocalDateTime datum = LocalDate.now().atTime(02,00,00);
+
         try (Connection c = getConn()) {
 
             PreparedStatement p = c.prepareStatement("insert into Schulden values (NULL, ?, ?, ?, ?, NULL)");
             p.setInt(1, lezerID);
             p.setString(2, schuld.getOorsprong());
             p.setDouble(3, schuld.getBedrag());
-            p.setObject(4, LocalDate.now());
+            p.setObject(4, datum);
             p.executeUpdate();
 
         } catch (SQLException e) {
@@ -41,11 +47,14 @@ public class SchuldDAO extends BaseDAO {
     }
 
     public static void betalenSchuld(int schuldID) {
+
+        LocalDateTime datum = LocalDate.now().atTime(02,00,00);
+
         try (Connection c = getConn()) {
 
             PreparedStatement p = c.prepareStatement("update Schulden set Bedrag = ?, Betaaldatum = ? where Schuld_ID = ?");
             p.setDouble(1, 0);
-            p.setObject(2, LocalDate.now());
+            p.setObject(2, datum);
             p.setInt(3, schuldID);
             p.executeUpdate();
 

@@ -11,9 +11,6 @@ public class Lezer extends Persoon {
     private String email;
     private String telefoon;
     private String wachtwoord;
-    private Uitlening uitlening;
-    private Transactie transactie;
-    private Schuld schuld;
 
     // Constructor nodig om schulden te kunnen weergeven:
 
@@ -67,8 +64,6 @@ public class Lezer extends Persoon {
     }
 
     public String getWachtwoord() { return wachtwoord; }
-
-    public Schuld getSchuld() { return schuld; }
 
     public int berekenLeeftijd() {
         int leeftijd = Period.between(geboortedatum, LocalDate.now()).getYears();
