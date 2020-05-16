@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ReservatieDAO extends BaseDAO {
 
@@ -14,12 +15,14 @@ public class ReservatieDAO extends BaseDAO {
 
     public static void maakReservatie(Reservatie reservatie) {
 
+        LocalDateTime datum = reservatie.getReservatieDatum().atTime(02,00,00);
+
         try (Connection c = getConn()) {
 
             PreparedStatement s = c.prepareStatement("insert into Reservaties values (NULL, ?, ?, ?, NULL)");
             s.setInt(1, reservatie.getLezer().getId());
             s.setInt(2, reservatie.getBoek().getArtikelnummer());
-            s.setObject(3, reservatie.getReservatieDatum());
+            s.setObject(3, datum);
             s.executeUpdate();
 
         } catch (SQLException e) {
