@@ -129,12 +129,6 @@ public class BeheerderForm extends JPanel {
         });
     }
 
-    /*public static void main(String[] args) {
-        new BeheerderForm();
-    }
-
-}*/
-
     public static void main(String[] args) {
         new BeheerderForm();
     }

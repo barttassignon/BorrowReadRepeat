@@ -30,8 +30,6 @@ public class BeheerderLoginForm extends JFrame{
 
     public BeheerderLoginForm() {
 
-
-
         passwordField.setEchoChar('*');
 
         beheerdersLoginFormFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
