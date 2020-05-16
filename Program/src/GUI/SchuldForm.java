@@ -15,7 +15,7 @@ public class SchuldForm {
     private JFrame schuldFrame = new JFrame();
     private JPanel panel1;
 
-    private JLabel SchuldLabel;
+    private JLabel schuldLabel;
     private JLabel lezerLabel;
 
     private JTextField lezerTextField;
