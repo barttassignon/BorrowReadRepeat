@@ -10,9 +10,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BeheerderLoginForm {
+public class BeheerderLoginForm extends JFrame{
 
-    private JFrame frame = new JFrame("BorrowReadRepeat");
+    private JFrame beheerdersLoginFormFrame = new JFrame("BorrowReadRepeat");
+
+
     private JPanel BeheerderLoginPanel;
 
     private JLabel labelTitel;
@@ -25,17 +27,20 @@ public class BeheerderLoginForm {
 
     private JButton inloggen;
 
+
     public BeheerderLoginForm() {
+
+
 
         passwordField.setEchoChar('*');
 
-        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        frame.getContentPane().add(BeheerderLoginPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        frame.setSize(600,600);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
+        beheerdersLoginFormFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        beheerdersLoginFormFrame.getContentPane().add(BeheerderLoginPanel);
+        beheerdersLoginFormFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        beheerdersLoginFormFrame.setVisible(true);
+        beheerdersLoginFormFrame.setSize(600,600);
+        beheerdersLoginFormFrame.setResizable(false);
+        beheerdersLoginFormFrame.setLocationRelativeTo(null);
 
         inloggen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -43,9 +48,9 @@ public class BeheerderLoginForm {
                 String paswoord = String.valueOf(passwordField.getPassword());
                 if(BeheerderDAO.inloggen(gebruikersnaam, paswoord)){
                     new BeheerderForm();
-                    frame.dispose();
+                    beheerdersLoginFormFrame.dispose();
                 }else{
-                    JOptionPane.showMessageDialog(frame, "Verkeerde logingegevens", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(beheerdersLoginFormFrame,"Verkeerde logingegevens", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     userNaam.setText("");
                     passwordField.setText("");
                 }
