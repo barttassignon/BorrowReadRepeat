@@ -149,10 +149,21 @@ public class BoekToevoegenForm extends JFrame {
         bestandToevoegen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser select = new JFileChooser();
-                select.showOpenDialog(boekToevoegenFrame);
-                File bestand = select.getSelectedFile();
-                BoekDAO.toevoegenBoeken(bestand);
+                JFileChooser selecteer = new JFileChooser();
+                selecteer.addChoosableFileFilter(new BestandFilter());
+                int keuze = selecteer.showOpenDialog(boekToevoegenFrame);
+                if(keuze == JFileChooser.APPROVE_OPTION){
+                    File bestand = selecteer.getSelectedFile();
+                    try{
+                        BoekDAO.toevoegenBoeken(bestand);
+                        JOptionPane.showMessageDialog(boekToevoegenFrame, "Boeken toegevoegd.");
+                    } catch (ArrayIndexOutOfBoundsException error){
+                        JOptionPane.showMessageDialog(boekToevoegenFrame, "Verkeerd bestand geselecteerd. Selecteer een CSV-bestand!");
+                    } catch(NumberFormatException formaat){
+                        JOptionPane.showMessageDialog(boekToevoegenFrame, "Een of meerdere boeken kon niet worden toegevoegd wegens een ongeldig formaat!");
+                    }
+                } else
+                    JOptionPane.showMessageDialog(boekToevoegenFrame, "Geen bestand geselecteerd.");
             }
         });
     }
