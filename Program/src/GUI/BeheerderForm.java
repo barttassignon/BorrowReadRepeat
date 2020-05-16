@@ -68,11 +68,10 @@ public class BeheerderForm extends JPanel {
         });
         beheerderToevoegenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int action = JOptionPane.showConfirmDialog(BeheerderForm.this, "Ben je zeker??", "Nieuwe beheerder", JOptionPane.OK_CANCEL_OPTION);
-                if (action == JOptionPane.OK_OPTION) {
+                JOptionPane.showMessageDialog(BeheerderForm.this, "Ben je zeker dat je een beheerder wilt toevoegen?", "OPGEPAST", JOptionPane.WARNING_MESSAGE);
                     new BeheerderToevoegenForm();
                     beheerderFormFrame.dispose();
-                }
+
             }
         });
         weergevenButton.addActionListener(new ActionListener() {
