@@ -19,15 +19,15 @@ public class BeheerderForm extends JPanel {
     private JLabel labelBoek;
 
     private JButton boekToevoegenButton;
-    private JButton weergevenBoek;
+    private JButton weergevenBoekButton;
     private JButton schuldToevoegenButton;
 
     private JButton lezertoevoegenButton;
-    private JButton wijzigenButton;
-    private JButton weergevenButton;
-    private JButton schuldButton;
+    private JButton wijzigenLezerButton;
+    private JButton weergevenLezerButton;
+    private JButton schuldOverzichtButton;
 
-    private JButton uitlening;
+    private JButton uitleningButton;
     private JButton reservatieButton;
     private JButton beheerderToevoegenButton;
     private JButton uitloggenButton;
@@ -74,21 +74,21 @@ public class BeheerderForm extends JPanel {
 
             }
         });
-        weergevenButton.addActionListener(new ActionListener() {
+        weergevenLezerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new WeergevenLezerForm();
                 beheerderFormFrame.dispose();
             }
         });
-        weergevenBoek.addActionListener(new ActionListener() {
+        weergevenBoekButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new WeergevenBoekForm();
                 beheerderFormFrame.dispose();
             }
         });
-        uitlening.addActionListener(new ActionListener() {
+        uitleningButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new UitleningForm();
@@ -104,7 +104,7 @@ public class BeheerderForm extends JPanel {
             }
         });
 
-        schuldButton.addActionListener(new ActionListener() {
+        schuldOverzichtButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new SchuldForm();
@@ -112,7 +112,7 @@ public class BeheerderForm extends JPanel {
             }
         });
 
-        wijzigenButton.addActionListener(new ActionListener() {
+        wijzigenLezerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new WijzigLezerForm();
