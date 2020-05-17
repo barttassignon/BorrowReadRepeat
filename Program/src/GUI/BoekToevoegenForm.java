@@ -131,15 +131,20 @@ public class BoekToevoegenForm extends JFrame {
 
                     if (titel.length() == 0 || auteur.length() == 0 || uitgeverij.length() == 0 || plaats.length() == 0) {
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    } else if(ISBNtextField.getText().length() != 10 && ISBNtextField.getText().length() != 13) {
+                    } else if (ISBNtextField.getText().length() != 10 && ISBNtextField.getText().length() != 13) {
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Geef een geldig ISBN.", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    } else{
+                    } else if (ISBNtextField.getText().length() == 10 && Boek.validateISBN10(ISBN) == false) {
+                        JOptionPane.showMessageDialog(boekToevoegenFrame, "Geef een geldig ISBN.", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    } else if (ISBNtextField.getText().length() == 13 && Boek.validateISBN13(ISBN) == false) {
+                        JOptionPane.showMessageDialog(boekToevoegenFrame, "Geef een geldig ISBN.", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else{
                         BoekDAO.toevoegenBoek(new Boek(ISBN, titel, auteur, uitgeverij, taal, genre, paginas, aankoopdatum, aankoopprijs, plaats, kind));
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Boek toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                     }
-                } catch (NumberFormatException nr){
+                } catch (NumberFormatException nr) {
                     JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve (enkel) cijfers in te geven bij ISBN, pagina's en aankoopprijs", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                }catch(DateTimeParseException datum){
+                } catch (DateTimeParseException datum) {
                     JOptionPane.showMessageDialog(boekToevoegenFrame, "Vul datum als volgt in: dd/mm/jjjj", "Resultaat", JOptionPane.ERROR_MESSAGE);
                 }
             }

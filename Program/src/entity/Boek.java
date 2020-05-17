@@ -127,6 +127,35 @@ public class Boek {
     public boolean isKinderboek() { return kinderboek; }
 
     public boolean isUitStock() { return uitStock; }
+
+    public static boolean validateISBN10(long ISBN) {
+        int totaal = 0;
+        for (int i = 0; i < 9; i++) {
+            int digit = Integer.parseInt(String.valueOf(ISBN).substring(i, i + 1));
+            totaal += ((10 - i) * digit);
+        }
+
+        String checksom = Integer.toString((11 - (totaal % 11)) % 11);
+        if ("10".equals(checksom)) {
+            checksom = "X";
+        }
+
+        return checksom.equals(String.valueOf(ISBN).substring(9));
+    }
+
+    public static boolean validateISBN13(long ISBN) {
+        int totaal = 0;
+        for (int i = 0; i < 12; i++) {
+            int digit = Integer.parseInt(String.valueOf(ISBN).substring(i, i + 1));
+            totaal += (i % 2 == 0) ? digit * 1 : digit * 3;
+        }
+
+        int checksom = 10 - (totaal % 10);
+        if (checksom == 10) {
+            checksom = 0;
+        }
+        return checksom == Integer.parseInt(String.valueOf(ISBN).substring(12));
+    }
 }
 
 
