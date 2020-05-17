@@ -67,7 +67,7 @@
         <properties>
           <enabled value="true"/>
           <font name="Consolas" size="14"/>
-          <horizontalAlignment value="11"/>
+          <horizontalAlignment value="10"/>
         </properties>
       </component>
       <component id="658f7" class="javax.swing.JLabel" binding="lezerLabel">
