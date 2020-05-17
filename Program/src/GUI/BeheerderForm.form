@@ -18,7 +18,7 @@
         <properties>
           <font name="Consolas" size="36" style="1"/>
           <horizontalTextPosition value="0"/>
-          <text value="Beheerders Paneel"/>
+          <text value="Beheerderspaneel"/>
           <verticalAlignment value="3"/>
           <verticalTextPosition value="3"/>
         </properties>
@@ -112,7 +112,7 @@
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
           <horizontalTextPosition value="0"/>
-          <text value="Beheerder  Toevoegen"/>
+          <text value="Beheerder  toevoegen"/>
         </properties>
       </component>
       <vspacer id="37683">

@@ -34,7 +34,7 @@
           <font name="Consolas" size="16" style="0"/>
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
-          <text value="Toevoegen"/>
+          <text value="Boek uitlenen"/>
         </properties>
       </component>
       <component id="6ada3" class="javax.swing.JButton" binding="binnenbrengenButton">
@@ -49,7 +49,7 @@
           <font name="Consolas" size="16" style="0"/>
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
-          <text value="Binnenbrengen"/>
+          <text value="Boek binnenbrengen"/>
         </properties>
       </component>
       <component id="49e97" class="javax.swing.JButton" binding="verlengButton">
@@ -64,7 +64,7 @@
           <font name="Consolas" size="16" style="0"/>
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
-          <text value="Verlengen"/>
+          <text value="Uitlening verlengen"/>
         </properties>
       </component>
       <component id="f55fb" class="javax.swing.JButton" binding="terugButton">

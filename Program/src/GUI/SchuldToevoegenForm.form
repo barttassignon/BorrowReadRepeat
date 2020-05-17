@@ -63,7 +63,7 @@
           <font name="Consolas" size="18"/>
           <foreground color="-12508416"/>
           <horizontalAlignment value="2"/>
-          <text value="Boek Verloren"/>
+          <text value="Boek verloren"/>
         </properties>
       </component>
       <component id="cdd45" class="javax.swing.JLabel" binding="boekID">

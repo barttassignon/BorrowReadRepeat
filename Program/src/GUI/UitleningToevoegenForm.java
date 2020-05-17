@@ -65,7 +65,7 @@ public class UitleningToevoegenForm extends JFrame {
                         }
                     }
                 } catch(NumberFormatException nr){
-                    JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Gelieve (enkel) cijfers in te geven!");
+                    JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Gelieve (enkel) cijfers in te geven bij LezerID en artikelnummer!");
                 } catch(NullPointerException npe){
                     JOptionPane.showMessageDialog(uitleningToevoegenFrame, "Boek en/of lezer bestaan niet!");
                 }

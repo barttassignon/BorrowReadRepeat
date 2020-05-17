@@ -17,7 +17,7 @@
         <properties>
           <font name="Consolas" size="36" style="1"/>
           <horizontalTextPosition value="0"/>
-          <text value="Beheerder Toevoegen"/>
+          <text value="Beheerder toevoegen"/>
           <verticalAlignment value="3"/>
           <verticalTextPosition value="3"/>
         </properties>
@@ -138,7 +138,7 @@
           <font name="Consolas" size="18"/>
           <foreground color="-12508416"/>
           <horizontalAlignment value="2"/>
-          <text value="Bevestig Paswoord:"/>
+          <text value="Bevestig paswoord:"/>
         </properties>
       </component>
       <component id="3b6fa" class="javax.swing.JPasswordField" binding="bevestigPasswordField1">

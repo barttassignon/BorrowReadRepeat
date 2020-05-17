@@ -42,7 +42,7 @@
         <properties>
           <font name="Consolas" size="36" style="1"/>
           <horizontalTextPosition value="0"/>
-          <text value="Beheerders Login"/>
+          <text value="Login beheerders"/>
           <verticalAlignment value="0"/>
           <verticalTextPosition value="0"/>
         </properties>

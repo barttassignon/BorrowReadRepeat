@@ -18,7 +18,7 @@
         <properties>
           <font name="Consolas" size="36" style="1"/>
           <horizontalTextPosition value="0"/>
-          <text value="Weergeven Boeken"/>
+          <text value="Weergeven boeken"/>
           <verticalAlignment value="3"/>
           <verticalTextPosition value="3"/>
         </properties>
@@ -87,7 +87,7 @@
         </constraints>
         <properties>
           <font name="Consolas" size="16"/>
-          <text value="Delete"/>
+          <text value="Verwijderen"/>
         </properties>
       </component>
       <component id="d961d" class="javax.swing.JButton" binding="alleBoekenButton">

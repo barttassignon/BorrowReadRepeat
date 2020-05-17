@@ -17,7 +17,7 @@
         <properties>
           <font name="Consolas" size="36" style="1"/>
           <horizontalTextPosition value="0"/>
-          <text value="Lezer Wijzigen"/>
+          <text value="Wijzigen gegevens lezer"/>
           <verticalAlignment value="3"/>
           <verticalTextPosition value="3"/>
         </properties>

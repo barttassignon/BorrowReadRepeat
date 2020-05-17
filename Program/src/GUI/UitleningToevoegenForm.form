@@ -39,7 +39,7 @@
         <properties>
           <font name="Consolas" size="36" style="1"/>
           <horizontalTextPosition value="0"/>
-          <text value="Uitlening toevoegen"/>
+          <text value="Boek uitlenen"/>
           <verticalAlignment value="3"/>
           <verticalTextPosition value="3"/>
         </properties>
