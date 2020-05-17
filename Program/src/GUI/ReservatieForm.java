@@ -106,15 +106,15 @@ public class ReservatieForm {
                 try{
                     int lezerID = Integer.parseInt(lezerTextField.getText());
                     int row = table1.getSelectedRow();
-                    int artikelnummer = (((int) table1.getModel().getValueAt(row, 0)));
+                    int boekID = (((int) table1.getModel().getValueAt(row, 0)));
 
                     if(LezerDAO.ophalenLezer(lezerID) == null){
                         JOptionPane.showMessageDialog(null, "Geen lezer gevonden met dit lezerID!");
-                    } else if(BoekDAO.ophalenBoek(artikelnummer).isGereserveerd()){
+                    } else if(BoekDAO.ophalenBoek(boekID).isGereserveerd()){
                         JOptionPane.showMessageDialog(null, "Boek is reeds gereserveerd door iemand anders!");
                     } else{
-                        ReservatieDAO.maakReservatie(new Reservatie(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(artikelnummer)));
-                        BoekDAO.isGereserveerd(artikelnummer);
+                        ReservatieDAO.maakReservatie(new Reservatie(LezerDAO.ophalenLezer(lezerID), BoekDAO.ophalenBoek(boekID)));
+                        BoekDAO.isGereserveerd(boekID);
                         SchuldDAO.aanrekenenSchuld(lezerID, new Schuld("Reservatie", 0.5));
                         JOptionPane.showMessageDialog(null, "Reservatie gemaakt!");
                     }

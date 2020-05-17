@@ -76,8 +76,7 @@ public class WeergevenBoekForm extends JFrame{
 
                 String titel = titelTextField.getText();
 
-                if(BoekDAO.opzoekenBoek(titel).size() == 0)
-                {
+                if(BoekDAO.opzoekenBoek(titel).size() == 0) {
                     JOptionPane.showMessageDialog(weergevenBoekFrame, "Geen boeken gevonden met deze titel.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                 }
 

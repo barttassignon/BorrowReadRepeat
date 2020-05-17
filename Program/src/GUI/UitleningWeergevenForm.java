@@ -1,9 +1,6 @@
 package GUI;
 
-import db.BoekDAO;
-import db.LezerDAO;
 import db.UitleenDAO;
-import entity.Boek;
 import entity.Uitlening;
 
 import javax.swing.*;
@@ -11,7 +8,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 
 public class UitleningWeergevenForm {
 
@@ -65,12 +61,12 @@ public class UitleningWeergevenForm {
                    public void actionPerformed(ActionEvent e) {
                        model.setRowCount(0);
                        try {
-                           int artikelNummer = Integer.parseInt(artikelnummerTextField.getText());
-                           if (UitleenDAO.uitleengeschiedenisBoek(artikelNummer).size() == 0) {
+                           int boekID = Integer.parseInt(artikelnummerTextField.getText());
+                           if (UitleenDAO.uitleengeschiedenisBoek(boekID).size() == 0) {
                                JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen boek gevonden met dit artikelnummer.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                            }
-                           for (Uitlening u : UitleenDAO.uitleengeschiedenisBoek(artikelNummer)) {
-                               model.addRow(new Object[]{artikelNummer, u.getLezer().getId(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
+                           for (Uitlening u : UitleenDAO.uitleengeschiedenisBoek(boekID)) {
+                               model.addRow(new Object[]{boekID, u.getLezer().getId(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
                            }
 
                        } catch (NumberFormatException nr){
@@ -84,11 +80,11 @@ public class UitleningWeergevenForm {
 
                        model.setRowCount(0);
                        try{
-                       int lezerid = Integer.parseInt(lezerIDTextField.getText());
-                       if(UitleenDAO.uitleengeschiedenLezer(lezerid).size() == 0) {
+                       int lezerID = Integer.parseInt(lezerIDTextField.getText());
+                       if(UitleenDAO.uitleengeschiedenLezer(lezerID).size() == 0) {
                            JOptionPane.showMessageDialog(uitleningWeergevenFrame, "Geen lezer gevonden met deze ID.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                        }
-                       for(Uitlening u : UitleenDAO.uitleengeschiedenLezer(lezerid)){
+                       for(Uitlening u : UitleenDAO.uitleengeschiedenLezer(lezerID)){
                            model.addRow(new Object[]{u.getBoek().getArtikelnummer(), u.getLezer().getId(), u.getDatumUitgeleend(), u.getDatumVerlengd(), u.getDatumIngeleverd()});
                        }
                        } catch (NumberFormatException nr){

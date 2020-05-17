@@ -88,8 +88,7 @@ public class WeergevenLezerForm extends JFrame {
                     model.addRow(new Object[]{l.getId(), l.getVoornaam(), l.getNaam(), l.getGeboortedatum(), l.getEmail(), l.getTelefoon()});
                 }
 
-                if(LezerDAO.opzoekenLezer(voornaam, naam).size() == 0)
-                {
+                if(LezerDAO.opzoekenLezer(voornaam, naam).size() == 0) {
                     JOptionPane.showMessageDialog(opzoekenLezerFrame, "Geen lezers gevonden met deze naam.", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
@@ -98,14 +97,14 @@ public class WeergevenLezerForm extends JFrame {
         verwijderButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int row = table1.getSelectedRow();
-                int lezer = (((int) table1.getModel().getValueAt(row, 0)));
+                int lezerID = (((int) table1.getModel().getValueAt(row, 0)));
 
-                if(SchuldDAO.aantalOpenstaandeSchulden(lezer) > 0){
-                    JOptionPane.showMessageDialog(opzoekenLezerFrame,"Lezer kan niet worden verwijderd want hij heeft nog " + SchuldDAO.aantalOpenstaandeSchulden(lezer) + " openstaande schuld(en)!");
-                } else if(UitleenDAO.aantalUitleningenPerLezer(lezer) > 0){
-                    JOptionPane.showMessageDialog(opzoekenLezerFrame,"Lezer kan niet worden verwijderd want hij heeft nog " + UitleenDAO.aantalUitleningenPerLezer(lezer) + " uitlening(en)!");
+                if(SchuldDAO.aantalOpenstaandeSchulden(lezerID) > 0){
+                    JOptionPane.showMessageDialog(opzoekenLezerFrame,"Lezer kan niet worden verwijderd want hij heeft nog " + SchuldDAO.aantalOpenstaandeSchulden(lezerID) + " openstaande schuld(en)!");
+                } else if(UitleenDAO.aantalUitleningenPerLezer(lezerID) > 0){
+                    JOptionPane.showMessageDialog(opzoekenLezerFrame,"Lezer kan niet worden verwijderd want hij heeft nog " + UitleenDAO.aantalUitleningenPerLezer(lezerID) + " uitlening(en)!");
                 } else {
-                    LezerDAO.verwijderenLezer(lezer);
+                    LezerDAO.verwijderenLezer(lezerID);
                     JOptionPane.showMessageDialog(opzoekenLezerFrame, "Lezer verwijderd");
                     model.setRowCount(0);
                     String voornaam = voornaamTextField.getText();

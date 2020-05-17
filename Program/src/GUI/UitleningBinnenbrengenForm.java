@@ -45,11 +45,11 @@ public class UitleningBinnenbrengenForm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    int boeknummer = Integer.parseInt(artikelTextField1.getText());
-                    Uitlening u = UitleenDAO.ophalenUitleningSchuld(boeknummer);
-                    Boek b = BoekDAO.ophalenBoek(boeknummer);
-                    UitleenDAO.binnenbrengenUitlening(boeknummer);
-                    BoekDAO.nietUitgeleend(boeknummer);
+                    int boekID = Integer.parseInt(artikelTextField1.getText());
+                    Uitlening u = UitleenDAO.ophalenUitleningSchuld(boekID);
+                    Boek b = BoekDAO.ophalenBoek(boekID);
+                    UitleenDAO.binnenbrengenUitlening(boekID);
+                    BoekDAO.nietUitgeleend(boekID);
                     Uitlening s = UitleenDAO.ophalenUitlening(u.getUitleen_ID());
                     if(Schuld.overtijd(s)){
                         SchuldDAO.overtijdSchuld(u.getLezer().getId(), Schuld.overtijdSchuld(s, b));

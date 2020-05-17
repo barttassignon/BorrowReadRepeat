@@ -1,15 +1,12 @@
 package GUI;
 
 import db.BoekDAO;
-import db.LezerDAO;
 import db.SchuldDAO;
 import db.UitleenDAO;
 import entity.Schuld;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 
 public class SchuldToevoegenForm {
 
@@ -48,20 +45,20 @@ public class SchuldToevoegenForm {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    int lezerid = Integer.parseInt(lezerTextField.getText());
-                    int artikelnummer = Integer.parseInt(boekTextField.getText());
+                    int lezerID = Integer.parseInt(lezerTextField.getText());
+                    int boekID = Integer.parseInt(boekTextField.getText());
 
-                    if (UitleenDAO.uitleengeschiedenisLezer(lezerid) == null)
+                    if (UitleenDAO.uitleengeschiedenisLezer(lezerID) == null)
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Geen lezer gevonden met dit ID");
-                    else if (UitleenDAO.uitleengeschiedenisBoek(artikelnummer) == null)
+                    else if (UitleenDAO.uitleengeschiedenisBoek(boekID) == null)
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Geen boek gevonden met dit ID.");
                     else {
-                        double prijs = BoekDAO.ophalenBoek(artikelnummer).getPrijs();
-                        SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Verlies", prijs));
+                        double prijs = BoekDAO.ophalenBoek(boekID).getPrijs();
+                        SchuldDAO.aanrekenenSchuld(lezerID, new Schuld("Verlies", prijs));
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
-                        UitleenDAO.binnenbrengenUitlening(artikelnummer);
-                        BoekDAO.nietUitgeleend(artikelnummer);
-                        BoekDAO.verwijderenBoek(artikelnummer);
+                        UitleenDAO.binnenbrengenUitlening(boekID);
+                        BoekDAO.nietUitgeleend(boekID);
+                        BoekDAO.verwijderenBoek(boekID);
                     }
                 } catch (NumberFormatException nr) {
                     JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Gelieve een (geldig) ID in te geven.");
@@ -76,18 +73,18 @@ public class SchuldToevoegenForm {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    int lezerid = Integer.parseInt(lezerTextField.getText());
-                    int artikelnummer = Integer.parseInt(boekTextField.getText());
+                    int lezerID = Integer.parseInt(lezerTextField.getText());
+                    int boekID = Integer.parseInt(boekTextField.getText());
 
-                    if (UitleenDAO.uitleengeschiedenisLezer(lezerid) == null)
+                    if (UitleenDAO.uitleengeschiedenisLezer(lezerID) == null)
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Geen lezer gevonden met dit ID");
-                    else if (UitleenDAO.uitleengeschiedenisBoek(artikelnummer) == null)
+                    else if (UitleenDAO.uitleengeschiedenisBoek(boekID) == null)
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Geen boek gevonden met dit ID.");
                     else {
-                        double prijs = BoekDAO.ophalenBoek(artikelnummer).getPrijs()/2;
-                        SchuldDAO.aanrekenenSchuld(lezerid, new Schuld("Beschadiging", prijs));
+                        double prijs = BoekDAO.ophalenBoek(boekID).getPrijs()/2;
+                        SchuldDAO.aanrekenenSchuld(lezerID, new Schuld("Beschadiging", prijs));
                         JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Schuld toegevoegd.");
-                        UitleenDAO.binnenbrengenUitlening(artikelnummer);
+                        UitleenDAO.binnenbrengenUitlening(boekID);
                     }
                 } catch (NumberFormatException nr) {
                     JOptionPane.showMessageDialog(schuldToevoegenFormFrame, "Gelieve een (geldig) ID in te geven.");
