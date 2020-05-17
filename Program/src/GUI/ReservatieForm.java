@@ -77,13 +77,25 @@ public class ReservatieForm {
             public void actionPerformed(ActionEvent e) {
                 model.setRowCount(0);
 
-                String titel = titelTextField.getText();
+                try {
 
-                if (BoekDAO.opzoekenBoek(titel).size() == 0) {
-                    JOptionPane.showMessageDialog(null, "Geen boeken gevonden met deze titel.");
-                }
-                for (Boek b : BoekDAO.opzoekenBoek(titel)) {
-                    model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
+                    int lezerID = Integer.parseInt(lezerTextField.getText());
+
+                    if (LezerDAO.ophalenLezer(lezerID) == null)
+                        JOptionPane.showMessageDialog(null, "Geen lezer gevonden met dit lezerID!");
+
+                    else {
+                        String titel = titelTextField.getText();
+
+                        if (BoekDAO.opzoekenBoek(titel).size() == 0) {
+                            JOptionPane.showMessageDialog(null, "Geen boeken gevonden met deze titel.");
+                        }
+                        for (Boek b : BoekDAO.opzoekenBoek(titel)) {
+                            model.addRow(new Object[]{b.getArtikelnummer(), b.getISBN(), b.getTitel(), b.getAuteur(), b.getUitgeverij(), b.getPaginas(), b.getAankoopdatum()});
+                        }
+                    }
+                } catch (NumberFormatException nr) {
+                    JOptionPane.showMessageDialog(null, "Geef een (geldig) lezerID in!");
                 }
             }
         });
