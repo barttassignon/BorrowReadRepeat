@@ -82,13 +82,16 @@ public class WijzigLezerForm {
                             }
 
                             String straat = straatTextfield.getText();
-                            if (!straat.equals("")){
+                            String woonplaats = woonplaatsTextField.getText();
+                            if (!straat.equals("") && !woonplaats.equals("")){
                                 int nummer = Integer.parseInt(nummerTextField.getText());
                                 String bus = busTextField.getText();
                                 int postcode = Integer.parseInt(postcodeTextField.getText());
-                                String woonplaats = woonplaatsTextField.getText();
                                 LezerDAO.wijzigenAdresLezer(lezerID, new Adres(straat, nummer, bus, postcode, woonplaats));
                                 JOptionPane.showMessageDialog(wijzigLezerFrame, "Adres gewijzigd!");
+                            }
+                            if(telefoon.length() == 0 && email.length() == 0 && straat.equals("")){
+                                JOptionPane.showMessageDialog(wijzigLezerFrame, "Geen wijzigingen doorgevoerd!");
                             }
                         }
                     } catch (NumberFormatException nr) {
