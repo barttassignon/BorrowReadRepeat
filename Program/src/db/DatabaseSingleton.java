@@ -65,23 +65,8 @@ public class DatabaseSingleton {
             SingletonLog.doLoggingSevere(this.getClass().getSimpleName() + ": Connectie met SQL Database is mislukt.");
         }
         return connection;
-
-
     }
 
-    public void disconnect() {
-        if (connection != null) {
-            try {
-                connection.close();
-                OnzeLogger SingletonLog = new OnzeLogger();
-                SingletonLog.doLoggingInfo(this.getClass().getSimpleName() + ": Connectie met SQL Database is afgesloten.");
-            } catch (SQLException e) {
-                System.out.println("Cannot close connection!");
-                OnzeLogger SingletonLog = new OnzeLogger();
-                SingletonLog.doLoggingSevere(this.getClass().getSimpleName() + ": Kan de connectie met SQL Database is niet afsluiten.");
-            }
-        }
-    }
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
