@@ -112,7 +112,7 @@
           <foreground color="-16318021"/>
           <hideActionText value="true"/>
           <horizontalTextPosition value="0"/>
-          <text value="Beheerder  toevoegen"/>
+          <text value="Beheerder toevoegen"/>
         </properties>
       </component>
       <vspacer id="37683">
