@@ -94,6 +94,4 @@ public class SchuldToevoegenForm {
             }
         });
     }
-
-    public static void main(String[] args) { new SchuldToevoegenForm(); }
 }

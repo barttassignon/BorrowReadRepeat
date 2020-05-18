@@ -78,10 +78,6 @@ public class BeheerderToevoegenForm extends JFrame{
             }
         });
     }
-
-    public static void main(String[] args) {
-        new BeheerderToevoegenForm();
-    }
 }
 
 

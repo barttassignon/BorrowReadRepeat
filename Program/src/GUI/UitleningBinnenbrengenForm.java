@@ -64,6 +64,4 @@ public class UitleningBinnenbrengenForm {
         });
 
     }
-
-    public static void main(String[] args) { new UitleningBinnenbrengenForm(); }
 }

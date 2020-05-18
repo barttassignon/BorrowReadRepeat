@@ -107,6 +107,4 @@ public class SchuldForm {
             }
         });
     }
-
-    public static void main(String[] args) { new SchuldForm(); }
 }

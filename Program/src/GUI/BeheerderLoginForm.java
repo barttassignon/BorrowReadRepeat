@@ -54,10 +54,6 @@ public class BeheerderLoginForm extends JFrame{
             }
         });
     }
-
-    public static void main(String[] args) {
-        new BeheerderLoginForm();
-    }
 }
 
 

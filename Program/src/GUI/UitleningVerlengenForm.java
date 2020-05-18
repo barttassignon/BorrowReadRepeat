@@ -109,6 +109,4 @@ public class UitleningVerlengenForm {
         });
 
     }
-
-    public static void main(String[] args) { new UitleningVerlengenForm();}
 }

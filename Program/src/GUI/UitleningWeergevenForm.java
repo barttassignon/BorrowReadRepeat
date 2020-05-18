@@ -94,8 +94,4 @@ public class UitleningWeergevenForm {
                });
 
     }
-
-    public static void main(String[] args) {
-        new UitleningWeergevenForm();
-    }
 }

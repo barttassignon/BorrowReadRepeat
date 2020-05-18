@@ -72,8 +72,4 @@ public class UitleningToevoegenForm extends JFrame {
             }
         });
     }
-
-    public static void main(String[] args) {
-        new UitleningToevoegenForm();
-    }
 }

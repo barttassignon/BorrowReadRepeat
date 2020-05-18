@@ -127,7 +127,5 @@ public class ReservatieForm {
             }
         });
     }
-
-    public static void main(String[] args) { new ReservatieForm(); }
 }
 

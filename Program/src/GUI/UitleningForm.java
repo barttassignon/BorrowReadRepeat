@@ -69,9 +69,4 @@ public class UitleningForm {
         panel1.addComponentListener(new ComponentAdapter() {
         });
     }
-
-    public static void main(String[] args) {
-        new UitleningForm();
-    }
-
 }

@@ -105,5 +105,4 @@ public class WijzigLezerForm {
         });
 
     }
-    public static void main(String[] args) { new WijzigLezerForm(); }
 }
