@@ -66,8 +66,8 @@ public class SchuldDAO extends BaseDAO {
     public static ArrayList<Schuld> overzichtOpenstaandeSchulden() {
         ArrayList<Schuld> lijst = new ArrayList<>();
         try (Connection c = getConn()) {
-            Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("select * from Schulden where Betaaldatum is null");
+            PreparedStatement s = c.prepareStatement("select * from Schulden where Betaaldatum is null");
+            ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 lijst.add(new Schuld(new Lezer(rs.getInt(2)), rs.getInt(1), rs.getString(3), rs.getDouble(4), rs.getObject(5, LocalDate.class), rs.getObject(6, LocalDate.class)));
             }
