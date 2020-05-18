@@ -53,7 +53,7 @@ public class UitleningBinnenbrengenForm {
                     Uitlening s = UitleenDAO.ophalenUitlening(u.getUitleen_ID());
                     if(Schuld.overtijd(s)){
                         SchuldDAO.overtijdSchuld(u.getLezer().getId(), Schuld.overtijdSchuld(s, b));
-                        JOptionPane.showMessageDialog(null, "Boek te laat ingediend. U moet een boete betalen van " + Schuld.overtijdSchuld(s, b) + " euro.");
+                        JOptionPane.showMessageDialog(null, "Boek te laat ingediend. U moet een boete betalen van " + String.format("%.2f", Schuld.overtijdSchuld(s, b)) + " euro.");
                     } else {
                         JOptionPane.showMessageDialog(null, "Het boek is terug binnengebracht!");
                     }
