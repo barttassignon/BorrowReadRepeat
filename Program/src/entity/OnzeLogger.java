@@ -1,6 +1,7 @@
 /*
 De logger die we hier hebben aangemaakt gebruiken we in onze DatabaseSingleton om fouten te loggen.
-Aangezien een logger niet vereist was voor ons project, ook niet als extra, hebben we hem nergens ander in de code geimplementeerd maar het is dus wel mogelijk dit te doen.
+Aangezien een logger niet vereist was voor ons project, ook niet als extra,
+hebben we hem nergens ander in de code geimplementeerd maar het is dus wel mogelijk dit te doen.
 */
 
 package entity;
