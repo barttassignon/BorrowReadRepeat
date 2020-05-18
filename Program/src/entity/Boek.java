@@ -128,27 +128,6 @@ public class Boek {
 
     public boolean isUitStock() { return uitStock; }
 
-    public static boolean validateISBN10(long ISBN) {
-
-        // Van de 9 eerste cijfers wordt het 1e met 10 vermenigvuldigd, het 2e met 9, het 3e met 8, ...
-        // Bij de som van de producten wordt een getal opgeteld, zodanig dat een veelvoud van 11 ontstaat.
-        // Dit toegevoegde getal is het controlecijfer.
-        // Als het controlecijfer 10 is, wordt in plaats van een cijfer een X op de laatste positie gezet.
-
-        int totaal = 0;
-        for (int i = 0; i < 9; i++) {
-            int digit = Integer.parseInt(String.valueOf(ISBN).substring(i, i + 1));
-            totaal += ((10 - i) * digit);
-        }
-
-        String checksom = Integer.toString((11 - (totaal % 11)) % 11);
-        if ("10".equals(checksom)) {
-            checksom = "X";
-        }
-
-        return checksom.equals(String.valueOf(ISBN).substring(9));
-    }
-
     public static boolean validateISBN13(long ISBN) {
 
         // Alle cijfers op een even positie worden bij elkaar opgeteld en met 3 vermenigvuldigd.

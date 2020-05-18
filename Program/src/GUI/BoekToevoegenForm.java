@@ -133,8 +133,6 @@ public class BoekToevoegenForm extends JFrame {
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     } else if (ISBNtextField.getText().length() != 10 && ISBNtextField.getText().length() != 13) {
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Geef een geldig ISBN.", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    } else if (ISBNtextField.getText().length() == 10 && Boek.validateISBN10(ISBN) == false) {
-                        JOptionPane.showMessageDialog(boekToevoegenFrame, "Geef een geldig ISBN.", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     } else if (ISBNtextField.getText().length() == 13 && Boek.validateISBN13(ISBN) == false) {
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Geef een geldig ISBN.", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     }
