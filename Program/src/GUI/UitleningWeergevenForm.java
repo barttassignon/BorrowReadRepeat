@@ -51,7 +51,7 @@ public class UitleningWeergevenForm {
         terugButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new BeheerderForm();
+                new UitleningForm();
                 uitleningWeergevenFrame.dispose();
             }
         });
@@ -92,6 +92,7 @@ public class UitleningWeergevenForm {
                            }
                 }
                });
+
     }
 
     public static void main(String[] args) {
