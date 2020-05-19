@@ -110,14 +110,14 @@ public class BoekToevoegenForm extends JFrame {
                     String auteur = auteurtextField.getText();
                     String uitgeverij = uitgeverijtextField.getText();
                     String taal = null;
-                    if(nederlandsRadioButton.isSelected()) {
+                    if (nederlandsRadioButton.isSelected()) {
                         taal = "Nederlands";
-                    } else if(fransRadioButton.isSelected()) {
+                    } else if (fransRadioButton.isSelected()) {
                         taal = "Frans";
-                    }else if(engelsRadioButton.isSelected()) {
+                    } else if (engelsRadioButton.isSelected()) {
                         taal = "Engels";
                     }
-                    Boolean kind = false;
+                    boolean kind = false;
                     if (jaRadioButton.isSelected()) {kind = true;}
                     String genre = GenreModel.getSelectedItem().toString();
                     int paginas = Integer.parseInt(paginatextField.getText());
