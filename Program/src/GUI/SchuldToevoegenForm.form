@@ -74,7 +74,7 @@
           <font name="Consolas" size="18"/>
           <foreground color="-12508416"/>
           <horizontalAlignment value="2"/>
-          <text value="Boek ID"/>
+          <text value="Artikelnummer"/>
         </properties>
       </component>
       <component id="6b4a1" class="javax.swing.JTextField" binding="boekTextField">
