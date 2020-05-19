@@ -60,11 +60,11 @@ public class BeheerderToevoegenForm extends JFrame{
                 String wachtwoord = String.valueOf(passwordField1.getPassword());
                 String bevestigWachtwoord = String.valueOf(bevestigPasswordField1.getPassword());
 
-                if(wachtwoord.length() < 4) {
-                    JOptionPane.showMessageDialog(beheerderToevoegenForm, "Wachtwoord moet minimum 4 tekens bevatten!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                } else if(voornaam.length() == 0 || naam.length() == 0 || gebruikersnaam.length() == 0){
+                if (voornaam.length() == 0 || naam.length() == 0 || gebruikersnaam.length() == 0) {
                     JOptionPane.showMessageDialog(beheerderToevoegenForm, "Gelieve alle velden in te vullen!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                } else{
+                } else if (wachtwoord.length() < 4) {
+                    JOptionPane.showMessageDialog(beheerderToevoegenForm, "Wachtwoord moet minimum 4 tekens bevatten!", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                } else {
                 if(wachtwoord.equals(bevestigWachtwoord)) {
                     if(BeheerderDAO.toevoegenBeheerder(new Beheerder(voornaam, naam, gebruikersnaam, wachtwoord)))
                     JOptionPane.showMessageDialog(beheerderToevoegenForm, "Beheerder toegevoegd!", "Resultaat", JOptionPane.INFORMATION_MESSAGE);
