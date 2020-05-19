@@ -124,9 +124,7 @@ public class BoekToevoegenForm extends JFrame {
                     double aankoopprijs = Double.parseDouble(prijstextField.getText());
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate aankoopdatum = LocalDate.parse(aankoopdatumtextField.getText(), formatter);
-                    if(aankoopdatum.isAfter(LocalDate.now())){
-                        JOptionPane.showMessageDialog(boekToevoegenFrame, "Je kan geen aankoopdatum in de toekomst vermelden!", "Resultaat", JOptionPane.ERROR_MESSAGE);
-                    }
+
                     String plaats = plaatsInBibtextField.getText();
 
                     if (titel.length() == 0 || auteur.length() == 0 || uitgeverij.length() == 0 || plaats.length() == 0) {
@@ -135,6 +133,8 @@ public class BoekToevoegenForm extends JFrame {
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Geef een geldig ISBN.", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     } else if (ISBNtextField.getText().length() == 13 && Boek.validateISBN13(ISBN) == false) {
                         JOptionPane.showMessageDialog(boekToevoegenFrame, "Geef een geldig ISBN.", "Resultaat", JOptionPane.ERROR_MESSAGE);
+                    } else if (aankoopdatum.isAfter(LocalDate.now())) {
+                        JOptionPane.showMessageDialog(boekToevoegenFrame, "Je kan geen aankoopdatum in de toekomst vermelden!", "Resultaat", JOptionPane.ERROR_MESSAGE);
                     }
                     else{
                         BoekDAO.toevoegenBoek(new Boek(ISBN, titel, auteur, uitgeverij, taal, genre, paginas, aankoopdatum, aankoopprijs, plaats, kind));
